@@ -7,7 +7,7 @@ import java.util.List;
 /*segunda seccion, configuracion*/
 %class lexer
 /*%cup*/
-%standalone
+/*%standalone*/
 %unicode
 %line
 %column
@@ -26,13 +26,19 @@ import java.util.List;
 LineTerminator = [\r|\n|\r\n]+
 WhiteSpace = [ \t\n]+
 atributes = [a-zA-Z_]+
-text  = [\"][a-zA-Z_$0-9]+[\"]
-//text  = [\"][^]+[\"]
+simbolos = [\[\[\{\}!@#$%&*()+=_<>?/.:;,\|]
+numeros = [0-9]
+letras = [a-zA-Z]
+espacio = [ ]
+//text  = [\"]([a-zA-Z_$0-9: ])+[\"]
+//optionText  = [\"]([a-zA-Z0-9\| ])+[\"]
+text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})+[\"]
+
 
 
 %{
     private void error(String lexeme) {
-        System.out.printf("Error lexico \"%s\" linea %d,  columna %d. \n", lexeme, yyline + 1, yycolumn + 1);
+        System.out.printf("Error lexico: %s ,linea %d,  columna %d. \n", lexeme, yyline + 1, yycolumn + 1);
         errorsList.add(String.format("Error Lexico en el Texto: %s  linea %d, columna %d. Corrige e intenta de nuevo.", lexeme, yyline + 1, yycolumn + 1));
     }
     public List<String> getErrorsList() {
@@ -44,14 +50,6 @@ text  = [\"][a-zA-Z_$0-9]+[\"]
 
 /*LEXIX RULES*/
 <YYINITIAL>{
-    {text}
-        {   
-            System.out.println("Texto encontrado: "+yytext());
-        }
-    {atributes}
-        {
-            System.out.println("Atributo encontrado: "+yytext());
-        }
     "<"
         {
             System.out.println("Menor que: "+yytext());
@@ -87,6 +85,14 @@ text  = [\"][a-zA-Z_$0-9]+[\"]
     ","
         {
             System.out.println("Coma: "+yytext());
+        }
+    {text}
+        {   
+            System.out.println("Texto encontrado: "+yytext());
+        }
+    {atributes}
+        {
+            System.out.println("Atributo encontrado: "+yytext());
         }
     {LineTerminator}
         {

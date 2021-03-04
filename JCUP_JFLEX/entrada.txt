@@ -15,9 +15,83 @@
 	}
 <fin_Solicitud!>
 
-<!ini_solicitud:​"ELIMINAR_USUARIO"​>
-​	{"CREDENCIALES_USUARIO":[{
+<!ini_solicitud:​"ELIMINAR_USUARIO">
+	{"CREDENCIALES_USUARIO":[{
 		"USUARIO": "juanito619lopez"
 	}]
 	}
 <fin_solicitud!>
+
+<!ini_solicitud:"LOGIN_USUARIO">
+	{"CREDENCIALES_USUARIO":[{
+		"USUARIO_ANTIGUO": "juanito619",
+		"PASSWORD": "12345678"
+	}]
+	}
+<fin_Solicitud!>
+
+<!ini_solicitud:"NUEVO_FORMULARIO">
+	{"PARAMETROS_FORMULARIO":[{
+		"ID": "$from1",
+		"TITULO": "Formulario para encuesta 1",
+		"NOMBRE": "formulario_encuesta_1",
+		"TEMA": "Dark"
+	}]
+	}
+<fin_Solicitud!>
+
+<!ini_solicitud:"ELIMINAR_FORMULARIO">
+	{"PARAMETROS_FORMULARIO":[{
+		"ID": "$from1"
+	}]
+	}
+<fin_Solicitud!>
+
+<!ini_solicitud:"NUEVO_FORMULARIO">
+	{"PARAMETROS_FORMULARIO":[{
+		"ID": "$from1",
+		"TITULO": "Formulario Modificado para encuesta 1",
+		"NOMBRE": "formulario_encuesta_1_v2",
+		"TEMA": "Blue"
+	}]
+	}
+<fin_Solicitud!>
+
+<!ini_solicitud:"AGREGAR_COMPONENTE">
+	{"PARAMETROS_COMPONENTE":[{
+		"ID": "$_text_cliente",
+		"NOMBRE_CAMPO": "Cliente",
+		"FORMULARIO": "$form1",
+		"CLASE": "CAMPO_TEXTO",
+		"TEXTO_VISIBLE": "Nombre de cliente: ",
+		"ALINEACION": "CENTRO",
+		"REQUERIDO": "SI",
+	}]
+	}
+<fin_Solicitud!>
+
+<!ini_solicitud: "AGREGAR_COMPONENTE">
+	{ "PARAMETROS_COMPONENTE":[{
+		"ID": "$_text_cliente",
+		"NOMBRE_CAMPO": "Cliente",
+		"FORMULARIO": "$form1",
+		"CLASE": "COMBO",
+		"TEXTO_VISIBLE": "Nombre de cliente: ",
+		"ALINEACION": "CENTRO",
+		"REQUERIDO": "SI",
+		"OPCIONES": "Guatemala|El Salvador|Honduras|OTRO"
+	}]
+	}
+<fin_Solicitud!>
+
+<!ini_solicitud:"MODIFICAR_COMPONENTE">
+	{"PARAMETROS_COMPONENTE":[{
+		"ID": "$_grupo_paises",
+		"FORMULARIO": "$form1",
+		"CLASE": "CHECKBOX",
+		"INDICE": "1",
+		"ALINEACION": "DERECHA",
+		"OPCIONES":"Guatemala|El Salvador|Honduras|OTRO"
+	}]
+	}
+<fin_Solicitud!>

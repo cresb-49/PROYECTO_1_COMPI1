@@ -1,0 +1,2 @@
+SELECT TO FORM -> $form_encuesta_1 []
+SELECT TO FORM -> $form_encuesta_1 [Cliente,Edad] WHERE[Edad >= 18.5 AND Cliente = "Julio Paz"]
