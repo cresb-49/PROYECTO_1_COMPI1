@@ -1,17 +1,21 @@
-%%
+//CODIGO DE IMPORTORTACIONES
+import java.util.ArrayList;
+import java.util.List;
+//import java_cup.runtime.Symbol;
 
+%%
 /*segunda seccion, configuracion*/
 %class lexer
-%cup
-/*%standalone*/
+/*%cup*/
+%standalone
 %unicode
 %line
 %column
 %public
 
 %{
-    private Symbol after_symbl = new Symbol(0);
-    private Symbol tmp_symbl = new Symbol(0);
+    //Private Symbol after_symbl = new Symbol(0);
+    //private Symbol tmp_symbl = new Symbol(0);
 
     private List<String> errorsList = new ArrayList<>();
 
@@ -21,6 +25,8 @@
 
 LineTerminator = [\r|\n|\r\n]+
 WhiteSpace = [ \t\n]+
+atributes = [a-zA-Z_]+
+//text  = [\"][a-zA-Z_$0-9]+[\"]
 text  = [\"][^]+[\"]
 
 
@@ -42,9 +48,29 @@ text  = [\"][^]+[\"]
         {   
             System.out.println("Texto encontrado: "+yytext());
         }
+    {atributes}
+        {
+            System.out.println("Atributo encontrado: "+yytext());
+        }
     "<"
         {
             System.out.println("Menor que: "+yytext());
+        }
+    "{"
+        {
+            System.out.println("Llave apertura: "+yytext());
+        }
+    "}"
+        {
+            System.out.println("Llave cierre: "+yytext());
+        }
+    "["
+        {
+            System.out.println("Corchete apertura: "+yytext());
+        }
+    "]"
+        {
+            System.out.println("Corchete cierre: "+yytext());
         }
     ">"
         {
@@ -53,6 +79,14 @@ text  = [\"][^]+[\"]
     "!"
         {
             System.out.println("Admiracion: "+yytext());
+        }
+    ":"
+        {
+            System.out.println("Dos puntos: "+yytext());
+        }
+    ","
+        {
+            System.out.println("Coma: "+yytext());
         }
     {LineTerminator}
         {
