@@ -26,8 +26,8 @@ import java.util.List;
 LineTerminator = [\r|\n|\r\n]+
 WhiteSpace = [ \t\n]+
 atributes = [a-zA-Z_]+
-//text  = [\"][a-zA-Z_$0-9]+[\"]
-text  = [\"][^]+[\"]
+text  = [\"][a-zA-Z_$0-9]+[\"]
+//text  = [\"][^]+[\"]
 
 
 %{
