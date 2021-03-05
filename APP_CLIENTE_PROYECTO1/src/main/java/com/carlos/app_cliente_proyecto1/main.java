@@ -6,6 +6,7 @@
 package com.carlos.app_cliente_proyecto1;
 
 import com.carlos.app_cliente_proyecto1.UI.PrincipalFrame;
+import com.carlos.app_cliente_proyecto1.httpMethods.peticionLogin;
 
 /**
  *
@@ -13,6 +14,13 @@ import com.carlos.app_cliente_proyecto1.UI.PrincipalFrame;
  */
 public class main {
     public static void main(String[] args) {
-        PrincipalFrame principal = new PrincipalFrame();
+        //PrincipalFrame principal = new PrincipalFrame();
+        peticionLogin log = new peticionLogin();
+        try {
+            String res = log.peticionHttpGet("https://jsonplaceholder.typicode.com/todos/1");
+            System.out.println(res);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

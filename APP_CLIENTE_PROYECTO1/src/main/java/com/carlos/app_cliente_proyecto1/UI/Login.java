@@ -10,6 +10,7 @@ import com.carlos.app_cliente_proyecto1.Parser.parserIndigo;
 import java.io.StringReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -113,6 +114,10 @@ public class Login extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        if(loginTextArea.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Escriba la peticion de ingreso al sistema!!!");
+        }
         pruebaLexer();
     }//GEN-LAST:event_jButton1ActionPerformed
     private void pruebaLexer(){
