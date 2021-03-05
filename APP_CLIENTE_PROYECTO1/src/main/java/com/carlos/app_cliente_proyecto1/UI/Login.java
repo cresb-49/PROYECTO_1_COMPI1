@@ -5,6 +5,12 @@
  */
 package com.carlos.app_cliente_proyecto1.UI;
 
+import com.carlos.app_cliente_proyecto1.Lexer.lexerIndigo;
+import com.carlos.app_cliente_proyecto1.Parser.parserIndigo;
+import java.io.StringReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author benjamin
@@ -35,7 +41,7 @@ public class Login extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        loginTextArea = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -43,11 +49,16 @@ public class Login extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        loginTextArea.setColumns(20);
+        loginTextArea.setRows(5);
+        jScrollPane1.setViewportView(loginTextArea);
 
         jButton1.setText("INGRESAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -100,12 +111,27 @@ public class Login extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        pruebaLexer();
+    }//GEN-LAST:event_jButton1ActionPerformed
+    private void pruebaLexer(){
+        StringReader reader = new StringReader(loginTextArea.getText());
+        lexerIndigo lex = new lexerIndigo(reader);
+        parserIndigo parser = new parserIndigo(lex);
+        try {
+            parser.parse();
+        } catch (Exception ex) {
+            System.err.println("Error irrcuperable indigo");
+            ex.printStackTrace();
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea loginTextArea;
     // End of variables declaration//GEN-END:variables
 }

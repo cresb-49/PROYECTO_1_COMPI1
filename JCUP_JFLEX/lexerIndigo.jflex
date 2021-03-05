@@ -1,12 +1,15 @@
+//package de la clase
+package com.carlos.app_cliente_proyecto1.Lexer;
 //CODIGO DE IMPORTORTACIONES
+import com.carlos.app_cliente_proyecto1.Parser.parserIndigoSym;
 import java.util.ArrayList;
 import java.util.List;
-//import java_cup.runtime.Symbol;
+import java_cup.runtime.Symbol;
 
 %%
 /*segunda seccion, configuracion*/
-%class lexer
-/*%cup*/
+%class lexerIndigo
+%cup
 /*%standalone*/
 %unicode
 %line
@@ -20,6 +23,9 @@ import java.util.List;
     private List<String> errorsList = new ArrayList<>();
 
 %}
+%eofval{
+  return new java_cup.runtime.Symbol(parserIndigoSym.EOF);
+%eofval}
 
 /*EXPRECIONES REGULARES*/
 
@@ -106,3 +112,4 @@ text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})+[\"]
 [^]     {
             error(yytext());
         }
+

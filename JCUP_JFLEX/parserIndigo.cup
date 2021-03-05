@@ -1,0 +1,47 @@
+package com.carlos.app_cliente_proyecto1.Parser;
+
+import com.carlos.app_cliente_proyecto1.Lexer.lexerIndigo;
+import java.util.ArrayList;
+import java.util.List;
+
+class parserIndigo;
+
+parser code {:
+        private List<String> errorsList = new ArrayList();
+
+        public parserIndigo(lexerIndigo lex){
+                super(lex);
+        }
+
+        public void report_error(String message, Object info){
+                System.out.println("reporterror");
+        }
+        public void report_fatal_error(String message, Object info){
+                System.out.println("reportfatal");
+        }
+        /*
+        public void syntax_error(Symbol cur_token){
+                
+        }*/
+        protected int error_sync_size() {
+		return 1;
+	}
+        public List<String> getErrorsList(){
+	        return errorsList
+	        ;
+	}
+
+:}
+
+terminal MENOR_QUE,MAYOR_QUE;
+non terminal exp;
+
+exp     ::=     MENOR_QUE
+        |       MAYOR_QUE
+        |       error
+        |       
+        ;
+
+exp1    ::=     exp
+        |
+        ;
