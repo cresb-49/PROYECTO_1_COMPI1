@@ -42,9 +42,9 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\006\000\012\002\ufffd\003\006\004\005\005\004\001" +
-    "\002\000\004\002\uffff\001\002\000\004\002\001\001\002" +
-    "\000\004\002\ufffe\001\002\000\004\002\010\001\002\000" +
+    "\000\006\000\012\002\ufffd\003\005\004\006\005\004\001" +
+    "\002\000\004\002\uffff\001\002\000\004\002\ufffe\001\002" +
+    "\000\004\002\001\001\002\000\004\002\010\001\002\000" +
     "\004\002\000\001\002" });
 
   /** Access to parse-action table. */
@@ -145,7 +145,7 @@ class CUP$parserIndigo$actions {
       switch (CUP$parserIndigo$act_num)
         {
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 0: // exp ::= MENOR_QUE 
+          case 0: // exp ::= ME_Q 
             {
               Object RESULT =null;
 
@@ -168,7 +168,7 @@ class CUP$parserIndigo$actions {
           return CUP$parserIndigo$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 2: // exp ::= MAYOR_QUE 
+          case 2: // exp ::= MA_Q 
             {
               Object RESULT =null;
 

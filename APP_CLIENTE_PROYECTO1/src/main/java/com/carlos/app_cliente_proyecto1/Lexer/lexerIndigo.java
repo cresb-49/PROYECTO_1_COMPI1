@@ -6,6 +6,8 @@
 package com.carlos.app_cliente_proyecto1.Lexer;
 //CODIGO DE IMPORTORTACIONES
 import com.carlos.app_cliente_proyecto1.Parser.parserIndigoSym;
+import com.carlos.app_cliente_proyecto1.Tokens.token;
+import static com.carlos.app_cliente_proyecto1.Parser.parserIndigoSym.*;
 import java.util.ArrayList;
 import java.util.List;
 import java_cup.runtime.Symbol;
@@ -288,8 +290,8 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
   private boolean zzEOFDone;
 
   /* user code: */
-    //Private Symbol after_symbl = new Symbol(0);
-    //private Symbol tmp_symbl = new Symbol(0);
+    private Symbol after_symbl = new Symbol(0);
+    private Symbol tmp_symbl = new Symbol(0);
 
     private List<String> errorsList = new ArrayList<>();
 
@@ -720,26 +722,41 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
           case 15: break;
           case 3:
             { System.out.println("Admiracion: "+yytext());
+            tmp_symbl = new Symbol (ADM,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
             }
             // fall through
           case 16: break;
           case 4:
             { System.out.println("Coma: "+yytext());
+            tmp_symbl = new Symbol (COM,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
             }
             // fall through
           case 17: break;
           case 5:
             { System.out.println("Dos puntos: "+yytext());
+            tmp_symbl = new Symbol (D_DOT,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
             }
             // fall through
           case 18: break;
           case 6:
             { System.out.println("Menor que: "+yytext());
+            tmp_symbl = new Symbol (ME_Q,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
             }
             // fall through
           case 19: break;
           case 7:
             { System.out.println("Mayor que: "+yytext());
+            tmp_symbl = new Symbol (MA_Q,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
             }
             // fall through
           case 20: break;
@@ -750,21 +767,33 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
           case 21: break;
           case 9:
             { System.out.println("Corchete apertura: "+yytext());
+            tmp_symbl = new Symbol (C_A,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
             }
             // fall through
           case 22: break;
           case 10:
             { System.out.println("Corchete cierre: "+yytext());
+            tmp_symbl = new Symbol (C_C,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
             }
             // fall through
           case 23: break;
           case 11:
             { System.out.println("Llave apertura: "+yytext());
+            tmp_symbl = new Symbol (L_A,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
             }
             // fall through
           case 24: break;
           case 12:
             { System.out.println("Llave cierre: "+yytext());
+            tmp_symbl = new Symbol (L_C,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
             }
             // fall through
           case 25: break;

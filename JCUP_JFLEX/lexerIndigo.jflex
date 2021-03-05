@@ -2,6 +2,8 @@
 package com.carlos.app_cliente_proyecto1.Lexer;
 //CODIGO DE IMPORTORTACIONES
 import com.carlos.app_cliente_proyecto1.Parser.parserIndigoSym;
+import com.carlos.app_cliente_proyecto1.Tokens.token;
+import static com.carlos.app_cliente_proyecto1.Parser.parserIndigoSym.*;
 import java.util.ArrayList;
 import java.util.List;
 import java_cup.runtime.Symbol;
@@ -17,8 +19,8 @@ import java_cup.runtime.Symbol;
 %public
 
 %{
-    //Private Symbol after_symbl = new Symbol(0);
-    //private Symbol tmp_symbl = new Symbol(0);
+    private Symbol after_symbl = new Symbol(0);
+    private Symbol tmp_symbl = new Symbol(0);
 
     private List<String> errorsList = new ArrayList<>();
 
@@ -59,38 +61,65 @@ text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})+[\"]
     "<"
         {
             System.out.println("Menor que: "+yytext());
+            tmp_symbl = new Symbol (ME_Q,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
         }
     "{"
         {
             System.out.println("Llave apertura: "+yytext());
+            tmp_symbl = new Symbol (L_A,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
         }
     "}"
         {
             System.out.println("Llave cierre: "+yytext());
+            tmp_symbl = new Symbol (L_C,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
         }
     "["
         {
             System.out.println("Corchete apertura: "+yytext());
+            tmp_symbl = new Symbol (C_A,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
         }
     "]"
         {
             System.out.println("Corchete cierre: "+yytext());
+            tmp_symbl = new Symbol (C_C,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
         }
     ">"
         {
             System.out.println("Mayor que: "+yytext());
+            tmp_symbl = new Symbol (MA_Q,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
         }
     "!"
         {
             System.out.println("Admiracion: "+yytext());
+            tmp_symbl = new Symbol (ADM,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
         }
     ":"
         {
             System.out.println("Dos puntos: "+yytext());
+            tmp_symbl = new Symbol (D_DOT,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
         }
     ","
         {
             System.out.println("Coma: "+yytext());
+            tmp_symbl = new Symbol (COM,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
         }
     {text}
         {   

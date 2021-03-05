@@ -1,4 +1,4 @@
-package com.carlos.app_cliente_proyecto1.httpMethods;
+package com.carlos.app_cliente_proyecto1.HttpMethods;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

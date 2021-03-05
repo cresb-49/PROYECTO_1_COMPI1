@@ -33,11 +33,11 @@ parser code {:
 
 :}
 
-terminal MENOR_QUE,MAYOR_QUE;
+terminal ME_Q,MA_Q,ADM,SS,FS,SSS,FSS,COM,D_DOT,C_A,C_C,L_A,L_C;
 non terminal exp;
 
-exp     ::=     MENOR_QUE
-        |       MAYOR_QUE
+exp     ::=     ME_Q
+        |       MA_Q
         |       error
         |       
         ;

@@ -6,7 +6,7 @@
 package com.carlos.app_cliente_proyecto1;
 
 import com.carlos.app_cliente_proyecto1.UI.PrincipalFrame;
-import com.carlos.app_cliente_proyecto1.httpMethods.peticionLogin;
+import com.carlos.app_cliente_proyecto1.HttpMethods.peticionLogin;
 
 /**
  *
