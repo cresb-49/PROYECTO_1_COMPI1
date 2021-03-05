@@ -34,6 +34,7 @@ import java_cup.runtime.Symbol;
 LineTerminator = [\r|\n|\r\n]+
 WhiteSpace = [ \t\n]+
 atributes = [a-zA-Z_]+
+reservadasConjunto = (ini_solicitud|fin_solicitud|ini_solicitudes|fin_solicitudes)
 simbolos = [\[\[\{\}!@#$%&*()+=_<>?/.:;,\|]
 numeros = [0-9]
 letras = [a-zA-Z]
@@ -120,6 +121,28 @@ text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})+[\"]
             tmp_symbl = new Symbol (COM,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
             after_symbl = tmp_symbl;
             return tmp_symbl;
+        }
+    {reservadasConjunto}
+        {
+            System.out.println("Palabra recerbada etiqueta: "+yytext());
+            switch (yytext()) {
+                case "ini_solicitud":
+                    tmp_symbl = new Symbol (SS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "fin_solicitud":
+                    tmp_symbl = new Symbol (FS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "ini_solicitudes":
+                    tmp_symbl = new Symbol (SSS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "fin_solicitudes":
+                    tmp_symbl = new Symbol (FSS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+            }
         }
     {text}
         {   

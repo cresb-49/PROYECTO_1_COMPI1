@@ -73,7 +73,9 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
     "\11\0\1\1\1\2\2\0\1\3\22\0\1\4\1\5"+
     "\1\6\4\7\1\0\4\7\1\10\1\0\14\7\1\11"+
     "\1\7\1\12\1\7\1\13\2\7\32\14\1\15\1\0"+
-    "\1\16\1\0\1\14\1\0\32\14\1\17\1\20\1\21"+
+    "\1\16\1\0\1\17\1\0\2\14\1\20\1\21\1\22"+
+    "\1\23\2\14\1\24\2\14\1\25\1\14\1\26\1\27"+
+    "\3\14\1\30\1\31\1\32\5\14\1\33\1\34\1\35"+
     "\u0182\0";
 
   private static int [] zzUnpackcmap_blocks() {
@@ -102,10 +104,11 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\3\2\1\3\1\1\1\4\1\5\1\6"+
-    "\1\7\1\10\1\11\1\12\1\13\1\14\1\0\1\15";
+    "\1\7\1\10\1\11\1\12\2\10\1\13\1\14\1\0"+
+    "\2\10\1\15\12\10\1\16\1\10\1\16";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[18];
+    int [] result = new int[35];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -130,12 +133,14 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\22\0\44\0\66\0\110\0\22\0\132\0\22"+
-    "\0\22\0\22\0\22\0\154\0\22\0\22\0\22\0\22"+
-    "\0\176\0\22";
+    "\0\0\0\36\0\74\0\132\0\170\0\36\0\226\0\36"+
+    "\0\36\0\36\0\36\0\264\0\36\0\36\0\322\0\360"+
+    "\0\36\0\36\0\u010e\0\u012c\0\u014a\0\36\0\u0168\0\u0186"+
+    "\0\u01a4\0\u01c2\0\u01e0\0\u01fe\0\u021c\0\u023a\0\u0258\0\u0276"+
+    "\0\u0294\0\u02b2\0\264";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[18];
+    int [] result = new int[35];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -159,14 +164,27 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
 
   private static final String ZZ_TRANS_PACKED_0 =
     "\1\2\1\3\1\4\1\5\1\3\1\6\1\7\1\2"+
-    "\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1\17"+
-    "\1\5\1\20\23\0\2\3\1\0\1\3\16\0\1\3"+
-    "\1\4\1\5\1\3\13\0\1\5\3\0\2\5\14\0"+
-    "\1\5\5\0\2\21\1\0\7\21\1\0\3\21\14\0"+
-    "\1\14\11\0\2\21\1\22\7\21\1\0\3\21";
+    "\1\10\1\11\1\12\1\13\1\14\1\15\1\16\4\14"+
+    "\1\17\1\20\6\14\1\21\1\5\1\22\37\0\2\3"+
+    "\1\0\1\3\32\0\1\3\1\4\1\5\1\3\27\0"+
+    "\1\5\3\0\2\5\30\0\1\5\5\0\2\23\1\0"+
+    "\7\23\1\0\17\23\14\0\1\14\2\0\14\14\17\0"+
+    "\1\14\2\0\5\14\1\24\6\14\17\0\1\14\2\0"+
+    "\7\14\1\25\4\14\7\0\2\23\1\26\7\23\1\0"+
+    "\17\23\14\0\1\14\2\0\7\14\1\27\4\14\17\0"+
+    "\1\14\2\0\5\14\1\27\6\14\17\0\1\14\2\0"+
+    "\1\30\13\14\17\0\1\14\2\0\11\14\1\31\2\14"+
+    "\17\0\1\14\2\0\10\14\1\32\3\14\17\0\1\14"+
+    "\2\0\6\14\1\33\5\14\17\0\1\14\2\0\5\14"+
+    "\1\34\6\14\17\0\1\14\2\0\1\14\1\35\12\14"+
+    "\17\0\1\14\2\0\5\14\1\36\6\14\17\0\1\14"+
+    "\2\0\12\14\1\37\1\14\17\0\1\14\2\0\13\14"+
+    "\1\40\17\0\1\14\2\0\2\14\1\41\11\14\17\0"+
+    "\1\14\2\0\3\14\1\42\10\14\17\0\1\14\2\0"+
+    "\11\14\1\43\2\14\3\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[144];
+    int [] result = new int[720];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -209,11 +227,11 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\3\1\1\11\1\1\4\11\1\1\4\11"+
-    "\1\0\1\11";
+    "\1\0\1\11\3\1\1\11\1\1\4\11\1\1\2\11"+
+    "\2\1\2\11\1\0\2\1\1\11\15\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[18];
+    int [] result = new int[35];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -714,12 +732,12 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
             { error(yytext());
             }
             // fall through
-          case 14: break;
+          case 15: break;
           case 2:
             { /*Do nothing*/
             }
             // fall through
-          case 15: break;
+          case 16: break;
           case 3:
             { System.out.println("Admiracion: "+yytext());
             tmp_symbl = new Symbol (ADM,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
@@ -727,7 +745,7 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
             return tmp_symbl;
             }
             // fall through
-          case 16: break;
+          case 17: break;
           case 4:
             { System.out.println("Coma: "+yytext());
             tmp_symbl = new Symbol (COM,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
@@ -735,7 +753,7 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
             return tmp_symbl;
             }
             // fall through
-          case 17: break;
+          case 18: break;
           case 5:
             { System.out.println("Dos puntos: "+yytext());
             tmp_symbl = new Symbol (D_DOT,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
@@ -743,7 +761,7 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
             return tmp_symbl;
             }
             // fall through
-          case 18: break;
+          case 19: break;
           case 6:
             { System.out.println("Menor que: "+yytext());
             tmp_symbl = new Symbol (ME_Q,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
@@ -751,7 +769,7 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
             return tmp_symbl;
             }
             // fall through
-          case 19: break;
+          case 20: break;
           case 7:
             { System.out.println("Mayor que: "+yytext());
             tmp_symbl = new Symbol (MA_Q,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
@@ -759,12 +777,12 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
             return tmp_symbl;
             }
             // fall through
-          case 20: break;
+          case 21: break;
           case 8:
             { System.out.println("Atributo encontrado: "+yytext());
             }
             // fall through
-          case 21: break;
+          case 22: break;
           case 9:
             { System.out.println("Corchete apertura: "+yytext());
             tmp_symbl = new Symbol (C_A,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
@@ -772,7 +790,7 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
             return tmp_symbl;
             }
             // fall through
-          case 22: break;
+          case 23: break;
           case 10:
             { System.out.println("Corchete cierre: "+yytext());
             tmp_symbl = new Symbol (C_C,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
@@ -780,7 +798,7 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
             return tmp_symbl;
             }
             // fall through
-          case 23: break;
+          case 24: break;
           case 11:
             { System.out.println("Llave apertura: "+yytext());
             tmp_symbl = new Symbol (L_A,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
@@ -788,7 +806,7 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
             return tmp_symbl;
             }
             // fall through
-          case 24: break;
+          case 25: break;
           case 12:
             { System.out.println("Llave cierre: "+yytext());
             tmp_symbl = new Symbol (L_C,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
@@ -796,12 +814,35 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
             return tmp_symbl;
             }
             // fall through
-          case 25: break;
+          case 26: break;
           case 13:
             { System.out.println("Texto encontrado: "+yytext());
             }
             // fall through
-          case 26: break;
+          case 27: break;
+          case 14:
+            { System.out.println("Palabra recerbada etiqueta: "+yytext());
+            switch (yytext()) {
+                case "ini_solicitud":
+                    tmp_symbl = new Symbol (SS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "fin_solicitud":
+                    tmp_symbl = new Symbol (FS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "ini_solicitudes":
+                    tmp_symbl = new Symbol (SSS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "fin_solicitudes":
+                    tmp_symbl = new Symbol (FSS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+            }
+            }
+            // fall through
+          case 28: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
