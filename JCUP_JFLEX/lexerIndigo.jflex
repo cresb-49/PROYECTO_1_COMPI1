@@ -159,6 +159,42 @@ text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})+[\"]
                     tmp_symbl = new Symbol (CR_U,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
                     after_symbl = tmp_symbl;
                     return tmp_symbl;
+                case "\"MODIFICAR_USUARIO\"":
+                    tmp_symbl = new Symbol (MO_U,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "\"ELIMINAR_USUARIO\"":
+                    tmp_symbl = new Symbol (DEL_U,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "\"LOGIN_USUARIO\"":
+                    tmp_symbl = new Symbol (LOG_U,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "\"NUEVO_FORMULARIO\"":
+                    tmp_symbl = new Symbol (NEW_F,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "\"ELIMINAR_FORMULARIO\"​":
+                    tmp_symbl = new Symbol (DEL_F,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "\"MODIFICAR_FORMULARIO\"":
+                    tmp_symbl = new Symbol (MO_F,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "\"AGREGAR_COMPONENTE\"":
+                    tmp_symbl = new Symbol (AGRE_C,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "\"ELIMINAR_COMPONENTE\"":
+                    tmp_symbl = new Symbol (EL_C,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "\"MODIFICAR_COMPONENTE\""
+                    tmp_symbl = new Symbol (MO_C,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
                 case "\"CREDENCIALES_USUARIO\"":
                     System.out.println("Debuj");
                     tmp_symbl = new Symbol (CREDEN_USER,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
