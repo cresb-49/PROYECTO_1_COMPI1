@@ -14,13 +14,13 @@ import com.carlos.app_cliente_proyecto1.HttpMethods.peticionLogin;
  */
 public class main {
     public static void main(String[] args) {
-        //PrincipalFrame principal = new PrincipalFrame();
-        peticionLogin log = new peticionLogin();
+        PrincipalFrame principal = new PrincipalFrame();
+        /*peticionLogin log = new peticionLogin();
         try {
             String res = log.peticionHttpGet("https://jsonplaceholder.typicode.com/todos/1");
             System.out.println(res);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }

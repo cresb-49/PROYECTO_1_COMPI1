@@ -34,7 +34,8 @@ import java_cup.runtime.Symbol;
 LineTerminator = [\r|\n|\r\n]+
 WhiteSpace = [ \t\n]+
 atributes = [a-zA-Z_]+
-reservadasConjunto = (ini_solicitud|fin_solicitud|ini_solicitudes|fin_solicitudes)
+reservadasConjunto = (ini_solicitud|fin_solicitud)
+conjuntoOperaciones = (<\!ini_solicitudes>|<\!fin_solicitudes>)
 simbolos = [\[\[\{\}!@#$%&*()+=_<>?/.:;,\|]
 numeros = [0-9]
 letras = [a-zA-Z]
@@ -59,6 +60,20 @@ text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})+[\"]
 
 /*LEXIX RULES*/
 <YYINITIAL>{
+    {conjuntoOperaciones}
+        {   
+            System.out.println("Palabra de conjunto de operaciones: "+yytext());
+            switch (yytext()) {
+                case "<!ini_solicitudes>":
+                    tmp_symbl = new Symbol (SSS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "<!fin_solicitudes>":
+                    tmp_symbl = new Symbol (FSS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+            }
+        }   
     "<"
         {
             System.out.println("Menor que: "+yytext());
@@ -134,19 +149,38 @@ text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})+[\"]
                     tmp_symbl = new Symbol (FS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
                     after_symbl = tmp_symbl;
                     return tmp_symbl;
-                case "ini_solicitudes":
-                    tmp_symbl = new Symbol (SSS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "fin_solicitudes":
-                    tmp_symbl = new Symbol (FSS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
             }
         }
     {text}
         {   
             System.out.println("Texto encontrado: "+yytext());
+            switch (yytext()) {
+                case "\"CREAR_USUARIO\"":
+                    tmp_symbl = new Symbol (CR_U,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "\"CREDENCIALES_USUARIO\"":
+                    System.out.println("Debuj");
+                    tmp_symbl = new Symbol (CREDEN_USER,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "\"USUARIO\"":
+                    tmp_symbl = new Symbol (USER,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "\"PASSWORD\"":
+                    tmp_symbl = new Symbol (PASS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "\"FECHA_CREACION\"":
+                    tmp_symbl = new Symbol (FECHA,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                default:    
+                    tmp_symbl = new Symbol (ASIGNACION,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+            }
         }
     {atributes}
         {

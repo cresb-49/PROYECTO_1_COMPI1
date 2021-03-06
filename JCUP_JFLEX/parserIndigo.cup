@@ -2,6 +2,7 @@ package com.carlos.app_cliente_proyecto1.Parser;
 
 import com.carlos.app_cliente_proyecto1.Lexer.lexerIndigo;
 import java.util.ArrayList;
+import java_cup.runtime.Symbol;
 import java.util.List;
 
 class parserIndigo;
@@ -16,13 +17,15 @@ parser code {:
         public void report_error(String message, Object info){
                 System.out.println("reporterror");
         }
+
         public void report_fatal_error(String message, Object info){
+                System.out.println(info.toString());
                 System.out.println("reportfatal");
         }
-        /*
+
         public void syntax_error(Symbol cur_token){
-                
-        }*/
+                System.out.println("Error sintactico");       
+        }
         protected int error_sync_size() {
 		return 1;
 	}
@@ -33,15 +36,64 @@ parser code {:
 
 :}
 
-terminal ME_Q,MA_Q,ADM,SS,FS,SSS,FSS,COM,D_DOT,C_A,C_C,L_A,L_C;
-non terminal exp;
+terminal ME_Q,MA_Q,ADM,SS,FS,SSS,FSS,COM,D_DOT,C_A,C_C,L_A,L_C,CR_U,USER,PASS,FECHA,ASIGNACION,CREDEN_USER;
+non terminal inicio,contenido,type_s,contenido1,cont_CR_U,cont_CR_U1,cont_CR_U2,cont_CR_U3,cont_CR_U1_2,cont_CR_U1_3,cont_CR_U2_2,cont_CR_U2_3,
+                cont_CR_U3_2,cont_CR_U3_3,parametros,parametros2;
 
-exp     ::=     ME_Q
-        |       MA_Q
-        |       error
-        |       
+start with inicio;
+
+inicio  ::= SSS contenido FSS
         ;
 
-exp1    ::=     exp
-        |
+
+contenido       ::= ME_Q ADM SS D_DOT type_s
+                ;
+
+contenido1      ::= contenido
+                |
+                ;
+
+type_s ::=     CR_U MA_Q L_A CREDEN_USER D_DOT C_A parametros C_C L_C ME_Q FS ADM MA_Q contenido1
         ;
+
+parametros      ::== L_A cont_CR_U L_C parametros2
+                ;
+
+parametros2     ::= COM parametros
+                |
+                ;
+
+cont_CR_U       ::=     USER D_DOT ASIGNACION cont_CR_U1
+                |       PASS D_DOT ASIGNACION cont_CR_U2
+                |       FECHA D_DOT ASIGNACION cont_CR_U3
+                ;
+
+cont_CR_U1      ::=     COM PASS D_DOT ASIGNACION cont_CR_U1_2
+                |       COM FECHA D_DOT ASIGNACION cont_CR_U1_3
+                ;
+
+cont_CR_U1_2    ::=     COM FECHA D_DOT ASIGNACION
+                | 
+                ;
+cont_CR_U1_3    ::=     COM PASS D_DOT ASIGNACION
+                ;
+
+cont_CR_U2      ::=     COM USER D_DOT ASIGNACION cont_CR_U2_2
+                |       COM FECHA D_DOT ASIGNACION cont_CR_U2_3
+                ;
+
+cont_CR_U2_2    ::=     COM FECHA D_DOT ASIGNACION
+                |
+                ;
+cont_CR_U2_3    ::=     COM USER D_DOT ASIGNACION
+                ;
+
+cont_CR_U3      ::=     COM USER D_DOT ASIGNACION cont_CR_U3_2
+                |       COM PASS D_DOT ASIGNACION cont_CR_U3_3
+                ;
+
+cont_CR_U3_2    ::=     COM PASS D_DOT ASIGNACION
+                ;
+
+cont_CR_U3_3    ::=     COM USER D_DOT ASIGNACION
+                ;

@@ -7,6 +7,7 @@ package com.carlos.app_cliente_proyecto1.Parser;
 
 import com.carlos.app_cliente_proyecto1.Lexer.lexerIndigo;
 import java.util.ArrayList;
+import java_cup.runtime.Symbol;
 import java.util.List;
 import java_cup.runtime.XMLElement;
 
@@ -33,8 +34,15 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\005\000\002\002\003\000\002\002\004\000\002\002" +
-    "\003\000\002\002\003\000\002\002\002" });
+    "\000\032\000\002\002\004\000\002\002\005\000\002\003" +
+    "\007\000\002\005\003\000\002\005\002\000\002\004\020" +
+    "\000\002\020\006\000\002\021\004\000\002\021\002\000" +
+    "\002\006\006\000\002\006\006\000\002\006\006\000\002" +
+    "\007\007\000\002\007\007\000\002\012\006\000\002\012" +
+    "\002\000\002\013\006\000\002\010\007\000\002\010\007" +
+    "\000\002\014\006\000\002\014\002\000\002\015\006\000" +
+    "\002\011\007\000\002\011\007\000\002\016\006\000\002" +
+    "\017\006" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -42,10 +50,52 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\006\000\012\002\ufffd\003\005\004\006\005\004\001" +
-    "\002\000\004\002\uffff\001\002\000\004\002\ufffe\001\002" +
-    "\000\004\002\001\001\002\000\004\002\010\001\002\000" +
-    "\004\002\000\001\002" });
+    "\000\137\000\004\011\004\001\002\000\004\004\007\001" +
+    "\002\000\004\002\006\001\002\000\004\002\001\001\002" +
+    "\000\004\006\012\001\002\000\004\012\011\001\002\000" +
+    "\004\002\000\001\002\000\004\007\013\001\002\000\004" +
+    "\014\014\001\002\000\004\021\016\001\002\000\004\012" +
+    "\uffff\001\002\000\004\005\017\001\002\000\004\017\020" +
+    "\001\002\000\004\026\021\001\002\000\004\014\022\001" +
+    "\002\000\004\015\023\001\002\000\004\017\025\001\002" +
+    "\000\004\016\132\001\002\000\010\022\031\023\026\024" +
+    "\027\001\002\000\004\014\106\001\002\000\004\014\062" +
+    "\001\002\000\004\020\056\001\002\000\004\014\032\001" +
+    "\002\000\004\025\033\001\002\000\004\013\035\001\002" +
+    "\000\004\020\ufff8\001\002\000\006\023\036\024\037\001" +
+    "\002\000\004\014\047\001\002\000\004\014\040\001\002" +
+    "\000\004\025\041\001\002\000\004\013\043\001\002\000" +
+    "\004\020\ufff4\001\002\000\004\023\044\001\002\000\004" +
+    "\014\045\001\002\000\004\025\046\001\002\000\004\020" +
+    "\ufff1\001\002\000\004\025\050\001\002\000\006\013\052" +
+    "\020\ufff2\001\002\000\004\020\ufff5\001\002\000\004\024" +
+    "\053\001\002\000\004\014\054\001\002\000\004\025\055" +
+    "\001\002\000\004\020\ufff3\001\002\000\006\013\060\016" +
+    "\ufff9\001\002\000\004\016\ufffb\001\002\000\004\017\025" +
+    "\001\002\000\004\016\ufffa\001\002\000\004\025\063\001" +
+    "\002\000\004\013\065\001\002\000\004\020\ufff6\001\002" +
+    "\000\006\022\067\023\066\001\002\000\004\014\077\001" +
+    "\002\000\004\014\070\001\002\000\004\025\071\001\002" +
+    "\000\004\013\073\001\002\000\004\020\uffeb\001\002\000" +
+    "\004\023\074\001\002\000\004\014\075\001\002\000\004" +
+    "\025\076\001\002\000\004\020\uffe9\001\002\000\004\025" +
+    "\100\001\002\000\004\013\101\001\002\000\004\022\103" +
+    "\001\002\000\004\020\uffea\001\002\000\004\014\104\001" +
+    "\002\000\004\025\105\001\002\000\004\020\uffe8\001\002" +
+    "\000\004\025\107\001\002\000\004\013\111\001\002\000" +
+    "\004\020\ufff7\001\002\000\006\022\113\024\112\001\002" +
+    "\000\004\014\123\001\002\000\004\014\114\001\002\000" +
+    "\004\025\115\001\002\000\006\013\117\020\uffed\001\002" +
+    "\000\004\020\ufff0\001\002\000\004\024\120\001\002\000" +
+    "\004\014\121\001\002\000\004\025\122\001\002\000\004" +
+    "\020\uffee\001\002\000\004\025\124\001\002\000\004\013" +
+    "\126\001\002\000\004\020\uffef\001\002\000\004\022\127" +
+    "\001\002\000\004\014\130\001\002\000\004\025\131\001" +
+    "\002\000\004\020\uffec\001\002\000\004\020\133\001\002" +
+    "\000\004\004\134\001\002\000\004\010\135\001\002\000" +
+    "\004\006\136\001\002\000\004\005\137\001\002\000\006" +
+    "\004\007\012\ufffd\001\002\000\004\012\ufffc\001\002\000" +
+    "\004\012\ufffe\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -53,8 +103,38 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\006\000\004\002\006\001\001\000\002\001\001\000" +
+    "\000\137\000\004\002\004\001\001\000\004\003\007\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\004\004\014\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\004\020\023\001\001" +
+    "\000\002\001\001\000\004\006\027\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\004\007\033\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\004\013\041\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\004\012\050\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\004\021\056\001" +
+    "\001\000\002\001\001\000\004\020\060\001\001\000\002" +
+    "\001\001\000\002\001\001\000\004\011\063\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\004\016\071\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\004\017" +
+    "\101\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\004\010\107\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\004\014\115\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\004\015\124\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\006\003\140\005\137\001\001\000\002\001\001\000\002" +
     "\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
@@ -84,7 +164,7 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
   /** Indicates start state. */
   public int start_state() {return 0;}
   /** Indicates start production. */
-  public int start_production() {return 1;}
+  public int start_production() {return 0;}
 
   /** <code>EOF</code> Symbol index. */
   public int EOF_sym() {return 0;}
@@ -103,13 +183,15 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
         public void report_error(String message, Object info){
                 System.out.println("reporterror");
         }
+
         public void report_fatal_error(String message, Object info){
+                System.out.println(info.toString());
                 System.out.println("reportfatal");
         }
-        /*
+
         public void syntax_error(Symbol cur_token){
-                
-        }*/
+                System.out.println("Error sintactico");       
+        }
         protected int error_sync_size() {
 		return 1;
 	}
@@ -145,16 +227,7 @@ class CUP$parserIndigo$actions {
       switch (CUP$parserIndigo$act_num)
         {
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 0: // exp ::= ME_Q 
-            {
-              Object RESULT =null;
-
-              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("exp",0, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
-            }
-          return CUP$parserIndigo$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 1: // $START ::= exp EOF 
+          case 0: // $START ::= inicio EOF 
             {
               Object RESULT =null;
 		int start_valleft = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).left;
@@ -168,29 +241,227 @@ class CUP$parserIndigo$actions {
           return CUP$parserIndigo$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 2: // exp ::= MA_Q 
+          case 1: // inicio ::= SSS contenido FSS 
             {
               Object RESULT =null;
 
-              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("exp",0, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("inicio",0, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 3: // exp ::= error 
+          case 2: // contenido ::= ME_Q ADM SS D_DOT type_s 
             {
               Object RESULT =null;
 
-              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("exp",0, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contenido",1, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 4: // exp ::= 
+          case 3: // contenido1 ::= contenido 
             {
               Object RESULT =null;
 
-              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("exp",0, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contenido1",3, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 4: // contenido1 ::= 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contenido1",3, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 5: // type_s ::= CR_U MA_Q L_A CREDEN_USER D_DOT C_A parametros C_C L_C ME_Q FS ADM MA_Q contenido1 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("type_s",2, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-13)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 6: // parametros ::= L_A cont_CR_U L_C parametros2 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("parametros",14, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 7: // parametros2 ::= COM parametros 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("parametros2",15, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 8: // parametros2 ::= 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("parametros2",15, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 9: // cont_CR_U ::= USER D_DOT ASIGNACION cont_CR_U1 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("cont_CR_U",4, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 10: // cont_CR_U ::= PASS D_DOT ASIGNACION cont_CR_U2 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("cont_CR_U",4, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 11: // cont_CR_U ::= FECHA D_DOT ASIGNACION cont_CR_U3 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("cont_CR_U",4, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 12: // cont_CR_U1 ::= COM PASS D_DOT ASIGNACION cont_CR_U1_2 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("cont_CR_U1",5, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 13: // cont_CR_U1 ::= COM FECHA D_DOT ASIGNACION cont_CR_U1_3 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("cont_CR_U1",5, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 14: // cont_CR_U1_2 ::= COM FECHA D_DOT ASIGNACION 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("cont_CR_U1_2",8, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 15: // cont_CR_U1_2 ::= 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("cont_CR_U1_2",8, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 16: // cont_CR_U1_3 ::= COM PASS D_DOT ASIGNACION 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("cont_CR_U1_3",9, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 17: // cont_CR_U2 ::= COM USER D_DOT ASIGNACION cont_CR_U2_2 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("cont_CR_U2",6, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 18: // cont_CR_U2 ::= COM FECHA D_DOT ASIGNACION cont_CR_U2_3 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("cont_CR_U2",6, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 19: // cont_CR_U2_2 ::= COM FECHA D_DOT ASIGNACION 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("cont_CR_U2_2",10, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 20: // cont_CR_U2_2 ::= 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("cont_CR_U2_2",10, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 21: // cont_CR_U2_3 ::= COM USER D_DOT ASIGNACION 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("cont_CR_U2_3",11, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 22: // cont_CR_U3 ::= COM USER D_DOT ASIGNACION cont_CR_U3_2 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("cont_CR_U3",7, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 23: // cont_CR_U3 ::= COM PASS D_DOT ASIGNACION cont_CR_U3_3 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("cont_CR_U3",7, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 24: // cont_CR_U3_2 ::= COM PASS D_DOT ASIGNACION 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("cont_CR_U3_2",12, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 25: // cont_CR_U3_3 ::= COM USER D_DOT ASIGNACION 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("cont_CR_U3_3",13, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
 

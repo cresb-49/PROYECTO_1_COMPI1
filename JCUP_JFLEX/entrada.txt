@@ -4,7 +4,7 @@
 			"PASSWORD": "12345678"
 		}]
 	}
-<fin_Solicitud!>
+<fin_solicitud!>
 
 <!ini_solicitud: "MODIFICAR_USUARIO"​>
 	{ "CREDENCIALES_USUARIO":[{
@@ -13,7 +13,7 @@
 			"NUEVO_PASSWORD": "12345678910"
 		}]
 	}
-<fin_Solicitud!>
+<fin_solicitud!>
 
 <!ini_solicitud:​"ELIMINAR_USUARIO">
 	{"CREDENCIALES_USUARIO":[{
@@ -28,7 +28,7 @@
 		"PASSWORD": "12345678"
 	}]
 	}
-<fin_Solicitud!>
+<fin_solicitud!>
 
 <!ini_solicitud:"NUEVO_FORMULARIO">
 	{"PARAMETROS_FORMULARIO":[{
@@ -38,14 +38,14 @@
 		"TEMA": "Dark"
 	}]
 	}
-<fin_Solicitud!>
+<fin_solicitud!>
 
 <!ini_solicitud:"ELIMINAR_FORMULARIO">
 	{"PARAMETROS_FORMULARIO":[{
 		"ID": "$from1"
 	}]
 	}
-<fin_Solicitud!>
+<fin_solicitud!>
 
 <!ini_solicitud:"NUEVO_FORMULARIO">
 	{"PARAMETROS_FORMULARIO":[{
@@ -55,7 +55,7 @@
 		"TEMA": "Blue"
 	}]
 	}
-<fin_Solicitud!>
+<fin_solicitud!>
 
 <!ini_solicitud:"AGREGAR_COMPONENTE">
 	{"PARAMETROS_COMPONENTE":[{
@@ -68,7 +68,7 @@
 		"REQUERIDO": "SI",
 	}]
 	}
-<fin_Solicitud!>
+<fin_solicitud!>
 
 <!ini_solicitud: "AGREGAR_COMPONENTE">
 	{ "PARAMETROS_COMPONENTE":[{
@@ -82,7 +82,7 @@
 		"OPCIONES": "Guatemala|El Salvador|Honduras|OTRO"
 	}]
 	}
-<fin_Solicitud!>
+<fin_solicitud!>
 
 <!ini_solicitud:"MODIFICAR_COMPONENTE">
 	{"PARAMETROS_COMPONENTE":[{
@@ -94,4 +94,4 @@
 		"OPCIONES":"Guatemala|El Salvador|Honduras|OTRO"
 	}]
 	}
-<fin_Solicitud!>
+<fin_solicitud!>
