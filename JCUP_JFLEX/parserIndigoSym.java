@@ -13,13 +13,13 @@ public class parserIndigoSym {
   public static final int REQUE = 46;
   public static final int SS = 5;
   public static final int PASS_NEW = 33;
-  public static final int AGRE_C = 28;
   public static final int NAME_CAMP = 40;
   public static final int CR_U = 15;
   public static final int TEXT_VIEW = 44;
   public static final int USER_ANT = 31;
   public static final int NEW_F = 25;
   public static final int DEL_F = 26;
+  public static final int DEL_C = 29;
   public static final int FECHA = 18;
   public static final int MA_Q = 3;
   public static final int FS = 6;
@@ -32,12 +32,14 @@ public class parserIndigoSym {
   public static final int SSS = 7;
   public static final int ID = 35;
   public static final int ADM = 4;
+  public static final int PARAMS_FORM = 51;
   public static final int L_C = 14;
   public static final int EOF = 0;
   public static final int L_A = 13;
   public static final int LOG_U = 24;
   public static final int C_C = 12;
   public static final int error = 1;
+  public static final int ADD_C = 28;
   public static final int C_A = 11;
   public static final int USER_NEW = 32;
   public static final int MO_U = 22;
@@ -52,7 +54,6 @@ public class parserIndigoSym {
   public static final int MO_C = 30;
   public static final int ME_Q = 2;
   public static final int USER_CRE = 39;
-  public static final int EL_C = 29;
   public static final int D_DOT = 10;
   public static final int PARAMS_COMP = 21;
   public static final int ALI = 45;
@@ -88,8 +89,8 @@ public class parserIndigoSym {
   "NEW_F",
   "DEL_F",
   "MO_F",
-  "AGRE_C",
-  "EL_C",
+  "ADD_C",
+  "DEL_C",
   "MO_C",
   "USER_ANT",
   "USER_NEW",
@@ -110,7 +111,8 @@ public class parserIndigoSym {
   "OPTION",
   "FILAS",
   "COLM",
-  "URL"
+  "URL",
+  "PARAMS_FORM"
   };
 }
 

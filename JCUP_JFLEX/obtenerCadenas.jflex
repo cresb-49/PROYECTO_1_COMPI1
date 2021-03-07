@@ -39,8 +39,8 @@ text  = ({simbolos}|{numeros}|{letras})+
     }
 
     private void error(String lexeme) {
-        System.out.printf("Error lexico: %s ,linea %d,  columna %d. \n", lexeme, yyline + 1, yycolumn + 1);
-        errorsList.add(String.format("Error Lexico en el Texto: %s  linea %d, columna %d. Corrige e intenta de nuevo.", lexeme, yyline + 1, yycolumn + 1));
+        //System.out.printf("Error lexico: %s ,linea %d,  columna %d. \n", lexeme, yyline + 1, yycolumn + 1);
+        //errorsList.add(String.format("Error Lexico en el Texto: %s  linea %d, columna %d. Corrige e intenta de nuevo.", lexeme, yyline + 1, yycolumn + 1));
     }
     public String getCurrentText(){
         return currentText;
@@ -63,7 +63,7 @@ text  = ({simbolos}|{numeros}|{letras})+
 <YYINITIAL>{
     {text}
         {
-            System.out.println("Texto Encontrado: "+yytext());
+            //System.out.println("Texto Encontrado: "+yytext());
             cantidadLexemas++;
             currentText = yytext();
         }

@@ -48,7 +48,7 @@ letras = [a-zA-Z]
 espacio = [ ]
 //text  = [\"]([a-zA-Z_$0-9: ])+[\"]
 //optionText  = [\"]([a-zA-Z0-9\| ])+[\"]
-text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})+[\"]
+text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})*[\"]
 
 
 
@@ -173,7 +173,6 @@ text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})+[\"]
                 InerLex.reinicioLex();
                 switch (text) {
                     case "CREAR_USUARIO":
-                        System.out.println("debuj");
                         tmp_symbl = new Symbol(CR_U, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
@@ -202,11 +201,11 @@ text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})+[\"]
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
                     case "AGREGAR_COMPONENTE":
-                        tmp_symbl = new Symbol(AGRE_C, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        tmp_symbl = new Symbol(ADD_C, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
                     case "ELIMINAR_COMPONENTE":
-                        tmp_symbl = new Symbol(EL_C, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        tmp_symbl = new Symbol(DEL_C, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
                     case "MODIFICAR_COMPONENTE":
@@ -215,6 +214,10 @@ text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})+[\"]
                         return tmp_symbl;
                     case "CREDENCIALES_USUARIO":
                         tmp_symbl = new Symbol(CREDEN_USER, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "PARAMETROS_FORMULARIO":
+                        tmp_symbl = new Symbol(PARAMS_FORM, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
                     case "PARAMETROS_COMPONENTE":

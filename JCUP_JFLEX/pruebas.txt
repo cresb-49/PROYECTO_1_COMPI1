@@ -1,10 +1,30 @@
 <!ini_solicitudes>
 <!ini_solicitud: "CREAR_USUARIO" >
 {
-"CREDENCIALES_USUARIO":[{
-"USUARIO": "juanito619",
-"PASSWORD": "12345678"
-}]
+"CREDENCIALES_USUARIO":
+[
+    {
+        "USUARIO": "juanito619",
+        "PASSWORD": "12345678"
+    },
+    {
+        "USUARIO": "juanito200",
+        "PASSWORD": "12345"
+    }
+]
 }
 <fin_solicitud!>
+
+<!ini_solicitud: "CREAR_USUARIO" >
+{
+"CREDENCIALES_USUARIO":
+[
+    {
+        "USUARIO": "juan",
+        "PASSWORD": "18"
+    }
+]
+}
+<fin_solicitud!>
+
 <!fin_solicitudes>

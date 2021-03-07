@@ -106,11 +106,11 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\3\2\1\3\1\1\1\4\1\5\1\6"+
-    "\1\7\1\10\1\11\1\12\2\10\1\13\1\14\2\0"+
-    "\2\10\1\15\2\0\1\10\2\0\1\10\1\0\1\10"+
-    "\1\0\1\10\1\0\1\10\1\0\1\10\1\0\1\10"+
-    "\1\0\1\10\1\0\1\10\1\0\1\10\1\0\1\16"+
-    "\4\0\1\17";
+    "\1\7\1\10\1\11\1\12\2\10\1\13\1\14\1\0"+
+    "\1\15\1\0\2\10\2\0\1\10\2\0\1\10\1\0"+
+    "\1\10\1\0\1\10\1\0\1\10\1\0\1\10\1\0"+
+    "\1\10\1\0\1\10\1\0\1\10\1\0\1\10\1\0"+
+    "\1\16\4\0\1\17";
 
   private static int [] zzUnpackAction() {
     int [] result = new int[52];
@@ -140,11 +140,11 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
   private static final String ZZ_ROWMAP_PACKED_0 =
     "\0\0\0\36\0\74\0\132\0\170\0\36\0\226\0\36"+
     "\0\36\0\264\0\36\0\322\0\36\0\36\0\360\0\u010e"+
-    "\0\36\0\36\0\u012c\0\u014a\0\u0168\0\u0186\0\36\0\u01a4"+
-    "\0\u01c2\0\u01e0\0\u01fe\0\u021c\0\u023a\0\u0258\0\u0276\0\u0294"+
-    "\0\u02b2\0\u02d0\0\u02ee\0\u030c\0\u032a\0\u0348\0\u0366\0\u0384"+
-    "\0\u03a2\0\u03c0\0\u03de\0\u03fc\0\u041a\0\u0438\0\322\0\u0456"+
-    "\0\u0474\0\u0492\0\u04b0\0\36";
+    "\0\36\0\36\0\226\0\36\0\u012c\0\u014a\0\u0168\0\u0186"+
+    "\0\u01a4\0\u01c2\0\u01e0\0\u01fe\0\u021c\0\u023a\0\u0258\0\u0276"+
+    "\0\u0294\0\u02b2\0\u02d0\0\u02ee\0\u030c\0\u032a\0\u0348\0\u0366"+
+    "\0\u0384\0\u03a2\0\u03c0\0\u03de\0\u03fc\0\u041a\0\322\0\u0438"+
+    "\0\u0456\0\u0474\0\u0492\0\36";
 
   private static int [] zzUnpackRowMap() {
     int [] result = new int[52];
@@ -174,27 +174,27 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
     "\1\10\1\11\1\12\1\13\1\14\1\15\1\16\4\14"+
     "\1\17\1\20\6\14\1\21\1\5\1\22\37\0\2\3"+
     "\1\0\1\3\32\0\1\3\1\4\1\5\1\3\27\0"+
-    "\1\5\3\0\2\5\30\0\1\5\5\0\2\23\1\0"+
-    "\7\23\1\0\17\23\5\0\1\24\44\0\1\14\2\0"+
-    "\14\14\17\0\1\14\2\0\5\14\1\25\6\14\17\0"+
-    "\1\14\2\0\7\14\1\26\4\14\7\0\2\23\1\27"+
-    "\7\23\1\0\17\23\23\0\1\30\1\31\25\0\1\14"+
-    "\2\0\7\14\1\32\4\14\17\0\1\14\2\0\5\14"+
-    "\1\32\6\14\27\0\1\33\37\0\1\34\23\0\1\14"+
-    "\2\0\1\35\13\14\31\0\1\36\33\0\1\36\25\0"+
-    "\1\14\2\0\11\14\1\37\2\14\22\0\1\40\32\0"+
-    "\1\14\2\0\10\14\1\41\3\14\33\0\1\42\21\0"+
-    "\1\14\2\0\6\14\1\43\5\14\32\0\1\44\22\0"+
-    "\1\14\2\0\5\14\1\45\6\14\30\0\1\46\24\0"+
-    "\1\14\2\0\1\14\1\47\12\14\27\0\1\50\25\0"+
-    "\1\14\2\0\5\14\1\51\6\14\23\0\1\52\31\0"+
-    "\1\14\2\0\12\14\1\53\1\14\27\0\1\54\25\0"+
-    "\1\14\2\0\13\14\1\55\34\0\1\56\20\0\1\14"+
-    "\2\0\2\14\1\57\11\14\35\0\1\60\24\0\1\61"+
-    "\36\0\1\62\43\0\1\63\20\0\1\64\22\0";
+    "\1\5\3\0\2\5\30\0\1\5\5\0\2\23\1\24"+
+    "\7\23\1\0\17\23\5\0\1\25\44\0\1\14\2\0"+
+    "\14\14\17\0\1\14\2\0\5\14\1\26\6\14\17\0"+
+    "\1\14\2\0\7\14\1\27\4\14\26\0\1\30\1\31"+
+    "\25\0\1\14\2\0\7\14\1\32\4\14\17\0\1\14"+
+    "\2\0\5\14\1\32\6\14\27\0\1\33\37\0\1\34"+
+    "\23\0\1\14\2\0\1\35\13\14\31\0\1\36\33\0"+
+    "\1\36\25\0\1\14\2\0\11\14\1\37\2\14\22\0"+
+    "\1\40\32\0\1\14\2\0\10\14\1\41\3\14\33\0"+
+    "\1\42\21\0\1\14\2\0\6\14\1\43\5\14\32\0"+
+    "\1\44\22\0\1\14\2\0\5\14\1\45\6\14\30\0"+
+    "\1\46\24\0\1\14\2\0\1\14\1\47\12\14\27\0"+
+    "\1\50\25\0\1\14\2\0\5\14\1\51\6\14\23\0"+
+    "\1\52\31\0\1\14\2\0\12\14\1\53\1\14\27\0"+
+    "\1\54\25\0\1\14\2\0\13\14\1\55\34\0\1\56"+
+    "\20\0\1\14\2\0\2\14\1\57\11\14\35\0\1\60"+
+    "\24\0\1\61\36\0\1\62\43\0\1\63\20\0\1\64"+
+    "\22\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[1230];
+    int [] result = new int[1200];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -238,10 +238,10 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
     "\1\0\1\11\3\1\1\11\1\1\2\11\1\1\1\11"+
-    "\1\1\2\11\2\1\2\11\2\0\2\1\1\11\2\0"+
-    "\1\1\2\0\1\1\1\0\1\1\1\0\1\1\1\0"+
-    "\1\1\1\0\1\1\1\0\1\1\1\0\1\1\1\0"+
-    "\1\1\1\0\1\1\1\0\1\1\4\0\1\11";
+    "\1\1\2\11\2\1\2\11\1\0\1\11\1\0\2\1"+
+    "\2\0\1\1\2\0\1\1\1\0\1\1\1\0\1\1"+
+    "\1\0\1\1\1\0\1\1\1\0\1\1\1\0\1\1"+
+    "\1\0\1\1\1\0\1\1\1\0\1\1\4\0\1\11";
 
   private static int [] zzUnpackAttribute() {
     int [] result = new int[52];
@@ -847,7 +847,6 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
                 InerLex.reinicioLex();
                 switch (text) {
                     case "CREAR_USUARIO":
-                        System.out.println("debuj");
                         tmp_symbl = new Symbol(CR_U, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
@@ -876,11 +875,11 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
                     case "AGREGAR_COMPONENTE":
-                        tmp_symbl = new Symbol(AGRE_C, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        tmp_symbl = new Symbol(ADD_C, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
                     case "ELIMINAR_COMPONENTE":
-                        tmp_symbl = new Symbol(EL_C, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        tmp_symbl = new Symbol(DEL_C, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
                     case "MODIFICAR_COMPONENTE":
@@ -889,6 +888,10 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
                         return tmp_symbl;
                     case "CREDENCIALES_USUARIO":
                         tmp_symbl = new Symbol(CREDEN_USER, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "PARAMETROS_FORMULARIO":
+                        tmp_symbl = new Symbol(PARAMS_FORM, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
                     case "PARAMETROS_COMPONENTE":

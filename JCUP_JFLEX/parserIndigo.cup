@@ -39,11 +39,13 @@ parser code {:
 :}
 
 terminal ME_Q,MA_Q,ADM,SS,FS,SSS,FSS,COM,D_DOT,C_A,C_C,L_A,L_C,CR_U,USER,PASS,FECHA,ASIGNACION,CREDEN_USER,PARAMS_COMP,
-        MO_U,DEL_U,LOG_U,NEW_F,DEL_F,MO_F,AGRE_C,EL_C,MO_C,
+        MO_U,DEL_U,LOG_U,NEW_F,DEL_F,MO_F,ADD_C,DEL_C,MO_C,
         USER_ANT,USER_NEW,PASS_NEW,FECHA_MOD,ID,TITLE,NAME,THEME,USER_CRE,NAME_CAMP,FORM,
-        CLASS,IND,TEXT_VIEW,ALI,REQUE,OPTION,FILAS,COLM,URL;
+        CLASS,IND,TEXT_VIEW,ALI,REQUE,OPTION,FILAS,COLM,URL,PARAMS_FORM;
 non terminal inicio,contenido,type_s,contenido1,cont_CR_U,cont_CR_U1,cont_CR_U2,cont_CR_U3,cont_CR_U1_2,cont_CR_U1_3,cont_CR_U2_2,cont_CR_U2_3,
-                cont_CR_U3_2,cont_CR_U3_3,parametros,parametros2;
+                cont_CR_U3_2,cont_CR_U3_3,parametros,parametros2,
+                paramsMO_U,paramsDEL_U,paramsNEW_F,paramsDEL_F,paramsMO_F,paramsADD_C,paramsDEL_C,paramsMO_C,
+                paramsMO_U2;
 
 start with inicio;
 
@@ -58,13 +60,21 @@ contenido1      ::= contenido
                 |
                 ;
 
-type_s ::=     CR_U MA_Q L_A CREDEN_USER D_DOT C_A parametros C_C L_C ME_Q FS ADM MA_Q contenido1
+type_s ::=      CR_U MA_Q L_A CREDEN_USER D_DOT C_A parametros C_C L_C ME_Q FS ADM MA_Q contenido1
+        |       MO_U MA_Q L_A CREDEN_USER D_DOT C_A paramsMO_U C_C L_C ME_Q FS ADM MA_Q contenido1
+        |       DEL_U MA_Q L_A CREDEN_USER D_DOT C_A paramsDEL_U C_C L_C ME_Q FS ADM MA_Q contenido1
+        |       NEW_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsNEW_F C_C L_C ME_Q FS ADM MA_Q contenido1
+        |       DEL_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsDEL_F C_C L_C ME_Q FS ADM MA_Q contenido1
+        |       MO_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsMO_F C_C L_C ME_Q FS ADM MA_Q contenido1
+        |       ADD_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsADD_C C_C L_C ME_Q FS ADM MA_Q contenido1
+        |       DEL_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsDEL_C C_C L_C ME_Q FS ADM MA_Q contenido1
+        |       MO_C MA_Q L_C PARAMS_COMP D_DOT C_A paramsMO_C C_C L_C ME_Q FS ADM MA_Q contenido1
         ;
 
-parametros      ::== L_A cont_CR_U L_C parametros2
+parametros      ::=     L_A cont_CR_U L_C parametros2
                 ;
 
-parametros2     ::= COM parametros
+parametros2     ::=     COM parametros
                 |
                 ;
 
@@ -101,4 +111,85 @@ cont_CR_U3_2    ::=     COM PASS D_DOT ASIGNACION
                 ;
 
 cont_CR_U3_3    ::=     COM USER D_DOT ASIGNACION
+                ;
+
+
+paramsMO_U      ::=     L_A contMO_U L_C paramsMO_U2
+                ;
+
+paramsMO_U2     ::=     COM paramsMO_U
+                |
+                ;
+
+contMO_U        ::=     USER_ANT D_DOT ASIGNACION contMO_U1
+                |       USER_NEW D_DOT ASIGNACION contMO_U2
+                |       PASS_NEW D_DOT ASIGNACION contMO_U3
+                |       FECHA_MOD D_DOT ASIGNACION contMO_U4
+                ;
+
+contMO_U4       ::=     USER_ANT D_DOT ASIGNACION contMO_U1_3
+                |       USER_NEW D_DOT ASIGNACION contMO_U2_3
+                |       PASS_NEW D_DOT ASIGNACION contMO_U3_1
+                ; 
+
+contMO_U3       ::=     USER_ANT D_DOT ASIGNACION contMO_U1_2
+                |       USER_NEW D_DOT ASIGNACION contMO_U2_2
+                |       FECHA_MOD D_DOT ASIGNACION contMO_U3_1
+                ;
+
+contMO_U3_1     ::=     USER_ANT D_DOT ASIGNACION contMO_U1_2_2
+                |       USER_NEW D_DOT ASIGNACION contMO_U2_2_1
+                ;
+
+contMO_U2       :: =    USER_ANT D_DOT ASIGNACION contMO_U1_1
+                |       PASS_NEW D_DOT ASIGNACION contMO_U2_2
+                |       FECHA_MOD D_DOT ASIGNACION contMO_U2_3
+                ;
+
+contMO_U2_3     ::=     USER_ANT D_DOT ASIGNACION contMO_U1_1_2
+                |       PASS_NEW D_DOT ASIGNACION contMO_U2_2_1
+                ;
+
+contMO_U2_2     ::=     USER_ANT D_DOT ASIGNACION contMO_U1_1_1
+                |       FECHA_MOD D_DOT ASIGNACION contMO_U2_2_1
+                ;
+
+contMO_U2_2_1   ::=     USER_ANT D_DOT ASIGNACION
+                ;
+
+contMO_U1       ::=     USER_NEW D_DOT ASIGNACION contMO_U1_1
+                |       PASS_NEW D_DOT ASIGNACION contMO_U1_2
+                |       FECHA_MOD D_DOT ASIGNACION contMO_U1_3
+                ;
+
+contMO_U1_1     ::=     PASS_NEW D_DOT ASIGNACION contMO_U1_1_1
+                |       FECHA_MOD D_DOT ASIGNACION contMO_U1_1_2
+                ;
+
+contMO_U1_1_1   ::=     FECHA_MOD D_DOT ASIGNACION
+                |
+                ;
+
+contMO_U1_1_2   ::=     PASS_NEW D_DOT ASIGNACION
+                ;
+
+contMO_U1_2     ::=     USER_NEW D_DOT ASIGNACION contMO_U1_2_1
+                |       FECHA_MOD D_DOT ASIGNACION contMO_U1_2_2
+                ;
+
+contMO_U1_2_1   ::=     FECHA_MOD D_DOT ASIGNACION
+                |
+                ;
+
+contMO_U1_2_2   ::=     USER_NEW D_DOT ASIGNACION
+                ;
+
+contMO_U1_3     ::=     USER_NEW D_DOT ASIGNACION contMO_U1_3_1
+                |       PASS_NEW D_DOT ASIGNACION contMO_U1_3_2
+                ;
+
+contMO_U1_3_1   ::=     PASS_NEW D_DOT ASIGNACION
+                ;
+
+contMO_U1_3_2   ::=     USER_NEW D_DOT ASIGNACION
                 ;
