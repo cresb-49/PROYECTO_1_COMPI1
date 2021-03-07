@@ -37,7 +37,9 @@ parser code {:
 :}
 
 terminal ME_Q,MA_Q,ADM,SS,FS,SSS,FSS,COM,D_DOT,C_A,C_C,L_A,L_C,CR_U,USER,PASS,FECHA,ASIGNACION,CREDEN_USER,PARAMS_COMP,
-        MO_U,DEL_U,LOG_U,NEW_F,DEL_F,MO_F,AGRE_C,EL_C,MO_C;
+        MO_U,DEL_U,LOG_U,NEW_F,DEL_F,MO_F,AGRE_C,EL_C,MO_C,
+        USER_ANT,USER_NEW,PASS_NEW,FECHA_MOD,ID,TITLE,NAME,THEME,USER_CRE,NAME_CAMP,FORM,
+        CLASS,IND,TEXT_VIEW,ALI,REQUE,OPTION,FILAS,COLM,URL;
 non terminal inicio,contenido,type_s,contenido1,cont_CR_U,cont_CR_U1,cont_CR_U2,cont_CR_U3,cont_CR_U1_2,cont_CR_U1_3,cont_CR_U2_2,cont_CR_U2_3,
                 cont_CR_U3_2,cont_CR_U3_3,parametros,parametros2;
 
