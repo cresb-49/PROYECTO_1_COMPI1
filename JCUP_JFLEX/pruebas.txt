@@ -1,5 +1,5 @@
 <!ini_solicitudes>
-<!ini_solicitud: "CREAR_USUARIO">
+<!ini_solicitud: "CREAR_USUARIO" >
 {
 "CREDENCIALES_USUARIO":[{
 "USUARIO": "juanito619",

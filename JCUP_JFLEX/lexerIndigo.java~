@@ -10,6 +10,8 @@ import com.carlos.app_cliente_proyecto1.Tokens.token;
 import static com.carlos.app_cliente_proyecto1.Parser.parserIndigoSym.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.StringReader;
+import com.carlos.app_cliente_proyecto1.solucionCadenas.obtenerAsignacion;
 import java_cup.runtime.Symbol;
 
 
@@ -321,6 +323,10 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
   /* user code: */
     private Symbol after_symbl = new Symbol(0);
     private Symbol tmp_symbl = new Symbol(0);
+
+    private lexerInerText InerLex= new lexerInerText();
+
+    private obtenerAsignacion getInerText = new obtenerAsignacion();
 
     private List<String> errorsList = new ArrayList<>();
 
@@ -827,152 +833,171 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
             // fall through
           case 27: break;
           case 13:
-            { System.out.println("Texto encontrado: "+yytext());
-            switch (yytext()) {
-                case "\"CREAR_USUARIO\"":
-                    tmp_symbl = new Symbol (CR_U,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"MODIFICAR_USUARIO\"":
-                    tmp_symbl = new Symbol (MO_U,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"ELIMINAR_USUARIO\"":
-                    tmp_symbl = new Symbol (DEL_U,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"LOGIN_USUARIO\"":
-                    tmp_symbl = new Symbol (LOG_U,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"NUEVO_FORMULARIO\"":
-                    tmp_symbl = new Symbol (NEW_F,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"ELIMINAR_FORMULARIO\"​":
-                    tmp_symbl = new Symbol (DEL_F,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"MODIFICAR_FORMULARIO\"":
-                    tmp_symbl = new Symbol (MO_F,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"AGREGAR_COMPONENTE\"":
-                    tmp_symbl = new Symbol (AGRE_C,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"ELIMINAR_COMPONENTE\"":
-                    tmp_symbl = new Symbol (EL_C,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"MODIFICAR_COMPONENTE\"":
-                    tmp_symbl = new Symbol (MO_C,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"CREDENCIALES_USUARIO\"":
-                    tmp_symbl = new Symbol (CREDEN_USER,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"PARAMETROS_COMPONENTE\"":
-                    tmp_symbl = new Symbol (PARAMS_COMP,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"USUARIO\"":
-                    tmp_symbl = new Symbol (USER,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"PASSWORD\"":
-                    tmp_symbl = new Symbol (PASS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"FECHA_CREACION\"":
-                    tmp_symbl = new Symbol (FECHA,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"USUARIO_ANTIGUO\"":
-                    tmp_symbl = new Symbol (USER_ANT,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"USUARIO_NUEVO\"":
-                    tmp_symbl = new Symbol (USER_NEW,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"NUEVO_PASSWORD\"":
-                    tmp_symbl = new Symbol (PASS_NEW,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"FECHA_MODIFICACION\"":
-                    tmp_symbl = new Symbol (FECHA_MOD,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"ID\"":
-                    tmp_symbl = new Symbol (ID,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"TITULO\"":
-                    tmp_symbl = new Symbol (TITLE,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"NOMBRE\"":
-                    tmp_symbl = new Symbol (NAME,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"TEMA\"":
-                    tmp_symbl = new Symbol (THEME,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"USUARIO_CREACION\"":
-                    tmp_symbl = new Symbol (USER_CRE,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"NOMBRE_CAMPO\"":
-                    tmp_symbl = new Symbol (NAME_CAMP,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"FORMULARIO\"":
-                    tmp_symbl = new Symbol (FORM,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"CLASE\"":
-                    tmp_symbl = new Symbol (CLASS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"INDICE\"":
-                    tmp_symbl = new Symbol (IND,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"TEXTO_VISIBLE\"":
-                    tmp_symbl = new Symbol (TEXT_VIEW,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"ALINEACION\"":
-                    tmp_symbl = new Symbol (ALI,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"REQUERIDO\"":
-                    tmp_symbl = new Symbol (REQUE,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"OPCIONES​\"":
-                    tmp_symbl = new Symbol (OPTION,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"FILAS\"":
-                    tmp_symbl = new Symbol (FILAS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"COLUMNAS\"":
-                    tmp_symbl = new Symbol (COLM,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "\"URL​\"":
-                    tmp_symbl = new Symbol (URL,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                default:    
-                    tmp_symbl = new Symbol (ASIGNACION,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
+            { String text = getInerText.getAsignacion(yytext());
+            System.out.println("Texto encontrado:" + text);
+
+            InerLex.yyreset(new StringReader(text));
+            try {
+                InerLex.yylex();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (InerLex.getCantidadLexemas() == 1) {
+                text = InerLex.getCurrentText();
+                InerLex.reinicioLex();
+                switch (text) {
+                    case "CREAR_USUARIO":
+                        System.out.println("debuj");
+                        tmp_symbl = new Symbol(CR_U, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "MODIFICAR_USUARIO":
+                        tmp_symbl = new Symbol(MO_U, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "ELIMINAR_USUARIO":
+                        tmp_symbl = new Symbol(DEL_U, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "LOGIN_USUARIO":
+                        tmp_symbl = new Symbol(LOG_U, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "NUEVO_FORMULARIO":
+                        tmp_symbl = new Symbol(NEW_F, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "ELIMINAR_FORMULARIO​":
+                        tmp_symbl = new Symbol(DEL_F, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "MODIFICAR_FORMULARIO":
+                        tmp_symbl = new Symbol(MO_F, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "AGREGAR_COMPONENTE":
+                        tmp_symbl = new Symbol(AGRE_C, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "ELIMINAR_COMPONENTE":
+                        tmp_symbl = new Symbol(EL_C, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "MODIFICAR_COMPONENTE":
+                        tmp_symbl = new Symbol(MO_C, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "CREDENCIALES_USUARIO":
+                        tmp_symbl = new Symbol(CREDEN_USER, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "PARAMETROS_COMPONENTE":
+                        tmp_symbl = new Symbol(PARAMS_COMP, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "USUARIO":
+                        tmp_symbl = new Symbol(USER, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "PASSWORD":
+                        tmp_symbl = new Symbol(PASS, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "FECHA_CREACION":
+                        tmp_symbl = new Symbol(FECHA, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "USUARIO_ANTIGUO":
+                        tmp_symbl = new Symbol(USER_ANT, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "USUARIO_NUEVO":
+                        tmp_symbl = new Symbol(USER_NEW, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "NUEVO_PASSWORD":
+                        tmp_symbl = new Symbol(PASS_NEW, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "FECHA_MODIFICACION":
+                        tmp_symbl = new Symbol(FECHA_MOD, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "ID":
+                        tmp_symbl = new Symbol(ID, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "TITULO":
+                        tmp_symbl = new Symbol(TITLE, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "NOMBRE":
+                        tmp_symbl = new Symbol(NAME, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "TEMA":
+                        tmp_symbl = new Symbol(THEME, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "USUARIO_CREACION":
+                        tmp_symbl = new Symbol(USER_CRE, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "NOMBRE_CAMPO":
+                        tmp_symbl = new Symbol(NAME_CAMP, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "FORMULARIO":
+                        tmp_symbl = new Symbol(FORM, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "CLASE":
+                        tmp_symbl = new Symbol(CLASS, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "INDICE":
+                        tmp_symbl = new Symbol(IND, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "TEXTO_VISIBLE":
+                        tmp_symbl = new Symbol(TEXT_VIEW, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "ALINEACION":
+                        tmp_symbl = new Symbol(ALI, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "REQUERIDO":
+                        tmp_symbl = new Symbol(REQUE, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "OPCIONES​":
+                        tmp_symbl = new Symbol(OPTION, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "FILAS":
+                        tmp_symbl = new Symbol(FILAS, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "COLUMNAS":
+                        tmp_symbl = new Symbol(COLM, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "URL​":
+                        tmp_symbl = new Symbol(URL, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    default:
+                        tmp_symbl = new Symbol(ASIGNACION, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    }
+
+            } else {
+                InerLex.reinicioLex();
+                tmp_symbl = new Symbol(ASIGNACION, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                after_symbl = tmp_symbl;
+                return tmp_symbl;
             }
             }
             // fall through

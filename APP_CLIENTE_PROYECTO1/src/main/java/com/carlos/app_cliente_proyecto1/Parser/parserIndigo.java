@@ -188,10 +188,12 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
                 System.out.println(info.toString());
                 System.out.println("reportfatal");
         }
-
+        /*
         public void syntax_error(Symbol cur_token){
+                
                 System.out.println("Error sintactico");       
         }
+        */
         protected int error_sync_size() {
 		return 1;
 	}

@@ -9,7 +9,7 @@ public class obtenerAsignacion {
             return asignacion.substring(1, asignacion.length()-1);
         }
         else{
-            return null;
+            return "";
         }
     }
 }
