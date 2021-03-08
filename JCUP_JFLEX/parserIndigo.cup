@@ -45,7 +45,8 @@ terminal ME_Q,MA_Q,ADM,SS,FS,SSS,FSS,COM,D_DOT,C_A,C_C,L_A,L_C,CR_U,USER,PASS,FE
 non terminal inicio,contenido,type_s,contenido1,cont_CR_U,cont_CR_U1,cont_CR_U2,cont_CR_U3,cont_CR_U1_2,cont_CR_U1_3,cont_CR_U2_2,cont_CR_U2_3,
                 cont_CR_U3_2,cont_CR_U3_3,parametros,parametros2,
                 paramsMO_U,paramsDEL_U,paramsNEW_F,paramsDEL_F,paramsMO_F,paramsADD_C,paramsDEL_C,paramsMO_C,
-                paramsMO_U2;
+                paramsMO_U2,contMO_U,contMO_U1,contMO_U2,contMO_U3,contMO_U4,contMO_U5,contMO_U6,contMO_U7,contMO_U8,
+                contMO_U10,contMO_U11,contMO_U12,contMO_U13,contMO_U14,contMO_U15;
 
 start with inicio;
 
@@ -113,7 +114,7 @@ cont_CR_U3_2    ::=     COM PASS D_DOT ASIGNACION
 cont_CR_U3_3    ::=     COM USER D_DOT ASIGNACION
                 ;
 
-
+//PRODUCCIONES PARA LA MODIFICACION DE UN USAURIO
 paramsMO_U      ::=     L_A contMO_U L_C paramsMO_U2
                 ;
 
@@ -127,69 +128,63 @@ contMO_U        ::=     USER_ANT D_DOT ASIGNACION contMO_U1
                 |       FECHA_MOD D_DOT ASIGNACION contMO_U4
                 ;
 
-contMO_U4       ::=     USER_ANT D_DOT ASIGNACION contMO_U1_3
-                |       USER_NEW D_DOT ASIGNACION contMO_U2_3
-                |       PASS_NEW D_DOT ASIGNACION contMO_U3_1
-                ; 
-
-contMO_U3       ::=     USER_ANT D_DOT ASIGNACION contMO_U1_2
-                |       USER_NEW D_DOT ASIGNACION contMO_U2_2
-                |       FECHA_MOD D_DOT ASIGNACION contMO_U3_1
+contMO_U1       ::=     COM USER_NEW D_DOT ASIGNACION contMO_U5
+                |       COM PASS_NEW D_DOT ASIGNACION contMO_U8
+                |       COM FECHA_MOD D_DOT ASIGNACION contMO_U11
                 ;
 
-contMO_U3_1     ::=     USER_ANT D_DOT ASIGNACION contMO_U1_2_2
-                |       USER_NEW D_DOT ASIGNACION contMO_U2_2_1
+contMO_U2       ::=     COM USER_ANT D_DOT ASIGNACION contMO_U5
+                |       COM PASS_NEW D_DOT ASIGNACION contMO_U6
+                |       COM FECHA_MOD D_DOT ASIGNACION contMO_U7
                 ;
 
-contMO_U2       :: =    USER_ANT D_DOT ASIGNACION contMO_U1_1
-                |       PASS_NEW D_DOT ASIGNACION contMO_U2_2
-                |       FECHA_MOD D_DOT ASIGNACION contMO_U2_3
+contMO_U3       ::=     COM USER_ANT D_DOT ASIGNACION contMO_U5
+                |       COM USER_NEW D_DOT ASIGNACION contMO_U6
+                |       COM FECHA_MOD D_DOT ASIGNACION contMO_U10
                 ;
 
-contMO_U2_3     ::=     USER_ANT D_DOT ASIGNACION contMO_U1_1_2
-                |       PASS_NEW D_DOT ASIGNACION contMO_U2_2_1
+contMO_U4       ::=     COM USER_ANT D_DOT ASIGNACION contMO_U11
+                |       COM USER_NEW D_DOT ASIGNACION contMO_U7
+                |       COM PASS_NEW D_DOT ASIGNACION contMO_U10
+                ;
+//----------------------------------------------------
+contMO_U5       ::=     COM PASS_NEW D_DOT ASIGNACION contMO_U15
+                |       COM FECHA_MOD D_DOT ASIGNACION contMO_U14
                 ;
 
-contMO_U2_2     ::=     USER_ANT D_DOT ASIGNACION contMO_U1_1_1
-                |       FECHA_MOD D_DOT ASIGNACION contMO_U2_2_1
+contMO_U6       ::=     COM USER_ANT D_DOT ASIGNACION contMO_U15
+                |       COM FECHA_MOD D_DOT ASIGNACION contMO_U12
                 ;
 
-contMO_U2_2_1   ::=     USER_ANT D_DOT ASIGNACION
+contMO_U7       ::=     COM USER_ANT D_DOT ASIGNACION contMO_U14
+                |       COM PASS_NEW D_DOT ASIGNACION contMO_U12
                 ;
 
-contMO_U1       ::=     USER_NEW D_DOT ASIGNACION contMO_U1_1
-                |       PASS_NEW D_DOT ASIGNACION contMO_U1_2
-                |       FECHA_MOD D_DOT ASIGNACION contMO_U1_3
+contMO_U8       ::=     COM PASS_NEW D_DOT ASIGNACION contMO_U15
+                |       COM FECHA_MOD D_DOT ASIGNACION contMO_U14
                 ;
 
-contMO_U1_1     ::=     PASS_NEW D_DOT ASIGNACION contMO_U1_1_1
-                |       FECHA_MOD D_DOT ASIGNACION contMO_U1_1_2
+contMO_U10      ::=     COM USER_ANT D_DOT ASIGNACION contMO_U13
+                |       COM USER_NEW D_DOT ASIGNACION contMO_U12
                 ;
 
-contMO_U1_1_1   ::=     FECHA_MOD D_DOT ASIGNACION
+contMO_U11      ::=     COM USER_NEW D_DOT ASIGNACION contMO_U14
+                |       COM PASS_NEW D_DOT ASIGNACION contMO_U13
+                ;
+//---------------------------------------------------------
+contMO_U12      ::=     COM USER_ANT D_DOT ASIGNACION
+                ;
+contMO_U13      ::=     COM USER_NEW D_DOT ASIGNACION
+                ;
+contMO_U14      ::=     COM PASS_NEW D_DOT ASIGNACION
+                ;
+contMO_U15      ::=     COM FECHA_MOD D_DOT ASIGNACION
                 |
                 ;
 
-contMO_U1_1_2   ::=     PASS_NEW D_DOT ASIGNACION
+//PRODUCCIONES PARA LA ELIMINACION DE UN USUARIO
+paramsDEL_U     ::=     L_A contDEL_U LC paramsDEL_U2
                 ;
-
-contMO_U1_2     ::=     USER_NEW D_DOT ASIGNACION contMO_U1_2_1
-                |       FECHA_MOD D_DOT ASIGNACION contMO_U1_2_2
-                ;
-
-contMO_U1_2_1   ::=     FECHA_MOD D_DOT ASIGNACION
+paramsDEL_U2    ::=     COM paramsDEL_U
                 |
-                ;
-
-contMO_U1_2_2   ::=     USER_NEW D_DOT ASIGNACION
-                ;
-
-contMO_U1_3     ::=     USER_NEW D_DOT ASIGNACION contMO_U1_3_1
-                |       PASS_NEW D_DOT ASIGNACION contMO_U1_3_2
-                ;
-
-contMO_U1_3_1   ::=     PASS_NEW D_DOT ASIGNACION
-                ;
-
-contMO_U1_3_2   ::=     USER_NEW D_DOT ASIGNACION
                 ;

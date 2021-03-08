@@ -34,7 +34,7 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\042\000\002\002\004\000\002\002\005\000\002\003" +
+    "\000\106\000\002\002\004\000\002\002\005\000\002\003" +
     "\007\000\002\005\003\000\002\005\002\000\002\004\020" +
     "\000\002\004\020\000\002\004\020\000\002\004\020\000" +
     "\002\004\020\000\002\004\020\000\002\004\020\000\002" +
@@ -44,7 +44,18 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
     "\002\012\006\000\002\012\002\000\002\013\006\000\002" +
     "\010\007\000\002\010\007\000\002\014\006\000\002\014" +
     "\002\000\002\015\006\000\002\011\007\000\002\011\007" +
-    "\000\002\016\006\000\002\017\006" });
+    "\000\002\016\006\000\002\017\006\000\002\022\006\000" +
+    "\002\032\004\000\002\032\002\000\002\033\006\000\002" +
+    "\033\006\000\002\033\006\000\002\033\006\000\002\034" +
+    "\007\000\002\034\007\000\002\034\007\000\002\035\007" +
+    "\000\002\035\007\000\002\035\007\000\002\036\007\000" +
+    "\002\036\007\000\002\036\007\000\002\037\007\000\002" +
+    "\037\007\000\002\037\007\000\002\040\007\000\002\040" +
+    "\007\000\002\041\007\000\002\041\007\000\002\042\007" +
+    "\000\002\042\007\000\002\043\007\000\002\043\007\000" +
+    "\002\044\007\000\002\044\007\000\002\045\007\000\002" +
+    "\045\007\000\002\046\006\000\002\047\006\000\002\050" +
+    "\006\000\002\051\006\000\002\051\002" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -52,13 +63,13 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\317\000\004\011\004\001\002\000\004\004\007\001" +
+    "\000\u015f\000\004\011\004\001\002\000\004\004\007\001" +
     "\002\000\004\002\006\001\002\000\004\002\001\001\002" +
     "\000\004\006\012\001\002\000\004\012\011\001\002\000" +
     "\004\002\000\001\002\000\004\007\013\001\002\000\004" +
     "\014\014\001\002\000\024\021\022\030\017\031\025\033" +
     "\015\034\021\035\026\036\020\037\023\040\016\001\002" +
-    "\000\004\005\305\001\002\000\004\005\270\001\002\000" +
+    "\000\004\005\u0155\001\002\000\004\005\u0148\001\002\000" +
     "\004\005\253\001\002\000\004\005\236\001\002\000\004" +
     "\005\221\001\002\000\004\005\077\001\002\000\004\005" +
     "\062\001\002\000\004\012\uffff\001\002\000\004\005\045" +
@@ -134,23 +145,93 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
     "\251\001\002\000\006\004\007\012\ufffd\001\002\000\004" +
     "\012\ufff6\001\002\000\004\017\254\001\002\000\004\026" +
     "\255\001\002\000\004\014\256\001\002\000\004\015\257" +
-    "\001\002\000\002\001\002\000\004\016\261\001\002\000" +
-    "\004\020\262\001\002\000\004\004\263\001\002\000\004" +
-    "\010\264\001\002\000\004\006\265\001\002\000\004\005" +
-    "\266\001\002\000\006\004\007\012\ufffd\001\002\000\004" +
-    "\012\ufffb\001\002\000\004\020\271\001\002\000\004\027" +
-    "\272\001\002\000\004\014\273\001\002\000\004\015\274" +
-    "\001\002\000\002\001\002\000\004\016\276\001\002\000" +
-    "\004\020\277\001\002\000\004\004\300\001\002\000\004" +
-    "\010\301\001\002\000\004\006\302\001\002\000\004\005" +
-    "\303\001\002\000\006\004\007\012\ufffd\001\002\000\004" +
-    "\012\ufff4\001\002\000\004\017\306\001\002\000\004\065" +
-    "\307\001\002\000\004\014\310\001\002\000\004\015\311" +
-    "\001\002\000\002\001\002\000\004\016\313\001\002\000" +
-    "\004\020\314\001\002\000\004\004\315\001\002\000\004" +
-    "\010\316\001\002\000\004\006\317\001\002\000\004\005" +
-    "\320\001\002\000\006\004\007\012\ufffd\001\002\000\004" +
-    "\012\ufff9\001\002" });
+    "\001\002\000\004\017\261\001\002\000\004\016\u0141\001" +
+    "\002\000\012\041\266\042\264\043\262\044\265\001\002" +
+    "\000\004\014\u0131\001\002\000\004\020\u012d\001\002\000" +
+    "\004\014\u0114\001\002\000\004\014\356\001\002\000\004" +
+    "\014\267\001\002\000\004\025\270\001\002\000\004\013" +
+    "\272\001\002\000\004\020\uffdc\001\002\000\010\042\274" +
+    "\043\273\044\275\001\002\000\004\014\342\001\002\000" +
+    "\004\014\322\001\002\000\004\014\276\001\002\000\004" +
+    "\025\277\001\002\000\004\013\301\001\002\000\004\020" +
+    "\uffd6\001\002\000\006\042\303\043\302\001\002\000\004" +
+    "\014\313\001\002\000\004\014\304\001\002\000\004\025" +
+    "\305\001\002\000\004\013\307\001\002\000\004\020\uffc2" +
+    "\001\002\000\004\043\310\001\002\000\004\014\311\001" +
+    "\002\000\004\025\312\001\002\000\004\020\uffbe\001\002" +
+    "\000\004\025\314\001\002\000\004\013\316\001\002\000" +
+    "\004\020\uffc1\001\002\000\004\042\317\001\002\000\004" +
+    "\014\320\001\002\000\004\025\321\001\002\000\004\020" +
+    "\uffbf\001\002\000\004\025\323\001\002\000\004\013\325" +
+    "\001\002\000\004\020\uffd8\001\002\000\006\043\326\044" +
+    "\327\001\002\000\004\014\333\001\002\000\004\014\330" +
+    "\001\002\000\004\025\331\001\002\000\004\013\307\001" +
+    "\002\000\004\020\uffcb\001\002\000\004\025\334\001\002" +
+    "\000\006\013\336\020\uffbc\001\002\000\004\020\uffcc\001" +
+    "\002\000\004\044\337\001\002\000\004\014\340\001\002" +
+    "\000\004\025\341\001\002\000\004\020\uffbd\001\002\000" +
+    "\004\025\343\001\002\000\004\013\345\001\002\000\004" +
+    "\020\uffd7\001\002\000\006\043\346\044\347\001\002\000" +
+    "\004\014\353\001\002\000\004\014\350\001\002\000\004" +
+    "\025\351\001\002\000\004\013\307\001\002\000\004\020" +
+    "\uffc5\001\002\000\004\025\354\001\002\000\006\013\336" +
+    "\020\uffbc\001\002\000\004\020\uffc6\001\002\000\004\025" +
+    "\357\001\002\000\004\013\361\001\002\000\004\020\uffd9" +
+    "\001\002\000\010\041\364\042\363\043\362\001\002\000" +
+    "\004\014\u0108\001\002\000\004\014\370\001\002\000\004" +
+    "\014\365\001\002\000\004\025\366\001\002\000\004\013" +
+    "\301\001\002\000\004\020\uffcf\001\002\000\004\025\371" +
+    "\001\002\000\004\013\373\001\002\000\004\020\uffce\001" +
+    "\002\000\006\041\375\043\374\001\002\000\004\014\u0101" +
+    "\001\002\000\004\014\376\001\002\000\004\025\377\001" +
+    "\002\000\004\013\307\001\002\000\004\020\uffc8\001\002" +
+    "\000\004\025\u0102\001\002\000\004\013\u0104\001\002\000" +
+    "\004\020\uffc7\001\002\000\004\041\u0105\001\002\000\004" +
+    "\014\u0106\001\002\000\004\025\u0107\001\002\000\004\020" +
+    "\uffc0\001\002\000\004\025\u0109\001\002\000\004\013\u010b" +
+    "\001\002\000\004\020\uffcd\001\002\000\006\041\u010d\042" +
+    "\u010c\001\002\000\004\014\u0111\001\002\000\004\014\u010e" +
+    "\001\002\000\004\025\u010f\001\002\000\004\013\316\001" +
+    "\002\000\004\020\uffc4\001\002\000\004\025\u0112\001\002" +
+    "\000\004\013\u0104\001\002\000\004\020\uffc3\001\002\000" +
+    "\004\025\u0115\001\002\000\004\013\u0117\001\002\000\004" +
+    "\020\uffdb\001\002\000\010\041\u011a\043\u0118\044\u0119\001" +
+    "\002\000\004\014\u0121\001\002\000\004\014\u011e\001\002" +
+    "\000\004\014\u011b\001\002\000\004\025\u011c\001\002\000" +
+    "\004\013\325\001\002\000\004\020\uffd5\001\002\000\004" +
+    "\025\u011f\001\002\000\004\013\373\001\002\000\004\020" +
+    "\uffd3\001\002\000\004\025\u0122\001\002\000\004\013\u0124" +
+    "\001\002\000\004\020\uffd4\001\002\000\006\041\u0126\044" +
+    "\u0125\001\002\000\004\014\u012a\001\002\000\004\014\u0127" +
+    "\001\002\000\004\025\u0128\001\002\000\006\013\336\020" +
+    "\uffbc\001\002\000\004\020\uffca\001\002\000\004\025\u012b" +
+    "\001\002\000\004\013\u0104\001\002\000\004\020\uffc9\001" +
+    "\002\000\006\013\u012f\016\uffdd\001\002\000\004\016\uffdf" +
+    "\001\002\000\004\017\261\001\002\000\004\016\uffde\001" +
+    "\002\000\004\025\u0132\001\002\000\004\013\u0134\001\002" +
+    "\000\004\020\uffda\001\002\000\010\041\u0137\042\u0135\044" +
+    "\u0136\001\002\000\004\014\u013e\001\002\000\004\014\u013b" +
+    "\001\002\000\004\014\u0138\001\002\000\004\025\u0139\001" +
+    "\002\000\004\013\325\001\002\000\004\020\uffd2\001\002" +
+    "\000\004\025\u013c\001\002\000\004\013\u010b\001\002\000" +
+    "\004\020\uffd0\001\002\000\004\025\u013f\001\002\000\004" +
+    "\013\u0124\001\002\000\004\020\uffd1\001\002\000\004\020" +
+    "\u0142\001\002\000\004\004\u0143\001\002\000\004\010\u0144" +
+    "\001\002\000\004\006\u0145\001\002\000\004\005\u0146\001" +
+    "\002\000\006\004\007\012\ufffd\001\002\000\004\012\ufffb" +
+    "\001\002\000\004\020\u0149\001\002\000\004\027\u014a\001" +
+    "\002\000\004\014\u014b\001\002\000\004\015\u014c\001\002" +
+    "\000\002\001\002\000\004\016\u014e\001\002\000\004\020" +
+    "\u014f\001\002\000\004\004\u0150\001\002\000\004\010\u0151" +
+    "\001\002\000\004\006\u0152\001\002\000\004\005\u0153\001" +
+    "\002\000\006\004\007\012\ufffd\001\002\000\004\012\ufff4" +
+    "\001\002\000\004\017\u0156\001\002\000\004\065\u0157\001" +
+    "\002\000\004\014\u0158\001\002\000\004\015\u0159\001\002" +
+    "\000\002\001\002\000\004\016\u015b\001\002\000\004\020" +
+    "\u015c\001\002\000\004\004\u015d\001\002\000\004\010\u015e" +
+    "\001\002\000\004\006\u015f\001\002\000\004\005\u0160\001" +
+    "\002\000\006\004\007\012\ufffd\001\002\000\004\012\ufff9" +
+    "\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -158,7 +239,7 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\317\000\004\002\004\001\001\000\004\003\007\001" +
+    "\000\u015f\000\004\002\004\001\001\000\004\003\007\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\004\004\023\001\001\000\002\001\001" +
@@ -217,18 +298,67 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
     "\000\006\003\043\005\251\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\004\022\257\001\001\000\002\001\001\000" +
+    "\004\033\262\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\004\034\270\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\004\045\277\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\004\050\305\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\004" +
+    "\047\314\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\006\003\043\005\266\001" +
+    "\001\001\000\004\040\323\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\004\050\331\001\001\000\002\001\001\000" +
+    "\002\001\001\000\004\051\334\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\004\043\343\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\004\050\351\001\001" +
+    "\000\002\001\001\000\002\001\001\000\004\051\354\001" +
+    "\001\000\002\001\001\000\002\001\001\000\004\037\357" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\004\031\274\001" +
+    "\000\004\045\366\001\001\000\002\001\001\000\002\001" +
+    "\001\000\004\042\371\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\004\050\377\001\001\000\002\001\001\000\002" +
+    "\001\001\000\004\046\u0102\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\004\044\u0109\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\004\047\u010f\001\001\000" +
+    "\002\001\001\000\002\001\001\000\004\046\u0112\001\001" +
+    "\000\002\001\001\000\002\001\001\000\004\035\u0115\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\006\003\043\005\303\001\001\000\002\001\001\000\002" +
+    "\004\040\u011c\001\001\000\002\001\001\000\002\001\001" +
+    "\000\004\042\u011f\001\001\000\002\001\001\000\002\001" +
+    "\001\000\004\041\u0122\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\004\024\311\001\001\000\002\001\001\000\002" +
+    "\001\000\004\051\u0128\001\001\000\002\001\001\000\002" +
+    "\001\001\000\004\046\u012b\001\001\000\002\001\001\000" +
+    "\004\032\u012d\001\001\000\002\001\001\000\004\022\u012f" +
+    "\001\001\000\002\001\001\000\002\001\001\000\004\036" +
+    "\u0132\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\006\003\043\005\320\001\001" +
-    "\000\002\001\001" });
+    "\001\000\004\040\u0139\001\001\000\002\001\001\000\002" +
+    "\001\001\000\004\044\u013c\001\001\000\002\001\001\000" +
+    "\002\001\001\000\004\041\u013f\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\006\003\043\005\u0146" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\004\031\u014c" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\006\003\043\005\u0153\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\004\024\u0159\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\006\003\043\005\u0160\001" +
+    "\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -629,6 +759,330 @@ class CUP$parserIndigo$actions {
               Object RESULT =null;
 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("cont_CR_U3_3",13, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 34: // paramsMO_U ::= L_A contMO_U L_C paramsMO_U2 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("paramsMO_U",16, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 35: // paramsMO_U2 ::= COM paramsMO_U 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("paramsMO_U2",24, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 36: // paramsMO_U2 ::= 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("paramsMO_U2",24, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 37: // contMO_U ::= USER_ANT D_DOT ASIGNACION contMO_U1 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U",25, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 38: // contMO_U ::= USER_NEW D_DOT ASIGNACION contMO_U2 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U",25, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 39: // contMO_U ::= PASS_NEW D_DOT ASIGNACION contMO_U3 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U",25, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 40: // contMO_U ::= FECHA_MOD D_DOT ASIGNACION contMO_U4 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U",25, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 41: // contMO_U1 ::= COM USER_NEW D_DOT ASIGNACION contMO_U5 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U1",26, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 42: // contMO_U1 ::= COM PASS_NEW D_DOT ASIGNACION contMO_U8 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U1",26, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 43: // contMO_U1 ::= COM FECHA_MOD D_DOT ASIGNACION contMO_U11 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U1",26, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 44: // contMO_U2 ::= COM USER_ANT D_DOT ASIGNACION contMO_U5 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U2",27, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 45: // contMO_U2 ::= COM PASS_NEW D_DOT ASIGNACION contMO_U6 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U2",27, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 46: // contMO_U2 ::= COM FECHA_MOD D_DOT ASIGNACION contMO_U7 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U2",27, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 47: // contMO_U3 ::= COM USER_ANT D_DOT ASIGNACION contMO_U5 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U3",28, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 48: // contMO_U3 ::= COM USER_NEW D_DOT ASIGNACION contMO_U6 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U3",28, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 49: // contMO_U3 ::= COM FECHA_MOD D_DOT ASIGNACION contMO_U10 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U3",28, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 50: // contMO_U4 ::= COM USER_ANT D_DOT ASIGNACION contMO_U11 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U4",29, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 51: // contMO_U4 ::= COM USER_NEW D_DOT ASIGNACION contMO_U7 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U4",29, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 52: // contMO_U4 ::= COM PASS_NEW D_DOT ASIGNACION contMO_U10 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U4",29, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 53: // contMO_U5 ::= COM PASS_NEW D_DOT ASIGNACION contMO_U15 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U5",30, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 54: // contMO_U5 ::= COM FECHA_MOD D_DOT ASIGNACION contMO_U14 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U5",30, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 55: // contMO_U6 ::= COM USER_ANT D_DOT ASIGNACION contMO_U15 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U6",31, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 56: // contMO_U6 ::= COM FECHA_MOD D_DOT ASIGNACION contMO_U12 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U6",31, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 57: // contMO_U7 ::= COM USER_ANT D_DOT ASIGNACION contMO_U14 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U7",32, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 58: // contMO_U7 ::= COM PASS_NEW D_DOT ASIGNACION contMO_U12 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U7",32, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 59: // contMO_U8 ::= COM PASS_NEW D_DOT ASIGNACION contMO_U15 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U8",33, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 60: // contMO_U8 ::= COM FECHA_MOD D_DOT ASIGNACION contMO_U14 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U8",33, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 61: // contMO_U10 ::= COM USER_ANT D_DOT ASIGNACION contMO_U13 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U10",34, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 62: // contMO_U10 ::= COM USER_NEW D_DOT ASIGNACION contMO_U12 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U10",34, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 63: // contMO_U11 ::= COM USER_NEW D_DOT ASIGNACION contMO_U14 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U11",35, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 64: // contMO_U11 ::= COM PASS_NEW D_DOT ASIGNACION contMO_U13 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U11",35, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-4)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 65: // contMO_U12 ::= COM USER_ANT D_DOT ASIGNACION 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U12",36, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 66: // contMO_U13 ::= COM USER_NEW D_DOT ASIGNACION 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U13",37, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 67: // contMO_U14 ::= COM PASS_NEW D_DOT ASIGNACION 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U14",38, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 68: // contMO_U15 ::= COM FECHA_MOD D_DOT ASIGNACION 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U15",39, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
+            }
+          return CUP$parserIndigo$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 69: // contMO_U15 ::= 
+            {
+              Object RESULT =null;
+
+              CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_U15",39, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
 

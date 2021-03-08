@@ -15,13 +15,14 @@
 }
 <fin_solicitud!>
 
-<!ini_solicitud: "CREAR_USUARIO" >
+<!ini_solicitud: "MODIFICAR_USUARIO" >
 {
 "CREDENCIALES_USUARIO":
 [
     {
-        "USUARIO": "juan",
-        "PASSWORD": "18"
+        "USUARIO_ANTIGUO": "juanito619",
+        "USUARIO_NUEVO": "juanito619lopez",
+        "NUEVO_PASSWORD": "12345678910"
     }
 ]
 }
