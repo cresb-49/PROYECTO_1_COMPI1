@@ -58,18 +58,19 @@ non terminal inicio,contenido,type_s,contenido1,cont_CR_U,cont_CR_U1,cont_CR_U2,
                 contNEW_F57,contNEW_F58,contNEW_F59,contNEW_F60,contNEW_F61,contNEW_F62,
                 paramsDEL_F2,contDEL_F,paramsMO_F2,contMO_F,contMO_F1,contMO_F2,contMO_F3,contMO_F4,contMO_F5,
                 contMO_F6,contMO_F7,contMO_F8,contMO_F9,contMO_F10,contMO_F11,contMO_F12,contMO_F13,contMO_F14,
-                paramsDEL_C2,contDEL_C,contDEL_C1,contDEL_C2;
+                paramsDEL_C2,contDEL_C,contDEL_C1,contDEL_C2,type_s2,paramsLOG_U,contLOG_U,contLOG_U1,contLOG_U2;
 
 start with inicio;
 
-inicio  ::= SSS contenido FSS
+inicio  ::=     SSS contenido FSS
+        |       ME_Q ADM SS D_DOT type_s2
         ;
 
 
-contenido       ::= ME_Q ADM SS D_DOT type_s
+contenido       ::=     ME_Q ADM SS D_DOT type_s
                 ;
 
-contenido1      ::= contenido
+contenido1      ::=     contenido
                 |
                 ;
 
@@ -84,6 +85,35 @@ type_s ::=      CR_U MA_Q L_A CREDEN_USER D_DOT C_A parametros C_C L_C ME_Q FS A
         |       MO_C MA_Q L_C PARAMS_COMP D_DOT C_A paramsMO_C C_C L_C ME_Q FS ADM MA_Q contenido1
         ;
 
+type_s2 ::=     CR_U MA_Q L_A CREDEN_USER D_DOT C_A parametros C_C L_C ME_Q FS ADM MA_Q
+        |       LOG_U MA_Q L_A CREDEN_USER D_DOT C_A paramsLOG_U C_C L_C ME_Q FS ADM MA_Q
+        |       MO_U MA_Q L_A CREDEN_USER D_DOT C_A paramsMO_U C_C L_C ME_Q FS ADM MA_Q 
+        |       DEL_U MA_Q L_A CREDEN_USER D_DOT C_A paramsDEL_U C_C L_C ME_Q FS ADM MA_Q 
+        |       NEW_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsNEW_F C_C L_C ME_Q FS ADM MA_Q 
+        |       DEL_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsDEL_F C_C L_C ME_Q FS ADM MA_Q 
+        |       MO_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsMO_F C_C L_C ME_Q FS ADM MA_Q 
+        |       ADD_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsADD_C C_C L_C ME_Q FS ADM MA_Q 
+        |       DEL_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsDEL_C C_C L_C ME_Q FS ADM MA_Q 
+        |       MO_C MA_Q L_C PARAMS_COMP D_DOT C_A paramsMO_C C_C L_C ME_Q FS ADM MA_Q 
+        ;
+
+//PRODUCCIONES PARA LOGEAR UN USUARIO
+
+paramsLOG_U     ::=      L_A contLOG_U L_C
+                ;
+
+contLOG_U       ::=     USER D_DOT ASIGNACION contLOG_U1
+                |       PASS D_DOT ASIGNACION contLOG_U2
+                ;
+
+contLOG_U1      ::=     COM PASS D_DOT ASIGNACION
+                ;
+
+contLOG_U2      ::=     COM USER D_DOT ASIGNACION
+                ;
+
+
+//PRODUCCIONES PARA CREAR UN USUARIO
 parametros      ::=     L_A cont_CR_U L_C parametros2
                 ;
 

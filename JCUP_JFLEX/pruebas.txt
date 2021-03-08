@@ -71,3 +71,11 @@
 }
 <fin_solicitud!>
 <!fin_solicitudes>
+
+<!ini_solicitud:"LOGIN_USUARIO">
+	{"CREDENCIALES_USUARIO":[{
+		"USUARIO": "juanito619",
+		"PASSWORD": "12345678"
+	}]
+	}
+<fin_solicitud!>

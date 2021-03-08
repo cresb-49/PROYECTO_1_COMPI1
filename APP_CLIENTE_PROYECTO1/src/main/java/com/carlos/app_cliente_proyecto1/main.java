@@ -50,18 +50,13 @@ public class main {
 
     private static void pruebas() {
 
-        String var = "<!ini_solicitudes>\n"
-                + "<!ini_solicitud:\"ELIMINAR_COMPONENTE\">\n"
-                + "{\n"
-                + "    \"PARAMETROS_COMPONENTE\":[\n"
-                + "        {\n"
-                + "            \"ID\": \"$_grupo_paises\",\n"
-                + "            \"FORMULARIO\": \"$form1\"\n"
-                + "        }\n"
-                + "    ]\n"
-                + "}\n"
-                + "<fin_solicitud!>\n"
-                + "<!fin_solicitudes>";
+        String var = "<!ini_solicitud:\"LOGIN_USUARIO\">\n"
+                + "	{\"CREDENCIALES_USUARIO\":[{\n"
+                + "		\"USUARIO\": \"juanito619\",\n"
+                + "		\"PASSWORD\": \"12345678\"\n"
+                + "	}]\n"
+                + "	}\n"
+                + "<fin_solicitud!>";
 
         lexerIndigo lex = new lexerIndigo(new StringReader(var));
         parserIndigo parser = new parserIndigo(lex);
