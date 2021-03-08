@@ -46,7 +46,8 @@ non terminal inicio,contenido,type_s,contenido1,cont_CR_U,cont_CR_U1,cont_CR_U2,
                 cont_CR_U3_2,cont_CR_U3_3,parametros,parametros2,
                 paramsMO_U,paramsDEL_U,paramsNEW_F,paramsDEL_F,paramsMO_F,paramsADD_C,paramsDEL_C,paramsMO_C,
                 paramsMO_U2,contMO_U,contMO_U1,contMO_U2,contMO_U3,contMO_U4,contMO_U5,contMO_U6,contMO_U7,contMO_U8,
-                contMO_U10,contMO_U11,contMO_U12,contMO_U13,contMO_U14,contMO_U15;
+                contMO_U10,contMO_U11,contMO_U12,contMO_U13,contMO_U14,contMO_U15,
+                contDEL_U,paramsDEL_U2,contNEW_F,paramsNEW_F2;
 
 start with inicio;
 
@@ -187,4 +188,58 @@ paramsDEL_U     ::=     L_A contDEL_U LC paramsDEL_U2
                 ;
 paramsDEL_U2    ::=     COM paramsDEL_U
                 |
+                ;
+
+contDEL_U       ::=     USER D_DOT ASIGNACION
+                ;
+//PRODUCCIONES PARA UN NUEVO FORMULARIO
+paramsNEW_F     ::=     L_A contNEW_F L_C paramsNEW_F2
+                ;
+paramsNEW_F2    ::=     COM paramsNEW_F
+                |
+                ;
+//-----------------------------------------------------
+contNEW_F       ::=     ID D_DOT ASIGNACION
+                |       TITLE D_DOT ASIGNACION
+                |       NAME D_DOT ASIGNACION
+                |       THEME D_DOT ASIGNACION
+                |       USER_CRE D_DOT ASIGNACION
+                |       FECHA D_DOT ASIGNACION
+                ;
+//-----------------------------------------------------
+contNEW_F1      ::=     TITLE D_DOT ASIGNACION
+                |       NAME D_DOT ASIGNACION
+                |       THEME D_DOT ASIGNACION
+                |       USER_CRE D_DOT ASIGNACION
+                |       FECHA D_DOT ASIGNACION
+                ;
+contNEW_F2      ::=     ID D_DOT ASIGNACION
+                |       NAME D_DOT ASIGNACION
+                |       THEME D_DOT ASIGNACION
+                |       USER_CRE D_DOT ASIGNACION
+                |       FECHA D_DOT ASIGNACION
+                ;
+contNEW_F3      ::=     ID D_DOT ASIGNACION
+                |       TITLE D_DOT ASIGNACION
+                |       THEME D_DOT ASIGNACION
+                |       USER_CRE D_DOT ASIGNACION
+                |       FECHA D_DOT ASIGNACION
+                ;
+contNEW_F4      ::=     ID D_DOT ASIGNACION
+                |       TITLE D_DOT ASIGNACION
+                |       NAME D_DOT ASIGNACION
+                |       USER_CRE D_DOT ASIGNACION
+                |       FECHA D_DOT ASIGNACION
+                ;
+contNEW_F5      ::=     ID D_DOT ASIGNACION
+                |       TITLE D_DOT ASIGNACION
+                |       NAME D_DOT ASIGNACION
+                |       THEME D_DOT ASIGNACION
+                |       FECHA D_DOT ASIGNACION
+                ;
+contNEW_F6      ::=     ID D_DOT ASIGNACION
+                |       TITLE D_DOT ASIGNACION
+                |       NAME D_DOT ASIGNACION
+                |       THEME D_DOT ASIGNACION
+                |       USER_CRE D_DOT ASIGNACION
                 ;
