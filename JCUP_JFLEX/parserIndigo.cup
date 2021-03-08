@@ -47,7 +47,15 @@ non terminal inicio,contenido,type_s,contenido1,cont_CR_U,cont_CR_U1,cont_CR_U2,
                 paramsMO_U,paramsDEL_U,paramsNEW_F,paramsDEL_F,paramsMO_F,paramsADD_C,paramsDEL_C,paramsMO_C,
                 paramsMO_U2,contMO_U,contMO_U1,contMO_U2,contMO_U3,contMO_U4,contMO_U5,contMO_U6,contMO_U7,contMO_U8,
                 contMO_U10,contMO_U11,contMO_U12,contMO_U13,contMO_U14,contMO_U15,
-                contDEL_U,paramsDEL_U2,contNEW_F,paramsNEW_F2;
+                contDEL_U,paramsDEL_U2,contNEW_F,paramsNEW_F2,
+                contNEW_F1,contNEW_F2,contNEW_F3,contNEW_F4,contNEW_F5,contNEW_F6,contNEW_F7,contNEW_F8,
+                contNEW_F9,contNEW_F10,contNEW_F11,contNEW_F12,contNEW_F13,contNEW_F14,contNEW_F15,contNEW_F16,
+                contNEW_F17,contNEW_F18,contNEW_F19,contNEW_F20,contNEW_F21,contNEW_F22,contNEW_F23,contNEW_F24,
+                contNEW_F25,contNEW_F26,contNEW_F27,contNEW_F28,contNEW_F29,contNEW_F30,contNEW_F31,contNEW_F32,
+                contNEW_F33,contNEW_F34,contNEW_F35,contNEW_F36,contNEW_F37,contNEW_F38,contNEW_F39,contNEW_F40,
+                contNEW_F41,contNEW_F42,contNEW_F43,contNEW_F44,contNEW_F45,contNEW_F46,contNEW_F47,contNEW_F48,
+                contNEW_F49,contNEW_F50,contNEW_F51,contNEW_F52,contNEW_F53,contNEW_F54,contNEW_F55,contNEW_F56,
+                contNEW_F57,contNEW_F58,contNEW_F59,contNEW_F60,contNEW_F61,contNEW_F62;
 
 start with inicio;
 
@@ -184,7 +192,7 @@ contMO_U15      ::=     COM FECHA_MOD D_DOT ASIGNACION
                 ;
 
 //PRODUCCIONES PARA LA ELIMINACION DE UN USUARIO
-paramsDEL_U     ::=     L_A contDEL_U LC paramsDEL_U2
+paramsDEL_U     ::=     L_A contDEL_U L_C paramsDEL_U2
                 ;
 paramsDEL_U2    ::=     COM paramsDEL_U
                 |
@@ -199,47 +207,322 @@ paramsNEW_F2    ::=     COM paramsNEW_F
                 |
                 ;
 //-----------------------------------------------------
-contNEW_F       ::=     ID D_DOT ASIGNACION
-                |       TITLE D_DOT ASIGNACION
-                |       NAME D_DOT ASIGNACION
-                |       THEME D_DOT ASIGNACION
-                |       USER_CRE D_DOT ASIGNACION
-                |       FECHA D_DOT ASIGNACION
+contNEW_F       ::=     ID D_DOT ASIGNACION contNEW_F1
+                |       TITLE D_DOT ASIGNACION contNEW_F2
+                |       NAME D_DOT ASIGNACION contNEW_F3
+                |       THEME D_DOT ASIGNACION contNEW_F4
+                |       USER_CRE D_DOT ASIGNACION contNEW_F5
+                |       FECHA D_DOT ASIGNACION contNEW_F6
                 ;
 //-----------------------------------------------------
-contNEW_F1      ::=     TITLE D_DOT ASIGNACION
-                |       NAME D_DOT ASIGNACION
-                |       THEME D_DOT ASIGNACION
-                |       USER_CRE D_DOT ASIGNACION
-                |       FECHA D_DOT ASIGNACION
+contNEW_F1      ::=     COM TITLE D_DOT ASIGNACION contNEW_F7
+                |       COM NAME D_DOT ASIGNACION contNEW_F8
+                |       COM THEME D_DOT ASIGNACION contNEW_F9
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F10
+                |       COM FECHA D_DOT ASIGNACION contNEW_F11
                 ;
-contNEW_F2      ::=     ID D_DOT ASIGNACION
-                |       NAME D_DOT ASIGNACION
-                |       THEME D_DOT ASIGNACION
-                |       USER_CRE D_DOT ASIGNACION
-                |       FECHA D_DOT ASIGNACION
+
+contNEW_F2      ::=     COM ID D_DOT ASIGNACION contNEW_F7
+                |       COM NAME D_DOT ASIGNACION contNEW_F12
+                |       COM THEME D_DOT ASIGNACION contNEW_F13
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F14
+                |       COM FECHA D_DOT ASIGNACION contNEW_F15
                 ;
-contNEW_F3      ::=     ID D_DOT ASIGNACION
-                |       TITLE D_DOT ASIGNACION
-                |       THEME D_DOT ASIGNACION
-                |       USER_CRE D_DOT ASIGNACION
-                |       FECHA D_DOT ASIGNACION
+
+contNEW_F3      ::=     COM ID D_DOT ASIGNACION contNEW_F8
+                |       COM TITLE D_DOT ASIGNACION contNEW_F12
+                |       COM THEME D_DOT ASIGNACION contNEW_F16
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F17
+                |       COM FECHA D_DOT ASIGNACION contNEW_F18
                 ;
-contNEW_F4      ::=     ID D_DOT ASIGNACION
-                |       TITLE D_DOT ASIGNACION
-                |       NAME D_DOT ASIGNACION
-                |       USER_CRE D_DOT ASIGNACION
-                |       FECHA D_DOT ASIGNACION
+
+contNEW_F4      ::=     COM ID D_DOT ASIGNACION contNEW_F9
+                |       COM TITLE D_DOT ASIGNACION contNEW_F13
+                |       COM NAME D_DOT ASIGNACION contNEW_F16
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F19
+                |       COM FECHA D_DOT ASIGNACION contNEW_F20
                 ;
-contNEW_F5      ::=     ID D_DOT ASIGNACION
-                |       TITLE D_DOT ASIGNACION
-                |       NAME D_DOT ASIGNACION
-                |       THEME D_DOT ASIGNACION
-                |       FECHA D_DOT ASIGNACION
+
+contNEW_F5      ::=     COM ID D_DOT ASIGNACION contNEW_F10
+                |       COM TITLE D_DOT ASIGNACION contNEW_F14
+                |       COM NAME D_DOT ASIGNACION contNEW_F17
+                |       COM THEME D_DOT ASIGNACION contNEW_F19
+                |       COM FECHA D_DOT ASIGNACION contNEW_F21
                 ;
-contNEW_F6      ::=     ID D_DOT ASIGNACION
-                |       TITLE D_DOT ASIGNACION
-                |       NAME D_DOT ASIGNACION
-                |       THEME D_DOT ASIGNACION
-                |       USER_CRE D_DOT ASIGNACION
+
+contNEW_F6      ::=     COM ID D_DOT ASIGNACION contNEW_F11
+                |       COM TITLE D_DOT ASIGNACION contNEW_F15
+                |       COM NAME D_DOT ASIGNACION contNEW_F18
+                |       COM THEME D_DOT ASIGNACION contNEW_F20
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F21
+                ;
+//------------------------------------------------------------------
+contNEW_F7      ::=     COM NAME D_DOT ASIGNACION contNEW_F22
+                |       COM THEME D_DOT ASIGNACION contNEW_F23
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F24
+                |       COM FECHA D_DOT ASIGNACION contNEW_F25
+                ;
+
+contNEW_F8      ::=     COM TITLE D_DOT ASIGNACION contNEW_F22
+                |       COM THEME D_DOT ASIGNACION contNEW_F26
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F27
+                |       COM FECHA D_DOT ASIGNACION contNEW_F28
+                ;
+
+contNEW_F9      ::=     COM TITLE D_DOT ASIGNACION contNEW_F23
+                |       COM NAME D_DOT ASIGNACION contNEW_F26
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F29
+                |       COM FECHA D_DOT ASIGNACION contNEW_F30
+                ;
+
+contNEW_F10     ::=     COM TITLE D_DOT ASIGNACION contNEW_F24
+                |       COM NAME D_DOT ASIGNACION contNEW_F27
+                |       COM THEME D_DOT ASIGNACION contNEW_F29
+                |       COM FECHA D_DOT ASIGNACION contNEW_F31
+                ;
+
+contNEW_F11     ::=     COM TITLE D_DOT ASIGNACION contNEW_F25
+                |       COM NAME D_DOT ASIGNACION contNEW_F28
+                |       COM THEME D_DOT ASIGNACION contNEW_F30
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F31
+                ;
+
+contNEW_F12     ::=     COM ID D_DOT ASIGNACION contNEW_F22
+                |       COM THEME D_DOT ASIGNACION contNEW_F32
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F33
+                |       COM FECHA D_DOT ASIGNACION contNEW_F34
+                ;
+
+contNEW_F13     ::=     COM ID D_DOT ASIGNACION contNEW_F23
+                |       COM NAME D_DOT ASIGNACION contNEW_F32
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F35
+                |       COM FECHA D_DOT ASIGNACION contNEW_F36
+                ;
+
+contNEW_F14     ::=     COM ID D_DOT ASIGNACION contNEW_F24
+                |       COM NAME D_DOT ASIGNACION contNEW_F33
+                |       COM THEME D_DOT ASIGNACION contNEW_F35
+                |       COM FECHA D_DOT ASIGNACION contNEW_F37
+                ;
+
+contNEW_F15     ::=     COM ID D_DOT ASIGNACION contNEW_F25
+                |       COM NAME D_DOT ASIGNACION contNEW_F34
+                |       COM THEME D_DOT ASIGNACION contNEW_F36
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F37
+                ;
+
+contNEW_F16     ::=     COM ID D_DOT ASIGNACION contNEW_F26
+                |       COM TITLE D_DOT ASIGNACION contNEW_F32
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F38
+                |       COM FECHA D_DOT ASIGNACION contNEW_F39
+                ;
+
+contNEW_F17     ::=     COM ID D_DOT ASIGNACION contNEW_F27
+                |       COM TITLE D_DOT ASIGNACION contNEW_F33
+                |       COM THEME D_DOT ASIGNACION contNEW_F38
+                |       COM FECHA D_DOT ASIGNACION contNEW_F40
+                ;
+
+contNEW_F18     ::=     COM ID D_DOT ASIGNACION contNEW_F28
+                |       COM TITLE D_DOT ASIGNACION contNEW_F34
+                |       COM THEME D_DOT ASIGNACION contNEW_F39
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F40
+                ;
+
+contNEW_F19     ::=     COM ID D_DOT ASIGNACION contNEW_F29
+                |       COM TITLE D_DOT ASIGNACION contNEW_F35
+                |       COM NAME D_DOT ASIGNACION contNEW_F38
+                |       COM FECHA D_DOT ASIGNACION contNEW_F41
+                ;
+
+contNEW_F20     ::=     COM ID D_DOT ASIGNACION contNEW_F30
+                |       COM TITLE D_DOT ASIGNACION contNEW_F36
+                |       COM NAME D_DOT ASIGNACION contNEW_F39
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F41
+                ;
+
+contNEW_F21     ::=     COM ID D_DOT ASIGNACION contNEW_F31
+                |       COM TITLE D_DOT ASIGNACION contNEW_F37
+                |       COM NAME D_DOT ASIGNACION contNEW_F40
+                |       COM THEME D_DOT ASIGNACION contNEW_F41
+                ;
+//-------------------------------------------------------
+contNEW_F22     ::=     COM THEME D_DOT ASIGNACION contNEW_F42
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F43
+                |       COM FECHA D_DOT ASIGNACION contNEW_F44
+                ;
+
+contNEW_F23     ::=     COM NAME D_DOT ASIGNACION contNEW_F42
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F45
+                |       COM FECHA D_DOT ASIGNACION contNEW_F46
+                ;
+
+contNEW_F24     ::=     COM NAME D_DOT ASIGNACION contNEW_F43
+                |       COM THEME D_DOT ASIGNACION contNEW_F45
+                |       COM FECHA D_DOT ASIGNACION contNEW_F47
+                ;
+
+contNEW_F25     ::=     COM NAME D_DOT ASIGNACION contNEW_F44
+                |       COM THEME D_DOT ASIGNACION contNEW_F46
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F47
+                ;
+
+contNEW_F26     ::=     COM TITLE D_DOT ASIGNACION contNEW_F42
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F48
+                |       COM FECHA D_DOT ASIGNACION contNEW_F49
+                ;
+
+contNEW_F27     ::=     COM TITLE D_DOT ASIGNACION contNEW_F43
+                |       COM THEME D_DOT ASIGNACION contNEW_F48
+                |       COM FECHA D_DOT ASIGNACION contNEW_F50
+                ;
+
+contNEW_F28     ::=     COM TITLE D_DOT ASIGNACION contNEW_F44
+                |       COM THEME D_DOT ASIGNACION contNEW_F49
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F50
+                ;
+
+contNEW_F29     ::=     COM TITLE D_DOT ASIGNACION contNEW_F45
+                |       COM NAME D_DOT ASIGNACION contNEW_F48
+                |       COM FECHA D_DOT ASIGNACION contNEW_F51
+                ;
+
+contNEW_F30     ::=     COM TITLE D_DOT ASIGNACION contNEW_F46
+                |       COM NAME D_DOT ASIGNACION contNEW_F49
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F51
+                ;
+
+contNEW_F31     ::=     COM TITLE D_DOT ASIGNACION contNEW_F47
+                |       COM NAME D_DOT ASIGNACION contNEW_F50
+                |       COM THEME D_DOT ASIGNACION contNEW_F51
+                ;
+
+contNEW_F32     ::=     COM ID D_DOT ASIGNACION contNEW_F42
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F52
+                |       COM FECHA D_DOT ASIGNACION contNEW_F53
+                ;
+
+contNEW_F33     ::=     COM ID D_DOT ASIGNACION contNEW_F43
+                |       COM THEME D_DOT ASIGNACION contNEW_F52
+                |       COM FECHA D_DOT ASIGNACION contNEW_F54
+                ;
+
+contNEW_F34     ::=     COM ID D_DOT ASIGNACION contNEW_F44
+                |       COM THEME D_DOT ASIGNACION contNEW_F53
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F54
+                ;
+
+contNEW_F35     ::=     COM ID D_DOT ASIGNACION contNEW_F45
+                |       COM NAME D_DOT ASIGNACION contNEW_F52
+                |       COM FECHA D_DOT ASIGNACION contNEW_F55
+                ;
+
+contNEW_F36     ::=     COM ID D_DOT ASIGNACION contNEW_F46
+                |       COM NAME D_DOT ASIGNACION contNEW_F53
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F55
+                ;
+
+contNEW_F37     ::=     COM ID D_DOT ASIGNACION contNEW_F47
+                |       COM NAME D_DOT ASIGNACION contNEW_F54
+                |       COM THEME D_DOT ASIGNACION contNEW_F55
+                ;
+
+contNEW_F38     ::=     COM ID D_DOT ASIGNACION contNEW_F48
+                |       COM TITLE D_DOT ASIGNACION contNEW_F52
+                |       COM FECHA D_DOT ASIGNACION contNEW_F56
+                ;
+
+contNEW_F39     ::=     COM ID D_DOT ASIGNACION contNEW_F49
+                |       COM TITLE D_DOT ASIGNACION contNEW_F53
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F56
+                ;
+
+contNEW_F40     ::=     COM ID D_DOT ASIGNACION contNEW_F50
+                |       COM TITLE D_DOT ASIGNACION contNEW_F54
+                |       COM THEME D_DOT ASIGNACION contNEW_F56
+                ;
+
+contNEW_F41     ::=     COM ID D_DOT ASIGNACION contNEW_F51
+                |       COM TITLE D_DOT ASIGNACION contNEW_F55
+                |       COM NAME D_DOT ASIGNACION contNEW_F56
+                ;
+//-------------------------------------------------
+
+contNEW_F42     ::=     COM USER_CRE D_DOT ASIGNACION contNEW_F57
+                |       COM FECHA D_DOT ASIGNACION contNEW_F58
+                ;
+
+contNEW_F43     ::=     COM THEME D_DOT ASIGNACION contNEW_F57
+                |       COM FECHA D_DOT ASIGNACION contNEW_F59
+                ;
+
+contNEW_F44     ::=     COM THEME D_DOT ASIGNACION contNEW_F58
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F59
+                ;
+
+contNEW_F45     ::=     COM NAME D_DOT ASIGNACION contNEW_F57
+                |       COM FECHA D_DOT ASIGNACION contNEW_F60
+                ;
+
+contNEW_F46     ::=     COM NAME D_DOT ASIGNACION contNEW_F58
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F60
+                ;
+
+contNEW_F47     ::=     COM NAME D_DOT ASIGNACION contNEW_F59
+                |       COM THEME D_DOT ASIGNACION contNEW_F60
+                ;
+
+contNEW_F48     ::=     COM TITLE D_DOT ASIGNACION contNEW_F57
+                |       COM FECHA D_DOT ASIGNACION contNEW_F61
+                ;
+
+contNEW_F49     ::=     COM TITLE D_DOT ASIGNACION contNEW_F58
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F61
+                ;
+
+contNEW_F50     ::=     COM TITLE D_DOT ASIGNACION contNEW_F59
+                |       COM THEME D_DOT ASIGNACION contNEW_F61
+                ;
+
+contNEW_F51     ::=     COM TITLE D_DOT ASIGNACION contNEW_F60
+                |       COM NAME D_DOT ASIGNACION contNEW_F61
+                ;
+
+contNEW_F52     ::=     COM ID D_DOT ASIGNACION contNEW_F57
+                |       COM FECHA D_DOT ASIGNACION contNEW_F62
+                ;
+
+contNEW_F53     ::=     COM ID D_DOT ASIGNACION contNEW_F58
+                |       COM USER_CRE D_DOT ASIGNACION contNEW_F62
+                ;
+
+contNEW_F54     ::=     COM ID D_DOT ASIGNACION contNEW_F59
+                |       COM THEME D_DOT ASIGNACION contNEW_F62
+                ;
+
+contNEW_F55     ::=     COM ID D_DOT ASIGNACION contNEW_F60
+                |       COM NAME D_DOT ASIGNACION contNEW_F62
+                ;
+
+contNEW_F56     ::=     COM ID D_DOT ASIGNACION contNEW_F61
+                |       COM TITLE D_DOT ASIGNACION contNEW_F62
+                ;
+//----------------------------------------------------
+contNEW_F57     ::=     COM FECHA D_DOT ASIGNACION
+                |
+                ;
+contNEW_F58     ::=     COM USER_CRE D_DOT ASIGNACION
+                |
+                ;
+
+contNEW_F59     ::=     COM THEME D_DOT ASIGNACION
+                ;
+
+contNEW_F60     ::=     COM NAME D_DOT ASIGNACION
+                ;
+
+contNEW_F61     ::=     COM TITLE D_DOT ASIGNACION
+                ;
+
+contNEW_F62     ::=     COM ID D_DOT ASIGNACION
                 ;
