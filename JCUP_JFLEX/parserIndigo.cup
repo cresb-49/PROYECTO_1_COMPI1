@@ -55,7 +55,10 @@ non terminal inicio,contenido,type_s,contenido1,cont_CR_U,cont_CR_U1,cont_CR_U2,
                 contNEW_F33,contNEW_F34,contNEW_F35,contNEW_F36,contNEW_F37,contNEW_F38,contNEW_F39,contNEW_F40,
                 contNEW_F41,contNEW_F42,contNEW_F43,contNEW_F44,contNEW_F45,contNEW_F46,contNEW_F47,contNEW_F48,
                 contNEW_F49,contNEW_F50,contNEW_F51,contNEW_F52,contNEW_F53,contNEW_F54,contNEW_F55,contNEW_F56,
-                contNEW_F57,contNEW_F58,contNEW_F59,contNEW_F60,contNEW_F61,contNEW_F62;
+                contNEW_F57,contNEW_F58,contNEW_F59,contNEW_F60,contNEW_F61,contNEW_F62,
+                paramsDEL_F2,contDEL_F,paramsMO_F2,contMO_F,contMO_F1,contMO_F2,contMO_F3,contMO_F4,contMO_F5,
+                contMO_F6,contMO_F7,contMO_F8,contMO_F9,contMO_F10,contMO_F11,contMO_F12,contMO_F13,contMO_F14,
+                paramsDEL_C2,contDEL_C,contDEL_C1,contDEL_C2;
 
 start with inicio;
 
@@ -203,8 +206,9 @@ contDEL_U       ::=     USER D_DOT ASIGNACION
 //PRODUCCIONES PARA UN NUEVO FORMULARIO
 paramsNEW_F     ::=     L_A contNEW_F L_C paramsNEW_F2
                 ;
+
 paramsNEW_F2    ::=     COM paramsNEW_F
-                |
+                | 
                 ;
 //-----------------------------------------------------
 contNEW_F       ::=     ID D_DOT ASIGNACION contNEW_F1
@@ -450,6 +454,7 @@ contNEW_F41     ::=     COM ID D_DOT ASIGNACION contNEW_F51
 
 contNEW_F42     ::=     COM USER_CRE D_DOT ASIGNACION contNEW_F57
                 |       COM FECHA D_DOT ASIGNACION contNEW_F58
+                |
                 ;
 
 contNEW_F43     ::=     COM THEME D_DOT ASIGNACION contNEW_F57
@@ -525,4 +530,104 @@ contNEW_F61     ::=     COM TITLE D_DOT ASIGNACION
                 ;
 
 contNEW_F62     ::=     COM ID D_DOT ASIGNACION
+                ;
+
+//PRODUCCIONES PARA ELIMINAR UN FORMULARIO
+
+paramsDEL_F     ::=     L_A contDEL_F L_C paramsDEL_F2
+                ;
+
+paramsDEL_F2    ::=     COM paramsDEL_F
+                |
+                ;
+
+contDEL_F       ::=      ID D_DOT ASIGNACION
+                ;
+
+//PRODUCCIONES PARA MODIFICAR UN FORMULARIO
+
+paramsMO_F      ::=     L_A contMO_F L_C paramsMO_F2
+                ;
+
+paramsMO_F2      ::=     COM paramsMO_F
+                |
+                ;
+//------------------------------------------------
+
+contMO_F        ::=     ID D_DOT ASIGNACION contMO_F1
+                |       TITLE D_DOT ASIGNACION contMO_F2
+                |       NAME D_DOT ASIGNACION contMO_F3
+                |       THEME D_DOT ASIGNACION contMO_F4
+                ;
+//-----------------------------------------------------
+contMO_F1       ::=     COM TITLE D_DOT ASIGNACION contMO_F5
+                |       COM NAME D_DOT ASIGNACION contMO_F6
+                |       COM THEME D_DOT ASIGNACION contMO_F7
+                ;
+
+contMO_F2       ::=     COM ID D_DOT ASIGNACION contMO_F5
+                |       COM NAME D_DOT ASIGNACION contMO_F8
+                |       COM THEME D_DOT ASIGNACION contMO_F9
+                ;
+
+contMO_F3       ::=     COM ID D_DOT ASIGNACION contMO_F6
+                |       COM TITLE D_DOT ASIGNACION contMO_F8
+                |       COM THEME D_DOT ASIGNACION contMO_F10
+                ;
+
+contMO_F4       ::=     COM ID D_DOT ASIGNACION contMO_F7
+                |       COM TITLE D_DOT ASIGNACION contMO_F9
+                |       COM NAME D_DOT ASIGNACION contMO_F10
+                ;
+//-----------------------------------------------------
+contMO_F5       ::=     COM NAME D_DOT ASIGNACION contMO_F11
+                |       COM THEME D_DOT ASIGNACION contMO_F12
+                |
+                ;
+contMO_F6       ::=     COM TITLE D_DOT ASIGNACION contMO_F11
+                |       COM THEME D_DOT ASIGNACION contMO_F13
+                |
+                ;
+contMO_F7       ::=     COM TITLE D_DOT ASIGNACION contMO_F12
+                |       COM NAME D_DOT ASIGNACION contMO_F13
+                |
+                ;
+contMO_F8       ::=     COM ID D_DOT ASIGNACION contMO_F11
+                |       COM THEME D_DOT ASIGNACION contMO_F14
+                ;
+contMO_F9       ::=     COM ID D_DOT ASIGNACION contMO_F12
+                |       COM NAME D_DOT ASIGNACION contMO_F14
+                ;
+contMO_F10      ::=     COM ID D_DOT ASIGNACION contMO_F13
+                |       COM TITLE D_DOT ASIGNACION contMO_F14
+                ;
+//-------------------------------------------------------
+contMO_F11      ::=     COM THEME D_DOT ASIGNACION
+                |
+                ;
+
+contMO_F12      ::=     COM NAME D_DOT ASIGNACION
+                |
+                ;
+
+contMO_F13      ::=     COM TITLE D_DOT ASIGNACION
+                |
+                ;
+
+contMO_F14      ::=     COM ID D_DOT ASIGNACION
+                ;
+//PRODUCCIONES PARA ELIMINAR COMPONENTE
+
+paramsDEL_C     ::=     L_A contDEL_C L_C paramsDEL_C2
+                ;
+paramsDEL_C2    ::=     paramsDEL_C
+                |
+                ;
+//--------------------------------------------------
+contDEL_C       ::=     ID D_DOT ASIGNACION contDEL_C1
+                |       FORM D_DOT ASIGNACION contDEL_C2
+                ;
+contDEL_C1      ::=     COM FORM D_DOT ASIGNACION
+                ;
+contDEL_C2      ::=     COM ID D_DOT ASIGNACION
                 ;

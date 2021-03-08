@@ -29,3 +29,45 @@
 <fin_solicitud!>
 
 <!fin_solicitudes>
+
+<!ini_solicitudes>
+<!ini_solicitud:"NUEVO_FORMULARIO">
+{
+    "PARAMETROS_FORMULARIO":[
+        {
+            "ID": "$form1",
+            "TITULO": "Formulario para encuesta 1",
+            "NOMBRE": "formulario_encuesta_1",
+            "TEMA": "Dark"
+        }
+    ]
+}
+<fin_solicitud!>
+<!fin_solicitudes>
+
+<!ini_solicitudes>
+<!ini_solicitud:"MODIFICAR_FORMULARIO">
+{
+    "PARAMETROS_FORMULARIO":[
+        {
+            "ID": "$form1",
+            "TITULO": "Formulario para encuesta 1",
+            "NOMBRE": "formulario_encuesta_1"
+        }
+    ]
+}
+<fin_solicitud!>
+<!fin_solicitudes>
+
+<!ini_solicitudes>
+<!ini_solicitud:"ELIMINAR_COMPONENTE">
+{
+    "PARAMETROS_COMPONENTE":[
+        {
+            "ID": "$_grupo_paises",
+            "FORMULARIO": "$form1"
+        }
+    ]
+}
+<fin_solicitud!>
+<!fin_solicitudes>
