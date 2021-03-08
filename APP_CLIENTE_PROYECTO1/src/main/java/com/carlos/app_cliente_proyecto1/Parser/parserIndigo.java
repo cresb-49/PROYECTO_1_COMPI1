@@ -6,6 +6,8 @@
 package com.carlos.app_cliente_proyecto1.Parser;
 
 import com.carlos.app_cliente_proyecto1.Lexer.lexerIndigo;
+import com.carlos.app_cliente_proyecto1.Objetos.*;
+import com.carlos.app_cliente_proyecto1.Tokens.token;
 import java.util.ArrayList;
 import java_cup.runtime.Symbol;
 import java.util.List;
@@ -1446,7 +1448,10 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
 
 
         private List<String> errorsList = new ArrayList();
-
+        private usuario logUser = new usuario();
+        public usuario getLogUser() {
+                return logUser;
+        }
         public parserIndigo(lexerIndigo lex){
                 super(lex);
         }
@@ -1742,7 +1747,12 @@ class CUP$parserIndigo$actions {
           case 26: // contLOG_U ::= USER D_DOT ASIGNACION contLOG_U1 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).value;
+		
+                        logUser.setUser(((token)e1).getLexeme());
+                
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contLOG_U",130, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
@@ -1751,7 +1761,12 @@ class CUP$parserIndigo$actions {
           case 27: // contLOG_U ::= PASS D_DOT ASIGNACION contLOG_U2 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).value;
+		
+                        logUser.setPass(((token)e1).getLexeme());
+                
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contLOG_U",130, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
@@ -1760,7 +1775,12 @@ class CUP$parserIndigo$actions {
           case 28: // contLOG_U1 ::= COM PASS D_DOT ASIGNACION 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
+		
+                        logUser.setPass(((token)e1).getLexeme());
+                
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contLOG_U1",131, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
@@ -1769,7 +1789,12 @@ class CUP$parserIndigo$actions {
           case 29: // contLOG_U2 ::= COM USER D_DOT ASIGNACION 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
+		
+                        logUser.setUser(((token)e1).getLexeme());
+                
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contLOG_U2",132, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;

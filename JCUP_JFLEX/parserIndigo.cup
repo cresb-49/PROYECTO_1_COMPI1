@@ -1,6 +1,9 @@
 package com.carlos.app_cliente_proyecto1.Parser;
 
 import com.carlos.app_cliente_proyecto1.Lexer.lexerIndigo;
+import com.carlos.app_cliente_proyecto1.Objetos.*;
+import com.carlos.app_cliente_proyecto1.Tokens.token;
+
 import java.util.ArrayList;
 import java_cup.runtime.Symbol;
 import java.util.List;
@@ -9,7 +12,10 @@ class parserIndigo;
 
 parser code {:
         private List<String> errorsList = new ArrayList();
-
+        private usuario logUser = new usuario();
+        public usuario getLogUser() {
+                return logUser;
+        }
         public parserIndigo(lexerIndigo lex){
                 super(lex);
         }
@@ -103,14 +109,26 @@ type_s2 ::=     CR_U MA_Q L_A CREDEN_USER D_DOT C_A parametros C_C L_C ME_Q FS A
 paramsLOG_U     ::=      L_A contLOG_U L_C
                 ;
 
-contLOG_U       ::=     USER D_DOT ASIGNACION contLOG_U1
-                |       PASS D_DOT ASIGNACION contLOG_U2
+contLOG_U       ::=     USER D_DOT ASIGNACION:e1 contLOG_U1
+                {:
+                        logUser.setUser(((token)e1).getLexeme());
+                :}
+                |       PASS D_DOT ASIGNACION:e1 contLOG_U2
+                {:
+                        logUser.setPass(((token)e1).getLexeme());
+                :}
                 ;
 
-contLOG_U1      ::=     COM PASS D_DOT ASIGNACION
+contLOG_U1      ::=     COM PASS D_DOT ASIGNACION:e1
+                {:
+                        logUser.setPass(((token)e1).getLexeme());
+                :}
                 ;
 
-contLOG_U2      ::=     COM USER D_DOT ASIGNACION
+contLOG_U2      ::=     COM USER D_DOT ASIGNACION:e1       
+                {:
+                        logUser.setUser(((token)e1).getLexeme());
+                :}
                 ;
 
 

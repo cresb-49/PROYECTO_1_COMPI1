@@ -1,6 +1,8 @@
 package com.carlos.web_proyecto1.Servlets;
 
 import com.carlos.web_proyecto1.Lexer.lexerIndigo;
+import com.carlos.web_proyecto1.Objetos.userNew;
+import com.carlos.web_proyecto1.Objetos.usuario;
 import com.carlos.web_proyecto1.Parser.parserIndigo;
 import java.io.IOException;
 import java.io.StringReader;
@@ -16,16 +18,19 @@ public class loginUsuario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("FUNCIONAMIENTO DEL SERVLET");
-
+        usuario user=new usuario();
         String indigoCode = req.getParameter("code");
         System.out.println("Cadena recivida: "+indigoCode);
         try {
             lexerIndigo lex = new lexerIndigo(new StringReader(indigoCode));
             parserIndigo parser = new parserIndigo(lex);
             parser.parse();
+            user=parser.getLogUser();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("Usuario recuperado: "+user.toString());
+        
     }
 
     @Override
