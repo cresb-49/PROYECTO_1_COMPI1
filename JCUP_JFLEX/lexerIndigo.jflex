@@ -42,9 +42,11 @@ WhiteSpace = [ \t\n]+
 atributes = [a-zA-Z_]+
 reservadasConjunto = (ini_solicitud|fin_solicitud)
 
-conjuntoOperaciones = (<\!ini_solicitudes>|<\!fin_solicitudes>)
+//conjuntoOperaciones = (<\!ini_solicitudes>|<\!fin_solicitudes>)
 
 //conjuntoOperaciones = ((<)\!ini_solicitudes>|<\!fin_solicitudes>)
+inicioConjunto = (<)([ \n\r\t])*(\!)([ \n\r\t])*([iI][nN][iI]_[sS][oO][lL][iI][cC][iI][tT][uU][dD][eE][sS])([ \n\r\t])*(>)
+finConjunto = (<)([ \n\r\t])*(\!)([ \n\r\t])*([fF][iI][nN]_[sS][oO][lL][iI][cC][iI][tT][uU][dD][eE][sS])([ \n\r\t])*(>)
 
 simbolos = [\[\[\{\}!@#$%&*()+=_<>?/.:;,\|]
 numeros = [0-9]
@@ -70,20 +72,20 @@ asigId= [\"](\$|\_|\-)([0-9]|[a-zA-Z]|[$\-_])+[\"]
 
 /*LEXIX RULES*/
 <YYINITIAL>{
-    {conjuntoOperaciones}
-        {   
+    {inicioConjunto}
+        {
             System.out.println("Palabra de conjunto de operaciones: "+yytext());
-            switch (yytext()) {
-                case "<!ini_solicitudes>":
-                    tmp_symbl = new Symbol (SSS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-                case "<!fin_solicitudes>":
-                    tmp_symbl = new Symbol (FSS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
-            }
-        }   
+            tmp_symbl = new Symbol (SSS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
+        }
+    {finConjunto}
+        {
+            System.out.println("Palabra de conjunto de operaciones: "+yytext());
+            tmp_symbl = new Symbol (FSS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
+        }
     "<"
         {
             //System.out.println("Menor que: "+yytext());

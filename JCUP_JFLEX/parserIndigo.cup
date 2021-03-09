@@ -77,6 +77,7 @@ start with inicio;
 
 inicio  ::=     SSS contenido FSS
         |       ME_Q ADM SS D_DOT type_s2
+        |       error
         ;
 
 

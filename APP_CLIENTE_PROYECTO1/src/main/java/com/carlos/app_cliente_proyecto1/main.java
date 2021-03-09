@@ -59,7 +59,8 @@ public class main {
 
     private static void pruebas() {
 
-        String var = "<!ini_SOlicitud:\"MODIFICAR_FORMULARIO\">\n"
+        String var = "<!Ini_solicitudes>\n"
+                + "<!ini_solicitud:\"MODIFICAR_FORMULARIO\">\n"
                 + "{\n"
                 + "    \"PARAMETROS_FORMULARIO\":[\n"
                 + "        {\n"
@@ -69,7 +70,8 @@ public class main {
                 + "        }\n"
                 + "    ]\n"
                 + "}\n"
-                + "<fin_Solicitud!>";
+                + "<fin_solicitud!>\n"
+                + "<!fin_solicitudes>";
 
         lexerIndigo lex = new lexerIndigo(new StringReader(var));
         parserIndigo parser = new parserIndigo(lex);
