@@ -53,6 +53,7 @@ public class parserIndigoSym {
   public static final int MO_U = 23;
   public static final int CHECK = 56;
   public static final int URL = 52;
+  public static final int ASIG_ID = 68;
   public static final int NAME = 39;
   public static final int ASIGNACION = 19;
   public static final int COM = 9;
@@ -144,7 +145,8 @@ public class parserIndigoSym {
   "DER",
   "JUST",
   "NOT",
-  "YES"
+  "YES",
+  "ASIG_ID"
   };
 }
 

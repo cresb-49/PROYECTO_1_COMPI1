@@ -41,16 +41,18 @@ LineTerminator = [\r|\n|\r\n]+
 WhiteSpace = [ \t\n]+
 atributes = [a-zA-Z_]+
 reservadasConjunto = (ini_solicitud|fin_solicitud)
+
 conjuntoOperaciones = (<\!ini_solicitudes>|<\!fin_solicitudes>)
+
+//conjuntoOperaciones = ((<)\!ini_solicitudes>|<\!fin_solicitudes>)
+
 simbolos = [\[\[\{\}!@#$%&*()+=_<>?/.:;,\|]
 numeros = [0-9]
 letras = [a-zA-Z]
 espacio = [ ]
-//text  = [\"]([a-zA-Z_$0-9: ])+[\"]
-//optionText  = [\"]([a-zA-Z0-9\| ])+[\"]
 text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})*[\"]
-
 fecha = [\"]([1-9][0-9][0-9][0-9])(\-)([0][1-9]|[1][0-2])(\-)([0][1-9]|[1-2][0-9]|[3][0-1])[\"]
+asigId= [\"](\$|\_|\-)([0-9]|[a-zA-Z]|[$\-_])+[\"]
 
 
 
@@ -167,10 +169,18 @@ fecha = [\"]([1-9][0-9][0-9][0-9])(\-)([0][1-9]|[1][0-2])(\-)([0][1-9]|[1-2][0-9
             after_symbl = tmp_symbl;
             return tmp_symbl;
         }
+    {asigId}
+        {
+            String text = getInerText.getAsignacion(yytext());
+            //System.out.println("Formato de ID:" + text);
+            tmp_symbl = new Symbol(ASIG_ID, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
+        }
     {text}
         {   
-            String text = getInerText.getAsignacion(yytext());
             //System.out.println("Texto encontrado:" + text);
+            String text = getInerText.getAsignacion(yytext());
             int espacios = 0;
             InerLex.yyreset(new StringReader(text));
             try {
@@ -414,7 +424,21 @@ fecha = [\"]([1-9][0-9][0-9][0-9])(\-)([0][1-9]|[1][0-2])(\-)([0][1-9]|[1-2][0-9
     {atributes}
         {
             //System.out.println("Atributo encontrado: "+yytext());
-            error(yytext());
+            String compare = yytext().toLowerCase();
+                switch (compare) {
+                    case "ini_solicitud":
+                        System.out.println("Palabra recerbada etiqueta: "+yytext());
+                        tmp_symbl = new Symbol(SS, after_symbl.sym, 0, new token(yytext(), yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "fin_solicitud":
+                        System.out.println("Palabra recerbada etiqueta: "+yytext());
+                        tmp_symbl = new Symbol(FS, after_symbl.sym, 0, new token(yytext(), yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    default:
+                        error(yytext());
+                }
         }
     {LineTerminator}
         {

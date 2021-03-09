@@ -59,13 +59,17 @@ public class main {
 
     private static void pruebas() {
 
-        String var = "<!ini_solicitud:\"LOGIN_USUARIO\">\n"
-                + "	{\"CREDENCIALES_USUARIO\":[{\n"
-                + "		\"USUARIO\": \"juanito619\",\n"
-                + "		\"PASSWORD\": \"12345678\"\n"
-                + "	}]\n"
-                + "	}\n"
-                + "<fin_solicitud!>";
+        String var = "<!ini_SOlicitud:\"MODIFICAR_FORMULARIO\">\n"
+                + "{\n"
+                + "    \"PARAMETROS_FORMULARIO\":[\n"
+                + "        {\n"
+                + "            \"ID\": \"$form1\",\n"
+                + "            \"TITULO\": \"Formulario para encuesta 1\",\n"
+                + "            \"NOMBRE\": \"formulario_encuesta_1\"\n"
+                + "        }\n"
+                + "    ]\n"
+                + "}\n"
+                + "<fin_Solicitud!>";
 
         lexerIndigo lex = new lexerIndigo(new StringReader(var));
         parserIndigo parser = new parserIndigo(lex);
