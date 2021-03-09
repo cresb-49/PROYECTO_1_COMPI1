@@ -125,17 +125,20 @@ var_ASIGNACION  ::=     ASIGNACION:e1
                 ;
 //PRODUCCIONES PARA LOGEAR UN USUARIO
 
-paramsLOG_U     ::=      L_A contLOG_U L_C
+paramsLOG_U     ::=      L_A contLOG_U:e1 L_C
+                {:
+                        logUser = ((e1 == null)?null:(usuario)e1);
+                :}
                 | error
                 ;
 
-contLOG_U       ::=     USER D_DOT ASIGNACION:e1 contLOG_U1
+contLOG_U       ::=     USER D_DOT ASIGNACION:e1 contLOG_U1:e2
                 {:
-                        logUser.setUser(((token)e1).getLexeme());
+                        RESULT = new usuario(((token)e1).getLexeme(),((e2 == null)? null:((contenedorResultado)e2).getAsignacion()), "");
                 :}
-                |       PASS D_DOT ASIGNACION:e1 contLOG_U2
-                {:
-                        logUser.setPass(((token)e1).getLexeme());
+                |       PASS D_DOT ASIGNACION:e1 contLOG_U2:e2
+                {:      
+                        RESULT = new usuario(((e2 == null)? null:((contenedorResultado)e2).getAsignacion()), ((token)e1).getLexeme(), "");
                 :}
                 | error
                 ;
@@ -144,14 +147,16 @@ contLOG_U       ::=     USER D_DOT ASIGNACION:e1 contLOG_U1
 
 contLOG_U1      ::=     COM PASS D_DOT ASIGNACION:e1
                 {:
-                        logUser.setPass(((token)e1).getLexeme());
+                        //logUser.setPass(((token)e1).getLexeme());
+                        RESULT = new contenedorResultado("PASSWORD", ((token)e1).getLexeme());
                 :}
                 | error
                 ;
 
 contLOG_U2      ::=     COM USER D_DOT ASIGNACION:e1       
                 {:
-                        logUser.setUser(((token)e1).getLexeme());
+                        //logUser.setUser(((token)e1).getLexeme());
+                        RESULT = new contenedorResultado("USER", ((token)e1).getLexeme());
                 :}
                 | error
                 ;
@@ -269,13 +274,22 @@ contMO_U15      ::=     COM FECHA_MOD D_DOT ASIGNACION
                 ;
 
 //PRODUCCIONES PARA LA ELIMINACION DE UN USUARIO
-paramsDEL_U     ::=     L_A contDEL_U L_C paramsDEL_U2
+paramsDEL_U     ::=     L_A contDEL_U:e1 L_C paramsDEL_U2
+                {:
+                        
+                :}
+                |       error
                 ;
 paramsDEL_U2    ::=     COM paramsDEL_U
                 |
+                |       error
                 ;
 
-contDEL_U       ::=     USER D_DOT ASIGNACION
+contDEL_U       ::=     USER D_DOT ASIGNACION:e1
+                {:
+                        RESULT = new contenedorResultado("USER",((token)e1.value).getLexeme);
+                :}
+                |       error
                 ;
 //PRODUCCIONES PARA UN NUEVO FORMULARIO
 paramsNEW_F     ::=     L_A contNEW_F L_C paramsNEW_F2

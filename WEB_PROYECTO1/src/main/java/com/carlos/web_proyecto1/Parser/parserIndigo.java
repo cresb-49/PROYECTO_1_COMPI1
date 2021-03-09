@@ -2051,7 +2051,12 @@ class CUP$parserIndigo$actions {
           case 29: // paramsLOG_U ::= L_A contLOG_U L_C 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).value;
+		
+                        logUser = ((e1 == null)?null:(usuario)e1);
+                
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("paramsLOG_U",129, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
@@ -2072,8 +2077,11 @@ class CUP$parserIndigo$actions {
 		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).value;
+		int e2left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
+		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
-                        logUser.setUser(((token)e1).getLexeme());
+                        RESULT = new usuario(((token)e1).getLexeme(),((e2 == null)? null:((contenedorResultado)e2).getAsignacion()), "");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contLOG_U",130, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -2086,8 +2094,11 @@ class CUP$parserIndigo$actions {
 		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).value;
-		
-                        logUser.setPass(((token)e1).getLexeme());
+		int e2left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
+		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
+		      
+                        RESULT = new usuario(((e2 == null)? null:((contenedorResultado)e2).getAsignacion()), ((token)e1).getLexeme(), "");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contLOG_U",130, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -2110,7 +2121,8 @@ class CUP$parserIndigo$actions {
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
-                        logUser.setPass(((token)e1).getLexeme());
+                        //logUser.setPass(((token)e1).getLexeme());
+                        RESULT = new contenedorResultado("PASSWORD", ((token)e1).getLexeme());
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contLOG_U1",131, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -2133,7 +2145,8 @@ class CUP$parserIndigo$actions {
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
-                        logUser.setUser(((token)e1).getLexeme());
+                        //logUser.setUser(((token)e1).getLexeme());
+                        RESULT = new contenedorResultado("USER", ((token)e1).getLexeme());
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contLOG_U2",132, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }

@@ -59,24 +59,20 @@ public class main {
 
     private static void pruebas() {
 
-        String var = "<!Ini_solicitudes>\n"
-                + "<!ini_solicitud:\"MODIFICAR_FORMULARIO\">\n"
-                + "{\n"
-                + "    \"PARAMETROS_FORMULARIO\":[\n"
-                + "        {\n"
-                + "            \"ID\": \"$form1\",\n"
-                + "            \"TITULO\": \"Formulario para encuesta 1\",\n"
-                + "            \"NOMBRE\": \"formulario_encuesta_1\"\n"
-                + "        }\n"
-                + "    ]\n"
-                + "}\n"
-                + "<fin_solicitud!>\n"
-                + "<!fin_solicitudes>";
+        String var = "<!ini_solicitud:\"LOGIN_USUARIO\">\n"
+                + "	{\"CREDENCIALES_USUARIO\":[{\n"
+                + "		\"USUARIO\": \"juanito619\",\n"
+                + "		\"PASSWORD\": \"12345678\"\n"
+                + "	}]\n"
+                + "	}\n"
+                + "<fin_solicitud!>";
 
         lexerIndigo lex = new lexerIndigo(new StringReader(var));
         parserIndigo parser = new parserIndigo(lex);
         try {
             parser.parse();
+
+            System.out.println("Log User: " + parser.getLogUser().toString());
         } catch (Exception ex) {
             System.err.println("Error irrcuperable indigo");
             ex.printStackTrace();
