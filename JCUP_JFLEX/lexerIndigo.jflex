@@ -82,63 +82,63 @@ text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})*[\"]
         }   
     "<"
         {
-            System.out.println("Menor que: "+yytext());
+            //System.out.println("Menor que: "+yytext());
             tmp_symbl = new Symbol (ME_Q,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
             after_symbl = tmp_symbl;
             return tmp_symbl;
         }
     "{"
         {
-            System.out.println("Llave apertura: "+yytext());
+            //System.out.println("Llave apertura: "+yytext());
             tmp_symbl = new Symbol (L_A,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
             after_symbl = tmp_symbl;
             return tmp_symbl;
         }
     "}"
         {
-            System.out.println("Llave cierre: "+yytext());
+            //System.out.println("Llave cierre: "+yytext());
             tmp_symbl = new Symbol (L_C,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
             after_symbl = tmp_symbl;
             return tmp_symbl;
         }
     "["
         {
-            System.out.println("Corchete apertura: "+yytext());
+            //System.out.println("Corchete apertura: "+yytext());
             tmp_symbl = new Symbol (C_A,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
             after_symbl = tmp_symbl;
             return tmp_symbl;
         }
     "]"
         {
-            System.out.println("Corchete cierre: "+yytext());
+            //System.out.println("Corchete cierre: "+yytext());
             tmp_symbl = new Symbol (C_C,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
             after_symbl = tmp_symbl;
             return tmp_symbl;
         }
     ">"
         {
-            System.out.println("Mayor que: "+yytext());
+            //System.out.println("Mayor que: "+yytext());
             tmp_symbl = new Symbol (MA_Q,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
             after_symbl = tmp_symbl;
             return tmp_symbl;
         }
     "!"
         {
-            System.out.println("Admiracion: "+yytext());
+            //System.out.println("Admiracion: "+yytext());
             tmp_symbl = new Symbol (ADM,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
             after_symbl = tmp_symbl;
             return tmp_symbl;
         }
     ":"
         {
-            System.out.println("Dos puntos: "+yytext());
+            //System.out.println("Dos puntos: "+yytext());
             tmp_symbl = new Symbol (D_DOT,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
             after_symbl = tmp_symbl;
             return tmp_symbl;
         }
     ","
         {
-            System.out.println("Coma: "+yytext());
+            //System.out.println("Coma: "+yytext());
             tmp_symbl = new Symbol (COM,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
             after_symbl = tmp_symbl;
             return tmp_symbl;
@@ -160,7 +160,7 @@ text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})*[\"]
     {text}
         {   
             String text = getInerText.getAsignacion(yytext());
-            System.out.println("Texto encontrado:" + text);
+            //System.out.println("Texto encontrado:" + text);
 
             InerLex.yyreset(new StringReader(text));
             try {
@@ -364,6 +364,14 @@ text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})*[\"]
                         tmp_symbl = new Symbol(JUST, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
+                    case "SI":
+                        tmp_symbl = new Symbol(YES, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "NO":
+                        tmp_symbl = new Symbol(NOT, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
                     default:
                         tmp_symbl = new Symbol(ASIGNACION, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
@@ -379,7 +387,8 @@ text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})*[\"]
         }
     {atributes}
         {
-            System.out.println("Atributo encontrado: "+yytext());
+            //System.out.println("Atributo encontrado: "+yytext());
+            error(yytext());
         }
     {LineTerminator}
         {

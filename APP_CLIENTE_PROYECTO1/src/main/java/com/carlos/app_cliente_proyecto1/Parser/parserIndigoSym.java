@@ -26,6 +26,8 @@ public class parserIndigoSym {
   public static final int FECHA = 18;
   public static final int MA_Q = 3;
   public static final int FS = 6;
+  public static final int YES = 65;
+  public static final int NOT = 64;
   public static final int OPTION = 47;
   public static final int IZQ = 61;
   public static final int FECHA_MOD = 34;
@@ -136,7 +138,9 @@ public class parserIndigoSym {
   "CENT",
   "IZQ",
   "DER",
-  "JUST"
+  "JUST",
+  "NOT",
+  "YES"
   };
 }
 

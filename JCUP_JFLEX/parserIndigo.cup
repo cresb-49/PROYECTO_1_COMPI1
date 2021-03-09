@@ -21,7 +21,10 @@ parser code {:
         }
 
         public void report_error(String message, Object info){
-                System.out.println("reporterror");
+                Symbol symbol = cur_token;
+                token tok = (token)symbol.value;
+                System.out.println("Parametro inesperado: ["+tok.getLexeme()+"] Linea: "+tok.getLine()+", Columna: "+tok.getColumn());
+                errorsList.add("Parametro inesperado: ["+tok.getLexeme()+"] Linea: "+tok.getLine()+", Columna: "+tok.getColumn());
         }
 
         public void report_fatal_error(String message, Object info){
@@ -47,7 +50,9 @@ parser code {:
 terminal ME_Q,MA_Q,ADM,SS,FS,SSS,FSS,COM,D_DOT,C_A,C_C,L_A,L_C,CR_U,USER,PASS,FECHA,ASIGNACION,CREDEN_USER,PARAMS_COMP,
         MO_U,DEL_U,LOG_U,NEW_F,DEL_F,MO_F,ADD_C,DEL_C,MO_C,
         USER_ANT,USER_NEW,PASS_NEW,FECHA_MOD,ID,TITLE,NAME,THEME,USER_CRE,NAME_CAMP,FORM,
-        CLASS,IND,TEXT_VIEW,ALI,REQUE,OPTION,FILAS,COLM,URL,PARAMS_FORM,CAMP_TEXT,TEXT_AREA,CHECK,RADIO,FILE,IMG,COMBO,BOTON,CENT,IZQ,DER,JUST;
+        CLASS,IND,TEXT_VIEW,ALI,REQUE,OPTION,FILAS,COLM,URL,PARAMS_FORM,CAMP_TEXT,TEXT_AREA,CHECK,RADIO,FILE,IMG,COMBO,BOTON,CENT,IZQ,DER,JUST,
+        NOT,YES;
+
 non terminal inicio,contenido,type_s,contenido1,cont_CR_U,cont_CR_U1,cont_CR_U2,cont_CR_U3,cont_CR_U1_2,cont_CR_U1_3,cont_CR_U2_2,cont_CR_U2_3,
                 cont_CR_U3_2,cont_CR_U3_3,parametros,parametros2,
                 paramsMO_U,paramsDEL_U,paramsNEW_F,paramsDEL_F,paramsMO_F,paramsADD_C,paramsDEL_C,paramsMO_C,
@@ -65,7 +70,8 @@ non terminal inicio,contenido,type_s,contenido1,cont_CR_U,cont_CR_U1,cont_CR_U2,
                 paramsDEL_F2,contDEL_F,paramsMO_F2,contMO_F,contMO_F1,contMO_F2,contMO_F3,contMO_F4,contMO_F5,
                 contMO_F6,contMO_F7,contMO_F8,contMO_F9,contMO_F10,contMO_F11,contMO_F12,contMO_F13,contMO_F14,
                 paramsDEL_C2,contDEL_C,contDEL_C1,contDEL_C2,type_s2,paramsLOG_U,contLOG_U,contLOG_U1,contLOG_U2,
-                paramsADD_C2,contADD_C;
+                paramsADD_C2,contADD_C,contADD_C1,contADD_C_1,contADD_C_2,contADD_C2,paramsMO_C2,contMO_C,
+                contMO_C1,contMO_C2,contMO_C_1,contMO_C_2;
 
 start with inicio;
 
@@ -102,11 +108,13 @@ type_s2 ::=     CR_U MA_Q L_A CREDEN_USER D_DOT C_A parametros C_C L_C ME_Q FS A
         |       ADD_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsADD_C C_C L_C ME_Q FS ADM MA_Q 
         |       DEL_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsDEL_C C_C L_C ME_Q FS ADM MA_Q 
         |       MO_C MA_Q L_C PARAMS_COMP D_DOT C_A paramsMO_C C_C L_C ME_Q FS ADM MA_Q 
+        |       error
         ;
 
 //PRODUCCIONES PARA LOGEAR UN USUARIO
 
 paramsLOG_U     ::=      L_A contLOG_U L_C
+                | error
                 ;
 
 contLOG_U       ::=     USER D_DOT ASIGNACION:e1 contLOG_U1
@@ -117,18 +125,21 @@ contLOG_U       ::=     USER D_DOT ASIGNACION:e1 contLOG_U1
                 {:
                         logUser.setPass(((token)e1).getLexeme());
                 :}
+                | error
                 ;
 
 contLOG_U1      ::=     COM PASS D_DOT ASIGNACION:e1
                 {:
                         logUser.setPass(((token)e1).getLexeme());
                 :}
+                | error
                 ;
 
 contLOG_U2      ::=     COM USER D_DOT ASIGNACION:e1       
                 {:
                         logUser.setUser(((token)e1).getLexeme());
                 :}
+                | error
                 ;
 
 
@@ -681,7 +692,7 @@ contDEL_C1      ::=     COM FORM D_DOT ASIGNACION
 contDEL_C2      ::=     COM ID D_DOT ASIGNACION
                 ;
 //PRODUCCIONES PARA AGREGAR UN COMPONENTE A UN FORMULARIO
-/*
+
 paramsADD_C     ::=     L_A contADD_C L_C paramsADD_C2
                 ;
 
@@ -690,13 +701,17 @@ paramsADD_C2    ::=     paramsADD_C
                 ;
 //--------------------------------------------------------
 contADD_C       ::=     ID D_DOT ASIGNACION contADD_C1
-                |       NAME_CAMP D_DOT ASIGNACION contADD_C2
-                |       FORM D_DOT ASIGNACION contADD_C3
-                |       CLASS D_DOT contADD_C_2
-                |       IND D_DOT ASIGNACION contADD_C4
-                |       TEXT_VIEW D_DOT ASIGNACION contADD_C5
-                |       ALI D_DOT contADD_C_1 contADD_C6
-                |       REQUE D_DOT ASIGNACION contADD_C7
+                |       NAME_CAMP D_DOT ASIGNACION contADD_C1
+                |       FORM D_DOT ASIGNACION contADD_C1
+                |       CLASS D_DOT contADD_C_2 contADD_C1
+                |       IND D_DOT ASIGNACION contADD_C1
+                |       TEXT_VIEW D_DOT ASIGNACION contADD_C1
+                |       ALI D_DOT contADD_C_1 contADD_C1
+                |       REQUE D_DOT contADD_C2 contADD_C1
+                |       OPTION D_DOT ASIGNACION contADD_C1
+                |       URL D_DOT ASIGNACION contADD_C1
+                |       COLM D_DOT ASIGNACION contADD_C1
+                |       FILAS D_DOT ASIGNACION contADD_C1
                 ;
 
 contADD_C_1     ::=     CENT
@@ -705,86 +720,65 @@ contADD_C_1     ::=     CENT
                 |       JUST
                 ;
 
-contADD_C_2     ::=     CAMP_TEXT contADD_C_3
-                |       TEXT_AREA contADD_C_4
-                |       CHECK contADD_C_5
-                |       RADIO contADD_C_6
-                |       FILE contADD_C_7
-                |       IMG contADD_C_8
-                |       COMBO contADD_C_9
-                |       BOTON contADD_C_10
-                ;
-//---------------------------------------------------------
-
-contADD_C1      ::=     NAME_CAMP D_DOT ASIGNACION contADD_C
-                |       FORM D_DOT ASIGNACION contADD_C
-                |       CLASS D_DOT contADD_C_2
-                |       IND D_DOT ASIGNACION contADD_C
-                |       TEXT_VIEW D_DOT ASIGNACION contADD_C
-                |       ALI D_DOT contADD_C_1 contADD_C
-                |       REQUE D_DOT ASIGNACION contADD_C
+contADD_C_2     ::=     CAMP_TEXT
+                |       TEXT_AREA
+                |       CHECK 
+                |       RADIO
+                |       FILE
+                |       IMG
+                |       COMBO
+                |       BOTON
                 ;
 
-contADD_C2       ::=     ID D_DOT ASIGNACION contADD_C
-                |       FORM D_DOT ASIGNACION contADD_C
-                |       CLASS D_DOT contADD_C_2
-                |       IND D_DOT ASIGNACION contADD_C
-                |       TEXT_VIEW D_DOT ASIGNACION contADD_C
-                |       ALI D_DOT contADD_C_1 contADD_C
-                |       REQUE D_DOT ASIGNACION contADD_C
+contADD_C1      ::=     contADD_C
+                |
                 ;
 
-contADD_C3      ::=     ID D_DOT ASIGNACION contADD_C
-                |       NAME_CAMP D_DOT ASIGNACION contADD_C
-                |       CLASS D_DOT contADD_C_2
-                |       IND D_DOT ASIGNACION contADD_C
-                |       TEXT_VIEW D_DOT ASIGNACION contADD_C
-                |       ALI D_DOT contADD_C_1 contADD_C
-                |       REQUE D_DOT ASIGNACION contADD_C
+contADD_C2      ::=     YES
+                |       NOT
                 ;
 
-contADD_C4       ::=     ID D_DOT ASIGNACION contADD_C
-                |       NAME_CAMP D_DOT ASIGNACION contADD_C
-                |       FORM D_DOT ASIGNACION contADD_C
-                |       IND D_DOT ASIGNACION contADD_C
-                |       TEXT_VIEW D_DOT ASIGNACION contADD_C
-                |       ALI D_DOT contADD_C_1 contADD_C
-                |       REQUE D_DOT ASIGNACION contADD_C
+//PRODUCCIONES PARA MODIFICAR COMPONENTE
+paramsMO_C      ::=     L_A contMO_C L_C paramsMO_C2
+                ;
+paramsMO_C2     ::=      paramsMO_C
+                |
                 ;
 
-contADD_C5       ::=     ID D_DOT ASIGNACION contADD_C
-                |       NAME_CAMP D_DOT ASIGNACION contADD_C
-                |       FORM D_DOT ASIGNACION contADD_C
-                |       CLASS D_DOT contADD_C_2
-                |       TEXT_VIEW D_DOT ASIGNACION contADD_C
-                |       ALI D_DOT contADD_C_1 contADD_C
-                |       REQUE D_DOT ASIGNACION contADD_C
+contMO_C       ::=     ID D_DOT ASIGNACION contMO_C1
+                |       NAME_CAMP D_DOT ASIGNACION contMO_C1
+                |       FORM D_DOT ASIGNACION contMO_C1
+                |       CLASS D_DOT contMO_C_2 contMO_C1
+                |       IND D_DOT ASIGNACION contMO_C1
+                |       TEXT_VIEW D_DOT ASIGNACION contMO_C1
+                |       ALI D_DOT contMO_C_1 contMO_C1
+                |       REQUE D_DOT contMO_C2 contMO_C1
+                |       OPTION D_DOT ASIGNACION contMO_C1
+                |       URL D_DOT ASIGNACION contMO_C1
+                |       COLM D_DOT ASIGNACION contMO_C1
+                |       FILAS D_DOT ASIGNACION contMO_C1
                 ;
 
-contADD_C6       ::=     ID D_DOT ASIGNACION contADD_C
-                |       NAME_CAMP D_DOT ASIGNACION contADD_C
-                |       FORM D_DOT ASIGNACION contADD_C
-                |       CLASS D_DOT contADD_C_2
-                |       IND D_DOT ASIGNACION contADD_C
-                |       ALI D_DOT contADD_C_1 contADD_C
-                |       REQUE D_DOT ASIGNACION contADD_C
+contMO_C_1     ::=     CENT
+                |       IZQ
+                |       DER
+                |       JUST
                 ;
 
-contADD_C7       ::=     ID D_DOT ASIGNACION contADD_C
-                |       NAME_CAMP D_DOT ASIGNACION contADD_C
-                |       FORM D_DOT ASIGNACION contADD_C
-                |       CLASS D_DOT contADD_C_2
-                |       IND D_DOT ASIGNACION contADD_C
-                |       TEXT_VIEW D_DOT ASIGNACION contADD_C
-                |       REQUE D_DOT ASIGNACION contADD_C
+contMO_C_2     ::=     CAMP_TEXT
+                |       TEXT_AREA
+                |       CHECK 
+                |       RADIO
+                |       FILE
+                |       IMG
+                |       COMBO
+                |       BOTON
                 ;
 
-contADD_C       ::=     ID D_DOT ASIGNACION contADD_C
-                |       NAME_CAMP D_DOT ASIGNACION contADD_C
-                |       FORM D_DOT ASIGNACION contADD_C
-                |       CLASS D_DOT contADD_C_2
-                |       IND D_DOT ASIGNACION contADD_C
-                |       TEXT_VIEW D_DOT ASIGNACION contADD_C
-                |       ALI D_DOT contADD_C_1 contADD_C
+contMO_C1      ::=     contMO_C
+                |
                 ;
-*/
+
+contMO_C2       ::=     YES
+                |       NOT
+                ;

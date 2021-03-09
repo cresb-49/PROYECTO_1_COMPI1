@@ -24,13 +24,22 @@ public class main {
 
     public static void main(String[] args) {
         //PrincipalFrame principal = new PrincipalFrame();
-        /*peticionLogin log = new peticionLogin();
+        
+        String var = "<!ini_solicitud:\"LOGIN_USUARIO\">\n"
+                + "	{\"CREDENCIALES_USUARIO\":[{\n"
+                + "		\"USUARIO\": \"juanito619\",\n"
+                + "		\"PASSWORD\": \"12345678\"\n"
+                + "	}]\n"
+                + "	}\n"
+                + "<fin_solicitud!>";
+        
+        peticionLogin log = new peticionLogin();
         try {
-            String res = log.peticionHttpGet("https://jsonplaceholder.typicode.com/todos/1");
+            String res = log.peticionHttpGet(var);
             System.out.println(res);
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
  /*
         String dato = "\"NUEVO_FORMULARIO nuevo\"";
         String dato2 = dato.substring(1, dato.length() - 1);
@@ -45,7 +54,7 @@ public class main {
         lexInner.reinicioLex();
          */
 
-        pruebas();
+        //pruebas();
     }
 
     private static void pruebas() {
