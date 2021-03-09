@@ -280,6 +280,7 @@ public class lexerInerText {
     private List<String> errorsList = new ArrayList<>();
     private String currentText="";
     private int cantidadLexemas = 0;
+    private int cantidadEspacios = 0;
 
     
     public lexerInerText(){
@@ -296,8 +297,12 @@ public class lexerInerText {
     public int getCantidadLexemas(){
         return cantidadLexemas;
     }
+    public int getCantidadEspacios() {
+        return cantidadEspacios;
+    }
     public void reinicioLex(){
         cantidadLexemas=0;
+        cantidadEspacios=0;
         currentText="";
     }
     public List<String> getErrorsList() {
@@ -703,7 +708,7 @@ public class lexerInerText {
             // fall through
           case 4: break;
           case 2:
-            { /*Do nothing*/
+            { cantidadEspacios++;
             }
             // fall through
           case 5: break;

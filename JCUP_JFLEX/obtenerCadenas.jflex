@@ -20,6 +20,7 @@ import java.util.List;
     private List<String> errorsList = new ArrayList<>();
     private String currentText="";
     private int cantidadLexemas = 0;
+    private int cantidadEspacios = 0;
 
 %}
 
@@ -48,8 +49,12 @@ text  = ({simbolos}|{numeros}|{letras})+
     public int getCantidadLexemas(){
         return cantidadLexemas;
     }
+    public int getCantidadEspacios() {
+        return cantidadEspacios;
+    }
     public void reinicioLex(){
         cantidadLexemas=0;
+        cantidadEspacios=0;
         currentText="";
     }
     public List<String> getErrorsList() {
@@ -69,7 +74,7 @@ text  = ({simbolos}|{numeros}|{letras})+
         }
     {WhiteSpace}
         {
-            /*Do nothing*/
+            cantidadEspacios++;
         }
 }
 

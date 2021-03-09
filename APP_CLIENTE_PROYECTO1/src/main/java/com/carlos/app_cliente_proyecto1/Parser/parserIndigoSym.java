@@ -8,71 +8,73 @@ package com.carlos.app_cliente_proyecto1.Parser;
 /** CUP generated class containing symbol constants. */
 public class parserIndigoSym {
   /* terminals */
-  public static final int CAMP_TEXT = 52;
-  public static final int FORM = 41;
-  public static final int DEL_U = 23;
-  public static final int BOTON = 59;
-  public static final int REQUE = 46;
+  public static final int CAMP_TEXT = 54;
+  public static final int FORM = 43;
+  public static final int DEL_U = 24;
+  public static final int BOTON = 61;
+  public static final int REQUE = 48;
   public static final int SS = 5;
-  public static final int PASS_NEW = 33;
-  public static final int NAME_CAMP = 40;
+  public static final int PASS_NEW = 35;
+  public static final int NAME_CAMP = 42;
   public static final int CR_U = 15;
-  public static final int TEXT_VIEW = 44;
-  public static final int USER_ANT = 31;
-  public static final int NEW_F = 25;
-  public static final int CENT = 60;
-  public static final int DEL_F = 26;
-  public static final int DEL_C = 29;
+  public static final int TEXT_VIEW = 46;
+  public static final int USER_ANT = 33;
+  public static final int NEW_F = 26;
+  public static final int CENT = 62;
+  public static final int DEL_F = 27;
+  public static final int DEL_C = 30;
   public static final int FECHA = 18;
   public static final int MA_Q = 3;
+  public static final int DATE = 32;
   public static final int FS = 6;
-  public static final int YES = 65;
-  public static final int NOT = 64;
-  public static final int OPTION = 47;
-  public static final int IZQ = 61;
-  public static final int FECHA_MOD = 34;
-  public static final int CREDEN_USER = 20;
+  public static final int YES = 67;
+  public static final int NOT = 66;
+  public static final int OPTION = 49;
+  public static final int IZQ = 63;
+  public static final int FECHA_MOD = 36;
+  public static final int CREDEN_USER = 21;
   public static final int PASS = 17;
-  public static final int IND = 43;
-  public static final int CLASS = 42;
+  public static final int IND = 45;
+  public static final int CLASS = 44;
   public static final int SSS = 7;
-  public static final int ID = 35;
+  public static final int ID = 37;
   public static final int ADM = 4;
-  public static final int PARAMS_FORM = 51;
+  public static final int PARAMS_FORM = 53;
   public static final int L_C = 14;
   public static final int EOF = 0;
   public static final int L_A = 13;
-  public static final int LOG_U = 24;
+  public static final int LOG_U = 25;
   public static final int C_C = 12;
   public static final int error = 1;
-  public static final int ADD_C = 28;
+  public static final int ADD_C = 29;
   public static final int C_A = 11;
-  public static final int JUST = 63;
-  public static final int USER_NEW = 32;
-  public static final int MO_U = 22;
-  public static final int CHECK = 54;
-  public static final int URL = 50;
-  public static final int NAME = 37;
+  public static final int JUST = 65;
+  public static final int USER_NEW = 34;
+  public static final int MO_U = 23;
+  public static final int CHECK = 56;
+  public static final int URL = 52;
+  public static final int NAME = 39;
   public static final int ASIGNACION = 19;
   public static final int COM = 9;
-  public static final int IMG = 57;
-  public static final int RADIO = 55;
-  public static final int THEME = 38;
-  public static final int TITLE = 36;
-  public static final int MO_F = 27;
-  public static final int TEXT_AREA = 53;
-  public static final int DER = 62;
-  public static final int COLM = 49;
-  public static final int FILE = 56;
-  public static final int MO_C = 30;
+  public static final int IMG = 59;
+  public static final int RADIO = 57;
+  public static final int THEME = 40;
+  public static final int TITLE = 38;
+  public static final int MO_F = 28;
+  public static final int TEXT_AREA = 55;
+  public static final int DER = 64;
+  public static final int COLM = 51;
+  public static final int FILE = 58;
+  public static final int ASIGNACION_ESP = 20;
+  public static final int MO_C = 31;
   public static final int ME_Q = 2;
-  public static final int USER_CRE = 39;
-  public static final int COMBO = 58;
+  public static final int USER_CRE = 41;
+  public static final int COMBO = 60;
   public static final int D_DOT = 10;
-  public static final int PARAMS_COMP = 21;
-  public static final int ALI = 45;
+  public static final int PARAMS_COMP = 22;
+  public static final int ALI = 47;
   public static final int USER = 16;
-  public static final int FILAS = 48;
+  public static final int FILAS = 50;
   public static final int FSS = 8;
   public static final String[] terminalNames = new String[] {
   "EOF",
@@ -95,6 +97,7 @@ public class parserIndigoSym {
   "PASS",
   "FECHA",
   "ASIGNACION",
+  "ASIGNACION_ESP",
   "CREDEN_USER",
   "PARAMS_COMP",
   "MO_U",
@@ -106,6 +109,7 @@ public class parserIndigoSym {
   "ADD_C",
   "DEL_C",
   "MO_C",
+  "DATE",
   "USER_ANT",
   "USER_NEW",
   "PASS_NEW",

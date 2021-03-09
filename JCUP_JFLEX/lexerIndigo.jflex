@@ -50,6 +50,8 @@ espacio = [ ]
 //optionText  = [\"]([a-zA-Z0-9\| ])+[\"]
 text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})*[\"]
 
+fecha = [\"]([1-9][0-9][0-9][0-9])(\-)([0][1-9]|[1][0-2])(\-)([0][1-9]|[1-2][0-9]|[3][0-1])[\"]
+
 
 
 %{
@@ -157,11 +159,19 @@ text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})*[\"]
                     return tmp_symbl;
             }
         }
+    {fecha}
+        {
+            String text = getInerText.getAsignacion(yytext());
+            System.out.println("Fecha encontrada:" + text);
+            tmp_symbl = new Symbol(DATE, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
+        }
     {text}
         {   
             String text = getInerText.getAsignacion(yytext());
             //System.out.println("Texto encontrado:" + text);
-
+            int espacios = 0;
             InerLex.yyreset(new StringReader(text));
             try {
                 InerLex.yylex();
@@ -169,6 +179,7 @@ text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})*[\"]
                 e.printStackTrace();
             }
             if (InerLex.getCantidadLexemas() == 1) {
+                espacios = InerLex.getCantidadEspacios();
                 text = InerLex.getCurrentText();
                 InerLex.reinicioLex();
                 switch (text) {
@@ -373,16 +384,31 @@ text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})*[\"]
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
                     default:
-                        tmp_symbl = new Symbol(ASIGNACION, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
-                        after_symbl = tmp_symbl;
-                        return tmp_symbl;
+                        if (espacios == 0) {
+                            tmp_symbl = new Symbol(ASIGNACION, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                            after_symbl = tmp_symbl;
+                            return tmp_symbl;
+                        } else {
+                            text = getInerText.getAsignacion(yytext());
+                            tmp_symbl = new Symbol(ASIGNACION_ESP, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                            after_symbl = tmp_symbl;
+                            return tmp_symbl;
+                        }
                     }
 
             } else {
+                espacios = InerLex.getCantidadEspacios();
                 InerLex.reinicioLex();
-                tmp_symbl = new Symbol(ASIGNACION, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
-                after_symbl = tmp_symbl;
-                return tmp_symbl;
+                if (espacios == 0) {
+                    tmp_symbl = new Symbol(ASIGNACION, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                } else {
+                    text = getInerText.getAsignacion(yytext());
+                    tmp_symbl = new Symbol(ASIGNACION_ESP, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                }
             }
         }
     {atributes}

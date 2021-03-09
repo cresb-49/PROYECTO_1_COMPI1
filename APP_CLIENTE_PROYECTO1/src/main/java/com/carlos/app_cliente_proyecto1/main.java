@@ -24,7 +24,7 @@ public class main {
 
     public static void main(String[] args) {
         //PrincipalFrame principal = new PrincipalFrame();
-        
+        /*
         String var = "<!ini_solicitud:\"LOGIN_USUARIO\">\n"
                 + "	{\"CREDENCIALES_USUARIO\":[{\n"
                 + "		\"USUARIO\": \"juanito619\",\n"
@@ -54,7 +54,7 @@ public class main {
         lexInner.reinicioLex();
          */
 
-        //pruebas();
+        pruebas();
     }
 
     private static void pruebas() {
