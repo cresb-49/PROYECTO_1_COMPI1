@@ -342,14 +342,14 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
     "\000\004\014\367\001\002\000\004\014\357\001\002\000" +
     "\004\020\ufe2e\001\002\000\004\020\354\001\002\000\010" +
     "\003\346\016\ufe31\017\347\001\002\000\004\016\ufe32\001" +
-    "\002\000\004\016\ufe34\001\002\000\004\025\360\001\002" +
+    "\002\000\004\016\ufe34\001\002\000\004\106\360\001\002" +
     "\000\006\003\361\013\363\001\002\000\004\020\ufe2a\001" +
     "\002\000\004\020\ufe2f\001\002\000\004\047\364\001\002" +
     "\000\004\014\365\001\002\000\004\106\366\001\002\000" +
     "\004\020\ufe2b\001\002\000\004\106\370\001\002\000\006" +
     "\003\371\013\373\001\002\000\004\020\ufe2c\001\002\000" +
     "\004\020\ufe30\001\002\000\004\055\374\001\002\000\004" +
-    "\014\375\001\002\000\004\025\376\001\002\000\004\020" +
+    "\014\375\001\002\000\004\106\376\001\002\000\004\020" +
     "\ufe2d\001\002\000\004\020\u0100\001\002\000\004\004\u0101" +
     "\001\002\000\004\010\u0102\001\002\000\004\006\u0103\001" +
     "\002\000\004\005\u0104\001\002\000\004\002\uffe7\001\002" +
@@ -524,7 +524,7 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
     "\001\002\000\036\003\u01ac\020\ufe09\047\u01ab\054\u01b2\055" +
     "\u01a5\056\u01b1\057\u01ae\060\u01ad\061\u01a9\062\u01af\063\u01a7" +
     "\064\u01a6\065\u01b0\066\u01aa\001\002\000\004\020\ufe1a\001" +
-    "\002\000\004\025\u01ea\001\002\000\036\003\u01ac\020\ufe09" +
+    "\002\000\004\106\u01ea\001\002\000\036\003\u01ac\020\ufe09" +
     "\047\u01ab\054\u01b2\055\u01a5\056\u01b1\057\u01ae\060\u01ad\061" +
     "\u01a9\062\u01af\063\u01a7\064\u01a6\065\u01b0\066\u01aa\001\002" +
     "\000\004\020\ufe23\001\002\000\004\020\u01ed\001\002\000" +
@@ -717,7 +717,7 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
     "\u02b1\062\u02b8\063\u02b0\064\u02af\065\u02b7\066\u02b3\001\002" +
     "\000\004\020\ufdf6\001\002\000\010\003\u02a4\016\ufe02\017" +
     "\u02a5\001\002\000\004\016\ufe03\001\002\000\004\016\ufe05" +
-    "\001\002\000\004\025\u02f2\001\002\000\036\003\u02b4\020" +
+    "\001\002\000\004\106\u02f2\001\002\000\036\003\u02b4\020" +
     "\ufde5\047\u02b2\054\u02ba\055\u02ad\056\u02b9\057\u02b6\060\u02b5" +
     "\061\u02b1\062\u02b8\063\u02b0\064\u02af\065\u02b7\066\u02b3\001" +
     "\002\000\004\020\ufdff\001\002\000\004\017\u02f5\001\002" +
@@ -1967,6 +1967,22 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
         public List<formulario> getModForm() {
             return modForm;
         }
+        //-----LSITA DE COMPONENTES A ELIMINAR
+        List<componente> delComp = new ArrayList<>();
+        public List<componente> getDelComp() {
+            return delComp;
+        }
+        //----LISTA DE COMPONENTES A AGREGAR
+        List<componente> addComp = new ArrayList<>();
+        public List<componente> getAddComp() {
+            return addComp;
+        }
+        //---LISTA DE COMPONENTES A MODIFICAR
+        List<componente> modComp = new ArrayList<>();
+        public List<componente> getModComp() {
+            return modComp;
+        }
+
 
         public usuario getLogUser() {
                 return logUser;
@@ -9251,7 +9267,14 @@ class CUP$parserIndigo$actions {
           case 461: // paramsDEL_C ::= L_A contDEL_C L_C paramsDEL_C2 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).value;
+		
+                        if(e1!=null){
+                                delComp.add((componente)e1);
+                        }
+                
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("paramsDEL_C",22, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
@@ -9290,19 +9313,35 @@ class CUP$parserIndigo$actions {
 		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).value;
-
+		int e2left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
+		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
+		
+                        if(e2!=null){
+                                ((componente)e2).setId(((token)e1).getLexeme());
+                                RESULT =e2;
+                        }
+                
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contDEL_C",125, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 466: // contDEL_C ::= FORM D_DOT ASIGNACION contDEL_C2 
+          case 466: // contDEL_C ::= FORM D_DOT ASIG_ID contDEL_C2 
             {
               Object RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).value;
-
+		int e2left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
+		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
+		
+                        if(e2!=null){
+                                ((componente)e2).setForm(((token)e1).getLexeme());
+                                RESULT =e2;
+                        }
+                
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contDEL_C",125, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
@@ -9317,10 +9356,17 @@ class CUP$parserIndigo$actions {
           return CUP$parserIndigo$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 468: // contDEL_C1 ::= COM FORM D_DOT ASIGNACION 
+          case 468: // contDEL_C1 ::= COM FORM D_DOT ASIG_ID 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
+		
+                        componente comp = new componente();
+                        comp.setForm(((token)e1).getLexeme());
+                        RESULT=comp;
+                
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contDEL_C1",126, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
@@ -9338,7 +9384,14 @@ class CUP$parserIndigo$actions {
           case 470: // contDEL_C2 ::= COM ID D_DOT ASIG_ID 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
+		
+                        componente comp = new componente();
+                        comp.setId(((token)e1).getLexeme());
+                        RESULT=comp;
+                
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contDEL_C2",127, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
@@ -9413,7 +9466,7 @@ class CUP$parserIndigo$actions {
           return CUP$parserIndigo$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 478: // contADD_C ::= FORM D_DOT ASIGNACION contADD_C1 
+          case 478: // contADD_C ::= FORM D_DOT ASIG_ID contADD_C1 
             {
               Object RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).left;
@@ -9764,7 +9817,7 @@ class CUP$parserIndigo$actions {
           return CUP$parserIndigo$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 514: // contMO_C ::= FORM D_DOT ASIGNACION contMO_C1 
+          case 514: // contMO_C ::= FORM D_DOT ASIG_ID contMO_C1 
             {
               Object RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).left;

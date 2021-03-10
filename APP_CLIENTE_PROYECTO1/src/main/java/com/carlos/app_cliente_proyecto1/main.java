@@ -60,17 +60,12 @@ public class main {
 
     private static void pruebas() {
 
-        String var = "<!ini_solicitud:\"ELIMINAR_FORMULARIO\">\n"
+        String var = "<!ini_solicitud:\"ELIMINAR_COMPONENTE\">\n"
                 + "{\n"
-                + "    \"PARAMETROS_FORMULARIO\":[\n"
+                + "    \"PARAMETROS_COMPONENTE\":[\n"
                 + "        {\n"
-                + "            \"ID\": \"$form1\"\n"
-                + "        },\n"
-                + "        {\n"
-                + "            \"ID\": \"$form2\"\n"
-                + "        },\n"
-                + "        {\n"
-                + "            \"ID\": \"$form3\"\n"
+                + "            \"ID\": \"$_grupo_paises\",\n"
+                + "            \"FORMULARIO\": \"$form1\"\n"
                 + "        }\n"
                 + "    ]\n"
                 + "}\n"
@@ -104,6 +99,10 @@ public class main {
 
             for (formulario form : parser.getModForm()) {
                 System.out.println(form.toString());
+            }
+            
+            for(componente comp: parser.getDelComp()){
+                System.out.println(comp.toString());
             }
 
         } catch (Exception ex) {

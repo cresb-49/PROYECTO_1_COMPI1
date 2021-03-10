@@ -46,6 +46,22 @@ parser code {:
         public List<formulario> getModForm() {
             return modForm;
         }
+        //-----LSITA DE COMPONENTES A ELIMINAR
+        List<componente> delComp = new ArrayList<>();
+        public List<componente> getDelComp() {
+            return delComp;
+        }
+        //----LISTA DE COMPONENTES A AGREGAR
+        List<componente> addComp = new ArrayList<>();
+        public List<componente> getAddComp() {
+            return addComp;
+        }
+        //---LISTA DE COMPONENTES A MODIFICAR
+        List<componente> modComp = new ArrayList<>();
+        public List<componente> getModComp() {
+            return modComp;
+        }
+
 
         public usuario getLogUser() {
                 return logUser;
@@ -2557,21 +2573,48 @@ contMO_F14      ::=     COM ID D_DOT ASIG_ID:e1
                 ;
 //PRODUCCIONES PARA ELIMINAR COMPONENTE
 
-paramsDEL_C     ::=     L_A contDEL_C L_C paramsDEL_C2
+paramsDEL_C     ::=     L_A contDEL_C:e1 L_C paramsDEL_C2
+                {:
+                        if(e1!=null){
+                                delComp.add((componente)e1);
+                        }
+                :}
                 |       error
                 ;
 paramsDEL_C2    ::=     paramsDEL_C
                 |
                 ;
 //--------------------------------------------------
-contDEL_C       ::=     ID D_DOT ASIG_ID:e1 contDEL_C1
-                |       FORM D_DOT ASIGNACION:e1 contDEL_C2
+contDEL_C       ::=     ID D_DOT ASIG_ID:e1 contDEL_C1:e2
+                {:
+                        if(e2!=null){
+                                ((componente)e2).setId(((token)e1).getLexeme());
+                                RESULT =e2;
+                        }
+                :}
+                |       FORM D_DOT ASIG_ID:e1 contDEL_C2:e2
+                {:
+                        if(e2!=null){
+                                ((componente)e2).setForm(((token)e1).getLexeme());
+                                RESULT =e2;
+                        }
+                :}
                 |       error
                 ;
-contDEL_C1      ::=     COM FORM D_DOT ASIGNACION
+contDEL_C1      ::=     COM FORM D_DOT ASIG_ID:e1
+                {:
+                        componente comp = new componente();
+                        comp.setForm(((token)e1).getLexeme());
+                        RESULT=comp;
+                :}
                 |       error
                 ;
-contDEL_C2      ::=     COM ID D_DOT ASIG_ID
+contDEL_C2      ::=     COM ID D_DOT ASIG_ID:e1
+                {:
+                        componente comp = new componente();
+                        comp.setId(((token)e1).getLexeme());
+                        RESULT=comp;
+                :}
                 |       error
                 ;
 //PRODUCCIONES PARA AGREGAR UN COMPONENTE A UN FORMULARIO
@@ -2586,7 +2629,7 @@ paramsADD_C2    ::=     paramsADD_C
 //--------------------------------------------------------
 contADD_C       ::=     ID D_DOT ASIG_ID:e1 contADD_C1
                 |       NAME_CAMP D_DOT ASIGNACION:e1 contADD_C1
-                |       FORM D_DOT ASIGNACION:e1 contADD_C1
+                |       FORM D_DOT ASIG_ID:e1 contADD_C1
                 |       CLASS D_DOT contADD_C_2 contADD_C1
                 |       IND D_DOT ASIGNACION:e1 contADD_C1
                 |       TEXT_VIEW D_DOT var_ASIGNACION:e1 contADD_C1
@@ -2636,7 +2679,7 @@ paramsMO_C2     ::=      paramsMO_C
 
 contMO_C       ::=     ID D_DOT ASIG_ID:e1 contMO_C1
                 |       NAME_CAMP D_DOT ASIGNACION:e1 contMO_C1
-                |       FORM D_DOT ASIGNACION:e1 contMO_C1
+                |       FORM D_DOT ASIG_ID:e1 contMO_C1
                 |       CLASS D_DOT contMO_C_2 contMO_C1
                 |       IND D_DOT ASIGNACION:e1 contMO_C1
                 |       TEXT_VIEW D_DOT var_ASIGNACION:e1 contMO_C1
