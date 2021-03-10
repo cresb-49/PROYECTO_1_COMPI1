@@ -60,26 +60,17 @@ public class main {
 
     private static void pruebas() {
 
-        String var = "<!ini_solicitud:\"NUEVO_FORMULARIO\">\n"
+        String var = "<!ini_solicitud:\"ELIMINAR_FORMULARIO\">\n"
                 + "{\n"
                 + "    \"PARAMETROS_FORMULARIO\":[\n"
                 + "        {\n"
-                + "            \"ID\": \"$form1\",\n"
-                + "            \"TITULO\": \"Formulario para encuesta 1\",\n"
-                + "            \"NOMBRE\": \"formulario_encuesta_1\",\n"
-                + "            \"TEMA\": \"Dark1\"\n"
+                + "            \"ID\": \"$form1\"\n"
                 + "        },\n"
                 + "        {\n"
-                + "            \"ID\": \"$form2\",\n"
-                + "            \"TITULO\": \"Formulario para encuesta 2\",\n"
-                + "            \"NOMBRE\": \"formulario_encuesta_2\",\n"
-                + "            \"TEMA\": \"Dark2\"\n"
+                + "            \"ID\": \"$form2\"\n"
                 + "        },\n"
                 + "        {\n"
-                + "            \"ID\": \"$form3\",\n"
-                + "            \"NOMBRE\": \"formulario_encuesta_3\",\n"
-                + "            \"TITULO\": \"Formulario para encuesta 3\",\n"
-                + "            \"TEMA\": \"Dark3\"\n"
+                + "            \"ID\": \"$form3\"\n"
                 + "        }\n"
                 + "    ]\n"
                 + "}\n"
@@ -104,6 +95,14 @@ public class main {
                 System.out.println(user.toString());
             }
             for (formulario form : parser.getNewForms()) {
+                System.out.println(form.toString());
+            }
+
+            for (formulario form : parser.getDelForm()) {
+                System.out.println(form.toString());
+            }
+
+            for (formulario form : parser.getModForm()) {
                 System.out.println(form.toString());
             }
 

@@ -87,6 +87,24 @@
 <fin_solicitud!>
 <!fin_solicitudes>
 
+<!ini_solicitud:"ELIMINAR_FORMULARIO">
+{
+    "PARAMETROS_FORMULARIO":[
+        {
+            "ID": "$form1"
+        },
+        {
+            "ID": "$form1"
+        },
+        {
+            "ID": "$form1"
+        }
+    ]
+}
+<fin_solicitud!>
+
+
+
 <!ini_solicitudes>
 <!ini_solicitud:"ELIMINAR_COMPONENTE">
 {

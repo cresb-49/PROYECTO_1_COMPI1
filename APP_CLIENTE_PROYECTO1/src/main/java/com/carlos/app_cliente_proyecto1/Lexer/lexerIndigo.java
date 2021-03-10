@@ -842,6 +842,7 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
                     default:
+                        System.out.println("Default case: "+yytext());
                         error(yytext());
                 }
             }
@@ -914,7 +915,8 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
                         tmp_symbl = new Symbol(NEW_F, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
-                    case "ELIMINAR_FORMULARIO​":
+                    case "ELIMINAR_FORMULARIO":
+                        System.out.println("debij");
                         tmp_symbl = new Symbol(DEL_F, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
