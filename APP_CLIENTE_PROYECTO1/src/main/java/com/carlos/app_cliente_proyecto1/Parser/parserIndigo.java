@@ -1962,6 +1962,11 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
         public List<formulario> getDelForm() {
             return delForm;
         }
+        //------LSITA DE FORMULARIOS A MODIFICAR
+        List<formulario> modForm = new ArrayList<>();
+        public List<formulario> getModForm() {
+            return modForm;
+        }
 
         public usuario getLogUser() {
                 return logUser;
