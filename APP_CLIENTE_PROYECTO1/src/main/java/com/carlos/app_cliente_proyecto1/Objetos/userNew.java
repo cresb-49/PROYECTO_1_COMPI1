@@ -47,6 +47,8 @@ public class userNew extends usuario{
 
     @Override
     public String toString() {
-        return "userNew{" + "newUser=" + newUser + ", newPass=" + newPass + ", fechaMod=" + fechaMod + '}';
+        return "userNew{" + "newUser=" + newUser + ", newPass=" + newPass + ", fechaMod=" + fechaMod +", user="+this.getUser()+", pass"+this.getPass() +'}';
     }
+
+    
 }

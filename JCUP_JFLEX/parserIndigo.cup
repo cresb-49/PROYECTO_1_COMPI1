@@ -26,6 +26,11 @@ parser code {:
         public List<usuario> getCreateUser() {
                 return createUser;
         }
+        //-----LSIAT DE MODIFICACION DE USUARIOS
+        List<userNew> modUser = new ArrayList<>();
+        public List<userNew> getModUser() {
+                return modUser;
+        }   
 
 
         public usuario getLogUser() {
@@ -317,71 +322,276 @@ cont_CR_U3_3    ::=     COM USER D_DOT ASIGNACION:e1
                 ;
 
 //PRODUCCIONES PARA LA MODIFICACION DE UN USAURIO
-paramsMO_U      ::=     L_A contMO_U L_C paramsMO_U2
+paramsMO_U      ::=     L_A contMO_U:e1 L_C paramsMO_U2
+                {:
+                        if(e1!=null){
+                                modUser.add((userNew)e1);
+                        }
+                :}
+                |       error
                 ;
 
 paramsMO_U2     ::=     COM paramsMO_U
                 |
+                |       error
                 ;
 
-contMO_U        ::=     USER_ANT D_DOT ASIGNACION contMO_U1
-                |       USER_NEW D_DOT ASIGNACION contMO_U2
-                |       PASS_NEW D_DOT ASIGNACION contMO_U3
-                |       FECHA_MOD D_DOT ASIGNACION contMO_U4
+contMO_U        ::=     USER_ANT D_DOT ASIGNACION:e1 contMO_U1:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       USER_NEW D_DOT ASIGNACION:e1 contMO_U2:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setNewUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       PASS_NEW D_DOT ASIGNACION:e1 contMO_U3:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setNewPass(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       FECHA_MOD D_DOT DATE:e1 contMO_U4:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setFechaMod(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
+                ;
+//-------------------------------------------------------------------
+contMO_U1       ::=     COM USER_NEW D_DOT ASIGNACION:e1 contMO_U5:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setNewUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM PASS_NEW D_DOT ASIGNACION:e1 contMO_U8:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setNewPass(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA_MOD D_DOT DATE:e1 contMO_U11:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setFechaMod(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contMO_U1       ::=     COM USER_NEW D_DOT ASIGNACION contMO_U5
-                |       COM PASS_NEW D_DOT ASIGNACION contMO_U8
-                |       COM FECHA_MOD D_DOT ASIGNACION contMO_U11
+contMO_U2       ::=     COM USER_ANT D_DOT ASIGNACION:e1 contMO_U5:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM PASS_NEW D_DOT ASIGNACION:e1 contMO_U6:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setNewPass(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA_MOD D_DOT DATE:e1 contMO_U7:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setFechaMod(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contMO_U2       ::=     COM USER_ANT D_DOT ASIGNACION contMO_U5
-                |       COM PASS_NEW D_DOT ASIGNACION contMO_U6
-                |       COM FECHA_MOD D_DOT ASIGNACION contMO_U7
+contMO_U3       ::=     COM USER_ANT D_DOT ASIGNACION:e1 contMO_U5:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_NEW D_DOT ASIGNACION:e1 contMO_U6:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setNewUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA_MOD D_DOT DATE:e1 contMO_U10:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setFechaMod(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contMO_U3       ::=     COM USER_ANT D_DOT ASIGNACION contMO_U5
-                |       COM USER_NEW D_DOT ASIGNACION contMO_U6
-                |       COM FECHA_MOD D_DOT ASIGNACION contMO_U10
-                ;
-
-contMO_U4       ::=     COM USER_ANT D_DOT ASIGNACION contMO_U11
-                |       COM USER_NEW D_DOT ASIGNACION contMO_U7
-                |       COM PASS_NEW D_DOT ASIGNACION contMO_U10
+contMO_U4       ::=     COM USER_ANT D_DOT ASIGNACION:e1 contMO_U11:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_NEW D_DOT ASIGNACION:e1 contMO_U7:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setNewUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM PASS_NEW D_DOT ASIGNACION:e1 contMO_U10:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setNewPass(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 //----------------------------------------------------
-contMO_U5       ::=     COM PASS_NEW D_DOT ASIGNACION contMO_U15
-                |       COM FECHA_MOD D_DOT ASIGNACION contMO_U14
+contMO_U5       ::=     COM PASS_NEW D_DOT ASIGNACION:e1 contMO_U15:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setNewPass(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA_MOD D_DOT DATE:e1 contMO_U14:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setFechaMod(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contMO_U6       ::=     COM USER_ANT D_DOT ASIGNACION contMO_U15
-                |       COM FECHA_MOD D_DOT ASIGNACION contMO_U12
+contMO_U6       ::=     COM USER_ANT D_DOT ASIGNACION:e1 contMO_U15:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA_MOD D_DOT DATE:e1 contMO_U12:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setFechaMod(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contMO_U7       ::=     COM USER_ANT D_DOT ASIGNACION contMO_U14
-                |       COM PASS_NEW D_DOT ASIGNACION contMO_U12
+contMO_U7       ::=     COM USER_ANT D_DOT ASIGNACION:e1 contMO_U14:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM PASS_NEW D_DOT ASIGNACION:e1 contMO_U12:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setNewPass(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contMO_U8       ::=     COM PASS_NEW D_DOT ASIGNACION contMO_U15
-                |       COM FECHA_MOD D_DOT ASIGNACION contMO_U14
+contMO_U8       ::=     COM PASS_NEW D_DOT ASIGNACION:e1 contMO_U15:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setNewPass(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA_MOD D_DOT DATE:e1 contMO_U14:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setFechaMod(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contMO_U10      ::=     COM USER_ANT D_DOT ASIGNACION contMO_U13
-                |       COM USER_NEW D_DOT ASIGNACION contMO_U12
+contMO_U10      ::=     COM USER_ANT D_DOT ASIGNACION:e1 contMO_U13:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_NEW D_DOT ASIGNACION:e1 contMO_U12:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setNewUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contMO_U11      ::=     COM USER_NEW D_DOT ASIGNACION contMO_U14
-                |       COM PASS_NEW D_DOT ASIGNACION contMO_U13
+contMO_U11      ::=     COM USER_NEW D_DOT ASIGNACION:e1 contMO_U14:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setNewUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM PASS_NEW D_DOT ASIGNACION:e1 contMO_U13:e2
+                {:
+                        if(e2!=null){
+                                ((userNew)e2).setNewPass(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 //---------------------------------------------------------
-contMO_U12      ::=     COM USER_ANT D_DOT ASIGNACION
+contMO_U12      ::=     COM USER_ANT D_DOT ASIGNACION:e1
+                {:
+                        RESULT = new userNew("","","",((token)e1).getLexeme(), "");
+                :}
+                |       error
                 ;
-contMO_U13      ::=     COM USER_NEW D_DOT ASIGNACION
+contMO_U13      ::=     COM USER_NEW D_DOT ASIGNACION:e1
+                {:
+                        RESULT = new userNew(((token)e1).getLexeme(),"","", "", "");
+                :}
+                |       error
                 ;
-contMO_U14      ::=     COM PASS_NEW D_DOT ASIGNACION
+contMO_U14      ::=     COM PASS_NEW D_DOT ASIGNACION:e1
+                {:
+                        RESULT = new userNew("",((token)e1).getLexeme(),"", "", "");
+                :}
+                |       error
                 ;
-contMO_U15      ::=     COM FECHA_MOD D_DOT ASIGNACION
+contMO_U15      ::=     COM FECHA_MOD D_DOT DATE:e1
+                {:
+                        RESULT = new userNew("", "",((token)e1).getLexeme(), "", "");
+                :}
                 |
+                {:
+                        RESULT = new userNew("", "", "", "", "");
+                :}
+                |       error
                 ;
 
 //PRODUCCIONES PARA LA ELIMINACION DE UN USUARIO
