@@ -2171,7 +2171,12 @@ contNEW_F62     ::=     COM ID D_DOT ASIG_ID:e1
 
 //PRODUCCIONES PARA ELIMINAR UN FORMULARIO
 
-paramsDEL_F     ::=     L_A contDEL_F L_C paramsDEL_F2
+paramsDEL_F     ::=     L_A contDEL_F:e1 L_C paramsDEL_F2
+                {:
+                        if(e1!=null){
+                                delForm.add((formulario)e1);
+                        }
+                :}
                 |       error
                 ;
 
@@ -2180,7 +2185,10 @@ paramsDEL_F2    ::=     COM paramsDEL_F
                 |       error
                 ;
 
-contDEL_F       ::=      ID D_DOT ASIG_ID
+contDEL_F       ::=      ID D_DOT ASIG_ID:e1
+                {:
+                        RESULT = new formulario(((token)e1).getLexeme(), "", "", "", "", "");
+                :}
                 |       error
                 ;
 

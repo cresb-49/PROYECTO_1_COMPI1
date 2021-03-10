@@ -1957,7 +1957,11 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
         public List<formulario> getNewForms() {
             return newForms;
         }
-
+        //------LISTA DE FORMULARIOS A ELIMINAR
+        List<formulario> delForm = new ArrayList<>();
+        public List<formulario> getDelForm() {
+            return delForm;
+        }
 
         public usuario getLogUser() {
                 return logUser;
@@ -8232,7 +8236,14 @@ class CUP$parserIndigo$actions {
           case 396: // paramsDEL_F ::= L_A contDEL_F L_C paramsDEL_F2 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).value;
+		
+                        if(e1!=null){
+                                delForm.add((formulario)e1);
+                        }
+                
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("paramsDEL_F",19, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
@@ -8277,7 +8288,12 @@ class CUP$parserIndigo$actions {
           case 401: // contDEL_F ::= ID D_DOT ASIG_ID 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
+		
+                        RESULT = new formulario(((token)e1).getLexeme(), "", "", "", "", "");
+                
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contDEL_F",107, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
