@@ -36,7 +36,11 @@ parser code {:
         public List<formulario> getNewForms() {
             return newForms;
         }
-
+        //------LISTA DE FORMULARIOS A ELIMINAR
+        List<formulario> delForm = new ArrayList<>();
+        public List<formulario> getDelForm() {
+            return delForm;
+        }
 
         public usuario getLogUser() {
                 return logUser;
