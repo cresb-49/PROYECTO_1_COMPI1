@@ -55,6 +55,18 @@
             "TITULO": "Formulario para encuesta 1",
             "NOMBRE": "formulario_encuesta_1",
             "TEMA": "Dark"
+        },
+        {
+            "ID": "$form1",
+            "TITULO": "Formulario para encuesta 1",
+            "NOMBRE": "formulario_encuesta_1",
+            "TEMA": "Dark"
+        },
+        {
+            "ID": "$form1",
+            "TITULO": "Formulario para encuesta 1",
+            "NOMBRE": "formulario_encuesta_1",
+            "TEMA": "Dark"
         }
     ]
 }
