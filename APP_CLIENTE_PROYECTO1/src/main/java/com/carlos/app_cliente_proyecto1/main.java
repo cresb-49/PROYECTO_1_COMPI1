@@ -60,16 +60,16 @@ public class main {
 
     private static void pruebas() {
 
-        String var = "<!ini_solicitud: \"MODIFICAR_USUARIO\" >\n"
+        String var = "<!ini_solicitud:\"NUEVO_FORMULARIO\">\n"
                 + "{\n"
-                + "\"CREDENCIALES_USUARIO\":\n"
-                + "[\n"
-                + "    {\n"
-                + "        \"USUARIO_ANTIGUO\": \"juanito619\",\n"
-                + "        \"USUARIO_NUEVO\": \"juanito619lopez\",\n"
-                + "        \"NUEVO_PASSWORD\": \"12345678910\"\n"
-                + "    }\n"
-                + "]\n"
+                + "    \"PARAMETROS_FORMULARIO\":[\n"
+                + "        {\n"
+                + "            \"ID\": \"$form1\",\n"
+                + "            \"TITULO\": \"Formulario para encuesta 1\",\n"
+                + "            \"NOMBRE\": \"formulario_encuesta_1\",\n"
+                + "            \"TEMA\": \"Dark\"\n"
+                + "        }\n"
+                + "    ]\n"
                 + "}\n"
                 + "<fin_solicitud!>";
 
@@ -87,9 +87,12 @@ public class main {
             for (usuario user : parser.getCreateUser()) {
                 System.out.println(user.toString());
             }
-            
+
             for (userNew user : parser.getModUser()) {
                 System.out.println(user.toString());
+            }
+            for (formulario form : parser.getNewForms()) {
+                System.out.println(form.toString());
             }
 
         } catch (Exception ex) {

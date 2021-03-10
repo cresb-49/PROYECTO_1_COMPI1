@@ -31,6 +31,11 @@ parser code {:
         public List<userNew> getModUser() {
                 return modUser;
         }   
+        //-----LISTA DE FORMULARIOS NUEVOS
+        List<formulario> newForms = new ArrayList<>();
+        public List<formulario> getNewForms() {
+            return newForms;
+        }
 
 
         public usuario getLogUser() {
@@ -102,6 +107,7 @@ inicio  ::=     SSS contenido FSS
 
 
 contenido       ::=     ME_Q ADM SS D_DOT type_s
+                |       error
                 ;
 
 contenido1      ::=     contenido
@@ -117,6 +123,7 @@ type_s ::=      CR_U MA_Q L_A CREDEN_USER D_DOT C_A parametros C_C L_C ME_Q FS A
         |       ADD_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsADD_C C_C L_C ME_Q FS ADM MA_Q contenido1
         |       DEL_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsDEL_C C_C L_C ME_Q FS ADM MA_Q contenido1
         |       MO_C MA_Q L_C PARAMS_COMP D_DOT C_A paramsMO_C C_C L_C ME_Q FS ADM MA_Q contenido1
+        |       error
         ;
 
 type_s2 ::=     CR_U MA_Q L_A CREDEN_USER D_DOT C_A parametros C_C L_C ME_Q FS ADM MA_Q
@@ -142,6 +149,7 @@ var_ASIGNACION  ::=     ASIGNACION:e1
                 {:
                         RESULT = e1;
                 :}
+                |       error
                 ;
 //PRODUCCIONES PARA LOGEAR UN USUARIO
 
@@ -615,460 +623,1701 @@ contDEL_U       ::=     USER D_DOT ASIGNACION:e1
                 |       error
                 ;
 //PRODUCCIONES PARA UN NUEVO FORMULARIO
-paramsNEW_F     ::=     L_A contNEW_F L_C paramsNEW_F2
+paramsNEW_F     ::=     L_A contNEW_F:e1 L_C paramsNEW_F2
+                {:
+                        if(e1!=null){
+                                newForms.add((formulario)e1);
+                        }
+                :}
+                |       error
                 ;
+
 
 paramsNEW_F2    ::=     COM paramsNEW_F
                 | 
+                |       error
                 ;
 //-----------------------------------------------------
-contNEW_F       ::=     ID D_DOT ASIG_ID contNEW_F1
-                |       TITLE D_DOT var_ASIGNACION:e1 contNEW_F2
-                |       NAME D_DOT ASIGNACION contNEW_F3
-                |       THEME D_DOT ASIGNACION contNEW_F4
-                |       USER_CRE D_DOT ASIGNACION contNEW_F5
-                |       FECHA D_DOT DATE contNEW_F6
+contNEW_F       ::=     ID D_DOT ASIG_ID:e1 contNEW_F1:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       TITLE D_DOT var_ASIGNACION:e1 contNEW_F2:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       NAME D_DOT ASIGNACION:e1 contNEW_F3:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       THEME D_DOT ASIGNACION:e1 contNEW_F4:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       USER_CRE D_DOT ASIGNACION:e1 contNEW_F5:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       FECHA D_DOT DATE:e1 contNEW_F6:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 //-----------------------------------------------------
-contNEW_F1      ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F7
-                |       COM NAME D_DOT ASIGNACION contNEW_F8
-                |       COM THEME D_DOT ASIGNACION contNEW_F9
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F10
-                |       COM FECHA D_DOT DATE contNEW_F11
+contNEW_F1      ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F7:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F8:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F9:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F10:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F11:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F2      ::=     COM ID D_DOT ASIG_ID contNEW_F7
-                |       COM NAME D_DOT ASIGNACION contNEW_F12
-                |       COM THEME D_DOT ASIGNACION contNEW_F13
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F14
-                |       COM FECHA D_DOT DATE contNEW_F15
+contNEW_F2      ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F7:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F12:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F13:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F14:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F15:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F3      ::=     COM ID D_DOT ASIG_ID contNEW_F8
-                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F12
-                |       COM THEME D_DOT ASIGNACION contNEW_F16
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F17
-                |       COM FECHA D_DOT DATE contNEW_F18
+contNEW_F3      ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F8:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F12:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F16:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F17:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F18:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F4      ::=     COM ID D_DOT ASIG_ID contNEW_F9
-                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F13
-                |       COM NAME D_DOT ASIGNACION contNEW_F16
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F19
-                |       COM FECHA D_DOT DATE contNEW_F20
+contNEW_F4      ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F9:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F13:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F16:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F19:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F20:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F5      ::=     COM ID D_DOT ASIG_ID contNEW_F10
-                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F14
-                |       COM NAME D_DOT ASIGNACION contNEW_F17
-                |       COM THEME D_DOT ASIGNACION contNEW_F19
-                |       COM FECHA D_DOT DATE contNEW_F21
+contNEW_F5      ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F10:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F14:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F17:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F19:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F21:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F6      ::=     COM ID D_DOT ASIG_ID contNEW_F11
-                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F15
-                |       COM NAME D_DOT ASIGNACION contNEW_F18
-                |       COM THEME D_DOT ASIGNACION contNEW_F20
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F21
+contNEW_F6      ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F11:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F15:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F18:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F20:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F21:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 //------------------------------------------------------------------
-contNEW_F7      ::=     COM NAME D_DOT ASIGNACION contNEW_F22
-                |       COM THEME D_DOT ASIGNACION contNEW_F23
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F24
-                |       COM FECHA D_DOT DATE contNEW_F25
+contNEW_F7      ::=     COM NAME D_DOT ASIGNACION:e1 contNEW_F22:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F23:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F24:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F25:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F8      ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F22
-                |       COM THEME D_DOT ASIGNACION contNEW_F26
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F27
-                |       COM FECHA D_DOT DATE contNEW_F28
+contNEW_F8      ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F22:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F26:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F27:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F28:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F9      ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F23
-                |       COM NAME D_DOT ASIGNACION contNEW_F26
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F29
-                |       COM FECHA D_DOT DATE contNEW_F30
+contNEW_F9      ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F23:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F26:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F29:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F30:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F10     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F24
-                |       COM NAME D_DOT ASIGNACION contNEW_F27
-                |       COM THEME D_DOT ASIGNACION contNEW_F29
-                |       COM FECHA D_DOT DATE contNEW_F31
+contNEW_F10     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F24:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F27:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F29:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F31:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F11     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F25
-                |       COM NAME D_DOT ASIGNACION contNEW_F28
-                |       COM THEME D_DOT ASIGNACION contNEW_F30
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F31
+contNEW_F11     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F25:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F28:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F30:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F31:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F12     ::=     COM ID D_DOT ASIG_ID contNEW_F22
-                |       COM THEME D_DOT ASIGNACION contNEW_F32
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F33
-                |       COM FECHA D_DOT DATE contNEW_F34
+contNEW_F12     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F22:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F32:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F33:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F34:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F13     ::=     COM ID D_DOT ASIG_ID contNEW_F23
-                |       COM NAME D_DOT ASIGNACION contNEW_F32
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F35
-                |       COM FECHA D_DOT DATE contNEW_F36
+contNEW_F13     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F23:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F32:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F35:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F36:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F14     ::=     COM ID D_DOT ASIG_ID contNEW_F24
-                |       COM NAME D_DOT ASIGNACION contNEW_F33
-                |       COM THEME D_DOT ASIGNACION contNEW_F35
-                |       COM FECHA D_DOT DATE contNEW_F37
+contNEW_F14     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F24:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F33:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F35:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F37:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F15     ::=     COM ID D_DOT ASIG_ID contNEW_F25
-                |       COM NAME D_DOT ASIGNACION contNEW_F34
-                |       COM THEME D_DOT ASIGNACION contNEW_F36
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F37
+contNEW_F15     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F25:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F34:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F36:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F37:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F16     ::=     COM ID D_DOT ASIG_ID contNEW_F26
-                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F32
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F38
-                |       COM FECHA D_DOT DATE contNEW_F39
+contNEW_F16     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F26:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F32:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F38:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F39:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F17     ::=     COM ID D_DOT ASIG_ID contNEW_F27
-                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F33
-                |       COM THEME D_DOT ASIGNACION contNEW_F38
-                |       COM FECHA D_DOT DATE contNEW_F40
+contNEW_F17     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F27:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F33:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F38:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F40:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F18     ::=     COM ID D_DOT ASIG_ID contNEW_F28
-                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F34
-                |       COM THEME D_DOT ASIGNACION contNEW_F39
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F40
+contNEW_F18     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F28:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F34:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F39:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F40:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F19     ::=     COM ID D_DOT ASIG_ID contNEW_F29
-                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F35
-                |       COM NAME D_DOT ASIGNACION contNEW_F38
-                |       COM FECHA D_DOT DATE contNEW_F41
+contNEW_F19     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F29:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F35:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F38:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F41:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F20     ::=     COM ID D_DOT ASIG_ID contNEW_F30
-                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F36
-                |       COM NAME D_DOT ASIGNACION contNEW_F39
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F41
+contNEW_F20     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F30:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F36:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F39:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F41:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F21     ::=     COM ID D_DOT ASIG_ID contNEW_F31
-                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F37
-                |       COM NAME D_DOT ASIGNACION contNEW_F40
-                |       COM THEME D_DOT ASIGNACION contNEW_F41
+contNEW_F21     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F31:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F37:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F40:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F41:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 //-------------------------------------------------------
-contNEW_F22     ::=     COM THEME D_DOT ASIGNACION contNEW_F42
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F43
-                |       COM FECHA D_DOT DATE contNEW_F44
+contNEW_F22     ::=     COM THEME D_DOT ASIGNACION:e1 contNEW_F42:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F43:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F44:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F23     ::=     COM NAME D_DOT ASIGNACION contNEW_F42
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F45
-                |       COM FECHA D_DOT DATE contNEW_F46
+contNEW_F23     ::=     COM NAME D_DOT ASIGNACION:e1 contNEW_F42:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F45:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F46:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F24     ::=     COM NAME D_DOT ASIGNACION contNEW_F43
-                |       COM THEME D_DOT ASIGNACION contNEW_F45
-                |       COM FECHA D_DOT DATE contNEW_F47
+contNEW_F24     ::=     COM NAME D_DOT ASIGNACION:e1 contNEW_F43:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F45:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F47:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F25     ::=     COM NAME D_DOT ASIGNACION contNEW_F44
-                |       COM THEME D_DOT ASIGNACION contNEW_F46
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F47
+contNEW_F25     ::=     COM NAME D_DOT ASIGNACION:e1 contNEW_F44:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F46:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F47:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F26     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F42
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F48
-                |       COM FECHA D_DOT DATE contNEW_F49
+contNEW_F26     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F42:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F48:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F49:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F27     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F43
-                |       COM THEME D_DOT ASIGNACION contNEW_F48
-                |       COM FECHA D_DOT DATE contNEW_F50
+contNEW_F27     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F43:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F48:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F50:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F28     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F44
-                |       COM THEME D_DOT ASIGNACION contNEW_F49
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F50
+contNEW_F28     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F44:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F49:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F50:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F29     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F45
-                |       COM NAME D_DOT ASIGNACION contNEW_F48
-                |       COM FECHA D_DOT DATE contNEW_F51
+contNEW_F29     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F45:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F48:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F51:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F30     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F46
-                |       COM NAME D_DOT ASIGNACION contNEW_F49
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F51
+contNEW_F30     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F46:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F49:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F51:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F31     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F47
-                |       COM NAME D_DOT ASIGNACION contNEW_F50
-                |       COM THEME D_DOT ASIGNACION contNEW_F51
+contNEW_F31     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F47:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F50:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F51:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F32     ::=     COM ID D_DOT ASIG_ID contNEW_F42
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F52
-                |       COM FECHA D_DOT DATE contNEW_F53
+contNEW_F32     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F42:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F52:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F53:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F33     ::=     COM ID D_DOT ASIG_ID contNEW_F43
-                |       COM THEME D_DOT ASIGNACION contNEW_F52
-                |       COM FECHA D_DOT DATE contNEW_F54
+contNEW_F33     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F43:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F52:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F54:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F34     ::=     COM ID D_DOT ASIG_ID contNEW_F44
-                |       COM THEME D_DOT ASIGNACION contNEW_F53
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F54
+contNEW_F34     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F44:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F53:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F54:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F35     ::=     COM ID D_DOT ASIG_ID contNEW_F45
-                |       COM NAME D_DOT ASIGNACION contNEW_F52
-                |       COM FECHA D_DOT DATE contNEW_F55
+contNEW_F35     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F45:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F52:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F55:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F36     ::=     COM ID D_DOT ASIG_ID contNEW_F46
-                |       COM NAME D_DOT ASIGNACION contNEW_F53
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F55
+contNEW_F36     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F46:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F53:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F55:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F37     ::=     COM ID D_DOT ASIG_ID contNEW_F47
-                |       COM NAME D_DOT ASIGNACION contNEW_F54
-                |       COM THEME D_DOT ASIGNACION contNEW_F55
+contNEW_F37     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F47:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F54:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F55:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F38     ::=     COM ID D_DOT ASIG_ID contNEW_F48
-                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F52
-                |       COM FECHA D_DOT DATE contNEW_F56
+contNEW_F38     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F48:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F52:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F56:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F39     ::=     COM ID D_DOT ASIG_ID contNEW_F49
-                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F53
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F56
+contNEW_F39     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F49:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F53:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F56:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F40     ::=     COM ID D_DOT ASIG_ID contNEW_F50
-                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F54
-                |       COM THEME D_DOT ASIGNACION contNEW_F56
+contNEW_F40     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F50:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F54:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F56:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F41     ::=     COM ID D_DOT ASIG_ID contNEW_F51
-                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F55
-                |       COM NAME D_DOT ASIGNACION contNEW_F56
+contNEW_F41     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F51:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F55:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F56:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 //-------------------------------------------------
 
-contNEW_F42     ::=     COM USER_CRE D_DOT ASIGNACION contNEW_F57
-                |       COM FECHA D_DOT DATE contNEW_F58
+contNEW_F42     ::=     COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F57:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F58:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
                 |
+                {:
+                        RESULT = new formulario("","","","","","");
+                :}
+                |       error
                 ;
 
-contNEW_F43     ::=     COM THEME D_DOT ASIGNACION contNEW_F57
-                |       COM FECHA D_DOT DATE contNEW_F59
+contNEW_F43     ::=     COM THEME D_DOT ASIGNACION:e1 contNEW_F57:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F59:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F44     ::=     COM THEME D_DOT ASIGNACION contNEW_F58
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F59
+contNEW_F44     ::=     COM THEME D_DOT ASIGNACION:e1 contNEW_F58:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F59:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F45     ::=     COM NAME D_DOT ASIGNACION contNEW_F57
-                |       COM FECHA D_DOT DATE contNEW_F60
+contNEW_F45     ::=     COM NAME D_DOT ASIGNACION:e1 contNEW_F57:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F60:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F46     ::=     COM NAME D_DOT ASIGNACION contNEW_F58
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F60
+contNEW_F46     ::=     COM NAME D_DOT ASIGNACION:e1 contNEW_F58:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F60:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F47     ::=     COM NAME D_DOT ASIGNACION contNEW_F59
-                |       COM THEME D_DOT ASIGNACION contNEW_F60
+contNEW_F47     ::=     COM NAME D_DOT ASIGNACION:e1 contNEW_F59:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F60:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F48     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F57
-                |       COM FECHA D_DOT DATE contNEW_F61
+contNEW_F48     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F57:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F61:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F49     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F58
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F61
+contNEW_F49     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F58:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F61:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F50     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F59
-                |       COM THEME D_DOT ASIGNACION contNEW_F61
+contNEW_F50     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F59:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F61:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F51     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F60
-                |       COM NAME D_DOT ASIGNACION contNEW_F61
+contNEW_F51     ::=     COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F60:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F61:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F52     ::=     COM ID D_DOT ASIG_ID contNEW_F57
-                |       COM FECHA D_DOT DATE contNEW_F62
+contNEW_F52     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F57:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM FECHA D_DOT DATE:e1 contNEW_F62:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F53     ::=     COM ID D_DOT ASIG_ID contNEW_F58
-                |       COM USER_CRE D_DOT ASIGNACION contNEW_F62
+contNEW_F53     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F58:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM USER_CRE D_DOT ASIGNACION:e1 contNEW_F62:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F54     ::=     COM ID D_DOT ASIG_ID contNEW_F59
-                |       COM THEME D_DOT ASIGNACION contNEW_F62
+contNEW_F54     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F59:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM THEME D_DOT ASIGNACION:e1 contNEW_F62:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F55     ::=     COM ID D_DOT ASIG_ID contNEW_F60
-                |       COM NAME D_DOT ASIGNACION contNEW_F62
+contNEW_F55     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F60:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM NAME D_DOT ASIGNACION:e1 contNEW_F62:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 
-contNEW_F56     ::=     COM ID D_DOT ASIG_ID contNEW_F61
-                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F62
+contNEW_F56     ::=     COM ID D_DOT ASIG_ID:e1 contNEW_F61:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       COM TITLE D_DOT var_ASIGNACION:e1 contNEW_F62:e2
+                {:
+                        if(e2!=null){
+                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                RESULT = e2;
+                        }
+                :}
+                |       error
                 ;
 //----------------------------------------------------
-contNEW_F57     ::=     COM FECHA D_DOT DATE
+contNEW_F57     ::=     COM FECHA D_DOT DATE:e1
+                {:
+                        RESULT = new formulario("","","","","",((token)e1).getLexeme());
+                :}
                 |
+                {:
+                        RESULT = new formulario("","","","","","");
+                :}
+                |       error
                 ;
-contNEW_F58     ::=     COM USER_CRE D_DOT ASIGNACION
+contNEW_F58     ::=     COM USER_CRE D_DOT ASIGNACION:e1
+                {:
+                        RESULT = new formulario("","","","",((token)e1).getLexeme(),"");
+                :}
                 |
+                {:
+                        RESULT = new formulario("","","","","","");
+                :}
+                |       error
                 ;
 
-contNEW_F59     ::=     COM THEME D_DOT ASIGNACION
+contNEW_F59     ::=     COM THEME D_DOT ASIGNACION:e1
+                {:
+                        RESULT = new formulario("","","",((token)e1).getLexeme(),"","");
+                :}
+                |       error
                 ;
 
-contNEW_F60     ::=     COM NAME D_DOT ASIGNACION
+contNEW_F60     ::=     COM NAME D_DOT ASIGNACION:e1
+                {:
+                        RESULT = new formulario("","",((token)e1).getLexeme(),"","","");
+                :}
+                |       error
                 ;
 
 contNEW_F61     ::=     COM TITLE D_DOT var_ASIGNACION:e1
+                {:
+                        RESULT = new formulario("",((token)e1).getLexeme(),"","","","");
+                :}
+                |       error
                 ;
 
-contNEW_F62     ::=     COM ID D_DOT ASIG_ID
+contNEW_F62     ::=     COM ID D_DOT ASIG_ID:e1
+                {:
+                        RESULT = new formulario(((token)e1).getLexeme(),"","","","","");
+                :}
+                |       error
                 ;
 
 //PRODUCCIONES PARA ELIMINAR UN FORMULARIO
 
 paramsDEL_F     ::=     L_A contDEL_F L_C paramsDEL_F2
+                |       error
                 ;
 
 paramsDEL_F2    ::=     COM paramsDEL_F
                 |
+                |       error
                 ;
 
 contDEL_F       ::=      ID D_DOT ASIG_ID
+                |       error
                 ;
 
 //PRODUCCIONES PARA MODIFICAR UN FORMULARIO
 
 paramsMO_F      ::=     L_A contMO_F L_C paramsMO_F2
+                |       error
                 ;
 
 paramsMO_F2      ::=     COM paramsMO_F
                 |
+                |       error
                 ;
 //------------------------------------------------
 
-contMO_F        ::=     ID D_DOT ASIG_ID contMO_F1
+contMO_F        ::=     ID D_DOT ASIG_ID:e1 contMO_F1
                 |       TITLE D_DOT var_ASIGNACION:e1 contMO_F2
-                |       NAME D_DOT ASIGNACION contMO_F3
-                |       THEME D_DOT ASIGNACION contMO_F4
+                |       NAME D_DOT ASIGNACION:e1 contMO_F3
+                |       THEME D_DOT ASIGNACION:e1 contMO_F4
+                |       error
                 ;
 //-----------------------------------------------------
 contMO_F1       ::=     COM TITLE D_DOT var_ASIGNACION:e1 contMO_F5
-                |       COM NAME D_DOT ASIGNACION contMO_F6
-                |       COM THEME D_DOT ASIGNACION contMO_F7
+                |       COM NAME D_DOT ASIGNACION:e1 contMO_F6
+                |       COM THEME D_DOT ASIGNACION:e1 contMO_F7
+                |       error
                 ;
 
-contMO_F2       ::=     COM ID D_DOT ASIG_ID contMO_F5
-                |       COM NAME D_DOT ASIGNACION contMO_F8
-                |       COM THEME D_DOT ASIGNACION contMO_F9
+contMO_F2       ::=     COM ID D_DOT ASIG_ID:e1 contMO_F5
+                |       COM NAME D_DOT ASIGNACION:e1 contMO_F8
+                |       COM THEME D_DOT ASIGNACION:e1 contMO_F9
+                |       error
                 ;
 
-contMO_F3       ::=     COM ID D_DOT ASIG_ID contMO_F6
+contMO_F3       ::=     COM ID D_DOT ASIG_ID:e1 contMO_F6
                 |       COM TITLE D_DOT var_ASIGNACION:e1 contMO_F8
-                |       COM THEME D_DOT ASIGNACION contMO_F10
+                |       COM THEME D_DOT ASIGNACION:e1 contMO_F10
+                |       error
                 ;
 
-contMO_F4       ::=     COM ID D_DOT ASIG_ID contMO_F7
+contMO_F4       ::=     COM ID D_DOT ASIG_ID:e1 contMO_F7
                 |       COM TITLE D_DOT var_ASIGNACION:e1 contMO_F9
-                |       COM NAME D_DOT ASIGNACION contMO_F10
+                |       COM NAME D_DOT ASIGNACION:e1 contMO_F10
+                |       error
                 ;
 //-----------------------------------------------------
-contMO_F5       ::=     COM NAME D_DOT ASIGNACION contMO_F11
-                |       COM THEME D_DOT ASIGNACION contMO_F12
+contMO_F5       ::=     COM NAME D_DOT ASIGNACION:e1 contMO_F11
+                |       COM THEME D_DOT ASIGNACION:e1 contMO_F12
                 |
+                |       error
                 ;
 contMO_F6       ::=     COM TITLE D_DOT var_ASIGNACION:e1 contMO_F11
-                |       COM THEME D_DOT ASIGNACION contMO_F13
+                |       COM THEME D_DOT ASIGNACION:e1 contMO_F13
                 |
+                |       error
                 ;
 contMO_F7       ::=     COM TITLE D_DOT var_ASIGNACION:e1 contMO_F12
-                |       COM NAME D_DOT ASIGNACION contMO_F13
+                |       COM NAME D_DOT ASIGNACION:e1 contMO_F13
                 |
+                |       error
                 ;
-contMO_F8       ::=     COM ID D_DOT ASIG_ID contMO_F11
-                |       COM THEME D_DOT ASIGNACION contMO_F14
+contMO_F8       ::=     COM ID D_DOT ASIG_ID:e1 contMO_F11
+                |       COM THEME D_DOT ASIGNACION:e1 contMO_F14
+                |       error
                 ;
-contMO_F9       ::=     COM ID D_DOT ASIG_ID contMO_F12
-                |       COM NAME D_DOT ASIGNACION contMO_F14
+contMO_F9       ::=     COM ID D_DOT ASIG_ID:e1 contMO_F12
+                |       COM NAME D_DOT ASIGNACION:e1 contMO_F14
+                |       error
                 ;
-contMO_F10      ::=     COM ID D_DOT ASIG_ID contMO_F13
+contMO_F10      ::=     COM ID D_DOT ASIG_ID:e1 contMO_F13
                 |       COM TITLE D_DOT var_ASIGNACION:e1 contMO_F14
+                |       error
                 ;
 //-------------------------------------------------------
 contMO_F11      ::=     COM THEME D_DOT ASIGNACION
                 |
+                |       error
                 ;
 
 contMO_F12      ::=     COM NAME D_DOT ASIGNACION
                 |
+                |       error
                 ;
 
 contMO_F13      ::=     COM TITLE D_DOT var_ASIGNACION:e1
                 |
+                |       error
                 ;
 
 contMO_F14      ::=     COM ID D_DOT ASIG_ID
+                |       error
                 ;
 //PRODUCCIONES PARA ELIMINAR COMPONENTE
 
 paramsDEL_C     ::=     L_A contDEL_C L_C paramsDEL_C2
+                |       error
                 ;
 paramsDEL_C2    ::=     paramsDEL_C
                 |
                 ;
 //--------------------------------------------------
-contDEL_C       ::=     ID D_DOT ASIG_ID contDEL_C1
-                |       FORM D_DOT ASIGNACION contDEL_C2
+contDEL_C       ::=     ID D_DOT ASIG_ID:e1 contDEL_C1
+                |       FORM D_DOT ASIGNACION:e1 contDEL_C2
+                |       error
                 ;
 contDEL_C1      ::=     COM FORM D_DOT ASIGNACION
+                |       error
                 ;
 contDEL_C2      ::=     COM ID D_DOT ASIG_ID
+                |       error
                 ;
 //PRODUCCIONES PARA AGREGAR UN COMPONENTE A UN FORMULARIO
 
 paramsADD_C     ::=     L_A contADD_C L_C paramsADD_C2
+                |       error
                 ;
 
 paramsADD_C2    ::=     paramsADD_C
                 |
                 ;
 //--------------------------------------------------------
-contADD_C       ::=     ID D_DOT ASIG_ID contADD_C1
-                |       NAME_CAMP D_DOT ASIGNACION contADD_C1
-                |       FORM D_DOT ASIGNACION contADD_C1
+contADD_C       ::=     ID D_DOT ASIG_ID:e1 contADD_C1
+                |       NAME_CAMP D_DOT ASIGNACION:e1 contADD_C1
+                |       FORM D_DOT ASIGNACION:e1 contADD_C1
                 |       CLASS D_DOT contADD_C_2 contADD_C1
-                |       IND D_DOT ASIGNACION contADD_C1
+                |       IND D_DOT ASIGNACION:e1 contADD_C1
                 |       TEXT_VIEW D_DOT var_ASIGNACION:e1 contADD_C1
                 |       ALI D_DOT contADD_C_1 contADD_C1
                 |       REQUE D_DOT contADD_C2 contADD_C1
-                |       OPTION D_DOT ASIGNACION contADD_C1
+                |       OPTION D_DOT ASIGNACION:e1 contADD_C1
                 |       URL D_DOT var_ASIGNACION:e1 contADD_C1
-                |       COLM D_DOT ASIGNACION contADD_C1
-                |       FILAS D_DOT ASIGNACION contADD_C1
+                |       COLM D_DOT ASIGNACION:e1 contADD_C1
+                |       FILAS D_DOT ASIGNACION:e1 contADD_C1
+                |       error
                 ;
 
 contADD_C_1     ::=     CENT
                 |       IZQ
                 |       DER
                 |       JUST
+                |       error
                 ;
 
 contADD_C_2     ::=     CAMP_TEXT
@@ -1079,6 +2328,7 @@ contADD_C_2     ::=     CAMP_TEXT
                 |       IMG
                 |       COMBO
                 |       BOTON
+                |       error
                 ;
 
 contADD_C1      ::=     contADD_C
@@ -1087,33 +2337,37 @@ contADD_C1      ::=     contADD_C
 
 contADD_C2      ::=     YES
                 |       NOT
+                |       error
                 ;
 
 //PRODUCCIONES PARA MODIFICAR COMPONENTE
 paramsMO_C      ::=     L_A contMO_C L_C paramsMO_C2
+                |       error
                 ;
 paramsMO_C2     ::=      paramsMO_C
                 |
                 ;
 
-contMO_C       ::=     ID D_DOT ASIG_ID contMO_C1
-                |       NAME_CAMP D_DOT ASIGNACION contMO_C1
-                |       FORM D_DOT ASIGNACION contMO_C1
+contMO_C       ::=     ID D_DOT ASIG_ID:e1 contMO_C1
+                |       NAME_CAMP D_DOT ASIGNACION:e1 contMO_C1
+                |       FORM D_DOT ASIGNACION:e1 contMO_C1
                 |       CLASS D_DOT contMO_C_2 contMO_C1
-                |       IND D_DOT ASIGNACION contMO_C1
+                |       IND D_DOT ASIGNACION:e1 contMO_C1
                 |       TEXT_VIEW D_DOT var_ASIGNACION:e1 contMO_C1
                 |       ALI D_DOT contMO_C_1 contMO_C1
                 |       REQUE D_DOT contMO_C2 contMO_C1
-                |       OPTION D_DOT ASIGNACION contMO_C1
+                |       OPTION D_DOT ASIGNACION:e1 contMO_C1
                 |       URL D_DOT var_ASIGNACION:e1 contMO_C1
-                |       COLM D_DOT ASIGNACION contMO_C1
-                |       FILAS D_DOT ASIGNACION contMO_C1
+                |       COLM D_DOT ASIGNACION:e1 contMO_C1
+                |       FILAS D_DOT ASIGNACION:e1 contMO_C1
+                |       error
                 ;
 
 contMO_C_1     ::=     CENT
                 |       IZQ
                 |       DER
                 |       JUST
+                |       error
                 ;
 
 contMO_C_2     ::=     CAMP_TEXT
@@ -1124,6 +2378,7 @@ contMO_C_2     ::=     CAMP_TEXT
                 |       IMG
                 |       COMBO
                 |       BOTON
+                |       error
                 ;
 
 contMO_C1      ::=     contMO_C
@@ -1132,4 +2387,5 @@ contMO_C1      ::=     contMO_C
 
 contMO_C2       ::=     YES
                 |       NOT
+                |       error
                 ;
