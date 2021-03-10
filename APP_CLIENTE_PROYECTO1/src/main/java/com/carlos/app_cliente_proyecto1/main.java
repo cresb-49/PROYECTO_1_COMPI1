@@ -9,6 +9,7 @@ import com.carlos.app_cliente_proyecto1.UI.PrincipalFrame;
 import com.carlos.app_cliente_proyecto1.HttpMethods.peticionLogin;
 import com.carlos.app_cliente_proyecto1.Lexer.lexerIndigo;
 import com.carlos.app_cliente_proyecto1.Lexer.lexerInerText;
+import com.carlos.app_cliente_proyecto1.Objetos.usuario;
 import com.carlos.app_cliente_proyecto1.Parser.parserIndigo;
 import com.carlos.app_cliente_proyecto1.Tokens.token;
 import java.io.IOException;
@@ -59,12 +60,20 @@ public class main {
 
     private static void pruebas() {
 
-        String var = "<!ini_solicitud:\"LOGIN_USUARIO\">\n"
-                + "	{\"CREDENCIALES_USUARIO\":[{\n"
-                + "		\"USUARIO\": \"juanito619\",\n"
-                + "		\"PASSWORD\": \"12345678\"\n"
-                + "	}]\n"
-                + "	}\n"
+        String var = "<!ini_solicitud: \"CREAR_USUARIO\" >\n"
+                + "{\n"
+                + "\"CREDENCIALES_USUARIO\":\n"
+                + "[\n"
+                + "    {\n"
+                + "        \"USUARIO\": \"juanito619\",\n"
+                + "        \"PASSWORD\": \"12345678\"\n"
+                + "    },\n"
+                + "    {\n"
+                + "        \"USUARIO\": \"juanito200\",\n"
+                + "        \"PASSWORD\": \"12345\"\n"
+                + "    }\n"
+                + "]\n"
+                + "}\n"
                 + "<fin_solicitud!>";
 
         lexerIndigo lex = new lexerIndigo(new StringReader(var));
@@ -73,6 +82,15 @@ public class main {
             parser.parse();
 
             System.out.println("Log User: " + parser.getLogUser().toString());
+
+            for (usuario user : parser.getDelUser()) {
+                System.out.println(user.toString());
+            }
+
+            for (usuario user : parser.getCreateUser()) {
+                System.out.println(user.toString());
+            }
+
         } catch (Exception ex) {
             System.err.println("Error irrcuperable indigo");
             ex.printStackTrace();
