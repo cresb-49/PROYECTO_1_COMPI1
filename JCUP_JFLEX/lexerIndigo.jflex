@@ -50,14 +50,14 @@ inicioConjuntoRes = (<)([ \n\r\t])*(\!)([ \n\r\t])*([iI][nN][iI]_[rR][eE][sS][pP
 finConjunto = (<)([ \n\r\t])*(\!)([ \n\r\t])*([fF][iI][nN]_[sS][oO][lL][iI][cC][iI][tT][uU][dD][eE][sS])([ \n\r\t])*(>)
 finConjuntoRes = (<)([ \n\r\t])*(\!)([ \n\r\t])*([fF][iI][nN]_[rR][eE][sS][pP][uU][eE][sS][tT][aA][sS])([ \n\r\t])*(>)
 
-simbolos = [\]\[\{\}!@#$%&*()+=_<>?/.:;,\|]
+simbolos = [\]\[\{\}!@#$%&*()+=_<>?/.:;,\|\-]
 numeros = [0-9]
 letras = [a-zA-Z]
 espacio = [ ]
 text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})*[\"]
 fecha = [\"]([1-9][0-9][0-9][0-9])(\-)([0][1-9]|[1][0-2])(\-)([0][1-9]|[1-2][0-9]|[3][0-1])[\"]
 asigId= [\"](\$|\_|\-)([0-9]|[a-zA-Z]|[$\-_])+[\"]
-
+numConsult = (CONSULTA)(\-)([0-9]+)
 
 
 %{
@@ -203,6 +203,28 @@ asigId= [\"](\$|\_|\-)([0-9]|[a-zA-Z]|[$\-_])+[\"]
             tmp_symbl = new Symbol(ASIG_ID, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
             after_symbl = tmp_symbl;
             return tmp_symbl;
+        }
+    {numConsult}
+        {
+            String text = getInerText.getAsignacion(yytext());
+            InerLex.yyreset(new StringReader(text));
+            try {
+                InerLex.yylex();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (InerLex.getCantidadLexemas() == 1) {
+                text = InerLex.getCurrentText();
+                InerLex.reinicioLex();
+                tmp_symbl = new Symbol(NUM_CONSULT, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                after_symbl = tmp_symbl;
+                return tmp_symbl;
+            }else{
+                tmp_symbl = new Symbol(ASIGNACION_ESP, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                after_symbl = tmp_symbl;
+                return tmp_symbl;
+            }
+            
         }
     {text}
         {   
@@ -438,6 +460,14 @@ asigId= [\"](\$|\_|\-)([0-9]|[a-zA-Z]|[$\-_])+[\"]
                         return tmp_symbl;
                     case "MENSAJE_USUARIO":
                         tmp_symbl = new Symbol(MJSU, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "CONSULTAR_DATOS":
+                        tmp_symbl = new Symbol(CONSULT_DATA, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "CONSULTA":
+                        tmp_symbl = new Symbol(CONSULT, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
                     default:

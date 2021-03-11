@@ -62,9 +62,9 @@ public class main {
 
         String var = "<!ini_respuestas>\n"
                 + "<!ini_respuesta:\"ERRORES_SINTACTICOS\">\n"
-                + "{\"DESCRIPCION\"\":[\n"
+                + "{\"DESCRIPCION\":[\n"
                 + "{\n"
-                + " \"MENSAJE\": \"Parametro inesperado: |(| Linea: 5, Columna: 25\"}\n"
+                + " \"MENSAJE\": \"Parametro inesperado: |-| Linea: 5, Columna: 25\"}\n"
                 + "]}\n"
                 + "<fin_respuesta!>\n"
                 + "<!fin_respuestas>";
