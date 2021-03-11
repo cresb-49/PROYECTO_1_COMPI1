@@ -127,7 +127,52 @@ public class componente {
     public void setUrl(String url) {
         this.url = url;
     }
-
+    
+    public String validarComponete(){
+        String res="";
+        if(this.id==null){
+            res = res +"El componente no tiene id definido\n";
+        }
+        if(this.form==null){
+            res = res +"El componente no esta enlazado a un formulario\n";
+        }
+        if(this.texto==null){
+            res = res +"El componente no tiene texto visible asignado\n";
+        }
+        switch(this.clase){
+            case "CAMPO_TEXTO":
+                break;
+            case "AREA_TEXTO":
+                break;
+            case "CHECKBOX":
+                if(this.opciones== null){
+                    res = res +"El componente no tiene opciones para elegir\n";
+                }
+                break;
+            case "RADIO":
+                if(this.opciones== null){
+                    res = res +"El componente no tiene opciones para elegir\n";
+                }
+                break;
+            case "FICHERO":
+                break;
+            case "IMAGEN":
+                break;
+            case "COMBO":
+                if(this.opciones== null){
+                    res = res +"El componente no tiene opciones para elegir\n";
+                }
+                break;
+            case "BOTON":
+                break;
+            default:
+                if(this.clase== null){
+                    res = res +"El componente no tiene una clase definida\n";
+                }
+        }
+        return res;
+    }
+    
     @Override
     public String toString() {
         return "componente{" + "id=" + id + ", nombre=" + nombre + ", form=" + form + ", clase=" + clase + ", indice=" + indice + ", ali=" + ali + ", requerido=" + requerido + ", opciones=" + opciones + ", filas=" + filas + ", columnas=" + columnas + ", url=" + url + '}';

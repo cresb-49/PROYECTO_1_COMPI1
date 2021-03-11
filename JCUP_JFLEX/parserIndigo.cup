@@ -2643,6 +2643,8 @@ contADD_C       ::=     ID D_DOT ASIG_ID:e1 contADD_C1:e2
                                         ((componente)e2).setId(((token)e1).getLexeme());
                                         //System.out.println(((componente)e2).toString());
                                         RESULT = e2;
+                                }else{
+                                        report_error("",null);
                                 }
                                 
                         }
@@ -2655,6 +2657,8 @@ contADD_C       ::=     ID D_DOT ASIG_ID:e1 contADD_C1:e2
                                         ((componente)e2).setNombre(((token)e1).getLexeme());
                                         //System.out.println(((componente)e2).toString());
                                         RESULT = e2;
+                                }else{
+                                        report_error("",null);
                                 }
                         }
                 :}
@@ -2666,6 +2670,8 @@ contADD_C       ::=     ID D_DOT ASIG_ID:e1 contADD_C1:e2
                                         ((componente)e2).setForm(((token)e1).getLexeme());
                                         //System.out.println(((componente)e2).toString());
                                         RESULT = e2;
+                                }else{
+                                        report_error("",null);
                                 }
                         }
                 :}
@@ -2677,6 +2683,8 @@ contADD_C       ::=     ID D_DOT ASIG_ID:e1 contADD_C1:e2
                                         ((componente)e2).setClase(((token)e1).getLexeme());
                                         //System.out.println(((componente)e2).toString());
                                         RESULT = e2;
+                                }else{
+                                        report_error("",null);
                                 }
                         }
                 :}
@@ -2688,6 +2696,8 @@ contADD_C       ::=     ID D_DOT ASIG_ID:e1 contADD_C1:e2
                                         ((componente)e2).setTexto(((token)e1).getLexeme());
                                         //System.out.println(((componente)e2).toString());
                                         RESULT = e2;
+                                }else{
+                                        report_error("",null);
                                 }
                         }
                 :}
@@ -2699,6 +2709,8 @@ contADD_C       ::=     ID D_DOT ASIG_ID:e1 contADD_C1:e2
                                         ((componente)e2).setAli(((token)e1).getLexeme());
                                         //System.out.println(((componente)e2).toString());
                                         RESULT = e2;
+                                }else{
+                                        report_error("",null);
                                 }
                         }
                 :}
@@ -2710,6 +2722,8 @@ contADD_C       ::=     ID D_DOT ASIG_ID:e1 contADD_C1:e2
                                         ((componente)e2).setRequerido(((token)e1).getLexeme());
                                         //System.out.println(((componente)e2).toString());
                                         RESULT = e2;
+                                }else{
+                                        report_error("",null);
                                 }
                         }
                 :}
@@ -2721,6 +2735,8 @@ contADD_C       ::=     ID D_DOT ASIG_ID:e1 contADD_C1:e2
                                         ((componente)e2).setOpciones(((token)e1).getLexeme());
                                         //System.out.println(((componente)e2).toString());
                                         RESULT = e2;
+                                }else{
+                                        report_error("",null);
                                 }
                         }
                 :}
@@ -2732,6 +2748,8 @@ contADD_C       ::=     ID D_DOT ASIG_ID:e1 contADD_C1:e2
                                         ((componente)e2).setUrl(((token)e1).getLexeme());
                                         //System.out.println(((componente)e2).toString());
                                         RESULT = e2;
+                                }else{
+                                        report_error("",null);
                                 }
                         }
                 :}
@@ -2743,6 +2761,8 @@ contADD_C       ::=     ID D_DOT ASIG_ID:e1 contADD_C1:e2
                                         ((componente)e2).setColumnas(((token)e1).getLexeme());
                                         //System.out.println(((componente)e2).toString());
                                         RESULT = e2;
+                                }else{
+                                        report_error("",null);
                                 }
                         }
                 :}
@@ -2754,6 +2774,8 @@ contADD_C       ::=     ID D_DOT ASIG_ID:e1 contADD_C1:e2
                                         ((componente)e2).setFilas(((token)e1).getLexeme());
                                         //System.out.println(((componente)e2).toString());
                                         RESULT = e2;
+                                }else{
+                                        report_error("",null);
                                 }
                         }
                 :}
@@ -2773,9 +2795,6 @@ contADD_C1      ::=     COM contADD_C:e1
                         RESULT = new componente();
                 :}
                 |       error
-                {:
-                        //System.out.println("Aqui lanzo en error");
-                :}
                 ;
 
 contADD_C_1     ::=     CENT:e1
@@ -2844,51 +2863,255 @@ contADD_C2      ::=     YES:e1
                 ;
 
 //PRODUCCIONES PARA MODIFICAR COMPONENTE
-paramsMO_C      ::=     L_A contMO_C L_C paramsMO_C2
+paramsMO_C      ::=     L_A contMO_C:e1 L_C paramsMO_C2
+                {:
+                        if(e1!=null){
+                                modComp.add((componente)e1);
+                        }
+                :}
                 |       error
                 ;
-paramsMO_C2     ::=      paramsMO_C
+paramsMO_C2     ::=     COM paramsMO_C
                 |
-                ;
-
-contMO_C       ::=     ID D_DOT ASIG_ID:e1 contMO_C1
-                |       NAME_CAMP D_DOT ASIGNACION:e1 contMO_C1
-                |       FORM D_DOT ASIG_ID:e1 contMO_C1
-                |       CLASS D_DOT contMO_C_2 contMO_C1
-                |       IND D_DOT ASIGNACION:e1 contMO_C1
-                |       TEXT_VIEW D_DOT var_ASIGNACION:e1 contMO_C1
-                |       ALI D_DOT contMO_C_1 contMO_C1
-                |       REQUE D_DOT contMO_C2 contMO_C1
-                |       OPTION D_DOT ASIGNACION:e1 contMO_C1
-                |       URL D_DOT var_ASIGNACION:e1 contMO_C1
-                |       COLM D_DOT ASIGNACION:e1 contMO_C1
-                |       FILAS D_DOT ASIGNACION:e1 contMO_C1
                 |       error
                 ;
 
-contMO_C_1     ::=     CENT
-                |       IZQ
-                |       DER
-                |       JUST
+contMO_C       ::=      ID D_DOT ASIG_ID:e1 contMO_C1:e2
+                {:      
+                        if(e2!=null){
+                                //System.out.println("Argrego info y retorno id");
+                                if(((componente)e2).getId() == null)
+                                {
+                                        ((componente)e2).setId(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }else{
+                                        report_error("",null);
+                                }
+                                
+                        }
+                :}
+                |       NAME_CAMP D_DOT ASIGNACION:e1 contMO_C1:e2
+                {:
+                        if(e2!=null){
+                                //System.out.println("Argrego info y retorno nombre");
+                                if(((componente)e2).getNombre() == null){
+                                        ((componente)e2).setNombre(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }else{
+                                        report_error("",null);
+                                }
+                        }
+                :}
+                |       FORM D_DOT ASIG_ID:e1 contMO_C1:e2
+                {:
+                        if(e2!=null){
+                                //System.out.println("Argrego info y retorno formulario");
+                                if(((componente)e2).getForm() == null){
+                                        ((componente)e2).setForm(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }else{
+                                        report_error("",null);
+                                }
+                        }
+                :}
+                |       CLASS D_DOT contMO_C_2:e1 contMO_C1:e2
+                {:
+                        if(e2!=null && e1!= null){
+                                //System.out.println("Argrego info y retorno clase");
+                                if(((componente)e2).getClase() == null){
+                                        ((componente)e2).setClase(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }else{
+                                        report_error("",null);
+                                }
+                        }
+                :}
+                |       IND D_DOT ASIGNACION:e1 contMO_C1:e2
+                {:
+                        if(e2!=null){
+                                //System.out.println("Argrego info y retorno formulario");
+                                if(((componente)e2).getIndice() == null){
+                                        ((componente)e2).setIndice(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }else{
+                                        report_error("",null);
+                                }
+                        }
+                :}
+                |       TEXT_VIEW D_DOT var_ASIGNACION:e1 contMO_C1:e2
+                {:
+                        if(e2!=null && e1!= null){
+                                //System.out.println("Argrego info y retorno texto visible");
+                                if(((componente)e2).getTexto() == null){
+                                        ((componente)e2).setTexto(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }else{
+                                        report_error("",null);
+                                }
+                        }
+                :}
+                |       ALI D_DOT contMO_C_1:e1 contMO_C1:e2
+                {:
+                        if(e2!=null && e1!=null){
+                                //System.out.println("Argrego info y retorno alineacion");
+                                if(((componente)e2).getAli() == null){
+                                        ((componente)e2).setAli(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }else{
+                                        report_error("",null);
+                                }
+                        }
+                :}
+                |       REQUE D_DOT contMO_C2:e1 contMO_C1:e2
+                {:
+                        if(e2!=null && e1!=null){
+                                //System.out.println("Argrego info y retorno requerido");
+                                if(((componente)e2).getRequerido() == null){
+                                        ((componente)e2).setRequerido(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }else{
+                                        report_error("",null);
+                                }
+                        }
+                :}
+                |       OPTION D_DOT ASIGNACION:e1 contMO_C1:e2
+                {:
+                        if(e2!=null && e1!=null){
+                                //System.out.println("Argrego info y retorno opcion");
+                                if(((componente)e2).getOpciones() == null){
+                                        ((componente)e2).setOpciones(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }else{
+                                        report_error("",null);
+                                }
+                        }
+                :}
+                |       URL D_DOT var_ASIGNACION:e1 contMO_C1:e2
+                {:
+                        if(e2!=null && e1!=null){
+                                //System.out.println("Argrego info y retorno url");
+                                if(((componente)e2).getUrl() == null){
+                                        ((componente)e2).setUrl(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }else{
+                                        report_error("",null);
+                                }
+                        }
+                :}
+                |       COLM D_DOT ASIGNACION:e1 contMO_C1:e2
+                {:
+                        if(e2!=null){
+                                //System.out.println("Argrego info y retorno columnas");
+                                if(((componente)e2).getColumnas() == null){
+                                        ((componente)e2).setColumnas(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }else{
+                                        report_error("",null);
+                                }
+                        }
+                :}
+                |       FILAS D_DOT ASIGNACION:e1 contMO_C1:e2
+                {:
+                        if(e2!=null){
+                                //System.out.println("Argrego info y retorno filas");
+                                if(((componente)e2).getFilas() == null){
+                                        ((componente)e2).setFilas(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }else{
+                                        report_error("",null);
+                                }
+                        }
+                :}
                 |       error
                 ;
 
-contMO_C_2     ::=     CAMP_TEXT
-                |       TEXT_AREA
-                |       CHECK 
-                |       RADIO
-                |       FILE
-                |       IMG
-                |       COMBO
-                |       BOTON
-                |       error
-                ;
-
-contMO_C1      ::=     contMO_C
+contMO_C1      ::=      COM contMO_C:e1
+                {:
+                        if(e1!=null){
+                                RESULT=e1;
+                        }
+                :}
                 |
+                {:
+                        RESULT = new componente();
+                :}
+                |       error
                 ;
 
-contMO_C2       ::=     YES
-                |       NOT
+contMO_C_1     ::=     CENT:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       IZQ:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       DER:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       JUST:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       error
+                ;
+
+contMO_C_2     ::=     CAMP_TEXT:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       TEXT_AREA:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       CHECK:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       RADIO:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       FILE:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       IMG:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       COMBO:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       BOTON:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       error
+                ;
+
+
+contMO_C2       ::=     YES:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       NOT:e1
+                {:
+                        RESULT = e1;
+                :}
                 |       error
                 ;

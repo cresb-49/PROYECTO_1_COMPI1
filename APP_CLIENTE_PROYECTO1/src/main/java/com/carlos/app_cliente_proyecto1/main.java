@@ -60,29 +60,16 @@ public class main {
 
     private static void pruebas() {
 
-        String var = "<!ini_solicitud:\"AGREGAR_COMPONENTE\">\n"
-                + "	{\"PARAMETROS_COMPONENTE\":[\n"
+        String var = "<!ini_solicitud:\"MODIFICAR_FORMULARIO\">\n"
+                + "{\n"
+                + "    \"PARAMETROS_FORMULARIO\":[\n"
                 + "        {\n"
-                + "            \"ID\": \"$_grupo_paises\",\n"
-                + "            \"NOMBRE_CAMPO\": \"Pais\",\n"
-                + "            \"FORMULARIO\":\"$form1\",\n"
-                + "            \"CLASE\":\"COMBO\",\n"
-                + "            \"TEXTO_VISIBLE\":\"Pais de Origen: \",\n"
-                + "            \"ALINEACION\":\"CENTRAR\",\n"
-                + "            \"REQUERIDO\":\"SI\",\n"
-                + "            \"OPCIONES\":\"Guatemala|El salvador|Honduras|otro\"\n"
-                + "	    },\n"
-                + "        {\n"
-                + "            \"ID\": \"$_grupo_paises\",\n"
-                + "            \"NOMBRE_CAMPO\": \"Pais\",\n"
-                + "            \"FORMULARIO\":\"$form2\",\n"
-                + "            \"CLASE\":\"COMBO\",\n"
-                + "            \"TEXTO_VISIBLE\":\"Pais de Origen: \",\n"
-                + "            \"ALINEACION\":\"CENTRAR\",\n"
-                + "            \"REQUERIDO\":\"SI\",\n"
-                + "            \"OPCIONES\":\"Guatemala|El salvador|Honduras|otro\"\n"
-                + "	    }\n"
-                + "    ]}\n"
+                + "            \"ID\": \"$form1\",\n"
+                + "            \"TITULO\": \"Formulario para encuesta 1\",\n"
+                + "            \"NOMBRE\": \"formulario_encuesta_1\"\n"
+                + "        }\n"
+                + "    ]\n"
+                + "}\n"
                 + "<fin_solicitud!>";
 
         lexerIndigo lex = new lexerIndigo(new StringReader(var));
@@ -120,6 +107,10 @@ public class main {
             }
 
             for (componente comp : parser.getAddComp()) {
+                System.out.println(comp.toString());
+            }
+
+            for (componente comp : parser.getModComp()) {
                 System.out.println(comp.toString());
             }
 
