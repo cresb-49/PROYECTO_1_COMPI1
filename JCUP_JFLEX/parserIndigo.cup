@@ -81,6 +81,12 @@ parser code {:
                 System.out.println(info.toString());
                 System.out.println("reportfatal");
         }
+        
+        public void errorVerificacion(String mensage,Object info){
+                token tok = (token)info;
+                System.out.println(mensage+"Componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn());
+                errorsList.add(mensage+"Componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn());
+        }
         /*
         public void syntax_error(Symbol cur_token){
                 
@@ -2619,11 +2625,16 @@ contDEL_C2      ::=     COM ID D_DOT ASIG_ID:e1
                 ;
 //PRODUCCIONES PARA AGREGAR UN COMPONENTE A UN FORMULARIO
 
-paramsADD_C     ::=     L_A contADD_C:e1 L_C paramsADD_C2
+paramsADD_C     ::=     L_A:e2 contADD_C:e1 L_C paramsADD_C2
                 {:
                         if(e1!=null){
-                                System.out.println("Argrego el componente");
-                                addComp.add(((componente)e1));
+                                String tmp = ((componente)e1).validarComponete();
+                                if(tmp.isEmpty()){
+                                        addComp.add(((componente)e1));
+                                }else{
+                                        errorVerificacion(tmp,e2);
+                                }
+                                
                         }
                 :}
                 |       error

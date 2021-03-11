@@ -1902,6 +1902,12 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
                 System.out.println(info.toString());
                 System.out.println("reportfatal");
         }
+        
+        public void errorVerificacion(String mensage,Object info){
+                token tok = (token)info;
+                System.out.println(mensage+"Componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn());
+                errorsList.add(mensage+"Componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn());
+        }
         /*
         public void syntax_error(Symbol cur_token){
                 
@@ -9309,13 +9315,21 @@ class CUP$parserIndigo$actions {
           case 472: // paramsADD_C ::= L_A contADD_C L_C paramsADD_C2 
             {
               Object RESULT =null;
+		int e2left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)).right;
+		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)).value;
 		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).value;
 		
                         if(e1!=null){
-                                System.out.println("Argrego el componente");
-                                addComp.add(((componente)e1));
+                                String tmp = ((componente)e1).validarComponete();
+                                if(tmp.isEmpty()){
+                                        addComp.add(((componente)e1));
+                                }else{
+                                        errorVerificacion(tmp,e2);
+                                }
+                                
                         }
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("paramsADD_C",21, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);

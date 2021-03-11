@@ -134,7 +134,7 @@
             "FORMULARIO":"$form1",
             "CLASE":"COMBO",
             "TEXTO_VISIBLE":"Pais de Origen: ",
-            "ALINEACION":"CENTRO",
+            "ALINEACION":"CENTRAR",
             "REQUERIDO":"SI",
             "OPCIONES":"Guatemala|El salvador|Honduras|otro"
 	    },
@@ -144,7 +144,7 @@
             "FORMULARIO":"$form1",
             "CLASE":"COMBO",
             "TEXTO_VISIBLE":"Pais de Origen: ",
-            "ALINEACION":"CENTRO",
+            "ALINEACION":"CENTRAR",
             "REQUERIDO":"SI",
             "OPCIONES":"Guatemala|El salvador|Honduras|otro"
 	    }
