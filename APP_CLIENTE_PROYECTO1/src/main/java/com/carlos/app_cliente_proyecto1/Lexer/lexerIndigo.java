@@ -1150,7 +1150,7 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
                         tmp_symbl = new Symbol(CONSULT_DATA, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
-                    case "CONSULTA":
+                    case "CONSULTAS":
                         tmp_symbl = new Symbol(CONSULT, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;

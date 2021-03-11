@@ -143,7 +143,7 @@ non terminal inicio,contenido,type_s,type_s3,contenido1,cont_CR_U,cont_CR_U1,con
                 paramsADD_C2,contADD_C,contADD_C1,contADD_C_1,contADD_C_2,contADD_C2,paramsMO_C2,contMO_C,
                 contMO_C1,contMO_C2,contMO_C_1,contMO_C_2,var_ASIGNACION,
                 contRes,tipoR,paramsERL,continuacion,paramsERS,paramsMJS,contMJ,paramsERL2,
-                paramsERS2,paramsMJS2,inicio2;
+                paramsERS2,paramsMJS2,inicio2,paramsCONSULT_DATA,contCONSULT_DATA,contCONSULT_DATA1,paramsCONSULT_DATA2;
 
 start with inicio;
 
@@ -188,7 +188,8 @@ type_s ::=      CR_U MA_Q L_A CREDEN_USER D_DOT C_A parametros C_C L_C ME_Q FS A
         |       MO_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsMO_F C_C L_C ME_Q FS ADM MA_Q contenido1
         |       ADD_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsADD_C C_C L_C ME_Q FS ADM MA_Q contenido1
         |       DEL_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsDEL_C C_C L_C ME_Q FS ADM MA_Q contenido1
-        |       MO_C MA_Q L_C PARAMS_COMP D_DOT C_A paramsMO_C C_C L_C ME_Q FS ADM MA_Q contenido1
+        |       MO_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsMO_C C_C L_C ME_Q FS ADM MA_Q contenido1
+        |       CONSULT_DATA MA_Q L_A CONSULT D_DOT C_A paramsCONSULT_DATA C_C L_C ME_Q FS ADM MA_Q contenido1
         |       error
         ;
 
@@ -201,7 +202,8 @@ type_s2 ::=     CR_U MA_Q L_A CREDEN_USER D_DOT C_A parametros C_C L_C ME_Q FS A
         |       MO_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsMO_F C_C L_C ME_Q FS ADM MA_Q 
         |       ADD_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsADD_C C_C L_C ME_Q FS ADM MA_Q 
         |       DEL_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsDEL_C C_C L_C ME_Q FS ADM MA_Q 
-        |       MO_C MA_Q L_C PARAMS_COMP D_DOT C_A paramsMO_C C_C L_C ME_Q FS ADM MA_Q 
+        |       MO_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsMO_C C_C L_C ME_Q FS ADM MA_Q
+        |       CONSULT_DATA MA_Q L_A CONSULT D_DOT C_A paramsCONSULT_DATA C_C L_C ME_Q FS ADM MA_Q
         |       error
         ;
 
@@ -223,6 +225,24 @@ var_ASIGNACION  ::=     ASIGNACION:e1
                 :}
                 |       error
                 ;
+//PRODUCCIONES PARA LA CONSULTA DE DATOS
+paramsCONSULT_DATA      ::=     L_A contCONSULT_DATA L_C paramsCONSULT_DATA2
+                        |       error
+                        ;
+
+paramsCONSULT_DATA2     ::=     COM paramsCONSULT_DATA
+                        |
+                        |       error
+                        ;
+
+contCONSULT_DATA        ::=     NUM_CONSULT D_DOT var_ASIGNACION contCONSULT_DATA1       
+                        |       error
+                        ;
+
+contCONSULT_DATA1       ::=     COM contCONSULT_DATA
+                        |
+                        |       error
+                        ;
 //PRODUCCIONES PARA LOGEAR UN USUARIO
 
 paramsLOG_U     ::=      L_A contLOG_U:e1 L_C
@@ -3034,7 +3054,7 @@ contMO_C       ::=      ID D_DOT ASIG_ID:e1 contMO_C1:e2
                                 }
                         }
                 :}
-                |       OPTION D_DOT ASIGNACION:e1 contMO_C1:e2
+                |       OPTION D_DOT var_ASIGNACION:e1 contMO_C1:e2
                 {:
                         if(e2!=null && e1!=null){
                                 //System.out.println("Argrego info y retorno opcion");

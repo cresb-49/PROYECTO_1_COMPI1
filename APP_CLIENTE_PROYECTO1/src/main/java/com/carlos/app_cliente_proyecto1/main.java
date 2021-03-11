@@ -60,14 +60,17 @@ public class main {
 
     private static void pruebas() {
 
-        String var = "<!ini_respuestas>\n"
-                + "<!ini_respuesta:\"ERRORES_SINTACTICOS\">\n"
-                + "{\"DESCRIPCION\":[\n"
-                + "{\n"
-                + " \"MENSAJE\": \"Parametro inesperado: |-| Linea: 5, Columna: 25\"}\n"
-                + "]}\n"
-                + "<fin_respuesta!>\n"
-                + "<!fin_respuestas>";
+        String var = "<!ini_solicitud:\"MODIFICAR_COMPONENTE\">\n"
+                + "	{\"PARAMETROS_COMPONENTE\":[{\n"
+                + "		\"ID\": \"$_grupo_paises\",\n"
+                + "		\"FORMULARIO\": \"$form1\",\n"
+                + "		\"CLASE\": \"CHECKBOX\",\n"
+                + "		\"INDICE\": \"1\",\n"
+                + "		\"ALINEACION\": \"DERECHA\",\n"
+                + "		\"OPCIONES\":\"Guatemala|El Salvador|Honduras|OTRO\"\n"
+                + "	}]\n"
+                + "	}\n"
+                + "<fin_solicitud!>";
 
         lexerIndigo lex = new lexerIndigo(new StringReader(var));
         parserIndigo parser = new parserIndigo(lex);
