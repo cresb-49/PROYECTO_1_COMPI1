@@ -181,7 +181,7 @@ asigId= [\"](\$|\_|\-)([0-9]|[a-zA-Z]|[$\-_])+[\"]
         }
     {text}
         {   
-            //System.out.println("Texto encontrado:" + text);
+            //System.out.println("Texto encontrado:" + yytext());
             String text = getInerText.getAsignacion(yytext());
             int espacios = 0;
             InerLex.yyreset(new StringReader(text));
@@ -323,7 +323,7 @@ asigId= [\"](\$|\_|\-)([0-9]|[a-zA-Z]|[$\-_])+[\"]
                         tmp_symbl = new Symbol(REQUE, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
-                    case "OPCIONES​":
+                    case "OPCIONES":
                         tmp_symbl = new Symbol(OPTION, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;

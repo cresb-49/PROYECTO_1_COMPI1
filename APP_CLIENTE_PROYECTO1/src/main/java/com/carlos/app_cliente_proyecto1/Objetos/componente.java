@@ -6,6 +6,7 @@ public class componente {
     private String form;
     private String clase;
     private String indice;
+    private String texto;
     private String ali;
     private String requerido;
     private String opciones;
@@ -16,12 +17,13 @@ public class componente {
     public componente() {
     }
 
-    public componente(String id, String nombre, String form, String clase, String indice, String ali, String requerido, String opciones, String filas, String columnas, String url) {
+    public componente(String id, String nombre, String form, String clase, String indice, String texto, String ali, String requerido, String opciones, String filas, String columnas, String url) {
         this.id = id;
         this.nombre = nombre;
         this.form = form;
         this.clase = clase;
         this.indice = indice;
+        this.texto = texto;
         this.ali = ali;
         this.requerido = requerido;
         this.opciones = opciones;
@@ -70,6 +72,14 @@ public class componente {
         this.indice = indice;
     }
 
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
+    
     public String getAli() {
         return ali;
     }

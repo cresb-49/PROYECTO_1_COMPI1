@@ -2619,53 +2619,227 @@ contDEL_C2      ::=     COM ID D_DOT ASIG_ID:e1
                 ;
 //PRODUCCIONES PARA AGREGAR UN COMPONENTE A UN FORMULARIO
 
-paramsADD_C     ::=     L_A contADD_C L_C paramsADD_C2
+paramsADD_C     ::=     L_A contADD_C:e1 L_C paramsADD_C2
+                {:
+                        if(e1!=null){
+                                System.out.println("Argrego el componente");
+                                addComp.add(((componente)e1));
+                        }
+                :}
                 |       error
                 ;
 
-paramsADD_C2    ::=     paramsADD_C
+paramsADD_C2    ::=     COM paramsADD_C
                 |
+                |       error
                 ;
 //--------------------------------------------------------
-contADD_C       ::=     ID D_DOT ASIG_ID:e1 contADD_C1
-                |       NAME_CAMP D_DOT ASIGNACION:e1 contADD_C1
-                |       FORM D_DOT ASIG_ID:e1 contADD_C1
-                |       CLASS D_DOT contADD_C_2 contADD_C1
-                |       IND D_DOT ASIGNACION:e1 contADD_C1
-                |       TEXT_VIEW D_DOT var_ASIGNACION:e1 contADD_C1
-                |       ALI D_DOT contADD_C_1 contADD_C1
-                |       REQUE D_DOT contADD_C2 contADD_C1
-                |       OPTION D_DOT ASIGNACION:e1 contADD_C1
-                |       URL D_DOT var_ASIGNACION:e1 contADD_C1
-                |       COLM D_DOT ASIGNACION:e1 contADD_C1
-                |       FILAS D_DOT ASIGNACION:e1 contADD_C1
-                |       error
+contADD_C       ::=     ID D_DOT ASIG_ID:e1 contADD_C1:e2
+                {:      
+                        if(e2!=null){
+                                //System.out.println("Argrego info y retorno id");
+                                if(((componente)e2).getId() == null)
+                                {
+                                        ((componente)e2).setId(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }
+                                
+                        }
+                :}
+                |       NAME_CAMP D_DOT ASIGNACION:e1 contADD_C1:e2
+                {:
+                        if(e2!=null){
+                                //System.out.println("Argrego info y retorno nombre");
+                                if(((componente)e2).getNombre() == null){
+                                        ((componente)e2).setNombre(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }
+                        }
+                :}
+                |       FORM D_DOT ASIG_ID:e1 contADD_C1:e2
+                {:
+                        if(e2!=null){
+                                //System.out.println("Argrego info y retorno formulario");
+                                if(((componente)e2).getForm() == null){
+                                        ((componente)e2).setForm(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }
+                        }
+                :}
+                |       CLASS D_DOT contADD_C_2:e1 contADD_C1:e2
+                {:
+                        if(e2!=null && e1!= null){
+                                //System.out.println("Argrego info y retorno clase");
+                                if(((componente)e2).getClase() == null){
+                                        ((componente)e2).setClase(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }
+                        }
+                :}
+                |       TEXT_VIEW D_DOT var_ASIGNACION:e1 contADD_C1:e2
+                {:
+                        if(e2!=null && e1!= null){
+                                //System.out.println("Argrego info y retorno texto visible");
+                                if(((componente)e2).getTexto() == null){
+                                        ((componente)e2).setTexto(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }
+                        }
+                :}
+                |       ALI D_DOT contADD_C_1:e1 contADD_C1:e2\
+                {:
+                        if(e2!=null && e1!=null){
+                                //System.out.println("Argrego info y retorno alineacion");
+                                if(((componente)e2).getAli() == null){
+                                        ((componente)e2).setAli(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }
+                        }
+                :}
+                |       REQUE D_DOT contADD_C2:e1 contADD_C1:e2
+                {:
+                        if(e2!=null && e1!=null){
+                                //System.out.println("Argrego info y retorno requerido");
+                                if(((componente)e2).getRequerido() == null){
+                                        ((componente)e2).setRequerido(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }
+                        }
+                :}
+                |       OPTION D_DOT var_ASIGNACION:e1 contADD_C1:e2
+                {:
+                        if(e2!=null && e1!=null){
+                                //System.out.println("Argrego info y retorno opcion");
+                                if(((componente)e2).getOpciones() == null){
+                                        ((componente)e2).setOpciones(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }
+                        }
+                :}
+                |       URL D_DOT var_ASIGNACION:e1 contADD_C1:e2
+                {:
+                        if(e2!=null && e1!=null){
+                                //System.out.println("Argrego info y retorno url");
+                                if(((componente)e2).getUrl() == null){
+                                        ((componente)e2).setUrl(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }
+                        }
+                :}
+                |       COLM D_DOT ASIGNACION:e1 contADD_C1:e2
+                {:
+                        if(e2!=null){
+                                //System.out.println("Argrego info y retorno columnas");
+                                if(((componente)e2).getColumnas() == null){
+                                        ((componente)e2).setColumnas(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }
+                        }
+                :}
+                |       FILAS D_DOT ASIGNACION:e1 contADD_C1:e2
+                {:
+                        if(e2!=null){
+                                //System.out.println("Argrego info y retorno filas");
+                                if(((componente)e2).getFilas() == null){
+                                        ((componente)e2).setFilas(((token)e1).getLexeme());
+                                        //System.out.println(((componente)e2).toString());
+                                        RESULT = e2;
+                                }
+                        }
+                :}
                 ;
 
-contADD_C_1     ::=     CENT
-                |       IZQ
-                |       DER
-                |       JUST
-                |       error
-                ;
-
-contADD_C_2     ::=     CAMP_TEXT
-                |       TEXT_AREA
-                |       CHECK 
-                |       RADIO
-                |       FILE
-                |       IMG
-                |       COMBO
-                |       BOTON
-                |       error
-                ;
-
-contADD_C1      ::=     contADD_C
+contADD_C1      ::=     COM contADD_C:e1
+                {:
+                        if(e1!=null){
+                                //System.out.println("Retorno componente");
+                                //System.out.println(((componente)e1).toString());
+                                RESULT = e1;
+                        }
+                :}
                 |
+                {:
+                        //System.out.println("Genero componente");
+                        RESULT = new componente();
+                :}
+                |       error
+                {:
+                        //System.out.println("Aqui lanzo en error");
+                :}
                 ;
 
-contADD_C2      ::=     YES
-                |       NOT
+contADD_C_1     ::=     CENT:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       IZQ:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       DER:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       JUST:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       error
+                ;
+
+contADD_C_2     ::=     CAMP_TEXT:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       TEXT_AREA:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       CHECK:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       RADIO:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       FILE:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       IMG:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       COMBO:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       BOTON:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       error
+                ;
+
+contADD_C2      ::=     YES:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       NOT:e1
+                {:
+                        RESULT = e1;
+                :}
                 |       error
                 ;
 

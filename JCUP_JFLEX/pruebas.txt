@@ -125,3 +125,28 @@
 	}]
 	}
 <fin_solicitud!>
+
+<!ini_solicitud:"AGREGAR_COMPONENTE">
+	{"PARAMETROS_COMPONENTE":[
+        {
+            "ID": "$_grupo_paises",
+            "NOMBRE_CAMPO": "Pais",
+            "FORMULARIO":"$form1",
+            "CLASE":"COMBO",
+            "TEXTO_VISIBLE":"Pais de Origen: ",
+            "ALINEACION":"CENTRO",
+            "REQUERIDO":"SI",
+            "OPCIONES":"Guatemala|El salvador|Honduras|otro"
+	    },
+        {
+            "ID": "$_grupo_paises",
+            "NOMBRE_CAMPO": "Pais",
+            "FORMULARIO":"$form1",
+            "CLASE":"COMBO",
+            "TEXTO_VISIBLE":"Pais de Origen: ",
+            "ALINEACION":"CENTRO",
+            "REQUERIDO":"SI",
+            "OPCIONES":"Guatemala|El salvador|Honduras|otro"
+	    }
+    ]}
+<fin_solicitud!>
