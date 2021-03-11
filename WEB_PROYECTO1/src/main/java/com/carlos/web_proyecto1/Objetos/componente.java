@@ -6,6 +6,7 @@ public class componente {
     private String form;
     private String clase;
     private String indice;
+    private String texto;
     private String ali;
     private String requerido;
     private String opciones;
@@ -16,12 +17,13 @@ public class componente {
     public componente() {
     }
 
-    public componente(String id, String nombre, String form, String clase, String indice, String ali, String requerido, String opciones, String filas, String columnas, String url) {
+    public componente(String id, String nombre, String form, String clase, String indice, String texto, String ali, String requerido, String opciones, String filas, String columnas, String url) {
         this.id = id;
         this.nombre = nombre;
         this.form = form;
         this.clase = clase;
         this.indice = indice;
+        this.texto = texto;
         this.ali = ali;
         this.requerido = requerido;
         this.opciones = opciones;
@@ -70,6 +72,14 @@ public class componente {
         this.indice = indice;
     }
 
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
+    
     public String getAli() {
         return ali;
     }
@@ -117,7 +127,76 @@ public class componente {
     public void setUrl(String url) {
         this.url = url;
     }
-
+    
+    public String validarComponete(){
+        String res="";
+        if(this.id==null){
+            res = res +"El componente no tiene id definido\n";
+        }
+        if(this.form==null){
+            res = res +"El componente no esta enlazado a un formulario\n";
+        }
+        if(this.texto==null){
+            res = res +"El componente no tiene texto visible asignado\n";
+        }
+        switch(this.clase){
+            case "CAMPO_TEXTO":
+                if(this.nombre==null){
+                    res = res +"El componente no tiene un nombre asignado\n";
+                }
+                break;
+            case "AREA_TEXTO":
+                if(this.nombre==null){
+                    res = res +"El componente no tiene un nombre asignado\n";
+                }
+                break;
+            case "CHECKBOX":
+                if(this.nombre==null){
+                    res = res +"El componente no tiene un nombre asignado\n";
+                }
+                if(this.opciones== null){
+                    res = res +"El componente no tiene opciones para elegir\n";
+                }
+                break;
+            case "RADIO":
+                if(this.nombre==null){
+                    res = res +"El componente no tiene un nombre asignado\n";
+                }
+                if(this.opciones== null){
+                    res = res +"El componente no tiene opciones para elegir\n";
+                }
+                break;
+            case "FICHERO":
+                if(this.nombre==null){
+                    res = res +"El componente no tiene un nombre asignado\n";
+                }
+                break;
+            case "IMAGEN":
+                if(this.url==null){
+                    res = res +"El componente no tiene un url asignada\n";
+                }
+                break;
+            case "COMBO":
+                if(this.nombre==null){
+                    res = res +"El componente no tiene un nombre asignado\n";
+                }
+                if(this.opciones== null){
+                    res = res +"El componente no tiene opciones para elegir\n";
+                }
+                break;
+            case "BOTON":
+                if(this.nombre==null){
+                    res = res +"El componente no tiene un nombre asignado\n";
+                }
+                break;
+            default:
+                if(this.clase== null){
+                    res = res +"El componente no tiene una clase definida\n";
+                }
+        }
+        return res;
+    }
+    
     @Override
     public String toString() {
         return "componente{" + "id=" + id + ", nombre=" + nombre + ", form=" + form + ", clase=" + clase + ", indice=" + indice + ", ali=" + ali + ", requerido=" + requerido + ", opciones=" + opciones + ", filas=" + filas + ", columnas=" + columnas + ", url=" + url + '}';

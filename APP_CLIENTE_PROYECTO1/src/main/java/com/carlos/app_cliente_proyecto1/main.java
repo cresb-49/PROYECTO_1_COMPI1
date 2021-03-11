@@ -60,29 +60,14 @@ public class main {
 
     private static void pruebas() {
 
-        String var = "<!ini_solicitud:\"AGREGAR_COMPONENTE\">\n"
-                + "	{\"PARAMETROS_COMPONENTE\":[\n"
-                + "        {\n"
-                + "            \"ID\": \"$_grupo_paises3\",\n"
-                + "            \"NOMBRE_CAMPO\": \"Pais\",\n"
-                + "            \"FORMULARIO\":\"$form1\",\n"
-                + "            \"CLASE\":\"COMBO\",\n"
-                + "            \"TEXTO_VISIBLE\":\"Pais de Origen: \",\n"
-                + "            \"ALINEACION\":\"CENTRAR\",\n"
-                + "            \"REQUERIDO\":\"SI\",\n"
-                + "            \"OPCIONES\":\"Guatemala|El salvador|Honduras|otro\"\n"
-                + "	    },\n"
-                + "        {\n"
-                + "            \"ID\": \"$_grupo_paises2\",\n"
-                + "            \"NOMBRE_CAMPO\": \"Pais\",\n"
-                + "            \"FORMULARIO\":\"$form1\",\n"
-                + "            \"CLASE\":\"COMBO\",\n"
-                + "            \"TEXTO_VISIBLE\":\"Pais de Origen: \",\n"
-                + "            \"ALINEACION\":\"CENTRAR\",\n"
-                + "            \"REQUERIDO\":\"SI\"\n"
-                + "	    }\n"
-                + "    ]}\n"
-                + "<fin_solicitud!>";
+        String var = "<!ini_respuestas>\n"
+                + "<!ini_respuesta:\"ERRORES_SINTACTICOS\">\n"
+                + "{\"DESCRIPCION\"\":[\n"
+                + "{\n"
+                + " \"MENSAJE\": \"Parametro inesperado: |(| Linea: 5, Columna: 25\"}\n"
+                + "]}\n"
+                + "<fin_respuesta!>\n"
+                + "<!fin_respuestas>";
 
         lexerIndigo lex = new lexerIndigo(new StringReader(var));
         parserIndigo parser = new parserIndigo(lex);
@@ -124,6 +109,18 @@ public class main {
 
             for (componente comp : parser.getModComp()) {
                 System.out.println(comp.toString());
+            }
+
+            for (mensaje mnj : parser.getErrLex()) {
+                System.out.println(mnj.toString());
+            }
+
+            for (mensaje mnj : parser.getErrSin()) {
+                System.out.println(mnj.toString());
+            }
+
+            for (mensaje mnj : parser.getMsjUser()) {
+                System.out.println(mnj.toString());
             }
 
         } catch (Exception ex) {

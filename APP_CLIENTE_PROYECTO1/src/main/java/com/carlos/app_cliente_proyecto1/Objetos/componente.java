@@ -1,6 +1,7 @@
 package com.carlos.app_cliente_proyecto1.Objetos;
 
 public class componente {
+
     private String id;
     private String nombre;
     private String form;
@@ -79,7 +80,7 @@ public class componente {
     public void setTexto(String texto) {
         this.texto = texto;
     }
-    
+
     public String getAli() {
         return ali;
     }
@@ -127,55 +128,84 @@ public class componente {
     public void setUrl(String url) {
         this.url = url;
     }
-    
-    public String validarComponete(){
-        String res="";
-        if(this.id==null){
-            res = res +"El componente no tiene id definido\n";
+
+    public String validarComponete() {
+        String res = "";
+        if (this.id == null) {
+            res = res + "El componente no tiene id definido\n";
         }
-        if(this.form==null){
-            res = res +"El componente no esta enlazado a un formulario\n";
+        if (this.form == null) {
+            res = res + "El componente no esta enlazado a un formulario\n";
         }
-        if(this.texto==null){
-            res = res +"El componente no tiene texto visible asignado\n";
+        if (this.texto == null) {
+            res = res + "El componente no tiene texto visible asignado\n";
         }
-        switch(this.clase){
-            case "CAMPO_TEXTO":
-                break;
-            case "AREA_TEXTO":
-                break;
-            case "CHECKBOX":
-                if(this.opciones== null){
-                    res = res +"El componente no tiene opciones para elegir\n";
-                }
-                break;
-            case "RADIO":
-                if(this.opciones== null){
-                    res = res +"El componente no tiene opciones para elegir\n";
-                }
-                break;
-            case "FICHERO":
-                break;
-            case "IMAGEN":
-                break;
-            case "COMBO":
-                if(this.opciones== null){
-                    res = res +"El componente no tiene opciones para elegir\n";
-                }
-                break;
-            case "BOTON":
-                break;
-            default:
-                if(this.clase== null){
-                    res = res +"El componente no tiene una clase definida\n";
-                }
+        if (this.clase != null) {
+            switch (this.clase) {
+                case "CAMPO_TEXTO":
+                    if (this.nombre == null) {
+                        res = res + "El componente no tiene un nombre asignado\n";
+                    }
+                    break;
+                case "AREA_TEXTO":
+                    if (this.nombre == null) {
+                        res = res + "El componente no tiene un nombre asignado\n";
+                    }
+                    break;
+                case "CHECKBOX":
+                    if (this.nombre == null) {
+                        res = res + "El componente no tiene un nombre asignado\n";
+                    }
+                    if (this.opciones == null) {
+                        res = res + "El componente no tiene opciones para elegir\n";
+                    }
+                    break;
+                case "RADIO":
+                    if (this.nombre == null) {
+                        res = res + "El componente no tiene un nombre asignado\n";
+                    }
+                    if (this.opciones == null) {
+                        res = res + "El componente no tiene opciones para elegir\n";
+                    }
+                    break;
+                case "FICHERO":
+                    if (this.nombre == null) {
+                        res = res + "El componente no tiene un nombre asignado\n";
+                    }
+                    break;
+                case "IMAGEN":
+                    if (this.url == null) {
+                        res = res + "El componente no tiene un url asignada\n";
+                    }
+                    break;
+                case "COMBO":
+                    if (this.nombre == null) {
+                        res = res + "El componente no tiene un nombre asignado\n";
+                    }
+                    if (this.opciones == null) {
+                        res = res + "El componente no tiene opciones para elegir\n";
+                    }
+                    break;
+                case "BOTON":
+                    if (this.nombre == null) {
+                        res = res + "El componente no tiene un nombre asignado\n";
+                    }
+                    break;
+                default:
+                    if (this.clase == null) {
+                        res = res + "El componente no tiene una clase correcta definida\n";
+                    }
+            }
+        }else{
+            res = res + "El componente no tiene una clase definida\n";
         }
+
         return res;
     }
-    
+
     @Override
     public String toString() {
         return "componente{" + "id=" + id + ", nombre=" + nombre + ", form=" + form + ", clase=" + clase + ", indice=" + indice + ", ali=" + ali + ", requerido=" + requerido + ", opciones=" + opciones + ", filas=" + filas + ", columnas=" + columnas + ", url=" + url + '}';
     }
-    
+
 }

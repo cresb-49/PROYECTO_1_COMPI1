@@ -150,3 +150,12 @@
 	    }
     ]}
 <fin_solicitud!>
+
+<!ini_respuestas>
+<!ini_respuesta:"ERRORES_SINTACTICOS">
+{"DESCRIPCION":[
+{
+ "MENSAJE":"Parametro inesperado: [,] Linea: 5, Columna: 25"}
+]}
+<fin_respuesta!>
+<!fin_respuestas>

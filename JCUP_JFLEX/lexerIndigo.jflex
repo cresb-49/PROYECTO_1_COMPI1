@@ -46,9 +46,11 @@ reservadasConjunto = (ini_solicitud|fin_solicitud)
 
 //conjuntoOperaciones = ((<)\!ini_solicitudes>|<\!fin_solicitudes>)
 inicioConjunto = (<)([ \n\r\t])*(\!)([ \n\r\t])*([iI][nN][iI]_[sS][oO][lL][iI][cC][iI][tT][uU][dD][eE][sS])([ \n\r\t])*(>)
+inicioConjuntoRes = (<)([ \n\r\t])*(\!)([ \n\r\t])*([iI][nN][iI]_[rR][eE][sS][pP][uU][eE][sS][tT][aA][sS])([ \n\r\t])*(>)
 finConjunto = (<)([ \n\r\t])*(\!)([ \n\r\t])*([fF][iI][nN]_[sS][oO][lL][iI][cC][iI][tT][uU][dD][eE][sS])([ \n\r\t])*(>)
+finConjuntoRes = (<)([ \n\r\t])*(\!)([ \n\r\t])*([fF][iI][nN]_[rR][eE][sS][pP][uU][eE][sS][tT][aA][sS])([ \n\r\t])*(>)
 
-simbolos = [\[\[\{\}!@#$%&*()+=_<>?/.:;,\|]
+simbolos = [\]\[\{\}!@#$%&*()+=_<>?/.:;,\|]
 numeros = [0-9]
 letras = [a-zA-Z]
 espacio = [ ]
@@ -60,8 +62,9 @@ asigId= [\"](\$|\_|\-)([0-9]|[a-zA-Z]|[$\-_])+[\"]
 
 %{
     private void error(String lexeme) {
-        System.out.printf("Error lexico: %s ,linea %d,  columna %d. \n", lexeme, yyline + 1, yycolumn + 1);
-        errorsList.add(String.format("Error Lexico en el Texto: %s  linea %d, columna %d. Corrige e intenta de nuevo.", lexeme, yyline + 1, yycolumn + 1));
+
+        System.out.printf("Error lexico: %s ,linea %d,  columna %d. \n", ((lexeme.equals("\""))?"comilla":lexeme), yyline + 1, yycolumn + 1);
+        errorsList.add(String.format("Error Lexico en el Texto: %s  linea %d, columna %d. Corrige e intenta de nuevo.", ((lexeme.equals("\""))?"comilla":lexeme), yyline + 1, yycolumn + 1));
     }
     public List<String> getErrorsList() {
         return errorsList;
@@ -72,6 +75,13 @@ asigId= [\"](\$|\_|\-)([0-9]|[a-zA-Z]|[$\-_])+[\"]
 
 /*LEXIX RULES*/
 <YYINITIAL>{
+    {inicioConjuntoRes}
+        {
+            System.out.println("Palabra de conjunto de respuestas: "+yytext());
+            tmp_symbl = new Symbol (SCR,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
+        }
     {inicioConjunto}
         {
             System.out.println("Palabra de conjunto de operaciones: "+yytext());
@@ -83,6 +93,13 @@ asigId= [\"](\$|\_|\-)([0-9]|[a-zA-Z]|[$\-_])+[\"]
         {
             System.out.println("Palabra de conjunto de operaciones: "+yytext());
             tmp_symbl = new Symbol (FSS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
+        }
+    {finConjuntoRes}
+        {
+            System.out.println("Palabra de conjunto de respuestas: "+yytext());
+            tmp_symbl = new Symbol (FCR,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
             after_symbl = tmp_symbl;
             return tmp_symbl;
         }
@@ -159,6 +176,14 @@ asigId= [\"](\$|\_|\-)([0-9]|[a-zA-Z]|[$\-_])+[\"]
                     return tmp_symbl;
                 case "fin_solicitud":
                     tmp_symbl = new Symbol (FS,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "ini_respuesta":
+                    tmp_symbl = new Symbol(SR, after_symbl.sym, 0, new token(yytext(), yycolumn + 1, yyline + 1));
+                    after_symbl = tmp_symbl;
+                    return tmp_symbl;
+                case "fin_respuesta":
+                    tmp_symbl = new Symbol(FR, after_symbl.sym, 0, new token(yytext(), yycolumn + 1, yyline + 1));
                     after_symbl = tmp_symbl;
                     return tmp_symbl;
             }
@@ -395,6 +420,26 @@ asigId= [\"](\$|\_|\-)([0-9]|[a-zA-Z]|[$\-_])+[\"]
                         tmp_symbl = new Symbol(NOT, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
+                    case "DESCRIPCION":
+                        tmp_symbl = new Symbol(DES, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "MENSAJE":
+                        tmp_symbl = new Symbol(MJS, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "ERRORES_LEXICOS":
+                        tmp_symbl = new Symbol(ERL, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "ERRORES_SINTACTICOS":
+                        tmp_symbl = new Symbol(ERS, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "MENSAJE_USUARIO":
+                        tmp_symbl = new Symbol(MJSU, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
                     default:
                         if (espacios == 0) {
                             tmp_symbl = new Symbol(ASIGNACION, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
@@ -436,6 +481,16 @@ asigId= [\"](\$|\_|\-)([0-9]|[a-zA-Z]|[$\-_])+[\"]
                     case "fin_solicitud":
                         System.out.println("Palabra recerbada etiqueta: "+yytext());
                         tmp_symbl = new Symbol(FS, after_symbl.sym, 0, new token(yytext(), yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "ini_respuesta":
+                        System.out.println("Palabra recerbada etiqueta: "+yytext());
+                        tmp_symbl = new Symbol(SR, after_symbl.sym, 0, new token(yytext(), yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    case "fin_respuesta":
+                        System.out.println("Palabra recerbada etiqueta: "+yytext());
+                        tmp_symbl = new Symbol(FR, after_symbl.sym, 0, new token(yytext(), yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
                     default:

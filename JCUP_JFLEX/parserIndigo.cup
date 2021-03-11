@@ -61,7 +61,21 @@ parser code {:
         public List<componente> getModComp() {
             return modComp;
         }
-
+        //--LISTA DE ERRORES LEXICOS
+        List<mensaje> errLex = new ArrayList<>();
+        public List<mensaje> getErrLex() {
+            return errLex;
+        }
+        //--LISTA DE ERRORES SINTACTICOS
+        List<mensaje> errSin = new ArrayList<>();
+        public List<mensaje> getErrSin() {
+            return errSin;
+        }
+        //--LISTA DE MENSAJES A USUARIO
+        List<mensaje> msjUser = new ArrayList<>();
+        public List<mensaje> getMsjUser() {
+            return msjUser;
+        }
 
         public usuario getLogUser() {
                 return logUser;
@@ -73,8 +87,8 @@ parser code {:
         public void report_error(String message, Object info){
                 Symbol symbol = cur_token;
                 token tok = (token)symbol.value;
-                System.out.println("Parametro inesperado: ["+tok.getLexeme()+"] Linea: "+tok.getLine()+", Columna: "+tok.getColumn());
-                errorsList.add("Parametro inesperado: ["+tok.getLexeme()+"] Linea: "+tok.getLine()+", Columna: "+tok.getColumn());
+                System.out.println("Parametro inesperado: |"+((tok.getLexeme().equals("\""))?"comilla":tok.getLexeme())+"| Linea: "+tok.getLine()+", Columna: "+tok.getColumn());
+                errorsList.add("Parametro inesperado: |"+((tok.getLexeme().equals("\""))?"comilla":tok.getLexeme())+"| Linea: "+tok.getLine()+", Columna: "+tok.getColumn());
         }
 
         public void report_fatal_error(String message, Object info){
@@ -107,9 +121,9 @@ terminal ME_Q,MA_Q,ADM,SS,FS,SSS,FSS,COM,D_DOT,C_A,C_C,L_A,L_C,CR_U,USER,PASS,FE
         MO_U,DEL_U,LOG_U,NEW_F,DEL_F,MO_F,ADD_C,DEL_C,MO_C,DATE,
         USER_ANT,USER_NEW,PASS_NEW,FECHA_MOD,ID,TITLE,NAME,THEME,USER_CRE,NAME_CAMP,FORM,
         CLASS,IND,TEXT_VIEW,ALI,REQUE,OPTION,FILAS,COLM,URL,PARAMS_FORM,CAMP_TEXT,TEXT_AREA,CHECK,RADIO,FILE,IMG,COMBO,BOTON,CENT,IZQ,DER,JUST,
-        NOT,YES,ASIG_ID;
+        NOT,YES,ASIG_ID,DES,MJS,SR,FR,ERL,ERS,MJSU,SCR,FCR;
 
-non terminal inicio,contenido,type_s,contenido1,cont_CR_U,cont_CR_U1,cont_CR_U2,cont_CR_U3,cont_CR_U1_2,cont_CR_U1_3,cont_CR_U2_2,cont_CR_U2_3,
+non terminal inicio,contenido,type_s,type_s3,contenido1,cont_CR_U,cont_CR_U1,cont_CR_U2,cont_CR_U3,cont_CR_U1_2,cont_CR_U1_3,cont_CR_U2_2,cont_CR_U2_3,
                 cont_CR_U3_2,cont_CR_U3_3,parametros,parametros2,
                 paramsMO_U,paramsDEL_U,paramsNEW_F,paramsDEL_F,paramsMO_F,paramsADD_C,paramsDEL_C,paramsMO_C,
                 paramsMO_U2,contMO_U,contMO_U1,contMO_U2,contMO_U3,contMO_U4,contMO_U5,contMO_U6,contMO_U7,contMO_U8,
@@ -127,15 +141,36 @@ non terminal inicio,contenido,type_s,contenido1,cont_CR_U,cont_CR_U1,cont_CR_U2,
                 contMO_F6,contMO_F7,contMO_F8,contMO_F9,contMO_F10,contMO_F11,contMO_F12,contMO_F13,contMO_F14,
                 paramsDEL_C2,contDEL_C,contDEL_C1,contDEL_C2,type_s2,paramsLOG_U,contLOG_U,contLOG_U1,contLOG_U2,
                 paramsADD_C2,contADD_C,contADD_C1,contADD_C_1,contADD_C_2,contADD_C2,paramsMO_C2,contMO_C,
-                contMO_C1,contMO_C2,contMO_C_1,contMO_C_2,var_ASIGNACION;
+                contMO_C1,contMO_C2,contMO_C_1,contMO_C_2,var_ASIGNACION,
+                contRes,tipoR,paramsERL,continuacion,paramsERS,paramsMJS,contMJ,paramsERL2,
+                paramsERS2,paramsMJS2,inicio2;
 
 start with inicio;
 
 inicio  ::=     SSS contenido FSS
-        |       ME_Q ADM SS D_DOT type_s2
+        |       SCR contRes FCR
+        |       ME_Q ADM inicio2
         |       error
         ;
 
+inicio2 ::=     SS D_DOT type_s2
+        |       SR D_DOT type_s3
+        |       error
+        ;
+
+contRes ::=     ME_Q ADM SR D_DOT tipoR
+        |       error
+        ;
+
+tipoR   ::=     ERL MA_Q L_A DES D_DOT C_A paramsERL C_C L_C ME_Q FR ADM MA_Q continuacion
+        |       ERS MA_Q L_A DES D_DOT C_A paramsERS C_C L_C ME_Q FR ADM MA_Q continuacion
+        |       MJSU MA_Q L_A DES D_DOT C_A paramsMJS C_C L_C ME_Q FR ADM MA_Q continuacion
+        |       error
+        ;
+
+continuacion    ::=     contRes
+                |
+                ;
 
 contenido       ::=     ME_Q ADM SS D_DOT type_s
                 |       error
@@ -167,6 +202,12 @@ type_s2 ::=     CR_U MA_Q L_A CREDEN_USER D_DOT C_A parametros C_C L_C ME_Q FS A
         |       ADD_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsADD_C C_C L_C ME_Q FS ADM MA_Q 
         |       DEL_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsDEL_C C_C L_C ME_Q FS ADM MA_Q 
         |       MO_C MA_Q L_C PARAMS_COMP D_DOT C_A paramsMO_C C_C L_C ME_Q FS ADM MA_Q 
+        |       error
+        ;
+
+type_s3 ::=     ERL MA_Q L_A DES D_DOT C_A paramsERL C_C L_C ME_Q FR ADM MA_Q 
+        |       ERS MA_Q L_A DES D_DOT C_A paramsERS C_C L_C ME_Q FR ADM MA_Q
+        |       MJSU MA_Q L_A DES D_DOT C_A paramsMJS C_C L_C ME_Q FR ADM MA_Q
         |       error
         ;
 
@@ -3124,5 +3165,54 @@ contMO_C2       ::=     YES:e1
                 {:
                         RESULT = e1;
                 :}
+                |       error
+                ;
+//PRODUCCIONES PARA LA RECEPCION DE ERRORES LEXICOS
+paramsERL       ::=     L_A contMJ:e1 L_C paramsERL2
+                {:
+                        if(e1!=null){
+                                errLex.add(((mensaje)e1));
+                        }        
+                :}
+                |       error
+                ;
+
+paramsERL2      ::=     COM paramsERL
+                |
+                |       error
+                ;
+
+contMJ ::=     MJS D_DOT var_ASIGNACION:e1
+        {:
+                if(e1!=null){
+                        RESULT = new mensaje(((token)e1).getLexeme());
+                }
+        :}
+        |       error
+        ;
+//PRODUCCIONES PARA LA RECEPCION DE ERRORES SINTACTICOS
+paramsERS       ::=     L_A contMJ:e1 L_C paramsERS2
+                {:
+                        if(e1!=null){
+                                errSin.add(((mensaje)e1));
+                        }
+                :}
+                |       error
+                ;
+paramsERS2      ::=     COM paramsERS
+                |
+                |       error
+                ;
+//PROCUCCIONES PARA LA RECEPCION DE MENSAJES AL USUARIO
+paramsMJS       ::=     L_A contMJ:e1 L_C paramsMJS2
+                {:
+                        if(e1!=null){
+                                msjUser.add(((mensaje)e1));
+                        }
+                :}
+                |       error
+                ;
+paramsMJS2      ::=     COM paramsMJS
+                |
                 |       error
                 ;

@@ -56,13 +56,13 @@ public class loginUsuario extends HttpServlet {
             e.printStackTrace();
         }
 
-        if (user.getUser() == null || user.getPass() == null) {
+        if (user.getUser() == null || user.getPass() == null||!errLex.isEmpty()||!errSin.isEmpty()) {
             System.out.println("Usuario invalido");
             envioRespuesta(req, resp, user, errSin, errLex);
 
         } else {
             System.out.println("Se recupero el usuario");
-            envioMensaje(req, resp,"Solicitud Aceptada!!:)");
+            envioMensaje(req, resp, "Solicitud Aceptada!!:)");
         }
 
     }
@@ -77,7 +77,8 @@ public class loginUsuario extends HttpServlet {
         }
 
     }
-    private void envioMensaje(HttpServletRequest req, HttpServletResponse resp,String mensaje) throws ServletException, IOException {
+
+    private void envioMensaje(HttpServletRequest req, HttpServletResponse resp, String mensaje) throws ServletException, IOException {
         try {
             PrintWriter writer = resp.getWriter();
             writer.println(respuesta.escribirMensaje(mensaje));
