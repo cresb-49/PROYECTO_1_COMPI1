@@ -66,7 +66,7 @@ public class lexerInerText {
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
     "\40\0\1\1\1\2\1\0\4\2\1\0\64\2\1\0"+
-    "\1\2\1\0\1\2\1\0\35\2\u0182\0";
+    "\3\2\1\0\35\2\u0182\0";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[512];

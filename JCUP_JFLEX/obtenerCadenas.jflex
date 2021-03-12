@@ -28,7 +28,7 @@ import java.util.List;
 
 WhiteSpace = [ ]+
 //atributes = [a-zA-Z_]+
-simbolos = [\]\[\{\}!@#$%&*()+=_<>?/.:;,\|\-]
+simbolos = [\]\[\{\}!@#$%&*()+=_<>?/.:;,\|\-\^]
 numeros = [0-9]
 letras = [a-zA-Z]
 text  = ({simbolos}|{numeros}|{letras})+

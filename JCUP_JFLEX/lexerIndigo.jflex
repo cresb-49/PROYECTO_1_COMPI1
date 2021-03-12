@@ -50,13 +50,13 @@ inicioConjuntoRes = (<)([ \n\r\t])*(\!)([ \n\r\t])*([iI][nN][iI]_[rR][eE][sS][pP
 finConjunto = (<)([ \n\r\t])*(\!)([ \n\r\t])*([fF][iI][nN]_[sS][oO][lL][iI][cC][iI][tT][uU][dD][eE][sS])([ \n\r\t])*(>)
 finConjuntoRes = (<)([ \n\r\t])*(\!)([ \n\r\t])*([fF][iI][nN]_[rR][eE][sS][pP][uU][eE][sS][tT][aA][sS])([ \n\r\t])*(>)
 
-simbolos = [\]\[\{\}!@#$%&*()+=_<>?/.:;,\|\-]
+simbolos = [\]\[\{\}!@#$%&*()+=_<>?/.:;,\|\-\^]
 numeros = [0-9]
 letras = [a-zA-Z]
 espacio = [ ]
 text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})*[\"]
 fecha = [\"]([1-9][0-9][0-9][0-9])(\-)([0][1-9]|[1][0-2])(\-)([0][1-9]|[1-2][0-9]|[3][0-1])[\"]
-asigId= [\"](\$|\_|\-)([0-9]|[a-zA-Z]|[$\-_])+[\"]
+asigId= [\"](\$|\_|\-)([0-9]|[a-zA-Z]|[$\-_])*[\"]
 numConsult = (CONSULTA)(\-)([0-9]+)
 
 
@@ -418,7 +418,7 @@ numConsult = (CONSULTA)(\-)([0-9]+)
                         tmp_symbl = new Symbol(BOTON, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
-                    case "CENTRAR":
+                    case "CENTRO":
                         tmp_symbl = new Symbol(CENT, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
