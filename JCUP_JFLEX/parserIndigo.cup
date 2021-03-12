@@ -14,7 +14,7 @@ parser code {:
         private List<String> errorsList = new ArrayList();
         private usuario logUser = new usuario();
 
-
+        /*
         //LISTAS DE OBJETOS RECUPERADOS DE LAS PRODUCCIONES
         //------LISTA ELIMINACION DE USUARIO
         List<usuario> delUser = new ArrayList<>();
@@ -61,6 +61,7 @@ parser code {:
         public List<componente> getModComp() {
             return modComp;
         }
+        */
         //--LISTA DE ERRORES LEXICOS
         List<mensaje> errLex = new ArrayList<>();
         public List<mensaje> getErrLex() {
@@ -75,6 +76,12 @@ parser code {:
         List<mensaje> msjUser = new ArrayList<>();
         public List<mensaje> getMsjUser() {
             return msjUser;
+        }
+        
+        //LISTA DE INSTRUCCIONES A REALIZAR
+        List<Object> instrucciones = new ArrayList<>();
+        public List<Object> getInstrucciones() {
+            return instrucciones;
         }
 
         public usuario getLogUser() {
@@ -286,7 +293,9 @@ contLOG_U2      ::=     COM USER D_DOT ASIGNACION:e1
 parametros      ::=     L_A cont_CR_U:e1 L_C parametros2
                 {:
                         if(e1!=null){
-                                createUser.add((usuario)e1);
+                                ((usuario)e1).setAccion("CREAR_USUARIO");
+                                instrucciones.add(e1);
+                                //createUser.add((usuario)e1);
                         }
                 :}
                 |       error
@@ -425,7 +434,9 @@ cont_CR_U3_3    ::=     COM USER D_DOT ASIGNACION:e1
 paramsMO_U      ::=     L_A contMO_U:e1 L_C paramsMO_U2
                 {:
                         if(e1!=null){
-                                modUser.add((userNew)e1);
+                                ((userNew)e1).setAccion("MODIFICAR_USUARIO");
+                                instrucciones.add(e1);
+                                //modUser.add((userNew)e1);
                         }
                 :}
                 |       error
@@ -698,7 +709,9 @@ contMO_U15      ::=     COM FECHA_MOD D_DOT DATE:e1
 paramsDEL_U     ::=     L_A contDEL_U:e1 L_C paramsDEL_U2
                 {:
                         if(e1!=null){
-                                delUser.add(new usuario(((contenedorResultado)e1).getAsignacion(), "", ""));
+                                ((usuario)e1).setAccion("ELIMINAR_USUARIO");
+                                instrucciones.add(e1);
+                                //delUser.add(new usuario(((contenedorResultado)e1).getAsignacion(), "", ""));
                         }
                 :}
                 |       error
@@ -710,7 +723,7 @@ paramsDEL_U2    ::=     COM paramsDEL_U
 
 contDEL_U       ::=     USER D_DOT ASIGNACION:e1
                 {:
-                        RESULT = new contenedorResultado("USER",((token)e1).getLexeme());
+                        RESULT = new usuario(((token)e1).getLexeme(),"","");
                 :}
                 |       error
                 ;
@@ -718,7 +731,9 @@ contDEL_U       ::=     USER D_DOT ASIGNACION:e1
 paramsNEW_F     ::=     L_A contNEW_F:e1 L_C paramsNEW_F2
                 {:
                         if(e1!=null){
-                                newForms.add((formulario)e1);
+                                ((formulario)e1).setAccion("NUEVO_FORMULARIO");
+                                instrucciones.add(e1);
+                                //newForms.add((formulario)e1);
                         }
                 :}
                 |       error
@@ -2326,7 +2341,9 @@ contNEW_F62     ::=     COM ID D_DOT ASIG_ID:e1
 paramsDEL_F     ::=     L_A contDEL_F:e1 L_C paramsDEL_F2
                 {:
                         if(e1!=null){
-                                delForm.add((formulario)e1);
+                                ((formulario)e1).setAccion("ELIMINAR_FORMULARIO");
+                                instrucciones.add(e1);
+                                //delForm.add((formulario)e1);
                         }
                 :}
                 |       error
@@ -2349,7 +2366,9 @@ contDEL_F       ::=      ID D_DOT ASIG_ID:e1
 paramsMO_F      ::=     L_A contMO_F:e1 L_C paramsMO_F2
                 {:
                         if(e1!=null){
-                                modForm.add((formulario)e1);
+                                ((formulario)e1).setAccion("MODIFICAR_FORMULARIO");
+                                instrucciones.add(e1);
+                                //modForm.add((formulario)e1);
                         }
                 :}
                 |       error
@@ -2643,7 +2662,9 @@ contMO_F14      ::=     COM ID D_DOT ASIG_ID:e1
 paramsDEL_C     ::=     L_A contDEL_C:e1 L_C paramsDEL_C2
                 {:
                         if(e1!=null){
-                                delComp.add((componente)e1);
+                                ((componente)e1).setAccion("ELIMINAR_COMPONENTE");
+                                instrucciones.add(e1);
+                                //delComp.add((componente)e1);
                         }
                 :}
                 |       error
@@ -2691,7 +2712,9 @@ paramsADD_C     ::=     L_A:e2 contADD_C:e1 L_C paramsADD_C2
                         if(e1!=null){
                                 String tmp = ((componente)e1).validarComponete();
                                 if(tmp.isEmpty()){
-                                        addComp.add(((componente)e1));
+                                        ((componente)e1).setAccion("AGREGAR_COMPONENTE");
+                                        instrucciones.add(e1);
+                                        //addComp.add(((componente)e1));
                                 }else{
                                         errorVerificacion(tmp,e2);
                                 }
@@ -2938,7 +2961,9 @@ contADD_C2      ::=     YES:e1
 paramsMO_C      ::=     L_A contMO_C:e1 L_C paramsMO_C2
                 {:
                         if(e1!=null){
-                                modComp.add((componente)e1);
+                                ((componente)e1).setAccion("MODIFICAR_COMPONENTE");
+                                instrucciones.add(e1);
+                                //modComp.add((componente)e1);
                         }
                 :}
                 |       error

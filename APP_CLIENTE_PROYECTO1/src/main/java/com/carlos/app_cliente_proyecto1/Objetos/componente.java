@@ -14,6 +14,8 @@ public class componente {
     private String filas;
     private String columnas;
     private String url;
+    
+    private String accion;
 
     public componente() {
     }
@@ -129,6 +131,16 @@ public class componente {
         this.url = url;
     }
 
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.accion = accion;
+    }
+    
+    
+    
     public String validarComponete() {
         String res = "";
         if (this.id == null) {
@@ -205,7 +217,6 @@ public class componente {
 
     @Override
     public String toString() {
-        return "componente{" + "id=" + id + ", nombre=" + nombre + ", form=" + form + ", clase=" + clase + ", indice=" + indice + ", ali=" + ali + ", requerido=" + requerido + ", opciones=" + opciones + ", filas=" + filas + ", columnas=" + columnas + ", url=" + url + '}';
+        return "componente{" + "id=" + id + ", nombre=" + nombre + ", form=" + form + ", clase=" + clase + ", indice=" + indice + ", texto=" + texto + ", ali=" + ali + ", requerido=" + requerido + ", opciones=" + opciones + ", filas=" + filas + ", columnas=" + columnas + ", url=" + url + ", accion=" + accion + '}';
     }
-
 }

@@ -3,15 +3,15 @@
 // source: lexerIndigo.jflex
 
 //package de la clase
-package com.carlos.web_proyecto1.Lexer;
+package com.carlos.app_cliente_proyecto1.Lexer;
 //CODIGO DE IMPORTORTACIONES
-import com.carlos.web_proyecto1.Parser.parserIndigoSym;
-import com.carlos.web_proyecto1.Tokens.token;
-import static com.carlos.web_proyecto1.Parser.parserIndigoSym.*;
+import com.carlos.app_cliente_proyecto1.Parser.parserIndigoSym;
+import com.carlos.app_cliente_proyecto1.Tokens.token;
+import static com.carlos.app_cliente_proyecto1.Parser.parserIndigoSym.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.StringReader;
-import com.carlos.web_proyecto1.solucionCadenas.obtenerAsignacion;
+import com.carlos.app_cliente_proyecto1.solucionCadenas.obtenerAsignacion;
 import java_cup.runtime.Symbol;
 
 

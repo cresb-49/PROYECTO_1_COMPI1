@@ -7,7 +7,9 @@ public class formulario {
     private String tema;
     private String user;
     private String fecha;
-
+    
+    private String accion;
+    
     public formulario() {
     }
 
@@ -68,9 +70,16 @@ public class formulario {
         this.fecha = fecha;
     }
 
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.accion = accion;
+    }
+
     @Override
     public String toString() {
-        return "formulario{" + "id=" + id + ", titulo=" + titulo + ", nombre=" + nombre + ", tema=" + tema + ", user=" + user + ", fecha=" + fecha + '}';
+        return "formulario{" + "id=" + id + ", titulo=" + titulo + ", nombre=" + nombre + ", tema=" + tema + ", user=" + user + ", fecha=" + fecha + ", accion=" + accion + '}';
     }
-    
 }

@@ -1992,7 +1992,7 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
         private List<String> errorsList = new ArrayList();
         private usuario logUser = new usuario();
 
-
+        /*
         //LISTAS DE OBJETOS RECUPERADOS DE LAS PRODUCCIONES
         //------LISTA ELIMINACION DE USUARIO
         List<usuario> delUser = new ArrayList<>();
@@ -2039,6 +2039,7 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
         public List<componente> getModComp() {
             return modComp;
         }
+        */
         //--LISTA DE ERRORES LEXICOS
         List<mensaje> errLex = new ArrayList<>();
         public List<mensaje> getErrLex() {
@@ -2053,6 +2054,12 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
         List<mensaje> msjUser = new ArrayList<>();
         public List<mensaje> getMsjUser() {
             return msjUser;
+        }
+        
+        //LISTA DE INSTRUCCIONES A REALIZAR
+        List<Object> instrucciones = new ArrayList<>();
+        public List<Object> getInstrucciones() {
+            return instrucciones;
         }
 
         public usuario getLogUser() {
@@ -2797,7 +2804,9 @@ class CUP$parserIndigo$actions {
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).value;
 		
                         if(e1!=null){
-                                createUser.add((usuario)e1);
+                                ((usuario)e1).setAccion("CREAR_USUARIO");
+                                instrucciones.add(e1);
+                                //createUser.add((usuario)e1);
                         }
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("parametros",15, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
@@ -3225,7 +3234,9 @@ class CUP$parserIndigo$actions {
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).value;
 		
                         if(e1!=null){
-                                modUser.add((userNew)e1);
+                                ((userNew)e1).setAccion("MODIFICAR_USUARIO");
+                                instrucciones.add(e1);
+                                //modUser.add((userNew)e1);
                         }
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("paramsMO_U",17, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
@@ -4039,7 +4050,9 @@ class CUP$parserIndigo$actions {
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).value;
 		
                         if(e1!=null){
-                                delUser.add(new usuario(((contenedorResultado)e1).getAsignacion(), "", ""));
+                                ((usuario)e1).setAccion("ELIMINAR_USUARIO");
+                                instrucciones.add(e1);
+                                //delUser.add(new usuario(((contenedorResultado)e1).getAsignacion(), "", ""));
                         }
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("paramsDEL_U",18, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
@@ -4090,7 +4103,7 @@ class CUP$parserIndigo$actions {
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
-                        RESULT = new contenedorResultado("USER",((token)e1).getLexeme());
+                        RESULT = new usuario(((token)e1).getLexeme(),"","");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contDEL_U",41, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -4114,7 +4127,9 @@ class CUP$parserIndigo$actions {
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).value;
 		
                         if(e1!=null){
-                                newForms.add((formulario)e1);
+                                ((formulario)e1).setAccion("NUEVO_FORMULARIO");
+                                instrucciones.add(e1);
+                                //newForms.add((formulario)e1);
                         }
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("paramsNEW_F",19, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
@@ -8655,7 +8670,9 @@ class CUP$parserIndigo$actions {
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).value;
 		
                         if(e1!=null){
-                                delForm.add((formulario)e1);
+                                ((formulario)e1).setAccion("ELIMINAR_FORMULARIO");
+                                instrucciones.add(e1);
+                                //delForm.add((formulario)e1);
                         }
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("paramsDEL_F",20, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
@@ -8730,7 +8747,9 @@ class CUP$parserIndigo$actions {
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).value;
 		
                         if(e1!=null){
-                                modForm.add((formulario)e1);
+                                ((formulario)e1).setAccion("MODIFICAR_FORMULARIO");
+                                instrucciones.add(e1);
+                                //modForm.add((formulario)e1);
                         }
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("paramsMO_F",21, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
@@ -9601,7 +9620,9 @@ class CUP$parserIndigo$actions {
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).value;
 		
                         if(e1!=null){
-                                delComp.add((componente)e1);
+                                ((componente)e1).setAccion("ELIMINAR_COMPONENTE");
+                                instrucciones.add(e1);
+                                //delComp.add((componente)e1);
                         }
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("paramsDEL_C",23, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
@@ -9748,7 +9769,9 @@ class CUP$parserIndigo$actions {
                         if(e1!=null){
                                 String tmp = ((componente)e1).validarComponete();
                                 if(tmp.isEmpty()){
-                                        addComp.add(((componente)e1));
+                                        ((componente)e1).setAccion("AGREGAR_COMPONENTE");
+                                        instrucciones.add(e1);
+                                        //addComp.add(((componente)e1));
                                 }else{
                                         errorVerificacion(tmp,e2);
                                 }
@@ -10354,7 +10377,9 @@ class CUP$parserIndigo$actions {
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).value;
 		
                         if(e1!=null){
-                                modComp.add((componente)e1);
+                                ((componente)e1).setAccion("MODIFICAR_COMPONENTE");
+                                instrucciones.add(e1);
+                                //modComp.add((componente)e1);
                         }
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("paramsMO_C",24, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
