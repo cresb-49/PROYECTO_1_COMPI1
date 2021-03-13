@@ -14,7 +14,6 @@ parser code {:
         private List<String> errorsList = new ArrayList();
         private usuario logUser = new usuario();
 
-        /*
         //LISTAS DE OBJETOS RECUPERADOS DE LAS PRODUCCIONES
         //------LISTA ELIMINACION DE USUARIO
         List<usuario> delUser = new ArrayList<>();
@@ -61,7 +60,7 @@ parser code {:
         public List<componente> getModComp() {
             return modComp;
         }
-        */
+
         //--LISTA DE ERRORES LEXICOS
         List<mensaje> errLex = new ArrayList<>();
         public List<mensaje> getErrLex() {
@@ -77,7 +76,6 @@ parser code {:
         public List<mensaje> getMsjUser() {
             return msjUser;
         }
-        
         //LISTA DE INSTRUCCIONES A REALIZAR
         List<Object> instrucciones = new ArrayList<>();
         public List<Object> getInstrucciones() {
@@ -187,30 +185,174 @@ contenido1      ::=     contenido
                 |
                 ;
 
-type_s ::=      CR_U MA_Q L_A CREDEN_USER D_DOT C_A parametros C_C L_C ME_Q FS ADM MA_Q contenido1
-        |       MO_U MA_Q L_A CREDEN_USER D_DOT C_A paramsMO_U C_C L_C ME_Q FS ADM MA_Q contenido1
-        |       DEL_U MA_Q L_A CREDEN_USER D_DOT C_A paramsDEL_U C_C L_C ME_Q FS ADM MA_Q contenido1
-        |       NEW_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsNEW_F C_C L_C ME_Q FS ADM MA_Q contenido1
-        |       DEL_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsDEL_F C_C L_C ME_Q FS ADM MA_Q contenido1
-        |       MO_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsMO_F C_C L_C ME_Q FS ADM MA_Q contenido1
-        |       ADD_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsADD_C C_C L_C ME_Q FS ADM MA_Q contenido1
-        |       DEL_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsDEL_C C_C L_C ME_Q FS ADM MA_Q contenido1
-        |       MO_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsMO_C C_C L_C ME_Q FS ADM MA_Q contenido1
+type_s ::=      CR_U MA_Q L_A CREDEN_USER D_DOT C_A parametros:e1 C_C L_C ME_Q FS ADM MA_Q contenido1
+        {:
+                if(e1!=null){
+                    int tam = ((List<Object>)e1).size();
+                    for (int i = 0 ; i < tam; i++) {
+                        instrucciones.add(((List<Object>)e1).get(i));
+                    }
+                }
+        :}
+        |       MO_U MA_Q L_A CREDEN_USER D_DOT C_A paramsMO_U:e1 C_C L_C ME_Q FS ADM MA_Q contenido1
+        {:
+                if(e1!=null){
+                    int tam = ((List<Object>)e1).size();
+                    for (int i = 0; i <tam; i++) {
+                        instrucciones.add(((List<Object>)e1).get(i));
+                    }
+                }
+        :}
+        |       DEL_U MA_Q L_A CREDEN_USER D_DOT C_A paramsDEL_U:e1 C_C L_C ME_Q FS ADM MA_Q contenido1
+        {:
+                if(e1!=null){
+                    int tam = ((List<Object>)e1).size();
+                    for (int i = 0 ; i < tam; i++) {
+                        instrucciones.add(((List<Object>)e1).get(i));
+                    }
+                }
+        :}
+        |       NEW_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsNEW_F:e1 C_C L_C ME_Q FS ADM MA_Q contenido1
+        {:
+                if(e1!=null){
+                    int tam = ((List<Object>)e1).size();
+                    for (int i = 0 ; i < tam; i++) {
+                        instrucciones.add(((List<Object>)e1).get(i));
+                    }
+                }
+        :}
+        |       DEL_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsDEL_F:e1 C_C L_C ME_Q FS ADM MA_Q contenido1
+        {:
+                if(e1!=null){
+                    int tam = ((List<Object>)e1).size();
+                    for (int i = 0 ; i < tam; i++) {
+                        instrucciones.add(((List<Object>)e1).get(i));
+                    }
+                }
+        :}
+        |       MO_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsMO_F:e1 C_C L_C ME_Q FS ADM MA_Q contenido1
+        {:
+                if(e1!=null){
+                    int tam = ((List<Object>)e1).size();
+                    for (int i = 0 ; i < tam; i++) {
+                        instrucciones.add(((List<Object>)e1).get(i));
+                    }
+                }
+        :}
+        |       ADD_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsADD_C:e1 C_C L_C ME_Q FS ADM MA_Q contenido1
+        {:
+                if(e1!=null){
+                    int tam = ((List<Object>)e1).size();
+                    for (int i = 0 ; i < tam; i++) {
+                        instrucciones.add(((List<Object>)e1).get(i));
+                    }
+                }
+        :}
+        |       DEL_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsDEL_C:e1 C_C L_C ME_Q FS ADM MA_Q contenido1
+        {:
+                if(e1!=null){
+                    int tam = ((List<Object>)e1).size();
+                    for (int i = 0 ; i < tam; i++) {
+                        instrucciones.add(((List<Object>)e1).get(i));
+                    }
+                }
+        :}
+        |       MO_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsMO_C:e1 C_C L_C ME_Q FS ADM MA_Q contenido1
+        {:
+                if(e1!=null){
+                    int tam = ((List<Object>)e1).size();
+                    for (int i = 0 ; i < tam; i++) {
+                        instrucciones.add(((List<Object>)e1).get(i));
+                    }
+                }
+        :}
         |       CONSULT_DATA MA_Q L_A CONSULT D_DOT C_A paramsCONSULT_DATA C_C L_C ME_Q FS ADM MA_Q contenido1
         |       error
         ;
 
-type_s2 ::=     CR_U MA_Q L_A CREDEN_USER D_DOT C_A parametros C_C L_C ME_Q FS ADM MA_Q
+type_s2 ::=     CR_U MA_Q L_A CREDEN_USER D_DOT C_A parametros:e1 C_C L_C ME_Q FS ADM MA_Q
+        {:
+                if(e1!=null){
+                    int tam = ((List<Object>)e1).size();
+                    for (int i = 0 ; i < tam; i++) {
+                        instrucciones.add(((List<Object>)e1).get(i));
+                    }
+                }
+        :}
         |       LOG_U MA_Q L_A CREDEN_USER D_DOT C_A paramsLOG_U C_C L_C ME_Q FS ADM MA_Q
-        |       MO_U MA_Q L_A CREDEN_USER D_DOT C_A paramsMO_U C_C L_C ME_Q FS ADM MA_Q 
-        |       DEL_U MA_Q L_A CREDEN_USER D_DOT C_A paramsDEL_U C_C L_C ME_Q FS ADM MA_Q 
-        |       NEW_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsNEW_F C_C L_C ME_Q FS ADM MA_Q 
-        |       DEL_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsDEL_F C_C L_C ME_Q FS ADM MA_Q 
-        |       MO_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsMO_F C_C L_C ME_Q FS ADM MA_Q 
-        |       ADD_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsADD_C C_C L_C ME_Q FS ADM MA_Q 
-        |       DEL_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsDEL_C C_C L_C ME_Q FS ADM MA_Q 
-        |       MO_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsMO_C C_C L_C ME_Q FS ADM MA_Q
-        |       CONSULT_DATA MA_Q L_A CONSULT D_DOT C_A paramsCONSULT_DATA C_C L_C ME_Q FS ADM MA_Q
+        |       MO_U MA_Q L_A CREDEN_USER D_DOT C_A paramsMO_U:e1 C_C L_C ME_Q FS ADM MA_Q 
+        {:
+                if(e1!=null){
+                    int tam = ((List<Object>)e1).size();
+                    for (int i = 0 ; i < tam; i++) {
+                        instrucciones.add(((List<Object>)e1).get(i));
+                    }
+                }
+        :}
+        |       DEL_U MA_Q L_A CREDEN_USER D_DOT C_A paramsDEL_U:e1 C_C L_C ME_Q FS ADM MA_Q 
+        {:
+                if(e1!=null){
+                    int tam = ((List<Object>)e1).size();
+                    for (int i = 0 ; i < tam; i++) {
+                        instrucciones.add(((List<Object>)e1).get(i));
+                    }
+                }
+        :}
+        |       NEW_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsNEW_F:e1 C_C L_C ME_Q FS ADM MA_Q
+        {:
+                if(e1!=null){
+                    int tam = ((List<Object>)e1).size();
+                    for (int i = 0 ; i < tam; i++) {
+                        instrucciones.add(((List<Object>)e1).get(i));
+                    }
+                }
+        :} 
+        |       DEL_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsDEL_F:e1 C_C L_C ME_Q FS ADM MA_Q 
+        {:
+                if(e1!=null){
+                    int tam = ((List<Object>)e1).size();
+                    for (int i = 0 ; i < tam; i++) {
+                        instrucciones.add(((List<Object>)e1).get(i));
+                    }
+                }
+        :}
+        |       MO_F MA_Q L_A PARAMS_FORM D_DOT C_A paramsMO_F:e1 C_C L_C ME_Q FS ADM MA_Q 
+        {:
+                if(e1!=null){
+                    int tam = ((List<Object>)e1).size();
+                    for (int i = 0 ; i < tam; i++) {
+                        instrucciones.add(((List<Object>)e1).get(i));
+                    }
+                }
+        :}
+        |       ADD_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsADD_C:e1 C_C L_C ME_Q FS ADM MA_Q 
+        {:
+                if(e1!=null){
+                    int tam = ((List<Object>)e1).size();
+                    for (int i = 0 ; i < tam; i++) {
+                        instrucciones.add(((List<Object>)e1).get(i));
+                    }
+                }
+        :}
+        |       DEL_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsDEL_C:e1 C_C L_C ME_Q FS ADM MA_Q 
+        {:
+                if(e1!=null){
+                    int tam = ((List<Object>)e1).size();
+                    for (int i = 0 ; i < tam; i++) {
+                        instrucciones.add(((List<Object>)e1).get(i));
+                    }
+                }
+        :}
+        |       MO_C MA_Q L_A PARAMS_COMP D_DOT C_A paramsMO_C:e1 C_C L_C ME_Q FS ADM MA_Q
+        {:
+                if(e1!=null){
+                    int tam = ((List<Object>)e1).size();
+                    for (int i = 0 ; i < tam; i++) {
+                        instrucciones.add(((List<Object>)e1).get(i));
+                    }
+                }
+        :}
+        |       CONSULT_DATA MA_Q L_A CONSULT D_DOT C_A paramsCONSULT_DATA:e1 C_C L_C ME_Q FS ADM MA_Q
         |       error
         ;
 
@@ -233,16 +375,16 @@ var_ASIGNACION  ::=     ASIGNACION:e1
                 |       error
                 ;
 //PRODUCCIONES PARA LA CONSULTA DE DATOS
-paramsCONSULT_DATA      ::=     L_A contCONSULT_DATA L_C paramsCONSULT_DATA2
+paramsCONSULT_DATA      ::=     L_A contCONSULT_DATA:e1 L_C paramsCONSULT_DATA2:e2
                         |       error
                         ;
 
-paramsCONSULT_DATA2     ::=     COM paramsCONSULT_DATA
+paramsCONSULT_DATA2     ::=     COM paramsCONSULT_DATA:e1
                         |
                         |       error
                         ;
 
-contCONSULT_DATA        ::=     NUM_CONSULT D_DOT var_ASIGNACION contCONSULT_DATA1       
+contCONSULT_DATA        ::=     NUM_CONSULT D_DOT var_ASIGNACION:e1 contCONSULT_DATA1:e2       
                         |       error
                         ;
 
@@ -290,19 +432,29 @@ contLOG_U2      ::=     COM USER D_DOT ASIGNACION:e1
 
 
 //PRODUCCIONES PARA CREAR UN USUARIO
-parametros      ::=     L_A cont_CR_U:e1 L_C parametros2
+parametros      ::=     L_A cont_CR_U:e1 L_C parametros2:e2
                 {:
                         if(e1!=null){
                                 ((usuario)e1).setAccion("CREAR_USUARIO");
-                                instrucciones.add(e1);
+                                //instrucciones.add((usuario)e1);
                                 //createUser.add((usuario)e1);
+                                if(e2!=null){
+                                        ((List<Object>)e2).add(e1);
+                                        RESULT = e2;
+                                }
                         }
                 :}
                 |       error
                 ;
 
-parametros2     ::=     COM parametros
+parametros2     ::=     COM parametros:e1
+                {:
+                        RESULT = e1;
+                :}
                 |
+                {:
+                        RESULT = new ArrayList<Object>();
+                :}
                 |       error
                 ;
 
@@ -431,19 +583,29 @@ cont_CR_U3_3    ::=     COM USER D_DOT ASIGNACION:e1
                 ;
 
 //PRODUCCIONES PARA LA MODIFICACION DE UN USAURIO
-paramsMO_U      ::=     L_A contMO_U:e1 L_C paramsMO_U2
+paramsMO_U      ::=     L_A contMO_U:e1 L_C paramsMO_U2:e2
                 {:
                         if(e1!=null){
                                 ((userNew)e1).setAccion("MODIFICAR_USUARIO");
-                                instrucciones.add(e1);
+                                //instrucciones.add((userNew)e1);
                                 //modUser.add((userNew)e1);
+                                if(e2!=null){
+                                        ((List<Object>)e2).add(e1);
+                                        RESULT = e2;
+                                }
                         }
                 :}
                 |       error
                 ;
 
-paramsMO_U2     ::=     COM paramsMO_U
+paramsMO_U2     ::=     COM paramsMO_U:e1
+                {:
+                        RESULT = e1;
+                :}
                 |
+                {:
+                        RESULT = new ArrayList<Object>();
+                :}
                 |       error
                 ;
 
@@ -706,18 +868,28 @@ contMO_U15      ::=     COM FECHA_MOD D_DOT DATE:e1
                 ;
 
 //PRODUCCIONES PARA LA ELIMINACION DE UN USUARIO
-paramsDEL_U     ::=     L_A contDEL_U:e1 L_C paramsDEL_U2
+paramsDEL_U     ::=     L_A contDEL_U:e1 L_C paramsDEL_U2:e2
                 {:
                         if(e1!=null){
                                 ((usuario)e1).setAccion("ELIMINAR_USUARIO");
-                                instrucciones.add(e1);
+                                //instrucciones.add(e1);
                                 //delUser.add(new usuario(((contenedorResultado)e1).getAsignacion(), "", ""));
+                                if(e2!=null){
+                                        ((List<Object>)e2).add(e1);
+                                        RESULT = e2;
+                                }
                         }
                 :}
                 |       error
                 ;
-paramsDEL_U2    ::=     COM paramsDEL_U
+paramsDEL_U2    ::=     COM paramsDEL_U:e1
+                {:
+                        RESULT = e1;
+                :}
                 |
+                {:
+                        RESULT = new ArrayList<Object>();
+                :}
                 |       error
                 ;
 
@@ -728,20 +900,30 @@ contDEL_U       ::=     USER D_DOT ASIGNACION:e1
                 |       error
                 ;
 //PRODUCCIONES PARA UN NUEVO FORMULARIO
-paramsNEW_F     ::=     L_A contNEW_F:e1 L_C paramsNEW_F2
+paramsNEW_F     ::=     L_A contNEW_F:e1 L_C paramsNEW_F2:e2
                 {:
                         if(e1!=null){
                                 ((formulario)e1).setAccion("NUEVO_FORMULARIO");
-                                instrucciones.add(e1);
+                                //instrucciones.add(e1);
                                 //newForms.add((formulario)e1);
+                                if(e2!=null){
+                                        ((List<Object>)e2).add(e1);
+                                        RESULT = e2;
+                                }
                         }
                 :}
                 |       error
                 ;
 
 
-paramsNEW_F2    ::=     COM paramsNEW_F
+paramsNEW_F2    ::=     COM paramsNEW_F:e1
+                {:
+                        RESULT =e1;
+                :}
                 | 
+                {:
+                        RESULT = new ArrayList<Object>();
+                :}
                 |       error
                 ;
 //-----------------------------------------------------
@@ -2338,19 +2520,29 @@ contNEW_F62     ::=     COM ID D_DOT ASIG_ID:e1
 
 //PRODUCCIONES PARA ELIMINAR UN FORMULARIO
 
-paramsDEL_F     ::=     L_A contDEL_F:e1 L_C paramsDEL_F2
+paramsDEL_F     ::=     L_A contDEL_F:e1 L_C paramsDEL_F2:e2
                 {:
                         if(e1!=null){
                                 ((formulario)e1).setAccion("ELIMINAR_FORMULARIO");
-                                instrucciones.add(e1);
+                                //instrucciones.add(e1);
                                 //delForm.add((formulario)e1);
+                                if(e2!=null){
+                                        ((List<Object>)e2).add(e1);
+                                        RESULT = e2;
+                                }
                         }
                 :}
                 |       error
                 ;
 
-paramsDEL_F2    ::=     COM paramsDEL_F
+paramsDEL_F2    ::=     COM paramsDEL_F:e1
+                {:
+                        RESULT =e1;
+                :}
                 |
+                {:
+                        RESULT = new ArrayList<Object>();
+                :}
                 |       error
                 ;
 
@@ -2363,19 +2555,29 @@ contDEL_F       ::=      ID D_DOT ASIG_ID:e1
 
 //PRODUCCIONES PARA MODIFICAR UN FORMULARIO
 
-paramsMO_F      ::=     L_A contMO_F:e1 L_C paramsMO_F2
+paramsMO_F      ::=     L_A contMO_F:e1 L_C paramsMO_F2:e2
                 {:
                         if(e1!=null){
                                 ((formulario)e1).setAccion("MODIFICAR_FORMULARIO");
-                                instrucciones.add(e1);
+                                //instrucciones.add(e1);
                                 //modForm.add((formulario)e1);
+                                if(e2!=null){
+                                        ((List<Object>)e2).add(e1);
+                                        RESULT = e2;
+                                }
                         }
                 :}
                 |       error
                 ;
 
-paramsMO_F2      ::=     COM paramsMO_F
+paramsMO_F2      ::=     COM paramsMO_F:e1
+                {:
+                        RESULT =e1;
+                :}
                 |
+                {:
+                        RESULT = new ArrayList<Object>();
+                :}
                 |       error
                 ;
 //------------------------------------------------
@@ -2659,18 +2861,29 @@ contMO_F14      ::=     COM ID D_DOT ASIG_ID:e1
                 ;
 //PRODUCCIONES PARA ELIMINAR COMPONENTE
 
-paramsDEL_C     ::=     L_A contDEL_C:e1 L_C paramsDEL_C2
+paramsDEL_C     ::=     L_A contDEL_C:e1 L_C paramsDEL_C2:e2
                 {:
                         if(e1!=null){
                                 ((componente)e1).setAccion("ELIMINAR_COMPONENTE");
-                                instrucciones.add(e1);
+                                //instrucciones.add(e1);
                                 //delComp.add((componente)e1);
+                                if(e2!=null){
+                                        ((List<Object>)e2).add(e1);
+                                        RESULT = e2;
+                                }
                         }
                 :}
                 |       error
                 ;
-paramsDEL_C2    ::=     paramsDEL_C
+paramsDEL_C2    ::=     COM paramsDEL_C:e1
+                {:
+                        RESULT =e1;
+                :}
                 |
+                {:
+                        RESULT = new ArrayList<Object>();
+                :}
+                |       error
                 ;
 //--------------------------------------------------
 contDEL_C       ::=     ID D_DOT ASIG_ID:e1 contDEL_C1:e2
@@ -2707,14 +2920,18 @@ contDEL_C2      ::=     COM ID D_DOT ASIG_ID:e1
                 ;
 //PRODUCCIONES PARA AGREGAR UN COMPONENTE A UN FORMULARIO
 
-paramsADD_C     ::=     L_A:e2 contADD_C:e1 L_C paramsADD_C2
+paramsADD_C     ::=     L_A:e2 contADD_C:e1 L_C paramsADD_C2:e3
                 {:
                         if(e1!=null){
                                 String tmp = ((componente)e1).validarComponete();
                                 if(tmp.isEmpty()){
                                         ((componente)e1).setAccion("AGREGAR_COMPONENTE");
-                                        instrucciones.add(e1);
+                                        //instrucciones.add(e1);
                                         //addComp.add(((componente)e1));
+                                        if(e3!=null){
+                                                ((List<Object>)e3).add(e1);
+                                                RESULT = e3;
+                                        }
                                 }else{
                                         errorVerificacion(tmp,e2);
                                 }
@@ -2724,8 +2941,14 @@ paramsADD_C     ::=     L_A:e2 contADD_C:e1 L_C paramsADD_C2
                 |       error
                 ;
 
-paramsADD_C2    ::=     COM paramsADD_C
+paramsADD_C2    ::=     COM paramsADD_C:e1
+                {:
+                        RESULT =e1;
+                :}
                 |
+                {:
+                        RESULT = new ArrayList<Object>();
+                :}
                 |       error
                 ;
 //--------------------------------------------------------
@@ -2958,18 +3181,28 @@ contADD_C2      ::=     YES:e1
                 ;
 
 //PRODUCCIONES PARA MODIFICAR COMPONENTE
-paramsMO_C      ::=     L_A contMO_C:e1 L_C paramsMO_C2
+paramsMO_C      ::=     L_A contMO_C:e1 L_C paramsMO_C2:e2
                 {:
                         if(e1!=null){
                                 ((componente)e1).setAccion("MODIFICAR_COMPONENTE");
-                                instrucciones.add(e1);
+                                //instrucciones.add(e1);
                                 //modComp.add((componente)e1);
+                                if(e2!=null){
+                                        ((List<Object>)e2).add(e1);
+                                        RESULT = e2;
+                                }
                         }
                 :}
                 |       error
                 ;
-paramsMO_C2     ::=     COM paramsMO_C
-                |
+paramsMO_C2     ::=     COM paramsMO_C:e1
+                {:
+                        RESULT =e1;
+                :}
+                |       
+                {:
+                        RESULT = new ArrayList<Object>();
+                :}
                 |       error
                 ;
 

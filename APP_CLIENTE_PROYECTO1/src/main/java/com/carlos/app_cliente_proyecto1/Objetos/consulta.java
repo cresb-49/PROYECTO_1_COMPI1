@@ -3,7 +3,6 @@ package com.carlos.app_cliente_proyecto1.Objetos;
 public class consulta {
     private String tag;
     private String query;
-
     public consulta(String tag, String query) {
         this.tag = tag;
         this.query = query;

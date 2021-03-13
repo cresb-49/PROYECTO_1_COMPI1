@@ -44,9 +44,22 @@
 }
 <fin_solicitud!>
 
-<!fin_solicitudes>
-
 <!ini_solicitudes>
+<!ini_solicitud: "CREAR_USUARIO" >
+{
+"CREDENCIALES_USUARIO":
+[
+    {
+        "USUARIO": "juanito619",
+        "PASSWORD": "12345678"
+    },
+    {
+        "USUARIO": "juanito200",
+        "PASSWORD": "12345"
+    }
+]
+}
+<fin_solicitud!>
 <!ini_solicitud:"NUEVO_FORMULARIO">
 {
     "PARAMETROS_FORMULARIO":[
@@ -71,7 +84,6 @@
     ]
 }
 <fin_solicitud!>
-<!fin_solicitudes>
 
 <!ini_solicitudes>
 <!ini_solicitud:"MODIFICAR_FORMULARIO">
@@ -102,6 +114,97 @@
     ]
 }
 <fin_solicitud!>
+
+
+
+<!ini_solicitudes>
+<!ini_solicitud:"MODIFICAR_FORMULARIO">
+{
+    "PARAMETROS_FORMULARIO":[
+        {
+            "ID": "$form1",
+            "TITULO": "Formulario para encuesta 1",
+            "NOMBRE": "formulario_encuesta_1"
+        }
+    ]
+}
+<fin_solicitud!>
+<!ini_solicitud:"ELIMINAR_FORMULARIO">
+{
+    "PARAMETROS_FORMULARIO":[
+        {
+            "ID": "$form1"
+        },
+        {
+            "ID": "$form1"
+        },
+        {
+            "ID": "$form1"
+        }
+    ]
+}
+<fin_solicitud!>
+<!ini_solicitud: "MODIFICAR_USUARIO" >
+{
+"CREDENCIALES_USUARIO":
+[
+    {
+        "USUARIO_ANTIGUO": "juanito619",
+        "USUARIO_NUEVO": "juanito619lopez",
+        "NUEVO_PASSWORD": "12345678910"
+    }
+]
+}
+<fin_solicitud!>
+<!ini_solicitud: "CREAR_USUARIO" >
+{
+"CREDENCIALES_USUARIO":
+[
+    {
+        "USUARIO": "juanito619",
+        "PASSWORD": "12345678"
+    },
+    {
+        "USUARIO": "juanito200",
+        "PASSWORD": "12345"
+    }
+]
+}
+<fin_solicitud!>
+<!fin_solicitudes>
+
+
+
+<!ini_solicitudes>
+<!ini_solicitud: "MODIFICAR_USUARIO" >
+{
+"CREDENCIALES_USUARIO":
+[
+    {
+        "USUARIO_ANTIGUO": "juanito619",
+        "USUARIO_NUEVO": "juanito619lopez",
+        "NUEVO_PASSWORD": "12345678910"
+    }
+]
+}
+<fin_solicitud!>
+<!ini_solicitud: "CREAR_USUARIO" >
+{
+"CREDENCIALES_USUARIO":
+[
+    {
+        "USUARIO": "juanito619",
+        "PASSWORD": "12345678"
+    },
+    {
+        "USUARIO": "juanito200",
+        "PASSWORD": "12345"
+    }
+]
+}
+<fin_solicitud!>
+
+<!fin_solicitudes>
 
 
 
