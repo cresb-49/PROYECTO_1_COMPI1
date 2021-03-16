@@ -1,6 +1,6 @@
 package com.carlos.web_proyecto1.Servlets;
 
-import com.carlos.web_proyecto1.Acciones.BuscarUsuario;
+
 import com.carlos.web_proyecto1.DataBases.DBusuarios;
 import com.carlos.web_proyecto1.Lexer.lexerIndigo;
 import com.carlos.web_proyecto1.Objetos.userNew;
@@ -46,7 +46,7 @@ public class loginUsuario extends HttpServlet {
         String linea;
 
         while ((linea = rd.readLine()) != null) {
-            resultado.append("\n" + linea);
+            resultado.append(linea+"\n");
         }
 
         rd.close();
@@ -66,11 +66,17 @@ public class loginUsuario extends HttpServlet {
             System.out.println("Usuario invalido");
             envioRespuesta(req, resp, user, errSin, errLex);
         } else {
-            
-            if(recuperarDBusuarios(req).buscarUsuario(user.getUser())==null){
-                envioMensaje(req, resp, "Error en credenciales de usuario verifique usuario y password");
+            usuario tmp = recuperarDBusuarios(req).buscarUsuario(user.getUser());
+            if(tmp==null){
+                envioMensaje(req, resp, "No existe un usuario con ese nombre");
             }else{
-                envioMensaje(req, resp, "Solicitud Aceptada!!:)");
+                if(tmp.getPass().equals(user.getPass()))
+                {
+                    envioMensaje(req, resp, "Solicitud Aceptada!!:)");
+                }else{
+                    envioMensaje(req, resp, "Error en credenciales de usuario verifique usuario y password");
+                }
+                
             }
         }
 

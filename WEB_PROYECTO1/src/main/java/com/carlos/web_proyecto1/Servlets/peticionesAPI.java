@@ -1,10 +1,13 @@
 package com.carlos.web_proyecto1.Servlets;
 
 import com.carlos.web_proyecto1.Lexer.lexerIndigo;
+import com.carlos.web_proyecto1.Objetos.usuario;
 import com.carlos.web_proyecto1.Parser.parserIndigo;
+import com.carlos.web_proyecto1.escribirRespuestaIndigo.resIndigo;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.io.StringReader;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -15,7 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/solicitudAPI")
 public class peticionesAPI extends HttpServlet {
-
+    
+    private resIndigo respuesta = new resIndigo();
+    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
@@ -24,7 +29,7 @@ public class peticionesAPI extends HttpServlet {
         String linea;
 
         while ((linea = rd.readLine()) != null) {
-            resultado.append("\n" + linea);
+            resultado.append(linea+"\n");
         }
         rd.close();
         
@@ -37,9 +42,36 @@ public class peticionesAPI extends HttpServlet {
             List<Object> instrucciones = parser.getInstrucciones();
             System.out.println("Numero de instrucciones a realizar: "+instrucciones.size());
             
+            if(lex.getErrorsList().size()>0 || parser.getErrorsList().size()>0){
+                envioRespuesta(req, resp, parser.getErrorsList(), lex.getErrorsList());
+            }else{
+                
+            }
+            
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-    
+    private void envioRespuesta(HttpServletRequest req, HttpServletResponse resp,List<String> errSin, List<String> errLex) throws ServletException, IOException {
+        try {
+            PrintWriter writer = resp.getWriter();
+            writer.println(respuesta.escribirMensajeError(errSin, errLex));
+            writer.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void envioMensaje(HttpServletRequest req, HttpServletResponse resp, String mensaje) throws ServletException, IOException {
+        try {
+            PrintWriter writer = resp.getWriter();
+            writer.println(respuesta.escribirMensaje(mensaje));
+            writer.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
     
 }

@@ -5,6 +5,7 @@
  */
 package com.carlos.app_cliente_proyecto1.UI;
 
+import com.carlos.app_cliente_proyecto1.HttpMethods.enviarInfo;
 import com.carlos.app_cliente_proyecto1.Objetos.usuario;
 import java.awt.TextArea;
 import javax.swing.JTextArea;
@@ -16,6 +17,9 @@ import javax.swing.JTextArea;
 public class EditorTexto extends javax.swing.JInternalFrame {
     
     private usuario currentUser = null;
+    
+    private enviarInfo api = new enviarInfo();
+    
     /**
      * Creates new form EditorTexto
      */
@@ -34,11 +38,7 @@ public class EditorTexto extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        loginTextArea = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        resIndigo = new javax.swing.JTextPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        resNormal = new javax.swing.JTextPane();
+        editorTexto = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -46,30 +46,35 @@ public class EditorTexto extends javax.swing.JInternalFrame {
         labelLinea = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         labelColumna = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        resIndigo = new javax.swing.JTextArea();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        resNormal = new javax.swing.JTextArea();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
 
-        loginTextArea.setColumns(20);
-        loginTextArea.setRows(5);
-        loginTextArea.setTabSize(3);
-        loginTextArea.addCaretListener(new javax.swing.event.CaretListener() {
+        editorTexto.setColumns(20);
+        editorTexto.setRows(5);
+        editorTexto.setTabSize(3);
+        editorTexto.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                loginTextAreaCaretUpdate(evt);
+                editorTextoCaretUpdate(evt);
             }
         });
-        jScrollPane1.setViewportView(loginTextArea);
-
-        jScrollPane2.setViewportView(resIndigo);
-
-        jScrollPane3.setViewportView(resNormal);
+        jScrollPane1.setViewportView(editorTexto);
 
         jLabel1.setText("Respuesta Traducida");
 
         jLabel2.setText("Respuesta Indigo");
 
         jButton1.setText("Enviar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Linea:");
 
@@ -78,6 +83,28 @@ public class EditorTexto extends javax.swing.JInternalFrame {
         jLabel4.setText("Columna:");
 
         labelColumna.setText("1");
+
+        resIndigo.setEditable(false);
+        resIndigo.setColumns(20);
+        resIndigo.setRows(5);
+        resIndigo.setTabSize(3);
+        resIndigo.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                resIndigoCaretUpdate(evt);
+            }
+        });
+        jScrollPane4.setViewportView(resIndigo);
+
+        resNormal.setEditable(false);
+        resNormal.setColumns(20);
+        resNormal.setRows(5);
+        resNormal.setTabSize(3);
+        resNormal.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                resNormalCaretUpdate(evt);
+            }
+        });
+        jScrollPane5.setViewportView(resNormal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,13 +126,13 @@ public class EditorTexto extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -125,19 +152,19 @@ public class EditorTexto extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginTextAreaCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_loginTextAreaCaretUpdate
+    private void editorTextoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_editorTextoCaretUpdate
         // TODO add your handling code here:
         JTextArea editArea = (JTextArea) evt.getSource();
         int linea = 1;
@@ -158,22 +185,37 @@ public class EditorTexto extends javax.swing.JInternalFrame {
 
         } catch (Exception ex) {
         }
-    }//GEN-LAST:event_loginTextAreaCaretUpdate
+    }//GEN-LAST:event_editorTextoCaretUpdate
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String envio = editorTexto.getText();
+        String respuesta = api.envioRespuesta(envio);
+        resIndigo.setText(respuesta);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void resIndigoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_resIndigoCaretUpdate
+        // TODO add your handling code here:
+    }//GEN-LAST:event_resIndigoCaretUpdate
+
+    private void resNormalCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_resNormalCaretUpdate
+        // TODO add your handling code here:
+    }//GEN-LAST:event_resNormalCaretUpdate
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea editorTexto;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel labelColumna;
     private javax.swing.JLabel labelLinea;
-    private javax.swing.JTextArea loginTextArea;
-    private javax.swing.JTextPane resIndigo;
-    private javax.swing.JTextPane resNormal;
+    private javax.swing.JTextArea resIndigo;
+    private javax.swing.JTextArea resNormal;
     // End of variables declaration//GEN-END:variables
 }

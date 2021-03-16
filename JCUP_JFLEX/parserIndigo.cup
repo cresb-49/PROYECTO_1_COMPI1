@@ -92,8 +92,10 @@ parser code {:
         public void report_error(String message, Object info){
                 Symbol symbol = cur_token;
                 token tok = (token)symbol.value;
-                System.out.println("Parametro inesperado: |"+((tok.getLexeme().equals("\""))?"comilla":tok.getLexeme())+"| Linea: "+tok.getLine()+", Columna: "+tok.getColumn());
-                errorsList.add("Parametro inesperado: |"+((tok.getLexeme().equals("\""))?"comilla":tok.getLexeme())+"| Linea: "+tok.getLine()+", Columna: "+tok.getColumn());
+                if (tok != null) {
+                        System.out.println("Parametro inesperado: |" + ((tok.getLexeme().equals("\"")) ? "comilla" : tok.getLexeme()) + "| Linea: " + tok.getLine() + ", Columna: " + tok.getColumn());
+                        errorsList.add("Parametro inesperado: |" + ((tok.getLexeme().equals("\"")) ? "comilla" : tok.getLexeme()) + "| Linea: " + tok.getLine() + ", Columna: " + tok.getColumn());
+                }
         }
 
         public void report_fatal_error(String message, Object info){
