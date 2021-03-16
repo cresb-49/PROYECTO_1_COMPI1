@@ -112,11 +112,13 @@ public class loginUsuario extends HttpServlet {
 
             if (p.equals(original)) {
                 System.out.println("SO: WINDOWS");
-                p = original.replaceAll("\\WEB_PROYECTO1\\target\\WEB_PROYECTO1-1.0-SNAPSHOT\\", "");
+                String busqueda = "\\\\WEB_PROYECTO1\\\\target\\\\WEB_PROYECTO1-1.0-SNAPSHOT\\\\";
+                p = original.replaceAll(busqueda, "");
+                
             } else {
                 System.out.println("SO: LINUX");
             }
-
+            
             InputStream input = new FileInputStream(p+"/Almacenamiento/users.db");
             BufferedReader br = new BufferedReader(new InputStreamReader(input));
             String linea;
