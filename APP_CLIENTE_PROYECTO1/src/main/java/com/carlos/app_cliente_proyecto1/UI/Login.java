@@ -8,6 +8,7 @@ package com.carlos.app_cliente_proyecto1.UI;
 import com.carlos.app_cliente_proyecto1.HttpMethods.peticionLogin;
 import com.carlos.app_cliente_proyecto1.Lexer.lexerIndigo;
 import com.carlos.app_cliente_proyecto1.Objetos.mensaje;
+import com.carlos.app_cliente_proyecto1.Objetos.usuario;
 import com.carlos.app_cliente_proyecto1.Parser.parserIndigo;
 import java.io.StringReader;
 import java.util.logging.Level;
@@ -22,14 +23,16 @@ import javax.swing.JTextArea;
 public class Login extends javax.swing.JDialog {
 
     private boolean log = false;
+    private usuario currentUser = null;
 
     /**
      * Creates new form Login
      */
-    public Login(java.awt.Frame parent, boolean modal) {
+    public Login(java.awt.Frame parent, boolean modal, usuario currentUser) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        this.currentUser = currentUser;
     }
 
     public boolean isLog() {
@@ -245,8 +248,17 @@ public class Login extends javax.swing.JDialog {
         log = true;
         this.dispose();
     }//GEN-LAST:event_btnIngresarActionPerformed
-    private void pruebaLexer() {
-
+    private usuario getCurrentUser() {
+        lexerIndigo lex = new lexerIndigo(new StringReader(loginTextArea.getText()));
+        parserIndigo parser = new parserIndigo(lex);
+        try {
+            parser.parse();
+            return parser.getLogUser();
+        } catch (Exception ex) {
+            System.err.println("Error irrcuperable indigo");
+            ex.printStackTrace();
+        }
+        return null;
     }
 
     private void enviarSolicitud() {
@@ -273,9 +285,10 @@ public class Login extends javax.swing.JDialog {
     private void verificacionMensaje(parserIndigo parser) {
         if (parser.getMsjUser().size() == 1) {
             mensaje mens = parser.getMsjUser().get(0);
-            if(mens.getMensaje().equals("Solicitud Aceptada!!:)")){
+            if (mens.getMensaje().equals("Solicitud Aceptada!!:)")) {
                 btnIngresar.setEnabled(true);
-            }else{
+                this.currentUser = getCurrentUser();
+            } else {
                 btnIngresar.setEnabled(false);
             }
         } else {

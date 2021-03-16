@@ -1,15 +1,24 @@
 package com.carlos.web_proyecto1.Servlets;
 
+import com.carlos.web_proyecto1.Acciones.BuscarUsuario;
+import com.carlos.web_proyecto1.DataBases.DBusuarios;
 import com.carlos.web_proyecto1.Lexer.lexerIndigo;
 import com.carlos.web_proyecto1.Objetos.userNew;
 import com.carlos.web_proyecto1.Objetos.usuario;
 import com.carlos.web_proyecto1.Parser.parserIndigo;
 import com.carlos.web_proyecto1.escribirRespuestaIndigo.resIndigo;
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +36,6 @@ public class loginUsuario extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("FUNCIONAMIENTO DEL SERVLET");
-
         usuario user = new usuario();
 
         List<String> errSin = new ArrayList<>();
@@ -44,7 +51,6 @@ public class loginUsuario extends HttpServlet {
 
         rd.close();
 
-        System.out.println("Texto recuperado: " + resultado.toString());
         try {
             lexerIndigo lex = new lexerIndigo(new StringReader(resultado.toString()));
             parserIndigo parser = new parserIndigo(lex);
@@ -55,18 +61,17 @@ public class loginUsuario extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        if (user.getUser() == null || user.getPass() == null||!errLex.isEmpty()||!errSin.isEmpty()) {
+        
+        if (user.getUser() == null || user.getPass() == null || !errLex.isEmpty() || !errSin.isEmpty()) {
             System.out.println("Usuario invalido");
             envioRespuesta(req, resp, user, errSin, errLex);
-
         } else {
-            if(user.getUser().equals("Admin")&&user.getPass().equals("12345")){
-                envioMensaje(req, resp, "Solicitud Aceptada!!:)");
-            }else{
-                envioMensaje(req, resp, "Error en credenciales de usuario verifique usuario y password");
-            }
             
+            if(recuperarDBusuarios(req).buscarUsuario(user.getUser())==null){
+                envioMensaje(req, resp, "Error en credenciales de usuario verifique usuario y password");
+            }else{
+                envioMensaje(req, resp, "Solicitud Aceptada!!:)");
+            }
         }
 
     }
@@ -93,9 +98,24 @@ public class loginUsuario extends HttpServlet {
 
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("FUNCIONAMIENTO DEL SERVLET");
-    }
+    public DBusuarios recuperarDBusuarios(HttpServletRequest req) {
 
+        try {
+            InputStream input = new FileInputStream(req.getServletContext().getRealPath("/Almacenamiento/users.db"));
+            BufferedReader br = new BufferedReader(new InputStreamReader(input));
+            String linea;
+            String code = "";
+            while ((linea = br.readLine()) != null) {
+                code += linea;
+            }
+            br.close();
+            
+            Gson gson = new Gson();
+            DBusuarios usuarios = gson.fromJson(code, DBusuarios.class);
+            return usuarios;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
