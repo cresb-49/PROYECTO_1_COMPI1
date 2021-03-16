@@ -4,6 +4,8 @@ public class usuario {
     private String user;
     private String pass;
     private String fecha;
+    
+    private String accion;
 
     public usuario() {
     }
@@ -38,8 +40,16 @@ public class usuario {
         this.fecha = fecha;
     }
 
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.accion = accion;
+    }
+
     @Override
     public String toString() {
-        return "usuario{" + "user=" + user + ", pass=" + pass + ", fecha=" + fecha + '}';
+        return "usuario{" + "user=" + user + ", pass=" + pass + ", fecha=" + fecha + ", accion=" + accion + '}';
     }
 }

@@ -14,32 +14,8 @@ public class peticionLogin {
 
     public peticionLogin() {
     }
-
-    public String peticionHttpGet(String raw) throws Exception {
-        // Esto es lo que vamos a devolver
-        StringBuilder resultado = new StringBuilder();
-        // Crear un objeto de tipo URL
-        URL url = new URL("http://localhost:8080/WEB_PROYECTO1/loginUser");
-
-        // Abrir la conexión e indicar que será de tipo GET
-        HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
-
-        conexion.setRequestMethod("POST");
-
-        // Búferes para leer
-        BufferedReader rd = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
-        String linea;
-        // Mientras el BufferedReader se pueda leer, agregar contenido a resultado
-        while ((linea = rd.readLine()) != null) {
-            resultado.append(linea);
-        }
-        // Cerrar el BufferedReader
-        rd.close();
-        // Regresar resultado, pero como cadena, no como StringBuilder
-        return resultado.toString();
-    }
-
-    public void geHelloAge() {
+    
+    public String iniciarSesion (String contenido) {
         String wsURL = "http://localhost:8080/WEB_PROYECTO1/loginUser";
         URL url = null;
         URLConnection connection = null;
@@ -49,23 +25,14 @@ public class peticionLogin {
         OutputStream out = null;
         InputStreamReader isr = null;
         BufferedReader in = null;
-
-        String xmlInput
-                = "<!ini_solicitud:\"LOGIN_USUARIO\">\n"
-                + "	{\"CREDENCIALES_USUARIO\":[{\n"
-                + "		\"USUARIO\": \"juanito619\",\n"
-                + "		\"PASSWORD\": \"12345678\"\n"
-                + "	}]\n"
-                + "	}\n"
-                + "<fin_solicitud!>";
-
+        
         try {
             url = new URL(wsURL);
             connection = url.openConnection();
             httpConn = (HttpURLConnection) connection;
 
-            byte[] buffer = new byte[xmlInput.length()];
-            buffer = xmlInput.getBytes();
+            byte[] buffer = new byte[contenido.length()];
+            buffer = contenido.getBytes();
 
             String SOAPAction = "";
             // Set the appropriate HTTP parameters.
@@ -87,10 +54,10 @@ public class peticionLogin {
             in = new BufferedReader(isr);
 
             while ((responseString = in.readLine()) != null) {
-                outputString = outputString + responseString;
+                outputString = outputString + responseString+"\n";
             }
-            System.out.println(outputString);
-            System.out.println("");
+            //System.out.println(outputString);
+            //System.out.println("");
 
             // Get the response from the web service call
             /*
@@ -100,8 +67,11 @@ public class peticionLogin {
             String webServiceResponse = nodeLst.item(0).getTextContent();
             System.out.println("The response from the web service call is : " + webServiceResponse);
              */
+            return outputString;
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 }

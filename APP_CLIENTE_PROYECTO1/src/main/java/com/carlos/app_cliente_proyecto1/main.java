@@ -15,13 +15,13 @@ import java.io.StringReader;
 public class main {
 
     public static void main(String[] args) {
-        //PrincipalFrame principal = new PrincipalFrame();
-        pruebas();
+        PrincipalFrame principal = new PrincipalFrame();
+        //pruebas();
     }
 
     private static void pruebas2() {
         peticionLogin log = new peticionLogin();
-        log.geHelloAge();
+        //log.geHelloAge();
     }
 
     private static void pruebas() {

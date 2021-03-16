@@ -61,8 +61,12 @@ public class loginUsuario extends HttpServlet {
             envioRespuesta(req, resp, user, errSin, errLex);
 
         } else {
-            System.out.println("Se recupero el usuario");
-            envioMensaje(req, resp, "Solicitud Aceptada!!:)");
+            if(user.getUser().equals("Admin")&&user.getPass().equals("12345")){
+                envioMensaje(req, resp, "Solicitud Aceptada!!:)");
+            }else{
+                envioMensaje(req, resp, "Error en credenciales de usuario verifique usuario y password");
+            }
+            
         }
 
     }

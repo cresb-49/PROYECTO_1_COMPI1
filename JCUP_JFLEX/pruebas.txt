@@ -15,6 +15,30 @@
 }
 <fin_solicitud!>
 
+<!ini_solicitud: "LOGIN_USUARIO" >
+{
+"CREDENCIALES_USUARIO":
+[
+    {
+        "USUARIO": "juanito619",
+        "PASSWORD": "12345678"
+    }
+]
+}
+<fin_solicitud!>
+
+<!ini_solicitud: "LOGIN_USUARIO" >
+{
+"CREDENCIALES_USUARIO":
+[
+    {
+        "USUARIO": "Admin",
+        "PASSWORD": "12345"
+    }
+]
+}
+<fin_solicitud!>
+
 <!ini_solicitud: "ELIMINAR_USUARIO" >
 {
 "CREDENCIALES_USUARIO":
