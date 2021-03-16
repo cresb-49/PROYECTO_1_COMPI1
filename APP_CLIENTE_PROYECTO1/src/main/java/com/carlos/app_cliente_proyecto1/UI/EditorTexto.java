@@ -6,8 +6,15 @@
 package com.carlos.app_cliente_proyecto1.UI;
 
 import com.carlos.app_cliente_proyecto1.HttpMethods.enviarInfo;
+import com.carlos.app_cliente_proyecto1.Lexer.lexerIndigo;
+import com.carlos.app_cliente_proyecto1.Objetos.mensaje;
 import com.carlos.app_cliente_proyecto1.Objetos.usuario;
+import com.carlos.app_cliente_proyecto1.Parser.parserIndigo;
+
 import java.awt.TextArea;
+import java.io.StringReader;
+import java.util.List;
+
 import javax.swing.JTextArea;
 
 /**
@@ -192,7 +199,35 @@ public class EditorTexto extends javax.swing.JInternalFrame {
         String envio = editorTexto.getText();
         String respuesta = api.envioRespuesta(envio);
         resIndigo.setText(respuesta);
+        lecturaMensaje(respuesta);
     }//GEN-LAST:event_jButton1ActionPerformed
+    
+    private void lecturaMensaje(String respuesta){
+        try {
+            lexerIndigo lex = new lexerIndigo(new StringReader(respuesta));
+            parserIndigo parser = new parserIndigo(lex);
+            parser.parse();
+
+            List<mensaje> res1 = parser.getErrLex();
+            List<mensaje> res2 = parser.getErrSin();
+            List<mensaje> res3 = parser.getMsjUser();
+
+            String contenido = "";
+            for (mensaje mens : res1) {
+                contenido = contenido + mens.getMensaje()+"\n";
+            }
+            for (mensaje mens : res2) {
+                contenido = contenido + mens.getMensaje()+"\n";
+            }
+            for (mensaje mens : res3) {
+                contenido = contenido + mens.getMensaje()+"\n";
+            }
+            resNormal.setText(contenido);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     private void resIndigoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_resIndigoCaretUpdate
         // TODO add your handling code here:

@@ -52,4 +52,25 @@ public class resIndigo {
         
         return respuesta;
     }
+    
+    public String escribirMensajes(List<String> mensajes){
+        String respuesta="<!ini_respuestas>\n";
+        
+        if(!mensajes.isEmpty()){
+            respuesta = respuesta + "<!ini_respuesta:\"MENSAJE_USUARIO\">\n";
+            respuesta = respuesta + "{\"DESCRIPCION\":[\n";
+            
+            for (int i = 0; i < mensajes.size(); i++) {
+                respuesta = respuesta + "{\n \"MENSAJE\": \""+mensajes.get(i)+"\"}";
+                if(!(i == (mensajes.size()-1))){
+                    respuesta = respuesta +",\n";
+                }
+            }
+            respuesta = respuesta + "\n]}\n";
+            respuesta = respuesta + "<fin_solicitud!>\n";
+        }
+        
+        respuesta = respuesta + "<!fin_respuestas>\n";    
+        return respuesta;
+    }
 }

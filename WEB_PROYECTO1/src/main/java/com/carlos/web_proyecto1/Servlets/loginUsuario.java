@@ -1,6 +1,6 @@
 package com.carlos.web_proyecto1.Servlets;
 
-
+import com.carlos.web_proyecto1.Acciones.ejecutarInstrucciones;
 import com.carlos.web_proyecto1.DataBases.DBusuarios;
 import com.carlos.web_proyecto1.Lexer.lexerIndigo;
 import com.carlos.web_proyecto1.Objetos.userNew;
@@ -46,7 +46,7 @@ public class loginUsuario extends HttpServlet {
         String linea;
 
         while ((linea = rd.readLine()) != null) {
-            resultado.append(linea+"\n");
+            resultado.append(linea + "\n");
         }
 
         rd.close();
@@ -61,22 +61,21 @@ public class loginUsuario extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         if (user.getUser() == null || user.getPass() == null || !errLex.isEmpty() || !errSin.isEmpty()) {
             System.out.println("Usuario invalido");
             envioRespuesta(req, resp, user, errSin, errLex);
         } else {
             usuario tmp = recuperarDBusuarios(req).buscarUsuario(user.getUser());
-            if(tmp==null){
+            if (tmp == null) {
                 envioMensaje(req, resp, "No existe un usuario con ese nombre");
-            }else{
-                if(tmp.getPass().equals(user.getPass()))
-                {
+            } else {
+                if (tmp.getPass().equals(user.getPass())) {
                     envioMensaje(req, resp, "Solicitud Aceptada!!:)");
-                }else{
+                } else {
                     envioMensaje(req, resp, "Error en credenciales de usuario verifique usuario y password");
                 }
-                
+
             }
         }
 
@@ -107,7 +106,18 @@ public class loginUsuario extends HttpServlet {
     public DBusuarios recuperarDBusuarios(HttpServletRequest req) {
 
         try {
-            InputStream input = new FileInputStream(req.getServletContext().getRealPath("/Almacenamiento/users.db"));
+
+            String original = req.getServletContext().getRealPath("");
+            String p = original.replaceAll("/WEB_PROYECTO1/target/WEB_PROYECTO1-1.0-SNAPSHOT/", "");
+
+            if (p.equals(original)) {
+                System.out.println("SO: WINDOWS");
+                p = original.replaceAll("\\WEB_PROYECTO1\\target\\WEB_PROYECTO1-1.0-SNAPSHOT\\", "");
+            } else {
+                System.out.println("SO: LINUX");
+            }
+
+            InputStream input = new FileInputStream(p+"/Almacenamiento/users.db");
             BufferedReader br = new BufferedReader(new InputStreamReader(input));
             String linea;
             String code = "";
@@ -115,7 +125,7 @@ public class loginUsuario extends HttpServlet {
                 code += linea;
             }
             br.close();
-            
+
             Gson gson = new Gson();
             DBusuarios usuarios = gson.fromJson(code, DBusuarios.class);
             return usuarios;

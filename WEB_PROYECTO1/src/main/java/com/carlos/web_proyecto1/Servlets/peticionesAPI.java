@@ -1,5 +1,6 @@
 package com.carlos.web_proyecto1.Servlets;
 
+import com.carlos.web_proyecto1.Acciones.ejecutarInstrucciones;
 import com.carlos.web_proyecto1.Lexer.lexerIndigo;
 import com.carlos.web_proyecto1.Objetos.usuario;
 import com.carlos.web_proyecto1.Parser.parserIndigo;
@@ -20,10 +21,10 @@ import javax.servlet.http.HttpServletResponse;
 public class peticionesAPI extends HttpServlet {
     
     private resIndigo respuesta = new resIndigo();
+    private ejecutarInstrucciones ejecutar = null;
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
         StringBuilder resultado = new StringBuilder();
         BufferedReader rd = new BufferedReader(new InputStreamReader(req.getInputStream()));
         String linea;
@@ -33,10 +34,8 @@ public class peticionesAPI extends HttpServlet {
         }
         rd.close();
         
-        String code = resultado.toString();
-        System.out.println("Texto recuperado: " + code);
         try {
-            lexerIndigo lex = new lexerIndigo(new StringReader(code));
+            lexerIndigo lex = new lexerIndigo(new StringReader(resultado.toString()));
             parserIndigo parser = new parserIndigo(lex);
             parser.parse();
             List<Object> instrucciones = parser.getInstrucciones();
@@ -45,13 +44,39 @@ public class peticionesAPI extends HttpServlet {
             if(lex.getErrorsList().size()>0 || parser.getErrorsList().size()>0){
                 envioRespuesta(req, resp, parser.getErrorsList(), lex.getErrorsList());
             }else{
-                
+                if(instrucciones.size()==0){
+                    envioMensaje(req, resp, "No hay intrucciones a realizar :(");
+                }else{
+                    String original = req.getServletContext().getRealPath("");
+                    String p = original.replaceAll("/WEB_PROYECTO1/target/WEB_PROYECTO1-1.0-SNAPSHOT/","");
+                    
+                    if(p.equals(original)){
+                        System.out.println("SO: WINDOWS");
+                        p = original.replaceAll("\\WEB_PROYECTO1\\target\\WEB_PROYECTO1-1.0-SNAPSHOT\\","");
+                        ejecutar = new ejecutarInstrucciones(p);
+                    }else{
+                        System.out.println("SO: LINUX");
+                        ejecutar = new ejecutarInstrucciones(p);
+                    }
+                    System.out.println("Path: "+ejecutar.getPath());
+                }
             }
             
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    
+    private void envioRespuestas(HttpServletRequest req, HttpServletResponse resp,List<String> errSin, List<String> errLex) throws ServletException, IOException {
+        try {
+            PrintWriter writer = resp.getWriter();
+            writer.println(respuesta.escribirMensajeError(errSin, errLex));
+            writer.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     private void envioRespuesta(HttpServletRequest req, HttpServletResponse resp,List<String> errSin, List<String> errLex) throws ServletException, IOException {
         try {
             PrintWriter writer = resp.getWriter();
