@@ -279,3 +279,19 @@
 <fin_solicitud!>
 
 
+<!ini_solicitud:"MODIFICAR_COMPONENTE">
+	{"PARAMETROS_COMPONENTE":[
+        {
+            "ID": "$_grupo_paises",
+            "NOMBRE_CAMPO": "Pais",
+            "FORMULARIO":"$form2",
+            "CLASE":"RADIO",
+            "TEXTO_VISIBLE":"Pais del la historia: ",
+            "ALINEACION":"CENTRO",
+            "REQUERIDO":"SI",
+            "OPCIONES":"Guatemala|Panama|Belice|otro"
+	    }
+    ]}
+<fin_solicitud!>
+
+

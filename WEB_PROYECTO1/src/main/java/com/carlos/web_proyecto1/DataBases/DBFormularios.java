@@ -165,5 +165,19 @@ public class DBFormularios {
 
         return respuesta;
     }
+    
+    public String modificarComponente(componente comp){
+        String respuesta = "";
+        
+        Componente mod = this.buscarComponente(comp.getForm(), comp.getId());
+        
+        if(mod == null){
+            respuesta = "No existe en un componente con id "+comp.getId()+" en el formulario "+comp.getForm();
+        }else{
+            mod.modificarComponete(comp);
+            respuesta = "El componente con id "+comp.getId()+" del formulario id "+comp.getForm()+" se modifico exitosamente";
+        }
+        return respuesta;
+    }
 
 }

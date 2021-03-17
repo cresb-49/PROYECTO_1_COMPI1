@@ -126,6 +126,36 @@ public class Componente {
     public void setUrl(String url) {
         this.url = url;
     }
+    
+    public void modificarComponete(componente comp){
+        if(!(comp.getClase()==null || comp.getClase().isEmpty())){
+            this.clase = comp.getClase();
+        }
+        if(!(comp.getIndice()==null || comp.getIndice().isEmpty())){
+            this.indice = comp.getIndice();
+        }
+        if(!(comp.getTexto()==null || comp.getTexto().isEmpty())){
+            this.texto_visible = comp.getTexto();
+        }
+        if(!(comp.getAli()==null || comp.getAli().isEmpty())){
+            this.alineacion = comp.getAli();
+        }
+        if(!(comp.getRequerido()==null || comp.getRequerido().isEmpty())){
+            this.requerido = comp.getRequerido();
+        }
+        if(!(comp.getOpciones()==null || comp.getOpciones().isEmpty())){
+            this.opciones = comp.getOpciones();
+        }
+        if(!(comp.getFilas()==null || comp.getFilas().isEmpty())){
+            this.filas = comp.getFilas();
+        }
+        if(!(comp.getColumnas()==null || comp.getColumnas().isEmpty())){
+            this.columnas = comp.getColumnas();
+        }
+        if(!(comp.getUrl()==null || comp.getUrl().isEmpty())){
+            this.url = comp.getUrl();
+        }
+    }
 
     @Override
     public String toString() {

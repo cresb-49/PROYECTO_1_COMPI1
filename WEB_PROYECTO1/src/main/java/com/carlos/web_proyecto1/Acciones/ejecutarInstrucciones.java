@@ -139,6 +139,10 @@ public class ejecutarInstrucciones {
                         res = baseForms.eliminarComponente((componente)tmp);
                         log.add(res);
                         break;
+                    case "MODIFICAR_COMPONENTE":
+                        res = baseForms.modificarComponente((componente)tmp);
+                        log.add(res);
+                        break;
                     default:
                         System.out.println("Accion no registrada componente: " + ((componente) tmp).getAccion());
                 }
