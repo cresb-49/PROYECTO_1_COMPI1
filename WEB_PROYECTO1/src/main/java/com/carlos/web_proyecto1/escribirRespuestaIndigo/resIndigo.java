@@ -21,7 +21,7 @@ public class resIndigo {
                 }
             }
             respuesta = respuesta + "\n]}\n";
-            respuesta = respuesta + "<fin_solicitud!>\n";
+            respuesta = respuesta + "<fin_respuesta!>\n";
         }
         
         if(!errSin.isEmpty()){
@@ -67,7 +67,7 @@ public class resIndigo {
                 }
             }
             respuesta = respuesta + "\n]}\n";
-            respuesta = respuesta + "<fin_solicitud!>\n";
+            respuesta = respuesta + "<fin_respuesta!>\n";
         }
         
         respuesta = respuesta + "<!fin_respuestas>\n";    

@@ -3,7 +3,6 @@ package com.carlos.web_proyecto1.Objetos;
 public class userNew extends usuario{
     private String newUser;
     private String newPass;
-    private String fechaMod;
 
     public userNew() {
     }
@@ -11,14 +10,14 @@ public class userNew extends usuario{
     public userNew(String newUser, String newPass, String fechaMod) {
         this.newUser = newUser;
         this.newPass = newPass;
-        this.fechaMod = fechaMod;
+        this.setFechaMod(fechaMod);
     }
 
     public userNew(String newUser, String newPass, String fechaMod, String user, String pass) {
         super(user, pass,"");
         this.newUser = newUser;
         this.newPass = newPass;
-        this.fechaMod = fechaMod;
+        this.setFechaMod(fechaMod);
     }
 
     public String getNewUser() {
@@ -37,17 +36,9 @@ public class userNew extends usuario{
         this.newPass = newPass;
     }
 
-    public String getFechaMod() {
-        return fechaMod;
-    }
-
-    public void setFechaMod(String fecha) {
-        this.fechaMod = fecha;
-    }
-
     @Override
     public String toString() {
-        return "userNew{" + "newUser=" + newUser + ", newPass=" + newPass + ", fechaMod=" + fechaMod +", user="+this.getUser()+", pass"+this.getPass() +", accion="+this.getAccion()+'}';
+        return "userNew{" + "newUser=" + newUser + ", newPass=" + newPass + ", fechaMod=" + this.getFechaMod() +", user="+this.getUser()+", pass"+this.getPass() +", accion="+this.getAccion()+'}';
     }
 
     

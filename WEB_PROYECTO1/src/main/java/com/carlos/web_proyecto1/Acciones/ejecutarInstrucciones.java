@@ -1,6 +1,7 @@
 package com.carlos.web_proyecto1.Acciones;
 
 import com.carlos.web_proyecto1.DataBases.DBusuarios;
+import com.carlos.web_proyecto1.Objetos.userNew;
 import com.carlos.web_proyecto1.Objetos.usuario;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
@@ -35,6 +36,7 @@ public class ejecutarInstrucciones {
     public List<String> getLog() {
         return log;
     }
+
     public String getPath() {
         return path;
     }
@@ -72,21 +74,30 @@ public class ejecutarInstrucciones {
             if (tmp instanceof usuario) {
                 switch (((usuario) tmp).getAccion()) {
                     case "CREAR_USUARIO":
-                        res = baseUsuarios.crearUsuario(((usuario)tmp));
-                        if (res.isEmpty()) {
-                            log.add("El usuario "+((usuario) tmp).getUser()+" fue creado exitosamente");
-                        } else {
-                            log.add(res);
-                        }
+                        res = baseUsuarios.crearUsuario(((usuario) tmp));
+                        log.add(res);
+                        break;
+                    case "ELIMINAR_USUARIO":
+                        res = baseUsuarios.eliminarUsuario((usuario) tmp);
+                        log.add(res);
                         break;
                     default:
-                        System.out.println("Accion no registrada: " + ((usuario) tmp).getAccion());
+                        //System.out.println("Accion no registrada usuario: " + ((usuario) tmp).getAccion());
+                }
+            }
+            if (tmp instanceof userNew) {
+                switch (((userNew) tmp).getAccion()) {
+                    case "MODIFICAR_USUARIO":
+                        res=baseUsuarios.modificarUsuario(((userNew)tmp));
+                        log.add(res);
                         break;
+                    default:
+                        //System.out.println("Accion no registrada new usuario: " + ((usuario) tmp).getAccion());
                 }
             }
 
         }
-        escribir.escritura(path + "/Almacenamiento/users.db",gson.toJson(baseUsuarios));
+        escribir.escritura(path + "/Almacenamiento/users.db", gson.toJson(baseUsuarios));
 
     }
 

@@ -4,16 +4,19 @@ public class usuario {
     private String user;
     private String pass;
     private String fecha;
+    private String fechaMod;
     
     private String accion;
 
     public usuario() {
+        this.fechaMod="";
     }
 
     public usuario(String user, String pass, String fecha) {
         this.user = user;
         this.pass = pass;
         this.fecha = fecha;
+        this.fechaMod="";
     }
 
     public String getUser() {
@@ -47,9 +50,19 @@ public class usuario {
     public void setAccion(String accion) {
         this.accion = accion;
     }
+    
+    public String getFechaMod() {
+        return fechaMod;
+    }
+
+    public void setFechaMod(String fecha) {
+        this.fechaMod = fecha;
+    }
 
     @Override
     public String toString() {
-        return "usuario{" + "user=" + user + ", pass=" + pass + ", fecha=" + fecha + ", accion=" + accion + '}';
+        return "usuario{" + "user=" + user + ", pass=" + pass + ", fecha=" + fecha + ", fechaMod=" + fechaMod + ", accion=" + accion + '}';
     }
+
+    
 }
