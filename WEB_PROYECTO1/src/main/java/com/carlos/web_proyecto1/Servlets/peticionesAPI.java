@@ -67,7 +67,6 @@ public class peticionesAPI extends HttpServlet {
                     }
                 }
             }
-            
         } catch (Exception e) {
             e.printStackTrace();
         }

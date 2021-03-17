@@ -1,11 +1,12 @@
 package com.carlos.web_proyecto1.Acciones;
 
+import com.carlos.web_proyecto1.DataBases.DBFormularios;
 import com.carlos.web_proyecto1.DataBases.DBusuarios;
-import com.carlos.web_proyecto1.Objetos.userNew;
-import com.carlos.web_proyecto1.Objetos.usuario;
+import com.carlos.web_proyecto1.Objetos.*;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.AbstractList;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class ejecutarInstrucciones {
 
     private String path;
     private DBusuarios baseUsuarios;
+    private DBFormularios baseForms;
     private List<String> log = new ArrayList<>();
     private sobreEscribirArchivo escribir = new sobreEscribirArchivo();
 
@@ -46,8 +48,7 @@ public class ejecutarInstrucciones {
         Gson gson = new Gson();
 
         try {
-            FileInputStream input = new FileInputStream(path + "/Almacenamiento/users.db");
-            BufferedReader br = new BufferedReader(new InputStreamReader(input));
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path + "/Almacenamiento/users.db")));
             String linea;
             String code = "";
 
@@ -60,6 +61,20 @@ public class ejecutarInstrucciones {
 
         } catch (Exception e) {
             System.out.println("Error en carga de base de datos usuarios");
+            e.printStackTrace();
+        }
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path + "/Almacenamiento/forms.db")));
+            String liena;
+            String code = "";
+
+            while ((liena = br.readLine()) != null) {
+                code += liena;
+            }
+            br.close();
+            this.baseForms = gson.fromJson(code, DBFormularios.class);
+        } catch (Exception e) {
+            System.out.println("Error en carga de base de datos formularios");
             e.printStackTrace();
         }
 
@@ -82,23 +97,41 @@ public class ejecutarInstrucciones {
                         log.add(res);
                         break;
                     default:
-                        //System.out.println("Accion no registrada usuario: " + ((usuario) tmp).getAccion());
+                    //System.out.println("Accion no registrada usuario: " + ((usuario) tmp).getAccion());
                 }
             }
             if (tmp instanceof userNew) {
                 switch (((userNew) tmp).getAccion()) {
                     case "MODIFICAR_USUARIO":
-                        res=baseUsuarios.modificarUsuario(((userNew)tmp));
+                        res = baseUsuarios.modificarUsuario(((userNew) tmp));
                         log.add(res);
                         break;
                     default:
-                        //System.out.println("Accion no registrada new usuario: " + ((usuario) tmp).getAccion());
+                    //System.out.println("Accion no registrada new usuario: " + ((usuario) tmp).getAccion());
                 }
             }
+            if (tmp instanceof formulario) {
+                switch (((formulario) tmp).getAccion()) {
+                    case "NUEVO_FORMULARIO":
+                        res = baseForms.agregarFormulario((formulario) tmp);
+                        log.add(res);
+                        break;
+                    case "ELIMINAR_FORMULARIO":
+                        res = baseForms.eliminarFormulario((formulario) tmp);
+                        log.add(res);
+                    case "MODIFICAR_FORMULARIO":
+                        res = baseForms.modificarFormulario((formulario) tmp);
+                        log.add(res);
+                    default:
+                        System.out.println("Accion no registrada formulario: " + ((formulario) tmp).getAccion());
+                }
+                if (tmp instanceof componente) {
 
+                }
+            }
+            escribir.escritura(path + "/Almacenamiento/users.db", gson.toJson(baseUsuarios));
+            escribir.escritura(path + "/Almacenamiento/forms.db", gson.toJson(baseForms));
         }
-        escribir.escritura(path + "/Almacenamiento/users.db", gson.toJson(baseUsuarios));
-
     }
 
 }

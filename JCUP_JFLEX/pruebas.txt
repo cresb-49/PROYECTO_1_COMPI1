@@ -94,15 +94,15 @@
             "TEMA": "Dark"
         },
         {
-            "ID": "$form1",
-            "TITULO": "Formulario para encuesta 1",
-            "NOMBRE": "formulario_encuesta_1",
+            "ID": "$form2",
+            "TITULO": "Formulario para encuesta 2",
+            "NOMBRE": "formulario_encuesta_2",
             "TEMA": "Dark"
         },
         {
-            "ID": "$form1",
-            "TITULO": "Formulario para encuesta 1",
-            "NOMBRE": "formulario_encuesta_1",
+            "ID": "$form3",
+            "TITULO": "Formulario para encuesta 3",
+            "NOMBRE": "formulario_encuesta_3",
             "TEMA": "Dark"
         }
     ]
