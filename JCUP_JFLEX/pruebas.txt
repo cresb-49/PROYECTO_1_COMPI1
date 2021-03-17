@@ -258,31 +258,24 @@
         {
             "ID": "$_grupo_paises",
             "NOMBRE_CAMPO": "Pais",
-            "FORMULARIO":"$form1",
+            "FORMULARIO":"$form2",
             "CLASE":"COMBO",
             "TEXTO_VISIBLE":"Pais de Origen: ",
-            "ALINEACION":"CENTRAR",
+            "ALINEACION":"CENTRO",
             "REQUERIDO":"SI",
             "OPCIONES":"Guatemala|El salvador|Honduras|otro"
 	    },
         {
-            "ID": "$_grupo_paises",
+            "ID": "$_grupo_paises2",
             "NOMBRE_CAMPO": "Pais",
-            "FORMULARIO":"$form1",
+            "FORMULARIO":"$form2",
             "CLASE":"COMBO",
             "TEXTO_VISIBLE":"Pais de Origen: ",
-            "ALINEACION":"CENTRAR",
+            "ALINEACION":"CENTRO",
             "REQUERIDO":"SI",
             "OPCIONES":"Guatemala|El salvador|Honduras|otro"
 	    }
     ]}
 <fin_solicitud!>
 
-<!ini_respuestas>
-<!ini_respuesta:"ERRORES_SINTACTICOS">
-{"DESCRIPCION":[
-{
- "MENSAJE":"Parametro inesperado: [,] Linea: 5, Columna: 25"}
-]}
-<fin_respuesta!>
-<!fin_respuestas>
+

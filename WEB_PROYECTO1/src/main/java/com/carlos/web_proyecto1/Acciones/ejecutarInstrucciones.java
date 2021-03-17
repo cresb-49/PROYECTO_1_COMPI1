@@ -129,6 +129,20 @@ public class ejecutarInstrucciones {
 
                 }
             }
+            if (tmp instanceof componente) {
+                switch (((componente) tmp).getAccion()) {
+                    case "AGREGAR_COMPONENTE":
+                        res = baseForms.agregarComponente(((componente)tmp));
+                        log.add(res);
+                        break;
+                    case "ELIMINAR_COMPONENTE":
+                        res = baseForms.eliminarComponente((componente)tmp);
+                        log.add(res);
+                        break;
+                    default:
+                        System.out.println("Accion no registrada componente: " + ((componente) tmp).getAccion());
+                }
+            }
             escribir.escritura(path + "/Almacenamiento/users.db", gson.toJson(baseUsuarios));
             escribir.escritura(path + "/Almacenamiento/forms.db", gson.toJson(baseForms));
         }
