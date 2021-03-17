@@ -58,7 +58,13 @@ public class peticionesAPI extends HttpServlet {
                         System.out.println("SO: LINUX");
                         ejecutar = new ejecutarInstrucciones(p);
                     }
-                    System.out.println("Path: "+ejecutar.getPath());
+                    ejecutar.ejecutarIntrucciones(instrucciones);
+                    
+                    if(ejecutar.getLog().isEmpty()){
+                        this.envioMensaje(req, resp, "Hubo un error en el servidor");
+                    }else{
+                        this.envioRespuestas(req, resp, ejecutar.getLog());
+                    }
                 }
             }
             
@@ -67,10 +73,10 @@ public class peticionesAPI extends HttpServlet {
         }
     }
     
-    private void envioRespuestas(HttpServletRequest req, HttpServletResponse resp,List<String> errSin, List<String> errLex) throws ServletException, IOException {
+    private void envioRespuestas(HttpServletRequest req, HttpServletResponse resp,List<String> mensajes) throws ServletException, IOException {
         try {
             PrintWriter writer = resp.getWriter();
-            writer.println(respuesta.escribirMensajeError(errSin, errLex));
+            writer.println(respuesta.escribirMensajes(mensajes));
             writer.flush();
         } catch (Exception e) {
             e.printStackTrace();
