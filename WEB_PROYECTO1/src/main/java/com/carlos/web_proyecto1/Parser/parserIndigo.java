@@ -10167,8 +10167,6 @@ class CUP$parserIndigo$actions {
                                 String tmp = ((componente)e1).validarComponete();
                                 if(tmp.isEmpty()){
                                         ((componente)e1).setAccion("AGREGAR_COMPONENTE");
-                                        //instrucciones.add(e1);
-                                        //addComp.add(((componente)e1));
                                         if(e3!=null){
                                                 ((List<Object>)e3).add(e1);
                                                 RESULT = e3;

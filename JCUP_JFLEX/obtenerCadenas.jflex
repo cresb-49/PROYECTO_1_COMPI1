@@ -27,7 +27,7 @@ import java.util.List;
 
 /*EXPRECIONES REGULARES*/
 
-WhiteSpace = [ ]+
+WhiteSpace = [ \t\n]+
 //atributes = [a-zA-Z_]+
 simbolos = [\]\[\{\}!@#$%&*'~`°¬¡¿¨()+=_<>?/.:;,\|\-\^]
 numeros = [0-9]

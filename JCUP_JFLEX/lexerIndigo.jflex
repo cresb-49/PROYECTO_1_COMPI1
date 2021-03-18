@@ -50,8 +50,7 @@ finConjuntoRes = (<)([ \n\r\t])*(\!)([ \n\r\t])*([fF][iI][nN]_[rR][eE][sS][pP][u
 simbolos = [\]\[\{\}!@#$%&*'~`°¬¡¿¨()+=_<>?/.:;,\|\-\^]
 numeros = [0-9]
 letras = [a-zA-Z]
-espacio = [ ]
-text  = [\"]({simbolos}|{numeros}|{letras}|{espacio})*[\"]
+text  = [\"]({simbolos}|{numeros}|{letras}|[ \t\n])*[\"]
 fecha = [\"]([1-9][0-9][0-9][0-9])(\-)([0][1-9]|[1][0-2])(\-)([0][1-9]|[1-2][0-9]|[3][0-1])[\"]
 asigId= [\"](\$|\_|\-)([0-9]|[a-zA-Z]|[$\-_])*[\"]
 numConsult = (CONSULTA)(\-)([0-9]+)

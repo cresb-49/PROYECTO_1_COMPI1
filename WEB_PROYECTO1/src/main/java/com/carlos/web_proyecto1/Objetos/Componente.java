@@ -128,6 +128,9 @@ public class Componente {
     }
     
     public void modificarComponete(componente comp){
+        if(!(comp.getNombre()==null || comp.getNombre().isEmpty())){
+            this.nombre_campo = comp.getNombre();
+        }
         if(!(comp.getClase()==null || comp.getClase().isEmpty())){
             this.clase = comp.getClase();
         }
