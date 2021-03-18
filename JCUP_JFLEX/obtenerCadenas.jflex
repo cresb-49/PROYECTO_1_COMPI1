@@ -21,6 +21,7 @@ import java.util.List;
     private String currentText="";
     private int cantidadLexemas = 0;
     private int cantidadEspacios = 0;
+    private boolean numero = false;
 
 %}
 
@@ -28,10 +29,11 @@ import java.util.List;
 
 WhiteSpace = [ ]+
 //atributes = [a-zA-Z_]+
-simbolos = [\]\[\{\}!@#$%&*()+=_<>?/.:;,\|\-\^]
+simbolos = [\]\[\{\}!@#$%&*'~`°¬¡¿¨()+=_<>?/.:;,\|\-\^]
 numeros = [0-9]
 letras = [a-zA-Z]
 text  = ({simbolos}|{numeros}|{letras})+
+nums = ({numeros})+
 
 %{
     
@@ -55,22 +57,35 @@ text  = ({simbolos}|{numeros}|{letras})+
     public void reinicioLex(){
         cantidadLexemas=0;
         cantidadEspacios=0;
+        numero = false;
         currentText="";
     }
     public List<String> getErrorsList() {
         return errorsList;
     }
+
+    public boolean isNumero(){
+        return numero;
+    }    
+
 %}
 
 %%
 
 /*LEXIX RULES*/
 <YYINITIAL>{
+    {nums}
+        {
+            //System.out.println("Numero encontrado: "+yytext());
+            currentText = yytext();
+            numero=true;
+        }
     {text}
         {
             //System.out.println("Texto Encontrado: "+yytext());
             cantidadLexemas++;
             currentText = yytext();
+            numero = false;
         }
     {WhiteSpace}
         {

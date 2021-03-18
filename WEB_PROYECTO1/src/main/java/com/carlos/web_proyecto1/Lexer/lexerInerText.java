@@ -65,8 +65,9 @@ public class lexerInerText {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\40\0\1\1\1\2\1\0\4\2\1\0\64\2\1\0"+
-    "\3\2\1\0\35\2\u0182\0";
+    "\40\0\1\1\1\2\1\0\15\2\12\3\42\2\1\0"+
+    "\42\2\42\0\1\2\6\0\1\2\3\0\1\2\3\0"+
+    "\1\2\16\0\1\2\u0140\0";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[512];
@@ -93,10 +94,10 @@ public class lexerInerText {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\3";
+    "\1\0\1\1\1\2\1\3\1\4";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[4];
+    int [] result = new int[5];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -121,10 +122,10 @@ public class lexerInerText {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\3\0\6\0\11";
+    "\0\0\0\4\0\10\0\14\0\20";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[4];
+    int [] result = new int[5];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -147,10 +148,11 @@ public class lexerInerText {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\4\4\0\1\3\3\0\1\4";
+    "\1\2\1\3\1\4\1\5\5\0\1\3\4\0\2\4"+
+    "\2\0\1\4\1\5";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[12];
+    int [] result = new int[20];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -193,10 +195,10 @@ public class lexerInerText {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\2\1";
+    "\1\0\1\11\3\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[4];
+    int [] result = new int[5];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -281,6 +283,7 @@ public class lexerInerText {
     private String currentText="";
     private int cantidadLexemas = 0;
     private int cantidadEspacios = 0;
+    private boolean numero = false;
 
     
     public lexerInerText(){
@@ -303,11 +306,17 @@ public class lexerInerText {
     public void reinicioLex(){
         cantidadLexemas=0;
         cantidadEspacios=0;
+        numero = false;
         currentText="";
     }
     public List<String> getErrorsList() {
         return errorsList;
     }
+
+    public boolean isNumero(){
+        return numero;
+    }    
+
 
 
   /**
@@ -706,19 +715,27 @@ public class lexerInerText {
             { error(yytext());
             }
             // fall through
-          case 4: break;
+          case 5: break;
           case 2:
             { cantidadEspacios++;
             }
             // fall through
-          case 5: break;
+          case 6: break;
           case 3:
             { //System.out.println("Texto Encontrado: "+yytext());
             cantidadLexemas++;
             currentText = yytext();
+            numero = false;
             }
             // fall through
-          case 6: break;
+          case 7: break;
+          case 4:
+            { //System.out.println("Numero encontrado: "+yytext());
+            currentText = yytext();
+            numero=true;
+            }
+            // fall through
+          case 8: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

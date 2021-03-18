@@ -42,15 +42,12 @@ WhiteSpace = [ \t\n]+
 atributes = [a-zA-Z_]+
 reservadasConjunto = (ini_solicitud|fin_solicitud)
 
-//conjuntoOperaciones = (<\!ini_solicitudes>|<\!fin_solicitudes>)
-
-//conjuntoOperaciones = ((<)\!ini_solicitudes>|<\!fin_solicitudes>)
 inicioConjunto = (<)([ \n\r\t])*(\!)([ \n\r\t])*([iI][nN][iI]_[sS][oO][lL][iI][cC][iI][tT][uU][dD][eE][sS])([ \n\r\t])*(>)
 inicioConjuntoRes = (<)([ \n\r\t])*(\!)([ \n\r\t])*([iI][nN][iI]_[rR][eE][sS][pP][uU][eE][sS][tT][aA][sS])([ \n\r\t])*(>)
 finConjunto = (<)([ \n\r\t])*(\!)([ \n\r\t])*([fF][iI][nN]_[sS][oO][lL][iI][cC][iI][tT][uU][dD][eE][sS])([ \n\r\t])*(>)
 finConjuntoRes = (<)([ \n\r\t])*(\!)([ \n\r\t])*([fF][iI][nN]_[rR][eE][sS][pP][uU][eE][sS][tT][aA][sS])([ \n\r\t])*(>)
 
-simbolos = [\]\[\{\}!@#$%&*()+=_<>?/.:;,\|\-\^]
+simbolos = [\]\[\{\}!@#$%&*'~`°¬¡¿¨()+=_<>?/.:;,\|\-\^]
 numeros = [0-9]
 letras = [a-zA-Z]
 espacio = [ ]
@@ -231,6 +228,7 @@ numConsult = (CONSULTA)(\-)([0-9]+)
             //System.out.println("Texto encontrado:" + yytext());
             String text = getInerText.getAsignacion(yytext());
             int espacios = 0;
+            boolean num = false;
             InerLex.yyreset(new StringReader(text));
             try {
                 InerLex.yylex();
@@ -240,6 +238,7 @@ numConsult = (CONSULTA)(\-)([0-9]+)
             if (InerLex.getCantidadLexemas() == 1) {
                 espacios = InerLex.getCantidadEspacios();
                 text = InerLex.getCurrentText();
+                num = InerLex.isNumero();
                 InerLex.reinicioLex();
                 switch (text) {
                     case "CREAR_USUARIO":
@@ -471,30 +470,43 @@ numConsult = (CONSULTA)(\-)([0-9]+)
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
                     default:
-                        if (espacios == 0) {
-                            tmp_symbl = new Symbol(ASIGNACION, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        if(num){
+                            tmp_symbl = new Symbol(ASIGNACION_NUM, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                             after_symbl = tmp_symbl;
                             return tmp_symbl;
-                        } else {
-                            text = getInerText.getAsignacion(yytext());
-                            tmp_symbl = new Symbol(ASIGNACION_ESP, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
-                            after_symbl = tmp_symbl;
-                            return tmp_symbl;
+                        }else{
+                            if (espacios == 0) {
+                                tmp_symbl = new Symbol(ASIGNACION, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                                after_symbl = tmp_symbl;
+                                return tmp_symbl;
+                            } else {
+                                text = getInerText.getAsignacion(yytext());
+                                tmp_symbl = new Symbol(ASIGNACION_ESP, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                                after_symbl = tmp_symbl;
+                                return tmp_symbl;
+                            }
                         }
                     }
 
             } else {
                 espacios = InerLex.getCantidadEspacios();
+                num = InerLex.isNumero();
                 InerLex.reinicioLex();
-                if (espacios == 0) {
-                    tmp_symbl = new Symbol(ASIGNACION, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                if(num){
+                    tmp_symbl = new Symbol(ASIGNACION_NUM, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                     after_symbl = tmp_symbl;
                     return tmp_symbl;
-                } else {
-                    text = getInerText.getAsignacion(yytext());
-                    tmp_symbl = new Symbol(ASIGNACION_ESP, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
-                    after_symbl = tmp_symbl;
-                    return tmp_symbl;
+                }else{
+                    if (espacios == 0) {
+                        tmp_symbl = new Symbol(ASIGNACION, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    } else {
+                        text = getInerText.getAsignacion(yytext());
+                        tmp_symbl = new Symbol(ASIGNACION_ESP, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
+                    }
                 }
             }
         }
