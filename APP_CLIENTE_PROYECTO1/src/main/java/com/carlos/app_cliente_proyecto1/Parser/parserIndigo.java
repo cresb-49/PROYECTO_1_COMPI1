@@ -2111,7 +2111,7 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
         }
 
         public void errorParametroDuplicado(Object simbolo){
-                token tok = (token)((Symbol)simbolo).value;
+                token tok = (token)simbolo;
                 System.out.println("El parametro del componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn()+" ya se habia definido con anterioridad");
                 errorsList.add("El parametro del componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn()+" ya se habia definido con anterioridad");
         }
