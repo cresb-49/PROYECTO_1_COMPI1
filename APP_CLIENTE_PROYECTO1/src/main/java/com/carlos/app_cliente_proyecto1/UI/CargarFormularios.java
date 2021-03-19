@@ -127,6 +127,7 @@ public class CargarFormularios extends javax.swing.JInternalFrame {
             
             lexerImportar lex = new lexerImportar(new FileReader(archivo));
             parserImportar parser = new parserImportar(lex);
+            parser.parse();
             
             mostarErrores(lex.getErrorsList(), parser.getErrorsList());
             
@@ -142,15 +143,18 @@ public class CargarFormularios extends javax.swing.JInternalFrame {
         if(!lexicos.isEmpty()){
             lineas = lineas+ "Errores lexicos encontrados:\n";
             for (String lexico : lexicos) {
-                lineas = lineas + lexico;                
+                lineas = lineas + lexico +"\n";                
             }
         }
         if(!sintacticos.isEmpty()){
             lineas = lineas+ "Errores lexicos encontrados:\n";
             for (String sintactico : sintacticos) {
-                lineas = lineas + sintactico;                
+                lineas = lineas + sintactico+"\n";                
             }
         }
+        
+        panelErrores.setText(lineas);
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

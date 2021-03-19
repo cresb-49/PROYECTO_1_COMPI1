@@ -380,11 +380,11 @@ numConsult = (CONSULTA)(\-)([0-9]+)
                         tmp_symbl = new Symbol(COLM, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
-                    case "URL​":
+                    case "URL":
                         tmp_symbl = new Symbol(URL, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
-                    case "CAMPO_TEXTO​":
+                    case "CAMPO_TEXTO":
                         tmp_symbl = new Symbol(CAMP_TEXT, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
