@@ -125,6 +125,10 @@ newForm = (new.formulario)
                 num = InerLex.isNumero();
                 InerLex.reinicioLex();
                 switch (text) {
+                    case "ID_FORMULARIO":
+                        tmp_symbl = new Symbol(ID_FORM, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
                     case "ID":
                         tmp_symbl = new Symbol(ID, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
@@ -141,16 +145,12 @@ newForm = (new.formulario)
                         tmp_symbl = new Symbol(THEME, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
-                    case "USUARIO_CREACION":
-                        tmp_symbl = new Symbol(USER_CRE, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                    case "ESTRUCTURA":
+                        tmp_symbl = new Symbol(ESTRUCT, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
                     case "NOMBRE_CAMPO":
                         tmp_symbl = new Symbol(NAME_CAMP, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
-                        after_symbl = tmp_symbl;
-                        return tmp_symbl;
-                    case "FORMULARIO":
-                        tmp_symbl = new Symbol(FORM, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
                     case "CLASE":

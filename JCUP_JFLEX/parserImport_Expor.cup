@@ -35,7 +35,7 @@ parser code {:
     }
 
     protected int error_sync_size() {
-		return 1;
+		return COM ID_FORM D_DOT ASIG_ID;
 	}
     public List<String> getErrorsList(){
 	    return errorsList;
@@ -44,5 +44,198 @@ parser code {:
 
 terminal    L_A,L_C,P_A,P_C,COM,ASIG_ID,ID,TITLE,NAME,THEME,USER_CRE,NAME_CAMP,FORM,CLASS,IND,TEXT_VIEW,ALI,
             REQUE,OPTION,FILAS,COLM,URL,CAMP_TEXT,TEXT_AREA,CHECK,RADIO,FILE,IMG,COMBO,BOTON,CENT,IZQ,DER,JUST,
-            YES,NOT,ASIGNACION_NUM,ASIGNACION,ASIGNACION_ESP,DATE,NEW_FORM;
-non terminal
+            YES,NOT,ASIGNACION_NUM,ASIGNACION,ASIGNACION_ESP,DATE,NEW_FORM,ID_FORM,ESTRUCT;
+
+non terminal    inicio,contenido,contenido2,continuacion,devContenido1,devContenido2,devContenido3,devContenido4,devContenido5,devContenido6,devContenido7,devContenido8,
+                devContenido9,devContenido10,devContenido11,devContenido12,devContenido13,devContenido14,devContenido15,devContenido16,devContenido17,devContenido18,devContenido19,
+                devContenido20,devContenido21,devContenido22,devContenido23,devContenido24,devContenido25,devContenido26,devContenido27,devContenido28,devContenido29,devContenido30,
+                components;
+
+start with inicio;
+
+inicio  ::= NEW_FORM P_A contenido P_C
+        |   error
+        ;
+
+contenido   ::= L_A contenido2 L_C continuacion
+            |   error
+            ;
+
+continuacion    ::= COM contenido
+                |
+                |   error
+                ;
+
+asigContenido   ::= ASIGNACION:e1
+                {:
+                    RESULT = e1;
+                :}
+                |   ASIGNACION_ESP:e1
+                {:
+                    RESULT = e1;
+                :}
+                |   ASIGNACION_NUM:e1
+                {:
+                    RESULT =e1;
+                :}
+                |   error
+                ;
+
+contenido2      ::= ID_FORM D_DOT ASIG_ID
+                |   TITLE D_DOT asigContenido
+                |   NAME D_DOT ASIGNACION
+                |   THEME D_DOT asigContenido
+                |   ESTRUCT D_DOT P_A components P_C
+                |   error
+                ;
+
+devContenido1   ::= COM TITLE D_DOT asigContenido devContenido6
+                |   COM NAME D_DOT ASIGNACION devContenido7
+                |   COM THEME D_DOT asigContenido devContenido8
+                |   COM ESTRUCT D_DOT P_A components P_C devContenido9
+                |   error
+                ;
+devContenido2   ::= COM ID_FORM D_DOT ASIG_ID devContenido6
+                |   COM NAME D_DOT ASIGNACION devContenido10
+                |   COM THEME D_DOT asigContenido devContenido11
+                |   COM ESTRUCT D_DOT P_A components P_C devContenido12
+                |   error
+                ;
+devContenido3   ::= COM ID_FORM D_DOT ASIG_ID devContenido7
+                |   COM TITLE D_DOT asigContenido devContenido10
+                |   COM THEME D_DOT asigContenido devContenido13
+                |   COM ESTRUCT D_DOT P_A components P_C devContenido14
+                |   error
+                ;
+devContenido4   ::= COM ID_FORM D_DOT ASIG_ID devContenido8
+                |   COM TITLE D_DOT asigContenido devContenido11
+                |   COM NAME D_DOT ASIGNACION devContenido13
+                |   COM ESTRUCT D_DOT P_A components P_C devContenido15
+                |   error
+                ;
+devContenido5  ::=  COM ID_FORM D_DOT ASIG_ID devContenido9
+                |   COM TITLE D_DOT asigContenido devContenido12
+                |   COM NAME D_DOT ASIGNACION devContenido14
+                |   COM THEME D_DOT asigContenido devContenido15
+                |   error
+                ;
+//----------------------------------------------
+devContenido6   ::= COM NAME D_DOT ASIGNACION devContenido16
+                |   COM THEME D_DOT asigContenido devContenido17
+                |   COM ESTRUCT D_DOT P_A components P_C devContenido18
+                |   error
+                ;
+devContenido7   ::= COM TITLE D_DOT asigContenido devContenido16
+                |   COM THEME D_DOT asigContenido devContenido19
+                |   COM ESTRUCT D_DOT P_A components P_C devContenido20
+                |   error
+                ;
+devContenido8   ::= COM TITLE D_DOT asigContenido devContenido17
+                |   COM NAME D_DOT ASIGNACION devContenido19
+                |   COM ESTRUCT D_DOT P_A components P_C devContenido21
+                |   error
+                ;
+
+devContenido9   ::= COM TITLE D_DOT asigContenido devContenido18
+                |   COM NAME D_DOT ASIGNACION devContenido20
+                |   COM THEME D_DOT asigContenido devContenido21
+                |   error
+                ;
+devContenido10  ::= COM ID_FORM D_DOT ASIG_ID devContenido16
+                |   COM THEME D_DOT asigContenido devContenido22
+                |   COM ESTRUCT D_DOT P_A components P_C devContenido23
+                |   error
+                ;
+devContenido11  ::= COM ID_FORM D_DOT ASIG_ID devContenido17
+                |   COM NAME D_DOT ASIGNACION devContenido22
+                |   COM ESTRUCT D_DOT P_A components P_C devContenido24
+                |   error
+                ;
+devContenido12  ::= COM ID_FORM D_DOT ASIG_ID devContenido18
+                |   COM NAME D_DOT ASIGNACION devContenido23
+                |   COM THEME D_DOT asigContenido devContenido24
+                |   error
+                ;
+devContenido13  ::= COM ID_FORM D_DOT ASIG_ID devContenido19
+                |   COM TITLE D_DOT asigContenido devContenido22
+                |   COM ESTRUCT D_DOT P_A components P_C devContenido25
+                |   error
+                ;
+
+devContenido14  ::= COM ID_FORM D_DOT ASIG_ID devContenido20
+                |   COM TITLE D_DOT asigContenido devContenido23
+                |   COM THEME D_DOT asigContenido devContenido25
+                |   error
+                ;
+devContenido15  ::= COM ID_FORM D_DOT ASIG_ID devContenido21
+                |   COM TITLE D_DOT asigContenido devContenido24
+                |   COM NAME D_DOT ASIGNACION devContenido25
+                |   error
+                ;
+//----------------------------------------
+devContenido16  ::= COM THEME D_DOT asigContenido devContenido26
+                |   COM ESTRUCT D_DOT P_A components P_C devContenido27
+                |   error
+                ;
+devContenido17  ::= COM NAME D_DOT ASIGNACION devContenido26
+                |   COM ESTRUCT D_DOT P_A components P_C devContenido28
+                |   error
+                ;
+devContenido18  ::= COM NAME D_DOT ASIGNACION devContenido27
+                |   COM THEME D_DOT asigContenido devContenido28
+                |   error
+                ;
+devContenido19  ::= COM TITLE D_DOT asigContenido devContenido26
+                |   COM ESTRUCT D_DOT P_A components P_C devContenido29
+                |   error
+                ;
+devContenido20  ::= COM TITLE D_DOT asigContenido devContenido27
+                |   COM THEME D_DOT asigContenido devContenido29
+                |   error
+                ;
+devContenido21  ::= COM TITLE D_DOT asigContenido devContenido28
+                |   COM NAME D_DOT ASIGNACION devContenido29
+                |   error
+                ;
+devContenido22  ::= COM ID_FORM D_DOT ASIG_ID devContenido26
+                |   COM ESTRUCT D_DOT P_A components P_C devContenido30
+                |   error
+                ;
+devContenido23  ::= COM ID_FORM D_DOT ASIG_ID devContenido27
+                |   COM THEME D_DOT asigContenido devContenido30
+                |   error
+                ;
+devContenido24  ::= COM ID_FORM D_DOT ASIG_ID devContenido28
+                |   COM NAME D_DOT ASIGNACION devContenido30
+                |   error
+                ;
+devContenido25  ::= COM ID_FORM D_DOT ASIG_ID devContenido29
+                |   COM TITLE D_DOT asigContenido devContenido30
+                |   error
+                ;
+devContenido26  ::= COM ESTRUCT D_DOT P_A components P_C 
+                |   error
+                ;
+devContenido27  ::= COM THEME D_DOT asigContenido 
+                |   error
+                ;
+devContenido28  ::= COM NAME D_DOT ASIGNACION 
+                |   error
+                ;
+devContenido29  ::= COM TITLE D_DOT asigContenido 
+                |   error
+                ;
+devContenido30  ::= COM ID_FORM D_DOT ASIG_ID
+                |   error
+                ;
+
+//----------------------------------------
+components  ::= L_A components2 L_C contComponents
+            |   error
+            ;
+
+contComponents  ::= COM components
+                |
+                |   error
+                ;
+                
