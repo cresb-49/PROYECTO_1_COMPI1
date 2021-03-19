@@ -42,14 +42,14 @@ parser code {:
 	}
 :}
 
-terminal    L_A,L_C,P_A,P_C,COM,ASIG_ID,ID,TITLE,NAME,THEME,USER_CRE,NAME_CAMP,FORM,CLASS,IND,TEXT_VIEW,ALI,
+terminal    L_A,L_C,P_A,P_C,COM,ASIG_ID,ID,TITLE,NAME,THEME,NAME_CAMP,FORM,CLASS,IND,TEXT_VIEW,ALI,
             REQUE,OPTION,FILAS,COLM,URL,CAMP_TEXT,TEXT_AREA,CHECK,RADIO,FILE,IMG,COMBO,BOTON,CENT,IZQ,DER,JUST,
-            YES,NOT,ASIGNACION_NUM,ASIGNACION,ASIGNACION_ESP,DATE,NEW_FORM,ID_FORM,ESTRUCT;
+            YES,NOT,ASIGNACION_NUM,ASIGNACION,ASIGNACION_ESP,NEW_FORM,ID_FORM,ESTRUCT,D_DOT;
 
 non terminal    inicio,contenido,contenido2,continuacion,devContenido1,devContenido2,devContenido3,devContenido4,devContenido5,devContenido6,devContenido7,devContenido8,
                 devContenido9,devContenido10,devContenido11,devContenido12,devContenido13,devContenido14,devContenido15,devContenido16,devContenido17,devContenido18,devContenido19,
                 devContenido20,devContenido21,devContenido22,devContenido23,devContenido24,devContenido25,devContenido26,devContenido27,devContenido28,devContenido29,devContenido30,
-                components;
+                components,components2,contMO_C1,contMO_C_2,contMO_C2,contMO_C_1,asigContenido,contComponents;
 
 start with inicio;
 
@@ -81,11 +81,11 @@ asigContenido   ::= ASIGNACION:e1
                 |   error
                 ;
 
-contenido2      ::= ID_FORM D_DOT ASIG_ID
-                |   TITLE D_DOT asigContenido
-                |   NAME D_DOT ASIGNACION
-                |   THEME D_DOT asigContenido
-                |   ESTRUCT D_DOT P_A components P_C
+contenido2      ::= ID_FORM D_DOT ASIG_ID devContenido1
+                |   TITLE D_DOT asigContenido devContenido2
+                |   NAME D_DOT ASIGNACION devContenido3
+                |   THEME D_DOT asigContenido devContenido4
+                |   ESTRUCT D_DOT P_A components P_C devContenido5
                 |   error
                 ;
 
@@ -254,7 +254,7 @@ components2     ::=     ID:p D_DOT ASIG_ID:e1 contMO_C1:e2
                 |       error
                 ;
 
-contMO_C1      ::=      COM contMO_C:e1
+contMO_C1      ::=      COM components2:e1
                 |
                 |       error
                 ;
