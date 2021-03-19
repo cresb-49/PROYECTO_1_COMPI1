@@ -238,4 +238,88 @@ contComponents  ::= COM components
                 |
                 |   error
                 ;
-                
+
+components2     ::=     ID:p D_DOT ASIG_ID:e1 contMO_C1:e2
+                |       NAME_CAMP:p D_DOT ASIGNACION:e1 contMO_C1:e2
+                |       FORM:p D_DOT ASIG_ID:e1 contMO_C1:e2
+                |       CLASS:p D_DOT contMO_C_2:e1 contMO_C1:e2
+                |       IND:p D_DOT ASIGNACION_NUM:e1 contMO_C1:e2
+                |       TEXT_VIEW:p D_DOT asigContenido:e1 contMO_C1:e2
+                |       ALI:p D_DOT contMO_C_1:e1 contMO_C1:e2
+                |       REQUE:p D_DOT contMO_C2:e1 contMO_C1:e2
+                |       OPTION:p D_DOT asigContenido:e1 contMO_C1:e2
+                |       URL:p D_DOT asigContenido:e1 contMO_C1:e2
+                |       COLM:p D_DOT ASIGNACION_NUM:e1 contMO_C1:e2
+                |       FILAS:p D_DOT ASIGNACION_NUM:e1 contMO_C1:e2
+                |       error
+                ;
+
+contMO_C1      ::=      COM contMO_C:e1
+                |
+                |       error
+                ;
+contMO_C_1     ::=     CENT:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       IZQ:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       DER:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       JUST:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       error
+                ;
+
+contMO_C_2     ::=     CAMP_TEXT:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       TEXT_AREA:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       CHECK:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       RADIO:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       FILE:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       IMG:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       COMBO:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       BOTON:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       error
+                ;
+
+
+contMO_C2       ::=     YES:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       NOT:e1
+                {:
+                        RESULT = e1;
+                :}
+                |       error
+                ;
