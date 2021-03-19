@@ -5,7 +5,11 @@
  */
 package com.carlos.app_cliente_proyecto1.UI;
 
+import com.carlos.app_cliente_proyecto1.Lexer.lexerImportar;
+import com.carlos.app_cliente_proyecto1.Parser.parserImportar;
 import java.io.File;
+import java.io.FileReader;
+import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -119,7 +123,34 @@ public class CargarFormularios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
     
     private void analizararchivo(File archivo){
+        try {
+            
+            lexerImportar lex = new lexerImportar(new FileReader(archivo));
+            parserImportar parser = new parserImportar(lex);
+            
+            mostarErrores(lex.getErrorsList(), parser.getErrorsList());
+            
+        } catch (Exception e) {
+            System.out.println("Error en importar leer importar archivo");
+            e.printStackTrace();
+        }
+    }
+    
+    public void mostarErrores(List<String> lexicos, List<String> sintacticos){
+        String lineas = "";
         
+        if(!lexicos.isEmpty()){
+            lineas = lineas+ "Errores lexicos encontrados:\n";
+            for (String lexico : lexicos) {
+                lineas = lineas + lexico;                
+            }
+        }
+        if(!sintacticos.isEmpty()){
+            lineas = lineas+ "Errores lexicos encontrados:\n";
+            for (String sintactico : sintacticos) {
+                lineas = lineas + sintactico;                
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

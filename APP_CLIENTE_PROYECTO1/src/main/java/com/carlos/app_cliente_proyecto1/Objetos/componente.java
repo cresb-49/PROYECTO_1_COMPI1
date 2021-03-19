@@ -14,7 +14,7 @@ public class componente {
     private String filas;
     private String columnas;
     private String url;
-    
+
     private String accion;
 
     public componente() {
@@ -138,9 +138,7 @@ public class componente {
     public void setAccion(String accion) {
         this.accion = accion;
     }
-    
-    
-    
+
     public String validarComponete() {
         String res = "";
         if (this.id == null) {
@@ -156,63 +154,338 @@ public class componente {
             switch (this.clase) {
                 case "CAMPO_TEXTO":
                     if (this.nombre == null) {
-                        res = res + "El componente no tiene un nombre asignado\n";
+                        res = res + "- El componente no tiene un nombre asignado\n";
+                    }
+                    if (this.url != null) {
+                        res = res + "- Este componente no debe tener una URL asignada\n";
+                    }
+                    if (this.filas != null) {
+                        res = res + "- Este componente no necesita filas\n";
+                    }
+                    if (this.columnas != null) {
+                        res = res + "- Esto componente no necesita columnas\n";
+                    }
+                    if (this.opciones != null) {
+                        res = res + "- El componente no debe disponer de opciones\n";
                     }
                     break;
                 case "AREA_TEXTO":
                     if (this.nombre == null) {
-                        res = res + "El componente no tiene un nombre asignado\n";
+                        res = res + "- El componente no tiene un nombre asignado\n";
+                    }
+                    if (this.filas == null) {
+                        res = res + "- El area de texto necesita la cantidad de filas\n";
+                    }
+                    if (this.columnas == null) {
+                        res = res + "- El area de texto necesita la cantidad de columnas\n";
+                    }
+                    if (this.url != null) {
+                        res = res + "- Este componente no debe tener una URL asignada\n";
+                    }
+                    if (this.opciones != null) {
+                        res = res + "- El componente no debe disponer de opciones\n";
                     }
                     break;
                 case "CHECKBOX":
                     if (this.nombre == null) {
-                        res = res + "El componente no tiene un nombre asignado\n";
+                        res = res + "- El componente no tiene un nombre asignado\n";
                     }
                     if (this.opciones == null) {
-                        res = res + "El componente no tiene opciones para elegir\n";
+                        res = res + "- El componente no tiene opciones para elegir\n";
+                    }
+                    if (this.url != null) {
+                        res = res + "- Este componente no debe tener una URL asignada\n";
+                    }
+                    if (this.filas != null) {
+                        res = res + "- Este componente no necesita filas\n";
+                    }
+                    if (this.columnas != null) {
+                        res = res + "- Esto componente no necesita columnas\n";
                     }
                     break;
                 case "RADIO":
                     if (this.nombre == null) {
-                        res = res + "El componente no tiene un nombre asignado\n";
+                        res = res + "- El componente no tiene un nombre asignado\n";
                     }
                     if (this.opciones == null) {
-                        res = res + "El componente no tiene opciones para elegir\n";
+                        res = res + "- El componente no tiene opciones para elegir\n";
+                    }
+                    if (this.url != null) {
+                        res = res + "- Este componente no debe tener una URL asignada\n";
+                    }
+                    if (this.filas != null) {
+                        res = res + "- Este componente no necesita filas\n";
+                    }
+                    if (this.columnas != null) {
+                        res = res + "- Esto componente no necesita columnas\n";
                     }
                     break;
                 case "FICHERO":
                     if (this.nombre == null) {
-                        res = res + "El componente no tiene un nombre asignado\n";
+                        res = res + "- El componente no tiene un nombre asignado\n";
+                    }
+                    if (this.url != null) {
+                        res = res + "- Este componente no debe tener una URL asignada\n";
+                    }
+                    if (this.filas != null) {
+                        res = res + "- Este componente no necesita filas\n";
+                    }
+                    if (this.columnas != null) {
+                        res = res + "- Esto componente no necesita columnas\n";
+                    }
+                    if (this.opciones != null) {
+                        res = res + "- El componente no debe disponer de opciones\n";
                     }
                     break;
                 case "IMAGEN":
                     if (this.url == null) {
-                        res = res + "El componente no tiene un url asignada\n";
+                        res = res + "- El componente no tiene un url asignada\n";
+                    }
+                    if (this.filas != null) {
+                        res = res + "- Este componente no necesita filas\n";
+                    }
+                    if (this.columnas != null) {
+                        res = res + "- Esto componente no necesita columnas\n";
+                    }
+                    if (this.opciones != null) {
+                        res = res + "- El componente no debe disponer de opciones\n";
                     }
                     break;
                 case "COMBO":
                     if (this.nombre == null) {
-                        res = res + "El componente no tiene un nombre asignado\n";
+                        res = res + "- El componente no tiene un nombre asignado\n";
                     }
                     if (this.opciones == null) {
-                        res = res + "El componente no tiene opciones para elegir\n";
+                        res = res + "- El componente no tiene opciones para elegir\n";
+                    }
+                    if (this.url != null) {
+                        res = res + "- Este componente no debe tener una URL asignada\n";
+                    }
+                    if (this.filas != null) {
+                        res = res + "- Este componente no necesita filas\n";
+                    }
+                    if (this.columnas != null) {
+                        res = res + "- Esto componente no necesita columnas\n";
                     }
                     break;
                 case "BOTON":
                     if (this.nombre == null) {
-                        res = res + "El componente no tiene un nombre asignado\n";
+                        res = res + "- El componente no tiene un nombre asignado\n";
+                    }
+                    if (this.url != null) {
+                        res = res + "- Este componente no debe tener una URL asignada\n";
+                    }
+                    if (this.filas != null) {
+                        res = res + "- Este componente no necesita filas\n";
+                    }
+                    if (this.columnas != null) {
+                        res = res + "- Esto componente no necesita columnas\n";
+                    }
+                    if (this.opciones != null) {
+                        res = res + "- El componente no debe disponer de opciones\n";
                     }
                     break;
                 default:
                     if (this.clase == null) {
-                        res = res + "El componente no tiene una clase correcta definida\n";
+                        res = res + "- El componente no tiene una clase correcta definida\n";
                     }
             }
-        }else{
+        } else {
             res = res + "El componente no tiene una clase definida\n";
         }
 
         return res;
+    }
+
+    public String validarModComponete() {
+        String res = "";
+        if (this.id == null) {
+            res = res + "- Debe de escribir el id para modificar el componente\n";
+        }
+        if (this.form == null) {
+            res = res + "- Debe de escribir el id del formulario donde se encuentra el componenete\n";
+        }
+        if (this.clase != null) {
+            switch (this.clase) {
+                case "CAMPO_TEXTO":
+                    if (this.nombre == null) {
+                        res = res + "- El componente no tiene un nombre asignado\n";
+                    }
+                    if (this.url != null) {
+                        res = res + "- Este componente no debe tener una URL asignada\n";
+                    }
+                    if (this.filas != null) {
+                        res = res + "- Este componente no necesita filas\n";
+                    }
+                    if (this.columnas != null) {
+                        res = res + "- Esto componente no necesita columnas\n";
+                    }
+                    if (this.opciones != null) {
+                        res = res + "- El componente no debe disponer de opciones\n";
+                    }
+                    break;
+                case "AREA_TEXTO":
+                    if (this.nombre == null) {
+                        res = res + "- El componente no tiene un nombre asignado\n";
+                    }
+                    if (this.filas == null) {
+                        res = res + "- El area de texto necesita la cantidad de filas\n";
+                    }
+                    if (this.columnas == null) {
+                        res = res + "- El area de texto necesita la cantidad de columnas\n";
+                    }
+                    if (this.url != null) {
+                        res = res + "- Este componente no debe tener una URL asignada\n";
+                    }
+                    if (this.opciones != null) {
+                        res = res + "- El componente no debe disponer de opciones\n";
+                    }
+                    break;
+                case "CHECKBOX":
+                    if (this.nombre == null) {
+                        res = res + "- El componente no tiene un nombre asignado\n";
+                    }
+                    if (this.opciones == null) {
+                        res = res + "- El componente no tiene opciones para elegir\n";
+                    }
+                    if (this.url != null) {
+                        res = res + "- Este componente no debe tener una URL asignada\n";
+                    }
+                    if (this.filas != null) {
+                        res = res + "- Este componente no necesita filas\n";
+                    }
+                    if (this.columnas != null) {
+                        res = res + "- Esto componente no necesita columnas\n";
+                    }
+                    break;
+                case "RADIO":
+                    if (this.nombre == null) {
+                        res = res + "- El componente no tiene un nombre asignado\n";
+                    }
+                    if (this.opciones == null) {
+                        res = res + "- El componente no tiene opciones para elegir\n";
+                    }
+                    if (this.url != null) {
+                        res = res + "- Este componente no debe tener una URL asignada\n";
+                    }
+                    if (this.filas != null) {
+                        res = res + "- Este componente no necesita filas\n";
+                    }
+                    if (this.columnas != null) {
+                        res = res + "- Esto componente no necesita columnas\n";
+                    }
+                    break;
+                case "FICHERO":
+                    if (this.nombre == null) {
+                        res = res + "- El componente no tiene un nombre asignado\n";
+                    }
+                    if (this.url != null) {
+                        res = res + "- Este componente no debe tener una URL asignada\n";
+                    }
+                    if (this.filas != null) {
+                        res = res + "- Este componente no necesita filas\n";
+                    }
+                    if (this.columnas != null) {
+                        res = res + "- Esto componente no necesita columnas\n";
+                    }
+                    if (this.opciones != null) {
+                        res = res + "- El componente no debe disponer de opciones\n";
+                    }
+                    break;
+                case "IMAGEN":
+                    if (this.url == null) {
+                        res = res + "- El componente no tiene un url asignada\n";
+                    }
+                    if (this.filas != null) {
+                        res = res + "- Este componente no necesita filas\n";
+                    }
+                    if (this.columnas != null) {
+                        res = res + "- Esto componente no necesita columnas\n";
+                    }
+                    if (this.opciones != null) {
+                        res = res + "- El componente no debe disponer de opciones\n";
+                    }
+                    break;
+                case "COMBO":
+                    if (this.nombre == null) {
+                        res = res + "- El componente no tiene un nombre asignado\n";
+                    }
+                    if (this.opciones == null) {
+                        res = res + "- El componente no tiene opciones para elegir\n";
+                    }
+                    if (this.url != null) {
+                        res = res + "- Este componente no debe tener una URL asignada\n";
+                    }
+                    if (this.filas != null) {
+                        res = res + "- Este componente no necesita filas\n";
+                    }
+                    if (this.columnas != null) {
+                        res = res + "- Esto componente no necesita columnas\n";
+                    }
+                    break;
+                case "BOTON":
+                    if (this.nombre == null) {
+                        res = res + "- El componente no tiene un nombre asignado\n";
+                    }
+                    if (this.url != null) {
+                        res = res + "- Este componente no debe tener una URL asignada\n";
+                    }
+                    if (this.filas != null) {
+                        res = res + "- Este componente no necesita filas\n";
+                    }
+                    if (this.columnas != null) {
+                        res = res + "- Esto componente no necesita columnas\n";
+                    }
+                    if (this.opciones != null) {
+                        res = res + "- El componente no debe disponer de opciones\n";
+                    }
+                    break;
+                default:
+                    if (this.clase == null) {
+                        res = res + "- El componente no tiene una clase correcta definida\n";
+                    }
+            }
+        }
+        return res;
+    }
+
+    /**
+     * Fuciona el fomulario a modificar con los cambios
+     *
+     * @param comp
+     */
+    public void merge(Componente comp) {
+        if (this.nombre == null || this.nombre.isEmpty()) {
+            this.nombre = comp.getNombre_campo();
+        }
+        if (this.clase == null || this.clase.isEmpty()) {
+            this.clase = comp.getClase();
+        }
+        if (this.indice == null || this.indice.isEmpty()) {
+            this.indice = comp.getIndice();
+        }
+        if (this.texto == null || this.texto.isEmpty()) {
+            this.texto = comp.getTexto_visible();
+        }
+        if (this.ali == null || this.ali.isEmpty()) {
+            this.ali = comp.getAlineacion();
+        }
+
+        if (this.requerido == null || this.requerido.isEmpty()) {
+            this.requerido = comp.getRequerido();
+        }
+        if (this.opciones == null || this.opciones.isEmpty()) {
+            this.opciones = comp.getOpciones();
+        }
+        if (this.filas == null || this.filas.isEmpty()) {
+            this.filas = comp.getFilas();
+        }
+        if (this.columnas == null || this.columnas.isEmpty()) {
+            this.columnas = comp.getColumnas();
+        }
+        if (this.url == null || this.url.isEmpty()) {
+            this.url = comp.getUrl();
+        }
     }
 
     @Override

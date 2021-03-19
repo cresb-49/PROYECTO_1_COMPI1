@@ -1,4 +1,15 @@
 
+package com.carlos.app_cliente_proyecto1.Lexer;
+
+import com.carlos.app_cliente_proyecto1.Parser.parserImportarSym;
+import static com.carlos.app_cliente_proyecto1.Parser.parserImportarSym.*;
+import com.carlos.app_cliente_proyecto1.Tokens.token;
+import com.carlos.app_cliente_proyecto1.solucionCadenas.obtenerAsignacion;
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
+import java_cup.runtime.Symbol;
+
 %%
 /*segunda seccion, configuracion*/
 %class lexerImportar
@@ -88,14 +99,6 @@ newForm = (new.formulario)
     {newForm}
         {
             tmp_symbl = new Symbol (NEW_FORM,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
-            after_symbl = tmp_symbl;
-            return tmp_symbl;
-        }
-    {fecha}
-        {
-            String text = getInerText.getAsignacion(yytext());
-            System.out.println("Fecha encontrada:" + text);
-            tmp_symbl = new Symbol(DATE, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
             after_symbl = tmp_symbl;
             return tmp_symbl;
         }

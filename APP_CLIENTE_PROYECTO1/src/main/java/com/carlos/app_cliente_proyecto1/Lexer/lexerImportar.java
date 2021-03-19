@@ -3,6 +3,17 @@
 // source: lexerImpor_Expor.jflex
 
 
+package com.carlos.app_cliente_proyecto1.Lexer;
+
+import com.carlos.app_cliente_proyecto1.Parser.parserImportarSym;
+import static com.carlos.app_cliente_proyecto1.Parser.parserImportarSym.*;
+import com.carlos.app_cliente_proyecto1.Tokens.token;
+import com.carlos.app_cliente_proyecto1.solucionCadenas.obtenerAsignacion;
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
+import java_cup.runtime.Symbol;
+
 
 // See https://github.com/jflex-de/jflex/issues/222
 @SuppressWarnings("FallThrough")
@@ -63,13 +74,12 @@ public class lexerImportar implements java_cup.runtime.Scanner {
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
     "\11\0\1\1\1\2\2\3\1\4\22\0\1\1\1\5"+
     "\1\6\1\5\1\7\3\5\1\10\1\11\2\5\1\12"+
-    "\1\13\2\5\1\14\1\15\1\16\1\17\6\20\7\5"+
-    "\32\21\1\5\1\0\2\5\1\7\1\5\1\22\3\21"+
-    "\1\23\1\24\2\21\1\25\2\21\1\26\1\27\1\30"+
-    "\1\31\2\21\1\32\2\21\1\33\1\21\1\34\3\21"+
-    "\1\35\1\36\1\37\1\5\6\0\1\3\33\0\1\5"+
-    "\6\0\1\5\3\0\1\5\3\0\1\5\16\0\1\5"+
-    "\u0168\0\2\3\326\0\u0100\3";
+    "\1\7\2\5\12\13\7\5\32\13\1\5\1\0\2\5"+
+    "\1\7\1\5\1\14\3\13\1\15\1\16\2\13\1\17"+
+    "\2\13\1\20\1\21\1\22\1\23\2\13\1\24\2\13"+
+    "\1\25\1\13\1\26\3\13\1\27\1\30\1\31\1\5"+
+    "\6\0\1\3\33\0\1\5\6\0\1\5\3\0\1\5"+
+    "\3\0\1\5\16\0\1\5\u0168\0\2\3\326\0\u0100\3";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[1024];
@@ -97,11 +107,10 @@ public class lexerImportar implements java_cup.runtime.Scanner {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\3\2\1\1\1\3\1\4\1\5\1\1"+
-    "\1\6\1\7\1\0\1\10\3\0\1\11\25\0\1\12"+
-    "\2\0\1\13";
+    "\1\6\1\7\1\0\1\10\2\0\1\11\13\0\1\12";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[43];
+    int [] result = new int[29];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -126,15 +135,13 @@ public class lexerImportar implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\40\0\100\0\140\0\200\0\240\0\40\0\40"+
-    "\0\40\0\300\0\40\0\40\0\340\0\40\0\u0100\0\u0120"+
-    "\0\u0140\0\40\0\u0160\0\u0180\0\u01a0\0\u01c0\0\u01e0\0\u0200"+
-    "\0\u0220\0\u0240\0\u0260\0\u0280\0\u02a0\0\u02c0\0\u02e0\0\u0300"+
-    "\0\u0320\0\u0340\0\u0360\0\u0380\0\u03a0\0\u03c0\0\u03e0\0\40"+
-    "\0\u0400\0\u0420\0\40";
+    "\0\0\0\32\0\64\0\116\0\150\0\202\0\32\0\32"+
+    "\0\32\0\234\0\32\0\32\0\266\0\32\0\320\0\352"+
+    "\0\32\0\u0104\0\u011e\0\u0138\0\u0152\0\u016c\0\u0186\0\u01a0"+
+    "\0\u01ba\0\u01d4\0\u01ee\0\u0208\0\32";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[43];
+    int [] result = new int[29];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -158,32 +165,19 @@ public class lexerImportar implements java_cup.runtime.Scanner {
 
   private static final String ZZ_TRANS_PACKED_0 =
     "\1\2\1\3\1\4\1\2\1\5\1\2\1\6\1\2"+
-    "\1\7\1\10\1\11\15\2\1\12\4\2\1\13\1\5"+
-    "\1\14\41\0\2\3\36\0\1\3\1\4\1\0\1\5"+
-    "\31\0\1\5\3\0\1\5\1\0\1\5\31\0\1\5"+
-    "\2\0\2\15\2\0\1\15\1\16\1\17\3\15\1\17"+
-    "\1\15\4\20\17\15\23\0\1\21\15\0\2\15\2\0"+
-    "\1\15\1\16\31\15\1\0\2\15\2\0\1\15\1\22"+
-    "\1\17\3\15\22\17\3\15\1\0\2\15\2\0\1\15"+
-    "\1\16\5\15\5\23\17\15\34\0\1\24\4\0\2\15"+
-    "\2\0\1\15\1\16\5\15\5\25\17\15\2\26\3\0"+
-    "\33\26\1\0\2\15\2\0\1\15\1\16\5\15\5\27"+
-    "\17\15\24\0\1\30\14\0\2\15\2\0\1\15\1\16"+
-    "\4\15\1\31\24\15\31\0\1\32\7\0\2\15\2\0"+
-    "\1\15\1\16\5\15\1\33\1\34\22\15\32\0\1\35"+
-    "\6\0\2\15\2\0\1\15\1\16\6\15\4\36\17\15"+
-    "\1\0\2\15\2\0\1\15\1\16\5\15\3\36\21\15"+
-    "\27\0\1\37\11\0\2\15\2\0\1\15\1\16\4\15"+
-    "\1\40\24\15\33\0\1\41\5\0\2\15\2\0\1\15"+
-    "\1\16\5\15\1\42\2\43\1\44\20\15\26\0\1\45"+
-    "\12\0\2\15\2\0\1\15\1\16\6\15\4\46\17\15"+
-    "\1\0\2\15\2\0\1\15\1\16\5\15\5\46\17\15"+
-    "\1\0\2\15\2\0\1\15\1\16\5\15\2\46\22\15"+
-    "\22\0\1\47\16\0\2\15\2\0\1\15\1\50\31\15"+
-    "\32\0\1\51\32\0\1\52\43\0\1\53\6\0";
+    "\1\7\1\10\1\11\7\2\1\12\4\2\1\13\1\5"+
+    "\1\14\33\0\2\3\30\0\1\3\1\4\1\0\1\5"+
+    "\23\0\1\5\3\0\1\5\1\0\1\5\23\0\1\5"+
+    "\2\0\2\15\2\0\1\15\1\16\1\17\22\15\15\0"+
+    "\1\20\15\0\2\15\2\0\1\15\1\16\23\15\1\0"+
+    "\2\15\2\0\1\15\1\21\1\17\3\15\14\17\3\15"+
+    "\26\0\1\22\3\0\2\23\3\0\25\23\16\0\1\24"+
+    "\36\0\1\25\32\0\1\26\26\0\1\27\35\0\1\30"+
+    "\24\0\1\31\25\0\1\32\41\0\1\33\24\0\1\34"+
+    "\35\0\1\35\6\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[1088];
+    int [] result = new int[546];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -227,10 +221,10 @@ public class lexerImportar implements java_cup.runtime.Scanner {
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
     "\1\0\1\11\4\1\3\11\1\1\2\11\1\0\1\11"+
-    "\3\0\1\11\25\0\1\11\2\0\1\11";
+    "\2\0\1\11\13\0\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[43];
+    int [] result = new int[29];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -736,12 +730,12 @@ public class lexerImportar implements java_cup.runtime.Scanner {
             { error(yytext());
             }
             // fall through
-          case 12: break;
+          case 11: break;
           case 2:
             { /*Do nothing*/
             }
             // fall through
-          case 13: break;
+          case 12: break;
           case 3:
             { //System.out.println("Llave cierre: "+yytext());
             tmp_symbl = new Symbol (P_A,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
@@ -749,7 +743,7 @@ public class lexerImportar implements java_cup.runtime.Scanner {
             return tmp_symbl;
             }
             // fall through
-          case 14: break;
+          case 13: break;
           case 4:
             { //System.out.println("Llave cierre: "+yytext());
             tmp_symbl = new Symbol (P_C,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
@@ -757,7 +751,7 @@ public class lexerImportar implements java_cup.runtime.Scanner {
             return tmp_symbl;
             }
             // fall through
-          case 15: break;
+          case 14: break;
           case 5:
             { //System.out.println("Coma: "+yytext());
             tmp_symbl = new Symbol (COM,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
@@ -765,7 +759,7 @@ public class lexerImportar implements java_cup.runtime.Scanner {
             return tmp_symbl;
             }
             // fall through
-          case 16: break;
+          case 15: break;
           case 6:
             { //System.out.println("Llave apertura: "+yytext());
             tmp_symbl = new Symbol (L_A,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
@@ -773,7 +767,7 @@ public class lexerImportar implements java_cup.runtime.Scanner {
             return tmp_symbl;
             }
             // fall through
-          case 17: break;
+          case 16: break;
           case 7:
             { //System.out.println("Llave cierre: "+yytext());
             tmp_symbl = new Symbol (L_C,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
@@ -781,7 +775,7 @@ public class lexerImportar implements java_cup.runtime.Scanner {
             return tmp_symbl;
             }
             // fall through
-          case 18: break;
+          case 17: break;
           case 8:
             { //System.out.println("Texto encontrado:" + yytext());
             String text = getInerText.getAsignacion(yytext());
@@ -961,7 +955,7 @@ public class lexerImportar implements java_cup.runtime.Scanner {
             }
             }
             // fall through
-          case 19: break;
+          case 18: break;
           case 9:
             { String text = getInerText.getAsignacion(yytext());
             //System.out.println("Formato de ID:" + text);
@@ -970,23 +964,14 @@ public class lexerImportar implements java_cup.runtime.Scanner {
             return tmp_symbl;
             }
             // fall through
-          case 20: break;
+          case 19: break;
           case 10:
-            { String text = getInerText.getAsignacion(yytext());
-            System.out.println("Fecha encontrada:" + text);
-            tmp_symbl = new Symbol(DATE, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
-            after_symbl = tmp_symbl;
-            return tmp_symbl;
-            }
-            // fall through
-          case 21: break;
-          case 11:
             { tmp_symbl = new Symbol (NEW_FORM,after_symbl.sym,0, new token(yytext(),yycolumn+1,yyline+1));
             after_symbl = tmp_symbl;
             return tmp_symbl;
             }
             // fall through
-          case 22: break;
+          case 20: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
