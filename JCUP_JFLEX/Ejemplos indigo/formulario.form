@@ -6,7 +6,7 @@ new.formulario(
         "TEMA": "Dark",
         "ESTRUCTURA":(
             {
-                "ID_COMPONENTE_1" : "$id_comp1",
+                "ID": "$id_comp1",
                 "NOMBRE_CAMPO": "Reclamo",
 		        "CLASE": "CAMPO_TEXTO",
 		        "TEXTO_VISIBLE": "Especificacion del reclamo: ",

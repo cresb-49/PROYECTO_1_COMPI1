@@ -1,0 +1,48 @@
+class parserImportar;
+
+parser code {:
+
+    private List<String> errorsList = new ArrayList();
+
+    public parserImportar(lexerImportar lex){
+        super(lex);
+    }
+
+    public void report_error(String message, Object info){
+        Symbol symbol = cur_token;
+        token tok = (token)symbol.value;
+        if (tok != null) {
+            System.out.println("Parametro inesperado: |" + ((tok.getLexeme().equals("\"")) ? "comilla" : tok.getLexeme()) + "| Linea: " + tok.getLine() + ", Columna: " + tok.getColumn());
+            errorsList.add("Parametro inesperado: |" + ((tok.getLexeme().equals("\"")) ? "comilla" : tok.getLexeme()) + "| Linea: " + tok.getLine() + ", Columna: " + tok.getColumn());
+        }
+    }
+
+    public void report_fatal_error(String message, Object info){
+        System.out.println(info.toString());
+        System.out.println("reportfatal");
+    }
+        
+    public void errorVerificacion(String mensage,Object info){
+        token tok = (token)info;
+        System.out.println(mensage+"Componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn());
+        errorsList.add(mensage+"Componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn());
+    }
+
+    public void errorParametroDuplicado(Object simbolo){
+        token tok = (token)simbolo;
+        System.out.println("El parametro del componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn()+" ya se habia definido con anterioridad");
+        errorsList.add("El parametro del componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn()+" ya se habia definido con anterioridad");
+    }
+
+    protected int error_sync_size() {
+		return 1;
+	}
+    public List<String> getErrorsList(){
+	    return errorsList;
+	}
+:}
+
+terminal    L_A,L_C,P_A,P_C,COM,ASIG_ID,ID,TITLE,NAME,THEME,USER_CRE,NAME_CAMP,FORM,CLASS,IND,TEXT_VIEW,ALI,
+            REQUE,OPTION,FILAS,COLM,URL,CAMP_TEXT,TEXT_AREA,CHECK,RADIO,FILE,IMG,COMBO,BOTON,CENT,IZQ,DER,JUST,
+            YES,NOT,ASIGNACION_NUM,ASIGNACION,ASIGNACION_ESP,DATE,NEW_FORM;
+non terminal
