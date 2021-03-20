@@ -141,22 +141,3 @@ h6 {
   cursor:pointer;
 }
 
-.social {
-  display:none;
-}
-
-.fb {
-  margin-top:15px;
-  background:#3b5998;
-  box-shadow:0px 3px 0px #2c416e;
-}
-
-.tw {
-  background:#00acee;
-  box-shadow:0px 3px 0px #008dc3;
-}
-
-.google {
-  background:#db4a39;
-  box-shadow:0px 3px 0px #b93f31;
-}
