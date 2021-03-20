@@ -69,6 +69,6 @@ public class Formulario {
 
     @Override
     public String toString() {
-        return "Componente{" + "id=" + id + ", titulo=" + titulo + ", nombre=" + nombre + ", tema=" + tema + ", fecha=" + fecha + ", componentes=" + componentes + '}';
+        return "Formulario{" + "id=" + id + ", titulo=" + titulo + ", nombre=" + nombre + ", tema=" + tema + ", fecha=" + fecha + ", componentes=" + componentes + '}';
     }
 }

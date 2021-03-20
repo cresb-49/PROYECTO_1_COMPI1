@@ -269,8 +269,8 @@ public class componente {
                     }
                     break;
                 case "BOTON":
-                    if (this.nombre == null) {
-                        res = res + "- El componente no tiene un nombre asignado\n";
+                    if (this.nombre != null) {
+                        res = res + "- El componente no debe de tener un nombre asignado\n";
                     }
                     if (this.url != null) {
                         res = res + "- Este componente no debe tener una URL asignada\n";
@@ -424,8 +424,8 @@ public class componente {
                     }
                     break;
                 case "BOTON":
-                    if (this.nombre == null) {
-                        res = res + "- El componente no tiene un nombre asignado\n";
+                    if (this.nombre != null) {
+                        res = res + "- El componente no debe de tener un nombre asignado\n";
                     }
                     if (this.url != null) {
                         res = res + "- Este componente no debe tener una URL asignada\n";

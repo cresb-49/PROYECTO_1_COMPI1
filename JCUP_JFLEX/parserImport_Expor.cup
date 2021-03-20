@@ -12,6 +12,7 @@ class parserImportar;
 parser code {:
 
     private List<String> errorsList = new ArrayList();
+    private List<Formulario> formularios;
 
     public parserImportar(lexerImportar lex){
         super(lex);
@@ -49,6 +50,9 @@ parser code {:
     public List<String> getErrorsList(){
 	    return errorsList;
 	}
+        public List<Formulario> getFormularios(){
+                return formularios;
+        }
 :}
 
 terminal    L_A,L_C,P_A,P_C,COM,ASIG_ID,ID,TITLE,NAME,THEME,NAME_CAMP,FORM,CLASS,IND,TEXT_VIEW,ALI,
@@ -62,7 +66,12 @@ non terminal    inicio,contenido,contenido2,continuacion,devContenido1,devConten
 
 start with inicio;
 
-inicio  ::= NEW_FORM P_A contenido P_C
+inicio  ::= NEW_FORM P_A contenido:e1 P_C
+        {:
+                if(e1!=null){
+                        formularios = ((List<Formulario>)e1);
+                }
+        :}
         |   error
         ;
 
@@ -71,7 +80,7 @@ contenido       ::= L_A contenido2:e1 L_C continuacion:e2
                         RESULT = e2;
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((List<Formulario>)RESULT).add((Formulario)e1);
+                                        ((List<Formulario>)e2).add((Formulario)e1);
                                 }
                         }
                 :}
@@ -588,8 +597,24 @@ devContenido15  ::= COM ID_FORM D_DOT ASIG_ID:e1 devContenido21:e2
                 |   error
                 ;
 //----------------------------------------
-devContenido16  ::= COM THEME D_DOT asigContenido devContenido26
-                |   COM ESTRUCT D_DOT P_A components P_C devContenido27
+devContenido16  ::= COM THEME D_DOT asigContenido:e1 devContenido26:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTema(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   COM ESTRUCT D_DOT P_A components:e1 P_C devContenido27:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setComponentes(((List<Componente>)e1));
+                                }
+                        }
+                :}
                 |   error
                 ;
 devContenido17  ::= COM NAME D_DOT ASIGNACION:e1 devContenido26:e2
@@ -800,11 +825,17 @@ devContenido30  ::= COM ID_FORM D_DOT ASIG_ID:e1
                 ;
 
 //----------------------------------------
-components      ::= L_A components2:e2 L_C contComponents:e1
+components      ::= L_A:e3 components2:e2 L_C contComponents:e1
                 {:
                         RESULT = e1;
                         if(e1!=null && e2!=null){
-                                ((List<Componente>)RESULT).add((Componente)e2);
+                                String prueba = ((Componente)e2).validarComponete();
+
+                                if(prueba.isEmpty()){
+                                    ((List<Componente>)RESULT).add((Componente)e2);
+                                }else{
+                                    errorVerificacion(prueba, e3);
+                                }
                         }
                 :}
                 |   error

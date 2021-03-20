@@ -5,8 +5,11 @@
  */
 package com.carlos.app_cliente_proyecto1.UI;
 
+import com.carlos.app_cliente_proyecto1.HttpMethods.enviarInfo;
 import com.carlos.app_cliente_proyecto1.Lexer.lexerImportar;
+import com.carlos.app_cliente_proyecto1.Objetos.Formulario;
 import com.carlos.app_cliente_proyecto1.Parser.parserImportar;
+import com.carlos.app_cliente_proyecto1.conversionIndigo.FormularioToIndigo;
 import java.io.File;
 import java.io.FileReader;
 import java.util.List;
@@ -18,7 +21,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author benjamin
  */
 public class CargarFormularios extends javax.swing.JInternalFrame {
-
+    
+    private FormularioToIndigo convertir = new FormularioToIndigo();
+    private enviarInfo enviarServidor = new enviarInfo();
+    
     /**
      * Creates new form CargarFormularios
      */
@@ -37,20 +43,26 @@ public class CargarFormularios extends javax.swing.JInternalFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        panelErrores = new javax.swing.JTextArea();
+        panelServidor = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnEnviarForm = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        panelErrores = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
-        panelErrores.setEditable(false);
-        panelErrores.setColumns(20);
-        panelErrores.setRows(5);
-        panelErrores.setTabSize(3);
-        jScrollPane1.setViewportView(panelErrores);
+        setClosable(true);
+        setIconifiable(true);
+
+        panelServidor.setEditable(false);
+        panelServidor.setColumns(20);
+        panelServidor.setRows(5);
+        panelServidor.setTabSize(3);
+        jScrollPane1.setViewportView(panelServidor);
 
         jLabel1.setText("Carga de Formulario");
 
@@ -63,15 +75,24 @@ public class CargarFormularios extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Archivo");
 
-        jButton2.setText("Enviar Formulario");
+        btnEnviarForm.setText("Enviar Formulario");
+        btnEnviarForm.setEnabled(false);
 
-        jLabel4.setText("Errores del Archivo");
+        jLabel4.setText("Info del Archivo");
+
+        panelErrores.setEditable(false);
+        panelErrores.setColumns(20);
+        panelErrores.setRows(5);
+        panelErrores.setTabSize(3);
+        jScrollPane2.setViewportView(panelErrores);
+
+        jLabel5.setText("Respuesta del Servidor");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -80,32 +101,39 @@ public class CargarFormularios extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(jLabel3))
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                    .addComponent(btnEnviarForm))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(124, 124, 124)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(40, 40, 40)
+                .addComponent(btnEnviarForm)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
-                        .addGap(40, 40, 40)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -117,54 +145,69 @@ public class CargarFormularios extends javax.swing.JInternalFrame {
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Formulario .form", "form");
         chooser.setFileFilter(filtro);
         int retorno = chooser.showOpenDialog(this);
-        if(retorno == JFileChooser.APPROVE_OPTION){
+        if (retorno == JFileChooser.APPROVE_OPTION) {
             analizararchivo(chooser.getSelectedFile());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-    
-    private void analizararchivo(File archivo){
+
+    private void analizararchivo(File archivo) {
         try {
-            
+
             lexerImportar lex = new lexerImportar(new FileReader(archivo));
             parserImportar parser = new parserImportar(lex);
             parser.parse();
-            
+
             mostarErrores(lex.getErrorsList(), parser.getErrorsList());
-            
+            List<Formulario> formularios = parser.getFormularios();
+
+            if (btnEnviarForm.isEnabled()) {
+                panelErrores.setText(panelErrores.getText()+"\n"+convertir.convertir(formularios));
+                panelServidor.setText(enviarServidor.envioRespuesta(convertir.convertir(formularios)));
+            }
+
         } catch (Exception e) {
             System.out.println("Error en importar leer importar archivo");
             e.printStackTrace();
         }
     }
-    
-    public void mostarErrores(List<String> lexicos, List<String> sintacticos){
+
+    public void mostarErrores(List<String> lexicos, List<String> sintacticos) {
         String lineas = "";
-        
-        if(!lexicos.isEmpty()){
-            lineas = lineas+ "Errores lexicos encontrados:\n";
+
+        if (!lexicos.isEmpty()) {
+            lineas = lineas + "Errores lexicos encontrados:\n";
             for (String lexico : lexicos) {
-                lineas = lineas + lexico +"\n";                
+                lineas = lineas + lexico + "\n";
             }
         }
-        if(!sintacticos.isEmpty()){
-            lineas = lineas+ "Errores lexicos encontrados:\n";
+        if (!sintacticos.isEmpty()) {
+            lineas = lineas + "Errores sintacticos encontrados:\n";
             for (String sintactico : sintacticos) {
-                lineas = lineas + sintactico+"\n";                
+                lineas = lineas + sintactico + "\n";
             }
         }
-        
+        if (lineas.isEmpty()) {
+            lineas = "Archivo correcto, conversion a indigo: ";
+            btnEnviarForm.setEnabled(true);
+        } else {
+            btnEnviarForm.setEnabled(false);
+        }
+
         panelErrores.setText(lineas);
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEnviarForm;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea panelErrores;
+    private javax.swing.JTextArea panelServidor;
     // End of variables declaration//GEN-END:variables
 }

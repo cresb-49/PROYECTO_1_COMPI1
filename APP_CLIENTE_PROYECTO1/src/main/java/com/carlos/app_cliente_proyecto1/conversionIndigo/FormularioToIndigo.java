@@ -17,7 +17,7 @@ public class FormularioToIndigo {
         for (Formulario formulario : form) {
 
             code = code + "<!ini_solicitud:\"NUEVO_FORMULARIO\">{\n";
-            code = code + "\"PARAMETROS_FORMULARIO\":[{";
+            code = code + "\"PARAMETROS_FORMULARIO\":[{\n";
             code = code + "\"ID\": \"" + formulario.getId() + "\",\n";
             code = code + "\"TITULO\": \"" + formulario.getTitulo() + "\",\n";
             code = code + "\"NOMBRE\": \"" + formulario.getNombre() + "\",\n";
@@ -30,43 +30,43 @@ public class FormularioToIndigo {
                 code = code + "<!ini_solicitud:\"AGREGAR_COMPONENTE\">{\n";
                 code = code + "\"PARAMETROS_COMPONENTE\":[{\n";
 
-                code = code + "\"ID\": \"$_grupo_paises\",\n";
-                code = code + "\"FORMULARIO\":\"$form2\",\n";
-                code = code + "\"CLASE\":\"COMBO\",\n";
-                code = code + "\"TEXTO_VISIBLE\":\"Pais de Origen: \"\n";
+                code = code + "\"ID\": \""+componente.getId()+"\",\n";
+                code = code + "\"FORMULARIO\":\""+formulario.getId()+"\",\n";
+                code = code + "\"CLASE\":\""+componente.getClase()+"\",\n";
+                code = code + "\"TEXTO_VISIBLE\":\""+componente.getTexto_visible()+"\"";
 
                 switch (componente.getClase()) {
                     case "CAMPO_TEXTO":
-                        code = code + ",";
-                        code = code + "\"NOMBRE_CAMPO\": \"Pais\"";
+                        code = code + ",\n";
+                        code = code + "\"NOMBRE_CAMPO\": \""+componente.getNombre_campo()+"\"";
                         break;
                     case "AREA_TEXTO":
-                        code = code + ",";
-                        code = code + "\"NOMBRE_CAMPO\": \"Pais\",";
-                        code = code + "\"FILAS\":\"\",\n";
-                        code = code + "\"COLUMNAS\":\"\"\n";
+                        code = code + ",\n";
+                        code = code + "\"NOMBRE_CAMPO\": \""+componente.getNombre_campo()+"\",\n";
+                        code = code + "\"FILAS\":\""+componente.getFilas()+"\",\n";
+                        code = code + "\"COLUMNAS\":\""+componente.getColumnas()+"\"";
                         break;
                     case "CHECKBOX":
-                        code = code + ",";
-                        code = code + "\"NOMBRE_CAMPO\": \"Pais\",";
-                        code = code + "\"OPCIONES\":\"Guatemala|El salvador|Honduras|otro\"\n";
+                        code = code + ",\n";
+                        code = code + "\"NOMBRE_CAMPO\": \""+componente.getNombre_campo()+"\",\n";
+                        code = code + "\"OPCIONES\":\""+componente.getOpciones()+"\"";
                         break;
                     case "RADIO":
-                        code = code + ",";
-                        code = code + "\"NOMBRE_CAMPO\": \"Pais\",";
-                        code = code + "\"OPCIONES\":\"Guatemala|El salvador|Honduras|otro\"\n";
+                        code = code + ",\n";
+                        code = code + "\"NOMBRE_CAMPO\": \""+componente.getNombre_campo()+"\",\n";
+                        code = code + "\"OPCIONES\":\""+componente.getOpciones()+"\"";
                         break;
                     case "FICHERO":
                         /*do nothing*/
                         break;
                     case "IMAGEN":
                         code = code + ",\n";
-                        code = code + "\"URL\": \"Pais\",\n";
+                        code = code + "\"URL\": \""+componente.getUrl()+"\"\n";
                         break;
                     case "COMBO":
-                        code = code + ",";
-                        code = code + "\"NOMBRE_CAMPO\": \"Pais\",";
-                        code = code + "\"OPCIONES\":\"Guatemala|El salvador|Honduras|otro\"\n";
+                        code = code + ",\n";
+                        code = code + "\"NOMBRE_CAMPO\": \""+componente.getNombre_campo()+"\",\n";
+                        code = code + "\"OPCIONES\":\""+componente.getOpciones()+"\"";
                         break;
                     case "BOTON":
                         /*do nothing*/
@@ -75,24 +75,24 @@ public class FormularioToIndigo {
 
                 if (!(componente.getAlineacion() == null)) {
                     if (!(componente.getAlineacion().isEmpty())) {
-                        code = code + ",";
-                        code = code + "\"ALINEACION\":\"CENTRO\"";
+                        code = code + ",\n";
+                        code = code + "\"ALINEACION\":\""+componente.getAlineacion()+"\"";
                         if (!(componente.getRequerido() == null)) {
                             if (!(componente.getRequerido().isEmpty())) {
-                                code = code + ",";
-                                code = code + "\"REQUERIDO\":\"SI\"";
+                                code = code + ",\n";
+                                code = code + "\"REQUERIDO\":\""+componente.getRequerido()+"\"";
                             }
                         }
                     }
                 } else {
                     if (!(componente.getRequerido() == null)) {
                         if (!(componente.getRequerido().isEmpty())) {
-                            code = code + ",";
-                            code = code + "\"REQUERIDO\":\"SI\"";
+                            code = code + ",\n";
+                            code = code + "\"REQUERIDO\":\""+componente.getRequerido()+"\"";
                         }
                     }
                 }
-                code = code + "}]\n";
+                code = code + "\n}]\n";
                 code = code + "}<fin_solicitud!>\n";
             }
         }
