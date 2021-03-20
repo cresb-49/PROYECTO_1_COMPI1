@@ -11,6 +11,10 @@ public class Formulario {
     private String fecha;
     private List<Componente> componentes;
 
+    public Formulario(){
+        
+    }
+    
     public Formulario(formulario base) {
         this.id = base.getId();
         this.titulo = base.getTitulo();

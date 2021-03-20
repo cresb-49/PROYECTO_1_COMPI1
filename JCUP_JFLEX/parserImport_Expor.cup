@@ -1,6 +1,7 @@
 package com.carlos.app_cliente_proyecto1.Parser;
 
 import com.carlos.app_cliente_proyecto1.Lexer.lexerImportar;
+import com.carlos.app_cliente_proyecto1.Objetos.*;
 import com.carlos.app_cliente_proyecto1.Tokens.token;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,12 +66,24 @@ inicio  ::= NEW_FORM P_A contenido P_C
         |   error
         ;
 
-contenido   ::= L_A contenido2 L_C continuacion
-            |   error
-            ;
+contenido       ::= L_A contenido2:e1 L_C continuacion:e2
+                {:
+                        RESULT = e2;
+                        if(e1!=null && e2!=null){
+                                ((List<Formulario>)RESULT).add((Formulario)e1);
+                        }
+                :}
+                |   error
+                ;
 
-continuacion    ::= COM contenido
+continuacion    ::= COM contenido:e1
+                {:
+                        RESULT = e1;
+                :}
                 |
+                {:
+                        RESULT = new ArrayList<Formulario>();
+                :}
                 |   error
                 ;
 
@@ -221,29 +234,68 @@ devContenido25  ::= COM ID_FORM D_DOT ASIG_ID devContenido29
                 |   COM TITLE D_DOT asigContenido devContenido30
                 |   error
                 ;
-devContenido26  ::= COM ESTRUCT D_DOT P_A components P_C 
+//--------------------------------------------------------------
+devContenido26  ::= COM ESTRUCT D_DOT P_A components:e1 P_C 
+                {:
+                        RESULT = new Formulario();
+                        if(e1!=null){
+                                ((Formulario)RESULT).setComponentes((List<Componente>)e1);
+                        }
+                :}
                 |   error
                 ;
-devContenido27  ::= COM THEME D_DOT asigContenido 
+devContenido27  ::= COM THEME D_DOT asigContenido:e1
+                {:
+                        RESULT = new Formulario();
+                        if(e1!=null){
+                                ((Formulario)RESULT).setTema(((token)e1).getLexeme());
+                        }
+                :}
                 |   error
                 ;
-devContenido28  ::= COM NAME D_DOT ASIGNACION 
+devContenido28  ::= COM NAME D_DOT ASIGNACION:e1
+                {:
+                        RESULT = new Formulario();
+                        ((Formulario)RESULT).setNombre(((token)e1).getLexeme());
+                :}
                 |   error
                 ;
-devContenido29  ::= COM TITLE D_DOT asigContenido 
+devContenido29  ::= COM TITLE D_DOT asigContenido:e1
+                {:
+                        RESULT = new Formulario();
+                        if(e1!=null){
+                                ((Formulario)RESULT).setTitulo(((token)e1).getLexeme());
+                        }
+                :}
                 |   error
                 ;
-devContenido30  ::= COM ID_FORM D_DOT ASIG_ID
+devContenido30  ::= COM ID_FORM D_DOT ASIG_ID:e1
+                {:
+                        RESULT = new Formulario();
+                        ((Formulario)RESULT).setId(((token)e1).getLexeme());
+                :}
                 |   error
                 ;
 
 //----------------------------------------
-components  ::= L_A components2 L_C contComponents
-            |   error
-            ;
+components      ::= L_A components2:e2 L_C contComponents:e1
+                {:
+                        RESULT = e1;
+                        if(e1!=null && e2!=null){
+                                ((List<Componente>)RESULT).add((Componente)e2);
+                        }
+                :}
+                |   error
+                ;
 
-contComponents  ::= COM components
+contComponents  ::= COM components:e1
+                {:
+                        RESULT = e1;
+                :}
                 |
+                {:
+                        RESULT = new ArrayList<Componente>();
+                :}
                 |   error
                 ;
 
@@ -254,16 +306,84 @@ components2     ::=     ID:p D_DOT ASIG_ID:e1 contMO_C1:e2
                 |       IND:p D_DOT ASIGNACION_NUM:e1 contMO_C1:e2
                 |       TEXT_VIEW:p D_DOT asigContenido:e1 contMO_C1:e2
                 |       ALI:p D_DOT contMO_C_1:e1 contMO_C1:e2
+                {:
+                        if(e2!=null){
+                                if(e1!=null){
+                                        if(((Componente)e2).getAliniacion()==null){
+                                                ((Componente)e2).setAlinacion(((token)e1).getLexeme());
+                                        }else{
+                                                errorParametroDuplicado(p);
+                                        }        
+                                }
+                        }
+                :}
                 |       REQUE:p D_DOT contMO_C2:e1 contMO_C1:e2
+                {:
+                        if(e2!=null){
+                                if(e1!=null){
+                                        if(((Componente)e2).getRequerido()==null){
+                                                ((Componente)e2).setRequerido(((token)e1).getLexeme());
+                                        }else{
+                                                errorParametroDuplicado(p);
+                                        }        
+                                }
+                        }
+                :}
                 |       OPTION:p D_DOT asigContenido:e1 contMO_C1:e2
+                {:
+                        if(e2!=null){
+                                if(e1!=null){
+                                        if(((Componente)e2).getOpciones()==null){
+                                                ((Componente)e2).setOpciones(((token)e1).getLexeme());
+                                        }else{
+                                                errorParametroDuplicado(p);
+                                        }        
+                                }
+                        }
+                :}
                 |       URL:p D_DOT asigContenido:e1 contMO_C1:e2
+                {:
+                        if(e2!=null){
+                                if(e1!=null){
+                                        if(((Componente)e2).getUrl()==null){
+                                                ((Componente)e2).setUrl(((token)e1).getLexeme());
+                                        }else{
+                                                errorParametroDuplicado(p);
+                                        }        
+                                }
+                        }
+                :}
                 |       COLM:p D_DOT ASIGNACION_NUM:e1 contMO_C1:e2
+                {:
+                        if(e2!=null){
+                                if(((Componente)e2).getColumnas()==null){
+                                        ((Componente)e2).setColumnas(((token)e1).getLexeme());
+                                }else{
+                                        errorParametroDuplicado(p);
+                                }
+                        }
+                :}
                 |       FILAS:p D_DOT ASIGNACION_NUM:e1 contMO_C1:e2
+                {:
+                        if(e2!=null){
+                                if(((Componente)e2).getFilas()==null){
+                                        ((Componente)e2).setFilas(((token)e1).getLexeme());
+                                }else{
+                                        errorParametroDuplicado(p);
+                                }
+                        }
+                :}
                 |       error
                 ;
 
 contMO_C1      ::=      COM components2:e1
+                {:
+                        RESULT = e1;
+                :}
                 |
+                {:
+                        RESULT = new Componente();
+                :}
                 |       error
                 ;
 contMO_C_1     ::=     CENT:e1

@@ -16,6 +16,8 @@ public class Componente {
     private String columnas;
     private String url;
 
+    public Componente() {
+    }
     public Componente(componente base) {
         this.id = base.getId();
         this.nombre_campo = base.getNombre();

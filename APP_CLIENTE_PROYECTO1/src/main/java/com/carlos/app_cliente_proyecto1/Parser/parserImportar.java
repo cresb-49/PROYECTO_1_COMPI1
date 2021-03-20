@@ -6,6 +6,7 @@
 package com.carlos.app_cliente_proyecto1.Parser;
 
 import com.carlos.app_cliente_proyecto1.Lexer.lexerImportar;
+import com.carlos.app_cliente_proyecto1.Objetos.*;
 import com.carlos.app_cliente_proyecto1.Tokens.token;
 import java.util.ArrayList;
 import java.util.List;
@@ -706,7 +707,18 @@ class CUP$parserImportar$actions {
           case 3: // contenido ::= L_A contenido2 L_C continuacion 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-2)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-2)).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-2)).value;
+		int e2left = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).right;
+		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserImportar$stack.peek()).value;
+		
+                        RESULT = e2;
+                        if(e1!=null && e2!=null){
+                                ((List<Formulario>)RESULT).add((Formulario)e1);
+                        }
+                
               CUP$parserImportar$result = parser.getSymbolFactory().newSymbol("contenido",1, ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-3)), ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()), RESULT);
             }
           return CUP$parserImportar$result;
@@ -724,7 +736,12 @@ class CUP$parserImportar$actions {
           case 5: // continuacion ::= COM contenido 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserImportar$stack.peek()).value;
+		
+                        RESULT = e1;
+                
               CUP$parserImportar$result = parser.getSymbolFactory().newSymbol("continuacion",3, ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-1)), ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()), RESULT);
             }
           return CUP$parserImportar$result;
@@ -733,7 +750,9 @@ class CUP$parserImportar$actions {
           case 6: // continuacion ::= 
             {
               Object RESULT =null;
-
+		
+                        RESULT = new ArrayList<Formulario>();
+                
               CUP$parserImportar$result = parser.getSymbolFactory().newSymbol("continuacion",3, ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()), RESULT);
             }
           return CUP$parserImportar$result;
@@ -1711,7 +1730,15 @@ class CUP$parserImportar$actions {
           case 113: // devContenido26 ::= COM ESTRUCT D_DOT P_A components P_C 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-1)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-1)).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-1)).value;
+		
+                        RESULT = new Formulario();
+                        if(e1!=null){
+                                ((Formulario)RESULT).setComponentes((List<Componente>)e1);
+                        }
+                
               CUP$parserImportar$result = parser.getSymbolFactory().newSymbol("devContenido26",29, ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-5)), ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()), RESULT);
             }
           return CUP$parserImportar$result;
@@ -1729,7 +1756,15 @@ class CUP$parserImportar$actions {
           case 115: // devContenido27 ::= COM THEME D_DOT asigContenido 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserImportar$stack.peek()).value;
+		
+                        RESULT = new Formulario();
+                        if(e1!=null){
+                                ((Formulario)RESULT).setTema(((token)e1).getLexeme());
+                        }
+                
               CUP$parserImportar$result = parser.getSymbolFactory().newSymbol("devContenido27",30, ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-3)), ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()), RESULT);
             }
           return CUP$parserImportar$result;
@@ -1747,7 +1782,13 @@ class CUP$parserImportar$actions {
           case 117: // devContenido28 ::= COM NAME D_DOT ASIGNACION 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserImportar$stack.peek()).value;
+		
+                        RESULT = new Formulario();
+                        ((Formulario)RESULT).setNombre(((token)e1).getLexeme());
+                
               CUP$parserImportar$result = parser.getSymbolFactory().newSymbol("devContenido28",31, ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-3)), ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()), RESULT);
             }
           return CUP$parserImportar$result;
@@ -1765,7 +1806,15 @@ class CUP$parserImportar$actions {
           case 119: // devContenido29 ::= COM TITLE D_DOT asigContenido 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserImportar$stack.peek()).value;
+		
+                        RESULT = new Formulario();
+                        if(e1!=null){
+                                ((Formulario)RESULT).setTitulo(((token)e1).getLexeme());
+                        }
+                
               CUP$parserImportar$result = parser.getSymbolFactory().newSymbol("devContenido29",32, ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-3)), ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()), RESULT);
             }
           return CUP$parserImportar$result;
@@ -1783,7 +1832,13 @@ class CUP$parserImportar$actions {
           case 121: // devContenido30 ::= COM ID_FORM D_DOT ASIG_ID 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserImportar$stack.peek()).value;
+		
+                        RESULT = new Formulario();
+                        ((Formulario)RESULT).setId(((token)e1).getLexeme());
+                
               CUP$parserImportar$result = parser.getSymbolFactory().newSymbol("devContenido30",33, ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-3)), ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()), RESULT);
             }
           return CUP$parserImportar$result;
@@ -1801,7 +1856,18 @@ class CUP$parserImportar$actions {
           case 123: // components ::= L_A components2 L_C contComponents 
             {
               Object RESULT =null;
-
+		int e2left = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-2)).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-2)).right;
+		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-2)).value;
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserImportar$stack.peek()).value;
+		
+                        RESULT = e1;
+                        if(e1!=null && e2!=null){
+                                ((List<Componente>)RESULT).add((Componente)e2);
+                        }
+                
               CUP$parserImportar$result = parser.getSymbolFactory().newSymbol("components",34, ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-3)), ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()), RESULT);
             }
           return CUP$parserImportar$result;
@@ -1819,7 +1885,12 @@ class CUP$parserImportar$actions {
           case 125: // contComponents ::= COM components 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserImportar$stack.peek()).value;
+		
+                        RESULT = e1;
+                
               CUP$parserImportar$result = parser.getSymbolFactory().newSymbol("contComponents",41, ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-1)), ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()), RESULT);
             }
           return CUP$parserImportar$result;
@@ -1828,7 +1899,9 @@ class CUP$parserImportar$actions {
           case 126: // contComponents ::= 
             {
               Object RESULT =null;
-
+		
+                        RESULT = new ArrayList<Componente>();
+                
               CUP$parserImportar$result = parser.getSymbolFactory().newSymbol("contComponents",41, ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()), RESULT);
             }
           return CUP$parserImportar$result;
@@ -1999,7 +2072,17 @@ class CUP$parserImportar$actions {
 		int e2left = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).right;
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserImportar$stack.peek()).value;
-
+		
+                        if(e2!=null){
+                                if(e1!=null){
+                                        if(((Componente)e2).getOpciones()==null){
+                                                ((Componente)e2).setOpciones(((token)e1).getLexeme());
+                                        }else{
+                                                errorParametroDuplicado(p);
+                                        }        
+                                }
+                        }
+                
               CUP$parserImportar$result = parser.getSymbolFactory().newSymbol("components2",35, ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-3)), ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()), RESULT);
             }
           return CUP$parserImportar$result;
@@ -2017,7 +2100,17 @@ class CUP$parserImportar$actions {
 		int e2left = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).right;
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserImportar$stack.peek()).value;
-
+		
+                        if(e2!=null){
+                                if(e1!=null){
+                                        if(((Componente)e2).getUrl()==null){
+                                                ((Componente)e2).setUrl(((token)e1).getLexeme());
+                                        }else{
+                                                errorParametroDuplicado(p);
+                                        }        
+                                }
+                        }
+                
               CUP$parserImportar$result = parser.getSymbolFactory().newSymbol("components2",35, ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-3)), ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()), RESULT);
             }
           return CUP$parserImportar$result;
@@ -2035,7 +2128,15 @@ class CUP$parserImportar$actions {
 		int e2left = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).right;
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserImportar$stack.peek()).value;
-
+		
+                        if(e2!=null){
+                                if(((Componente)e2).getColumnas()==null){
+                                        ((Componente)e2).setColumnas(((token)e1).getLexeme());
+                                }else{
+                                        errorParametroDuplicado(p);
+                                }
+                        }
+                
               CUP$parserImportar$result = parser.getSymbolFactory().newSymbol("components2",35, ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-3)), ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()), RESULT);
             }
           return CUP$parserImportar$result;
@@ -2053,7 +2154,15 @@ class CUP$parserImportar$actions {
 		int e2left = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).right;
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserImportar$stack.peek()).value;
-
+		
+                        if(e2!=null){
+                                if(((Componente)e2).getFilas()==null){
+                                        ((Componente)e2).setFilas(((token)e1).getLexeme());
+                                }else{
+                                        errorParametroDuplicado(p);
+                                }
+                        }
+                
               CUP$parserImportar$result = parser.getSymbolFactory().newSymbol("components2",35, ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-3)), ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()), RESULT);
             }
           return CUP$parserImportar$result;
@@ -2074,7 +2183,9 @@ class CUP$parserImportar$actions {
 		int e1left = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserImportar$stack.peek()).value;
-
+		
+                        RESULT = e1;
+                
               CUP$parserImportar$result = parser.getSymbolFactory().newSymbol("contMO_C1",36, ((java_cup.runtime.Symbol)CUP$parserImportar$stack.elementAt(CUP$parserImportar$top-1)), ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()), RESULT);
             }
           return CUP$parserImportar$result;
@@ -2083,7 +2194,9 @@ class CUP$parserImportar$actions {
           case 142: // contMO_C1 ::= 
             {
               Object RESULT =null;
-
+		
+                        RESULT = new Componente();
+                
               CUP$parserImportar$result = parser.getSymbolFactory().newSymbol("contMO_C1",36, ((java_cup.runtime.Symbol)CUP$parserImportar$stack.peek()), RESULT);
             }
           return CUP$parserImportar$result;
