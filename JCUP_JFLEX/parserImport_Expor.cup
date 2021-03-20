@@ -69,8 +69,10 @@ inicio  ::= NEW_FORM P_A contenido P_C
 contenido       ::= L_A contenido2:e1 L_C continuacion:e2
                 {:
                         RESULT = e2;
-                        if(e1!=null && e2!=null){
-                                ((List<Formulario>)RESULT).add((Formulario)e1);
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((List<Formulario>)RESULT).add((Formulario)e1);
+                                }
                         }
                 :}
                 |   error
@@ -102,95 +104,487 @@ asigContenido   ::= ASIGNACION:e1
                 |   error
                 ;
 
-contenido2      ::= ID_FORM D_DOT ASIG_ID devContenido1
-                |   TITLE D_DOT asigContenido devContenido2
-                |   NAME D_DOT ASIGNACION devContenido3
-                |   THEME D_DOT asigContenido devContenido4
-                |   ESTRUCT D_DOT P_A components P_C devContenido5
+contenido2      ::= ID_FORM D_DOT ASIG_ID:e1 devContenido1:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setId(((token)e1).getLexeme());
+                        }
+                :}
+                |   TITLE D_DOT asigContenido:e1 devContenido2:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTitulo(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   NAME D_DOT ASIGNACION:e1 devContenido3:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setNombre(((token)e1).getLexeme());
+                        }
+                :}
+                |   THEME D_DOT asigContenido:e1 devContenido4:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTema(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   ESTRUCT D_DOT P_A components:e1 P_C devContenido5:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setComponentes((List<Componente>)e1);
+                                }
+                        }
+                :}
                 |   error
                 ;
 
-devContenido1   ::= COM TITLE D_DOT asigContenido devContenido6
-                |   COM NAME D_DOT ASIGNACION devContenido7
-                |   COM THEME D_DOT asigContenido devContenido8
-                |   COM ESTRUCT D_DOT P_A components P_C devContenido9
+devContenido1   ::= COM TITLE D_DOT asigContenido:e1 devContenido6:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTitulo(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   COM NAME D_DOT ASIGNACION:e1 devContenido7:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setNombre(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM THEME D_DOT asigContenido:e1 devContenido8:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTema(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   COM ESTRUCT D_DOT P_A components:e1 P_C devContenido9:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setComponentes(((List<Componente>)e1));
+                                }
+                        }
+                :}
                 |   error
                 ;
-devContenido2   ::= COM ID_FORM D_DOT ASIG_ID devContenido6
-                |   COM NAME D_DOT ASIGNACION devContenido10
-                |   COM THEME D_DOT asigContenido devContenido11
-                |   COM ESTRUCT D_DOT P_A components P_C devContenido12
+devContenido2   ::= COM ID_FORM D_DOT ASIG_ID:e1 devContenido6:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setId(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM NAME D_DOT ASIGNACION:e1 devContenido10:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setNombre(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM THEME D_DOT asigContenido:e1 devContenido11:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTema(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   COM ESTRUCT D_DOT P_A components:e1 P_C devContenido12:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setComponentes(((List<Componente>)e1));
+                                }
+                        }
+                :}
                 |   error
                 ;
-devContenido3   ::= COM ID_FORM D_DOT ASIG_ID devContenido7
-                |   COM TITLE D_DOT asigContenido devContenido10
-                |   COM THEME D_DOT asigContenido devContenido13
-                |   COM ESTRUCT D_DOT P_A components P_C devContenido14
+devContenido3   ::= COM ID_FORM D_DOT ASIG_ID:e1 devContenido7:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setId(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM TITLE D_DOT asigContenido:e1 devContenido10:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTitulo(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   COM THEME D_DOT asigContenido:e1 devContenido13:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTema(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   COM ESTRUCT D_DOT P_A components:e1 P_C devContenido14:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setComponentes(((List<Componente>)e1));
+                        }
+                :}
                 |   error
                 ;
-devContenido4   ::= COM ID_FORM D_DOT ASIG_ID devContenido8
-                |   COM TITLE D_DOT asigContenido devContenido11
-                |   COM NAME D_DOT ASIGNACION devContenido13
-                |   COM ESTRUCT D_DOT P_A components P_C devContenido15
+devContenido4   ::= COM ID_FORM D_DOT ASIG_ID:e1 devContenido8:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setId(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM TITLE D_DOT asigContenido:e1 devContenido11:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTitulo(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   COM NAME D_DOT ASIGNACION:e1 devContenido13:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setNombre(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM ESTRUCT D_DOT P_A components:e1 P_C devContenido15:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setComponentes(((List<Componente>)e1));
+                                }
+                        }
+                :}
                 |   error
                 ;
-devContenido5  ::=  COM ID_FORM D_DOT ASIG_ID devContenido9
-                |   COM TITLE D_DOT asigContenido devContenido12
-                |   COM NAME D_DOT ASIGNACION devContenido14
-                |   COM THEME D_DOT asigContenido devContenido15
+devContenido5  ::=  COM ID_FORM D_DOT ASIG_ID:e1 devContenido9:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setId(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM TITLE D_DOT asigContenido:e1 devContenido12:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTitulo(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   COM NAME D_DOT ASIGNACION:e1 devContenido14:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setNombre(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM THEME D_DOT asigContenido:e1 devContenido15:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTema(((token)e1).getLexeme());
+                                }
+                        }
+                :}
                 |   error
                 ;
 //----------------------------------------------
-devContenido6   ::= COM NAME D_DOT ASIGNACION devContenido16
-                |   COM THEME D_DOT asigContenido devContenido17
-                |   COM ESTRUCT D_DOT P_A components P_C devContenido18
+devContenido6   ::= COM NAME D_DOT ASIGNACION:e1 devContenido16:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setNombre(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM THEME D_DOT asigContenido:e1 devContenido17:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTema(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   COM ESTRUCT D_DOT P_A components:e1 P_C devContenido18:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setComponentes(((List<Componente>)e1));
+                                }
+                        }
+                :}
                 |   error
                 ;
-devContenido7   ::= COM TITLE D_DOT asigContenido devContenido16
-                |   COM THEME D_DOT asigContenido devContenido19
-                |   COM ESTRUCT D_DOT P_A components P_C devContenido20
+devContenido7   ::= COM TITLE D_DOT asigContenido:e1 devContenido16:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTitulo(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   COM THEME D_DOT asigContenido:e1 devContenido19:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTema(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   COM ESTRUCT D_DOT P_A components:e1 P_C devContenido20:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setComponentes(((List<Componente>)e1));
+                                }
+                        }
+                :}
                 |   error
                 ;
-devContenido8   ::= COM TITLE D_DOT asigContenido devContenido17
-                |   COM NAME D_DOT ASIGNACION devContenido19
-                |   COM ESTRUCT D_DOT P_A components P_C devContenido21
+devContenido8   ::= COM TITLE D_DOT asigContenido:e1 devContenido17:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setTitulo(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM NAME D_DOT ASIGNACION:e1 devContenido19:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setNombre(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM ESTRUCT D_DOT P_A components:e1 P_C devContenido21:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setComponentes(((List<Componente>)e1));
+                                }
+                        }
+                :}
                 |   error
                 ;
 
-devContenido9   ::= COM TITLE D_DOT asigContenido devContenido18
-                |   COM NAME D_DOT ASIGNACION devContenido20
-                |   COM THEME D_DOT asigContenido devContenido21
+devContenido9   ::= COM TITLE D_DOT asigContenido:e1 devContenido18:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTitulo(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   COM NAME D_DOT ASIGNACION:e1 devContenido20:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setNombre(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM THEME D_DOT asigContenido:e1 devContenido21:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTema(((token)e1).getLexeme());
+                                }
+                        }
+                :}
                 |   error
                 ;
-devContenido10  ::= COM ID_FORM D_DOT ASIG_ID devContenido16
-                |   COM THEME D_DOT asigContenido devContenido22
-                |   COM ESTRUCT D_DOT P_A components P_C devContenido23
+devContenido10  ::= COM ID_FORM D_DOT ASIG_ID:e1 devContenido16:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setId(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM THEME D_DOT asigContenido:e1 devContenido22:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTema(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   COM ESTRUCT D_DOT P_A components:e1 P_C devContenido23:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setComponentes(((List<Componente>)e1));
+                                }
+                        }
+                :}
                 |   error
                 ;
-devContenido11  ::= COM ID_FORM D_DOT ASIG_ID devContenido17
-                |   COM NAME D_DOT ASIGNACION devContenido22
-                |   COM ESTRUCT D_DOT P_A components P_C devContenido24
+devContenido11  ::= COM ID_FORM D_DOT ASIG_ID:e1 devContenido17:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setId(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM NAME D_DOT ASIGNACION:e1 devContenido22:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setNombre(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM ESTRUCT D_DOT P_A components:e1 P_C devContenido24:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setComponentes(((List<Componente>)e1));
+                                }
+                        }
+                :}
                 |   error
                 ;
-devContenido12  ::= COM ID_FORM D_DOT ASIG_ID devContenido18
-                |   COM NAME D_DOT ASIGNACION devContenido23
-                |   COM THEME D_DOT asigContenido devContenido24
+devContenido12  ::= COM ID_FORM D_DOT ASIG_ID:e1 devContenido18:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setId(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM NAME D_DOT ASIGNACION:e1 devContenido23:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setNombre(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM THEME D_DOT asigContenido:e1 devContenido24:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTema(((token)e1).getLexeme());
+                                }
+                        }
+                :}
                 |   error
                 ;
-devContenido13  ::= COM ID_FORM D_DOT ASIG_ID devContenido19
-                |   COM TITLE D_DOT asigContenido devContenido22
-                |   COM ESTRUCT D_DOT P_A components P_C devContenido25
+devContenido13  ::= COM ID_FORM D_DOT ASIG_ID:e1 devContenido19:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setId(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM TITLE D_DOT asigContenido:e1 devContenido22:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTitulo(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   COM ESTRUCT D_DOT P_A components:e1 P_C devContenido25:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setComponentes(((List<Componente>)e1));
+                                }
+                        }
+                :}
                 |   error
                 ;
 
-devContenido14  ::= COM ID_FORM D_DOT ASIG_ID devContenido20
-                |   COM TITLE D_DOT asigContenido devContenido23
-                |   COM THEME D_DOT asigContenido devContenido25
+devContenido14  ::= COM ID_FORM D_DOT ASIG_ID:e1 devContenido20:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setId(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM TITLE D_DOT asigContenido:e1 devContenido23:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTitulo(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   COM THEME D_DOT asigContenido:e1 devContenido25:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTema(((token)e1).getLexeme());
+                                }
+                        }
+                :}
                 |   error
                 ;
-devContenido15  ::= COM ID_FORM D_DOT ASIG_ID devContenido21
-                |   COM TITLE D_DOT asigContenido devContenido24
-                |   COM NAME D_DOT ASIGNACION devContenido25
+devContenido15  ::= COM ID_FORM D_DOT ASIG_ID:e1 devContenido21:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setId(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM TITLE D_DOT asigContenido:e1 devContenido24:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTitulo(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   COM NAME D_DOT ASIGNACION:e1 devContenido25:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setNombre(((token)e1).getLexeme());
+                        }
+                :}
                 |   error
                 ;
 //----------------------------------------
@@ -198,40 +592,168 @@ devContenido16  ::= COM THEME D_DOT asigContenido devContenido26
                 |   COM ESTRUCT D_DOT P_A components P_C devContenido27
                 |   error
                 ;
-devContenido17  ::= COM NAME D_DOT ASIGNACION devContenido26
-                |   COM ESTRUCT D_DOT P_A components P_C devContenido28
+devContenido17  ::= COM NAME D_DOT ASIGNACION:e1 devContenido26:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setNombre(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM ESTRUCT D_DOT P_A components:e1 P_C devContenido28:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setComponentes(((List<Componente>)e1));
+                                }
+                        }
+                :}
                 |   error
                 ;
-devContenido18  ::= COM NAME D_DOT ASIGNACION devContenido27
-                |   COM THEME D_DOT asigContenido devContenido28
+devContenido18  ::= COM NAME D_DOT ASIGNACION:e1 devContenido27:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setNombre(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM THEME D_DOT asigContenido:e1 devContenido28:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTema(((token)e1).getLexeme());
+                                }
+                        }
+                :}
                 |   error
                 ;
-devContenido19  ::= COM TITLE D_DOT asigContenido devContenido26
-                |   COM ESTRUCT D_DOT P_A components P_C devContenido29
+devContenido19  ::= COM TITLE D_DOT asigContenido:e1 devContenido26:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTitulo(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   COM ESTRUCT D_DOT P_A components:e1 P_C devContenido29:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setComponentes(((List<Componente>)e1));
+                                }
+                        }
+                :}
                 |   error
                 ;
-devContenido20  ::= COM TITLE D_DOT asigContenido devContenido27
-                |   COM THEME D_DOT asigContenido devContenido29
+devContenido20  ::= COM TITLE D_DOT asigContenido:e1 devContenido27:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTitulo(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   COM THEME D_DOT asigContenido:e1 devContenido29:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTema(((token)e1).getLexeme());
+                                }
+                        }
+                :}
                 |   error
                 ;
-devContenido21  ::= COM TITLE D_DOT asigContenido devContenido28
-                |   COM NAME D_DOT ASIGNACION devContenido29
+devContenido21  ::= COM TITLE D_DOT asigContenido:e1 devContenido28:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTitulo(((token)e1).getLexeme());
+                                }
+                        }
+                :}
+                |   COM NAME D_DOT ASIGNACION:e1 devContenido29:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setNombre(((token)e1).getLexeme());
+                        }
+                :}
                 |   error
                 ;
-devContenido22  ::= COM ID_FORM D_DOT ASIG_ID devContenido26
-                |   COM ESTRUCT D_DOT P_A components P_C devContenido30
+devContenido22  ::= COM ID_FORM D_DOT ASIG_ID:e1 devContenido26:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setId(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM ESTRUCT D_DOT P_A components:e1 P_C devContenido30:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setComponentes(((List<Componente>)e1));
+                                }
+                        }
+                :}
                 |   error
                 ;
-devContenido23  ::= COM ID_FORM D_DOT ASIG_ID devContenido27
-                |   COM THEME D_DOT asigContenido devContenido30
+devContenido23  ::= COM ID_FORM D_DOT ASIG_ID:e1 devContenido27:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setId(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM THEME D_DOT asigContenido:e1 devContenido30:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTema(((token)e1).getLexeme());
+                                }
+                        }
+                :}
                 |   error
                 ;
-devContenido24  ::= COM ID_FORM D_DOT ASIG_ID devContenido28
-                |   COM NAME D_DOT ASIGNACION devContenido30
+devContenido24  ::= COM ID_FORM D_DOT ASIG_ID:e1 devContenido28:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setId(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM NAME D_DOT ASIGNACION:e1 devContenido30:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setNombre(((token)e1).getLexeme());
+                        }
+                :}
                 |   error
                 ;
-devContenido25  ::= COM ID_FORM D_DOT ASIG_ID devContenido29
-                |   COM TITLE D_DOT asigContenido devContenido30
+devContenido25  ::= COM ID_FORM D_DOT ASIG_ID:e1 devContenido29:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                ((Formulario)e2).setId(((token)e1).getLexeme());
+                        }
+                :}
+                |   COM TITLE D_DOT asigContenido:e1 devContenido30:e2
+                {:
+                        RESULT = e2;
+                        if(e2!=null){
+                                if(e1!=null){
+                                        ((Formulario)e2).setTitulo(((token)e1).getLexeme());
+                                }
+                        }
+                :}
                 |   error
                 ;
 //--------------------------------------------------------------
@@ -300,22 +822,77 @@ contComponents  ::= COM components:e1
                 ;
 
 components2     ::=     ID:p D_DOT ASIG_ID:e1 contMO_C1:e2
+                {:
+                        if(e2!=null){
+                                if(((Componente)e2).getId()==null){
+                                        ((Componente)e2).setId(((token)e1).getLexeme());
+                                }else{
+                                        errorParametroDuplicado(p);
+                                }  
+                        }
+                        RESULT =e2;
+                :}
                 |       NAME_CAMP:p D_DOT ASIGNACION:e1 contMO_C1:e2
-                |       FORM:p D_DOT ASIG_ID:e1 contMO_C1:e2
+                {:
+                        if(e2!=null){
+                                if(((Componente)e2).getNombre_campo()==null){
+                                        ((Componente)e2).setNombre_campo(((token)e1).getLexeme());
+                                }else{
+                                        errorParametroDuplicado(p);
+                                }        
+                        }
+                        RESULT =e2;
+                :}
+                /*|       FORM:p D_DOT ASIG_ID:e1 contMO_C1:e2*/
                 |       CLASS:p D_DOT contMO_C_2:e1 contMO_C1:e2
-                |       IND:p D_DOT ASIGNACION_NUM:e1 contMO_C1:e2
-                |       TEXT_VIEW:p D_DOT asigContenido:e1 contMO_C1:e2
-                |       ALI:p D_DOT contMO_C_1:e1 contMO_C1:e2
                 {:
                         if(e2!=null){
                                 if(e1!=null){
-                                        if(((Componente)e2).getAliniacion()==null){
-                                                ((Componente)e2).setAlinacion(((token)e1).getLexeme());
+                                        if(((Componente)e2).getClase()==null){
+                                                ((Componente)e2).setClase(((token)e1).getLexeme());
                                         }else{
                                                 errorParametroDuplicado(p);
                                         }        
                                 }
                         }
+                        RESULT =e2;
+                :}
+                |       IND:p D_DOT ASIGNACION_NUM:e1 contMO_C1:e2
+                {:
+                        if(e2!=null){
+                                if(((Componente)e2).getIndice()==null){
+                                        ((Componente)e2).setIndice(((token)e1).getLexeme());
+                                }else{
+                                        errorParametroDuplicado(p);
+                                }
+                        }
+                        RESULT =e2;
+                :}
+                |       TEXT_VIEW:p D_DOT asigContenido:e1 contMO_C1:e2
+                {:
+                        if(e2!=null){
+                                if(e1!=null){
+                                        if(((Componente)e2).getTexto_visible()==null){
+                                                ((Componente)e2).setTexto_visible(((token)e1).getLexeme());
+                                        }else{
+                                                errorParametroDuplicado(p);
+                                        }        
+                                }
+                        }
+                        RESULT =e2;
+                :}
+                |       ALI:p D_DOT contMO_C_1:e1 contMO_C1:e2
+                {:
+                        if(e2!=null){
+                                if(e1!=null){
+                                        if(((Componente)e2).getAlineacion()==null){
+                                                ((Componente)e2).setAlineacion(((token)e1).getLexeme());
+                                        }else{
+                                                errorParametroDuplicado(p);
+                                        }        
+                                }
+                        }
+                        RESULT =e2;
                 :}
                 |       REQUE:p D_DOT contMO_C2:e1 contMO_C1:e2
                 {:
@@ -328,6 +905,7 @@ components2     ::=     ID:p D_DOT ASIG_ID:e1 contMO_C1:e2
                                         }        
                                 }
                         }
+                        RESULT =e2;
                 :}
                 |       OPTION:p D_DOT asigContenido:e1 contMO_C1:e2
                 {:
@@ -340,6 +918,7 @@ components2     ::=     ID:p D_DOT ASIG_ID:e1 contMO_C1:e2
                                         }        
                                 }
                         }
+                        RESULT =e2;
                 :}
                 |       URL:p D_DOT asigContenido:e1 contMO_C1:e2
                 {:
@@ -352,6 +931,7 @@ components2     ::=     ID:p D_DOT ASIG_ID:e1 contMO_C1:e2
                                         }        
                                 }
                         }
+                        RESULT =e2;
                 :}
                 |       COLM:p D_DOT ASIGNACION_NUM:e1 contMO_C1:e2
                 {:
@@ -362,6 +942,7 @@ components2     ::=     ID:p D_DOT ASIG_ID:e1 contMO_C1:e2
                                         errorParametroDuplicado(p);
                                 }
                         }
+                        RESULT =e2;
                 :}
                 |       FILAS:p D_DOT ASIGNACION_NUM:e1 contMO_C1:e2
                 {:
@@ -372,6 +953,7 @@ components2     ::=     ID:p D_DOT ASIG_ID:e1 contMO_C1:e2
                                         errorParametroDuplicado(p);
                                 }
                         }
+                        RESULT =e2;
                 :}
                 |       error
                 ;
