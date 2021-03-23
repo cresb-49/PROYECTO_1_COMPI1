@@ -82,7 +82,8 @@ public class lexerIndigo implements java_cup.runtime.Scanner {
     "\1\26\1\47\2\23\1\50\2\23\1\51\1\23\1\52"+
     "\1\53\1\34\1\23\1\35\1\54\1\55\1\56\5\23"+
     "\1\57\1\60\1\61\1\6\42\0\1\6\6\0\1\6"+
-    "\3\0\1\6\3\0\1\6\16\0\1\6\u0140\0";
+    "\3\0\1\6\3\0\1\6\16\0\1\6\2\0\1\6"+
+    "\u013d\0";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[512];

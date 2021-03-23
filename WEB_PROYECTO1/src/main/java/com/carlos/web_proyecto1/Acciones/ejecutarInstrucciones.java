@@ -110,41 +110,38 @@ public class ejecutarInstrucciones {
                     //System.out.println("Accion no registrada new usuario: " + ((usuario) tmp).getAccion());
                 }
             }
-            if (tmp instanceof formulario) {
-                switch (((formulario) tmp).getAccion()) {
+            if (tmp instanceof formulariotmp) {
+                switch (((formulariotmp) tmp).getAccion()) {
                     case "NUEVO_FORMULARIO":
-                        res = baseForms.agregarFormulario((formulario) tmp);
+                        res = baseForms.agregarFormulario((formulariotmp) tmp);
                         log.add(res);
                         break;
                     case "ELIMINAR_FORMULARIO":
-                        res = baseForms.eliminarFormulario((formulario) tmp);
+                        res = baseForms.eliminarFormulario((formulariotmp) tmp);
                         log.add(res);
                     case "MODIFICAR_FORMULARIO":
-                        res = baseForms.modificarFormulario((formulario) tmp);
+                        res = baseForms.modificarFormulario((formulariotmp) tmp);
                         log.add(res);
                     default:
-                        System.out.println("Accion no registrada formulario: " + ((formulario) tmp).getAccion());
-                }
-                if (tmp instanceof componente) {
-
+                        System.out.println("Accion no registrada formulario: " + ((formulariotmp) tmp).getAccion());
                 }
             }
-            if (tmp instanceof componente) {
-                switch (((componente) tmp).getAccion()) {
+            if (tmp instanceof componentetmp) {
+                switch (((componentetmp) tmp).getAccion()) {
                     case "AGREGAR_COMPONENTE":
-                        res = baseForms.agregarComponente(((componente)tmp));
+                        res = baseForms.agregarComponente(((componentetmp)tmp));
                         log.add(res);
                         break;
                     case "ELIMINAR_COMPONENTE":
-                        res = baseForms.eliminarComponente((componente)tmp);
+                        res = baseForms.eliminarComponente((componentetmp)tmp);
                         log.add(res);
                         break;
                     case "MODIFICAR_COMPONENTE":
-                        res = baseForms.modificarComponente((componente)tmp);
+                        res = baseForms.modificarComponente((componentetmp)tmp);
                         log.add(res);
                         break;
                     default:
-                        System.out.println("Accion no registrada componente: " + ((componente) tmp).getAccion());
+                        System.out.println("Accion no registrada componente: " + ((componentetmp) tmp).getAccion());
                 }
             }
             escribir.escritura(path + "/Almacenamiento/users.db", gson.toJson(baseUsuarios));

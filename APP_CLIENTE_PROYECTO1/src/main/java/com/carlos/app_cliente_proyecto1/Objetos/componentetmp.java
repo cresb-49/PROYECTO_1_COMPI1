@@ -1,6 +1,6 @@
 package com.carlos.app_cliente_proyecto1.Objetos;
 
-public class componente {
+public class componentetmp {
 
     private String id;
     private String nombre;
@@ -17,10 +17,10 @@ public class componente {
 
     private String accion;
 
-    public componente() {
+    public componentetmp() {
     }
 
-    public componente(String id, String nombre, String form, String clase, String indice, String texto, String ali, String requerido, String opciones, String filas, String columnas, String url) {
+    public componentetmp(String id, String nombre, String form, String clase, String indice, String texto, String ali, String requerido, String opciones, String filas, String columnas, String url) {
         this.id = id;
         this.nombre = nombre;
         this.form = form;

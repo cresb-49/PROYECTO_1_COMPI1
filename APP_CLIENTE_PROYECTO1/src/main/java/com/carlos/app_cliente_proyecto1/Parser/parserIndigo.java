@@ -2032,33 +2032,33 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
                 return modUser;
         }   
         //-----LISTA DE FORMULARIOS NUEVOS
-        List<formulario> newForms = new ArrayList<>();
-        public List<formulario> getNewForms() {
+        List<formulariotmp> newForms = new ArrayList<>();
+        public List<formulariotmp> getNewForms() {
             return newForms;
         }
         //------LISTA DE FORMULARIOS A ELIMINAR
-        List<formulario> delForm = new ArrayList<>();
-        public List<formulario> getDelForm() {
+        List<formulariotmp> delForm = new ArrayList<>();
+        public List<formulariotmp> getDelForm() {
             return delForm;
         }
         //------LSITA DE FORMULARIOS A MODIFICAR
-        List<formulario> modForm = new ArrayList<>();
-        public List<formulario> getModForm() {
+        List<formulariotmp> modForm = new ArrayList<>();
+        public List<formulariotmp> getModForm() {
             return modForm;
         }
         //-----LSITA DE COMPONENTES A ELIMINAR
-        List<componente> delComp = new ArrayList<>();
-        public List<componente> getDelComp() {
+        List<componentetmp> delComp = new ArrayList<>();
+        public List<componentetmp> getDelComp() {
             return delComp;
         }
         //----LISTA DE COMPONENTES A AGREGAR
-        List<componente> addComp = new ArrayList<>();
-        public List<componente> getAddComp() {
+        List<componentetmp> addComp = new ArrayList<>();
+        public List<componentetmp> getAddComp() {
             return addComp;
         }
         //---LISTA DE COMPONENTES A MODIFICAR
-        List<componente> modComp = new ArrayList<>();
-        public List<componente> getModComp() {
+        List<componentetmp> modComp = new ArrayList<>();
+        public List<componentetmp> getModComp() {
             return modComp;
         }
 
@@ -2112,8 +2112,8 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
 
         public void errorParametroDuplicado(Object simbolo){
                 token tok = (token)simbolo;
-                System.out.println("El parametro del componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn()+" ya se habia definido con anterioridad");
-                errorsList.add("El parametro del componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn()+" ya se habia definido con anterioridad");
+                System.out.println("El parametro del componentetmp ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn()+" ya se habia definido con anterioridad");
+                errorsList.add("El parametro del componentetmp ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn()+" ya se habia definido con anterioridad");
         }
         /*
         public void syntax_error(Symbol cur_token){
@@ -4459,9 +4459,9 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e1!=null){
-                                ((formulario)e1).setAccion("NUEVO_FORMULARIO");
+                                ((formulariotmp)e1).setAccion("NUEVO_FORMULARIO");
                                 //instrucciones.add(e1);
-                                //newForms.add((formulario)e1);
+                                //newForms.add((formulariotmp)e1);
                                 if(e2!=null){
                                         ((List<Object>)e2).add(e1);
                                         RESULT = e2;
@@ -4527,7 +4527,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -4548,7 +4548,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -4569,7 +4569,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -4589,7 +4589,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -4609,7 +4609,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -4629,7 +4629,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -4659,7 +4659,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -4680,7 +4680,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -4700,7 +4700,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -4720,7 +4720,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -4740,7 +4740,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -4769,7 +4769,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -4789,7 +4789,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -4809,7 +4809,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -4829,7 +4829,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -4849,7 +4849,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -4878,7 +4878,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -4899,7 +4899,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -4920,7 +4920,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -4940,7 +4940,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -4960,7 +4960,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -4989,7 +4989,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5010,7 +5010,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -5031,7 +5031,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5051,7 +5051,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5071,7 +5071,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5100,7 +5100,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5121,7 +5121,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -5142,7 +5142,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5162,7 +5162,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5182,7 +5182,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5211,7 +5211,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5232,7 +5232,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -5253,7 +5253,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5273,7 +5273,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5293,7 +5293,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5322,7 +5322,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5342,7 +5342,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5362,7 +5362,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5382,7 +5382,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5412,7 +5412,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -5433,7 +5433,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5453,7 +5453,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5473,7 +5473,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5503,7 +5503,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -5524,7 +5524,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5544,7 +5544,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5564,7 +5564,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5594,7 +5594,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -5615,7 +5615,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5635,7 +5635,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5655,7 +5655,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5685,7 +5685,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -5706,7 +5706,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5726,7 +5726,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5746,7 +5746,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5775,7 +5775,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5795,7 +5795,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5815,7 +5815,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5835,7 +5835,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5864,7 +5864,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5884,7 +5884,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5904,7 +5904,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5924,7 +5924,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5953,7 +5953,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5973,7 +5973,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -5993,7 +5993,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6013,7 +6013,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6042,7 +6042,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6062,7 +6062,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6082,7 +6082,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6102,7 +6102,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6131,7 +6131,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6152,7 +6152,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -6173,7 +6173,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6193,7 +6193,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6222,7 +6222,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6243,7 +6243,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -6264,7 +6264,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6284,7 +6284,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6313,7 +6313,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6334,7 +6334,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -6355,7 +6355,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6375,7 +6375,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6404,7 +6404,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6425,7 +6425,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -6446,7 +6446,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6466,7 +6466,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6495,7 +6495,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6516,7 +6516,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -6537,7 +6537,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6557,7 +6557,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6586,7 +6586,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6607,7 +6607,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -6628,7 +6628,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6648,7 +6648,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6677,7 +6677,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6697,7 +6697,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6717,7 +6717,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6746,7 +6746,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6766,7 +6766,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6786,7 +6786,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6815,7 +6815,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6835,7 +6835,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6855,7 +6855,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6905,7 +6905,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6925,7 +6925,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6945,7 +6945,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -6975,7 +6975,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -6996,7 +6996,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7016,7 +7016,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7046,7 +7046,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -7067,7 +7067,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7087,7 +7087,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7117,7 +7117,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;    
                                 }
                         }
@@ -7138,7 +7138,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7158,7 +7158,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7188,7 +7188,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -7209,7 +7209,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7229,7 +7229,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7259,7 +7259,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -7280,7 +7280,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7300,7 +7300,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7330,7 +7330,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -7351,7 +7351,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7371,7 +7371,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7400,7 +7400,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7420,7 +7420,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7440,7 +7440,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7469,7 +7469,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7489,7 +7489,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7509,7 +7509,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7538,7 +7538,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7558,7 +7558,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7578,7 +7578,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7607,7 +7607,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7627,7 +7627,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7647,7 +7647,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7676,7 +7676,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7696,7 +7696,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7716,7 +7716,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7745,7 +7745,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7765,7 +7765,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7785,7 +7785,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7814,7 +7814,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7835,7 +7835,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -7856,7 +7856,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7885,7 +7885,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7906,7 +7906,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -7927,7 +7927,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7956,7 +7956,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -7977,7 +7977,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -7998,7 +7998,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8027,7 +8027,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8048,7 +8048,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -8069,7 +8069,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8098,7 +8098,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8118,7 +8118,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8131,7 +8131,7 @@ class CUP$parserIndigo$actions {
             {
               Object RESULT =null;
 		
-                        RESULT = new formulario("","","","","","");
+                        RESULT = new formulariotmp("","","","","","");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contNEW_F42",86, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -8158,7 +8158,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8178,7 +8178,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8207,7 +8207,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8227,7 +8227,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8256,7 +8256,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8276,7 +8276,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8305,7 +8305,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8325,7 +8325,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8354,7 +8354,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8374,7 +8374,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8404,7 +8404,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -8425,7 +8425,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8455,7 +8455,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -8476,7 +8476,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8506,7 +8506,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -8527,7 +8527,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8557,7 +8557,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -8578,7 +8578,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8607,7 +8607,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8627,7 +8627,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setFecha(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setFecha(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8656,7 +8656,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8676,7 +8676,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setUser(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setUser(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8705,7 +8705,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8725,7 +8725,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8754,7 +8754,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8774,7 +8774,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8803,7 +8803,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -8824,7 +8824,7 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 if(e1!=null){
-                                        ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                        ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                         RESULT = e2;
                                 }
                         }
@@ -8850,7 +8850,7 @@ class CUP$parserIndigo$actions {
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
-                        RESULT = new formulario("","","","","",((token)e1).getLexeme());
+                        RESULT = new formulariotmp("","","","","",((token)e1).getLexeme());
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contNEW_F57",101, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -8861,7 +8861,7 @@ class CUP$parserIndigo$actions {
             {
               Object RESULT =null;
 		
-                        RESULT = new formulario("","","","","","");
+                        RESULT = new formulariotmp("","","","","","");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contNEW_F57",101, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -8884,7 +8884,7 @@ class CUP$parserIndigo$actions {
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
-                        RESULT = new formulario("","","","",((token)e1).getLexeme(),"");
+                        RESULT = new formulariotmp("","","","",((token)e1).getLexeme(),"");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contNEW_F58",102, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -8895,7 +8895,7 @@ class CUP$parserIndigo$actions {
             {
               Object RESULT =null;
 		
-                        RESULT = new formulario("","","","","","");
+                        RESULT = new formulariotmp("","","","","","");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contNEW_F58",102, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -8918,7 +8918,7 @@ class CUP$parserIndigo$actions {
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
-                        RESULT = new formulario("","","",((token)e1).getLexeme(),"","");
+                        RESULT = new formulariotmp("","","",((token)e1).getLexeme(),"","");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contNEW_F59",103, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -8941,7 +8941,7 @@ class CUP$parserIndigo$actions {
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
-                        RESULT = new formulario("","",((token)e1).getLexeme(),"","","");
+                        RESULT = new formulariotmp("","",((token)e1).getLexeme(),"","","");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contNEW_F60",104, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -8965,7 +8965,7 @@ class CUP$parserIndigo$actions {
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e1!=null){
-                                RESULT = new formulario("",((token)e1).getLexeme(),"","","","");
+                                RESULT = new formulariotmp("",((token)e1).getLexeme(),"","","","");
                         }
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contNEW_F61",105, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
@@ -8989,7 +8989,7 @@ class CUP$parserIndigo$actions {
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
-                        RESULT = new formulario(((token)e1).getLexeme(),"","","","","");
+                        RESULT = new formulariotmp(((token)e1).getLexeme(),"","","","","");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contNEW_F62",106, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -9016,9 +9016,9 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e1!=null){
-                                ((formulario)e1).setAccion("ELIMINAR_FORMULARIO");
+                                ((formulariotmp)e1).setAccion("ELIMINAR_FORMULARIO");
                                 //instrucciones.add(e1);
-                                //delForm.add((formulario)e1);
+                                //delForm.add((formulariotmp)e1);
                                 if(e2!=null){
                                         ((List<Object>)e2).add(e1);
                                         RESULT = e2;
@@ -9080,7 +9080,7 @@ class CUP$parserIndigo$actions {
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
-                        RESULT = new formulario(((token)e1).getLexeme(), "", "", "", "", "");
+                        RESULT = new formulariotmp(((token)e1).getLexeme(), "", "", "", "", "");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contDEL_F",108, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -9107,9 +9107,9 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e1!=null){
-                                ((formulario)e1).setAccion("MODIFICAR_FORMULARIO");
+                                ((formulariotmp)e1).setAccion("MODIFICAR_FORMULARIO");
                                 //instrucciones.add(e1);
-                                //modForm.add((formulario)e1);
+                                //modForm.add((formulariotmp)e1);
                                 if(e2!=null){
                                         ((List<Object>)e2).add(e1);
                                         RESULT = e2;
@@ -9175,7 +9175,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9195,7 +9195,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9215,7 +9215,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9235,7 +9235,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9264,7 +9264,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null && e1!=null){
-                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9284,7 +9284,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9304,7 +9304,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9333,7 +9333,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9353,7 +9353,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9373,7 +9373,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9402,7 +9402,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9422,7 +9422,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null && e1!=null){
-                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9442,7 +9442,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9471,7 +9471,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9491,7 +9491,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e1!=null && e2!=null){
-                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9511,7 +9511,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9540,7 +9540,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9560,7 +9560,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9573,7 +9573,7 @@ class CUP$parserIndigo$actions {
             {
               Object RESULT =null;
 		
-                        RESULT = new formulario("","","","","","");
+                        RESULT = new formulariotmp("","","","","","");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_F5",115, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -9600,7 +9600,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e1!=null && e2!=null){
-                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9620,7 +9620,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9633,7 +9633,7 @@ class CUP$parserIndigo$actions {
             {
               Object RESULT =null;
 		
-                        RESULT = new formulario("","","","","","");
+                        RESULT = new formulariotmp("","","","","","");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_F6",116, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -9660,7 +9660,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e1!=null && e2!=null){
-                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9680,7 +9680,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9693,7 +9693,7 @@ class CUP$parserIndigo$actions {
             {
               Object RESULT =null;
 		
-                        RESULT = new formulario("","","","","","");
+                        RESULT = new formulariotmp("","","","","","");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_F7",117, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -9720,7 +9720,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9740,7 +9740,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setTema(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTema(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9769,7 +9769,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9789,7 +9789,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setNombre(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setNombre(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9818,7 +9818,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((formulario)e2).setId(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setId(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9838,7 +9838,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e1!=null && e2!=null){
-                                ((formulario)e2).setTitulo(((token)e1).getLexeme());
+                                ((formulariotmp)e2).setTitulo(((token)e1).getLexeme());
                                 RESULT = e2;
                         }
                 
@@ -9863,7 +9863,7 @@ class CUP$parserIndigo$actions {
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
-                        RESULT = new formulario("","","",((token)e1).getLexeme(),"","");
+                        RESULT = new formulariotmp("","","",((token)e1).getLexeme(),"","");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_F11",121, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -9874,7 +9874,7 @@ class CUP$parserIndigo$actions {
             {
               Object RESULT =null;
 		
-                        RESULT = new formulario("","","","","","");
+                        RESULT = new formulariotmp("","","","","","");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_F11",121, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -9897,7 +9897,7 @@ class CUP$parserIndigo$actions {
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
-                        RESULT = new formulario("","",((token)e1).getLexeme(),"","","");
+                        RESULT = new formulariotmp("","",((token)e1).getLexeme(),"","","");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_F12",122, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -9908,7 +9908,7 @@ class CUP$parserIndigo$actions {
             {
               Object RESULT =null;
 		
-                        RESULT = new formulario("","","","","","");
+                        RESULT = new formulariotmp("","","","","","");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_F12",122, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -9932,7 +9932,7 @@ class CUP$parserIndigo$actions {
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e1!=null){
-                                RESULT = new formulario("",((token)e1).getLexeme(),"","","","");
+                                RESULT = new formulariotmp("",((token)e1).getLexeme(),"","","","");
                         }
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_F13",123, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
@@ -9944,7 +9944,7 @@ class CUP$parserIndigo$actions {
             {
               Object RESULT =null;
 		
-                        RESULT = new formulario("","","","","","");
+                        RESULT = new formulariotmp("","","","","","");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_F13",123, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -9967,7 +9967,7 @@ class CUP$parserIndigo$actions {
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
-                        RESULT = new formulario(((token)e1).getLexeme(),"","","","","");
+                        RESULT = new formulariotmp(((token)e1).getLexeme(),"","","","","");
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_F14",124, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -9994,9 +9994,9 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e1!=null){
-                                ((componente)e1).setAccion("ELIMINAR_COMPONENTE");
+                                ((componentetmp)e1).setAccion("ELIMINAR_COMPONENTE");
                                 //instrucciones.add(e1);
-                                //delComp.add((componente)e1);
+                                //delComp.add((componentetmp)e1);
                                 if(e2!=null){
                                         ((List<Object>)e2).add(e1);
                                         RESULT = e2;
@@ -10062,7 +10062,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((componente)e2).setId(((token)e1).getLexeme());
+                                ((componentetmp)e2).setId(((token)e1).getLexeme());
                                 RESULT =e2;
                         }
                 
@@ -10082,7 +10082,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                ((componente)e2).setForm(((token)e1).getLexeme());
+                                ((componentetmp)e2).setForm(((token)e1).getLexeme());
                                 RESULT =e2;
                         }
                 
@@ -10107,7 +10107,7 @@ class CUP$parserIndigo$actions {
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
-                        componente comp = new componente();
+                        componentetmp comp = new componentetmp();
                         comp.setForm(((token)e1).getLexeme());
                         RESULT=comp;
                 
@@ -10132,7 +10132,7 @@ class CUP$parserIndigo$actions {
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
-                        componente comp = new componente();
+                        componentetmp comp = new componentetmp();
                         comp.setId(((token)e1).getLexeme());
                         RESULT=comp;
                 
@@ -10164,9 +10164,9 @@ class CUP$parserIndigo$actions {
 		Object e3 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e1!=null){
-                                String tmp = ((componente)e1).validarComponete();
+                                String tmp = ((componentetmp)e1).validarComponete();
                                 if(tmp.isEmpty()){
-                                        ((componente)e1).setAccion("AGREGAR_COMPONENTE");
+                                        ((componentetmp)e1).setAccion("AGREGAR_COMPONENTE");
                                         if(e3!=null){
                                                 ((List<Object>)e3).add(e1);
                                                 RESULT = e3;
@@ -10240,10 +10240,10 @@ class CUP$parserIndigo$actions {
 		      
                         if(e2!=null){
                                 //System.out.println("Argrego info y retorno id");
-                                if(((componente)e2).getId() == null)
+                                if(((componentetmp)e2).getId() == null)
                                 {
-                                        ((componente)e2).setId(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                        ((componentetmp)e2).setId(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -10271,9 +10271,9 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 //System.out.println("Argrego info y retorno nombre");
-                                if(((componente)e2).getNombre() == null){
-                                        ((componente)e2).setNombre(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                if(((componentetmp)e2).getNombre() == null){
+                                        ((componentetmp)e2).setNombre(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -10299,10 +10299,10 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                //System.out.println("Argrego info y retorno formulario");
-                                if(((componente)e2).getForm() == null){
-                                        ((componente)e2).setForm(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                //System.out.println("Argrego info y retorno formulariotmp");
+                                if(((componentetmp)e2).getForm() == null){
+                                        ((componentetmp)e2).setForm(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -10329,9 +10329,9 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null && e1!= null){
                                 //System.out.println("Argrego info y retorno clase");
-                                if(((componente)e2).getClase() == null){
-                                        ((componente)e2).setClase(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                if(((componentetmp)e2).getClase() == null){
+                                        ((componentetmp)e2).setClase(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -10358,9 +10358,9 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null && e1!= null){
                                 //System.out.println("Argrego info y retorno texto visible");
-                                if(((componente)e2).getTexto() == null){
-                                        ((componente)e2).setTexto(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                if(((componentetmp)e2).getTexto() == null){
+                                        ((componentetmp)e2).setTexto(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -10387,9 +10387,9 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null && e1!=null){
                                 //System.out.println("Argrego info y retorno alineacion");
-                                if(((componente)e2).getAli() == null){
-                                        ((componente)e2).setAli(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                if(((componentetmp)e2).getAli() == null){
+                                        ((componentetmp)e2).setAli(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -10416,9 +10416,9 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null && e1!=null){
                                 //System.out.println("Argrego info y retorno requerido");
-                                if(((componente)e2).getRequerido() == null){
-                                        ((componente)e2).setRequerido(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                if(((componentetmp)e2).getRequerido() == null){
+                                        ((componentetmp)e2).setRequerido(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -10445,9 +10445,9 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null && e1!=null){
                                 //System.out.println("Argrego info y retorno opcion");
-                                if(((componente)e2).getOpciones() == null){
-                                        ((componente)e2).setOpciones(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                if(((componentetmp)e2).getOpciones() == null){
+                                        ((componentetmp)e2).setOpciones(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -10474,9 +10474,9 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null && e1!=null){
                                 //System.out.println("Argrego info y retorno url");
-                                if(((componente)e2).getUrl() == null){
-                                        ((componente)e2).setUrl(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                if(((componentetmp)e2).getUrl() == null){
+                                        ((componentetmp)e2).setUrl(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -10503,9 +10503,9 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 //System.out.println("Argrego info y retorno columnas");
-                                if(((componente)e2).getColumnas() == null){
-                                        ((componente)e2).setColumnas(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                if(((componentetmp)e2).getColumnas() == null){
+                                        ((componentetmp)e2).setColumnas(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -10532,9 +10532,9 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 //System.out.println("Argrego info y retorno filas");
-                                if(((componente)e2).getFilas() == null){
-                                        ((componente)e2).setFilas(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                if(((componentetmp)e2).getFilas() == null){
+                                        ((componentetmp)e2).setFilas(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -10554,8 +10554,8 @@ class CUP$parserIndigo$actions {
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e1!=null){
-                                //System.out.println("Retorno componente");
-                                //System.out.println(((componente)e1).toString());
+                                //System.out.println("Retorno componentetmp");
+                                //System.out.println(((componentetmp)e1).toString());
                                 RESULT = e1;
                         }
                 
@@ -10568,8 +10568,8 @@ class CUP$parserIndigo$actions {
             {
               Object RESULT =null;
 		
-                        //System.out.println("Genero componente");
-                        RESULT = new componente();
+                        //System.out.println("Genero componentetmp");
+                        RESULT = new componentetmp();
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contADD_C1",136, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -10819,9 +10819,9 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e1!=null){
-                                ((componente)e1).setAccion("MODIFICAR_COMPONENTE");
+                                ((componentetmp)e1).setAccion("MODIFICAR_COMPONENTE");
                                 //instrucciones.add(e1);
-                                //modComp.add((componente)e1);
+                                //modComp.add((componentetmp)e1);
                                 if(e2!=null){
                                         ((List<Object>)e2).add(e1);
                                         RESULT = e2;
@@ -10891,10 +10891,10 @@ class CUP$parserIndigo$actions {
 		      
                         if(e2!=null){
                                 //System.out.println("Argrego info y retorno id");
-                                if(((componente)e2).getId() == null)
+                                if(((componentetmp)e2).getId() == null)
                                 {
-                                        ((componente)e2).setId(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                        ((componentetmp)e2).setId(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -10922,9 +10922,9 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 //System.out.println("Argrego info y retorno nombre");
-                                if(((componente)e2).getNombre() == null){
-                                        ((componente)e2).setNombre(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                if(((componentetmp)e2).getNombre() == null){
+                                        ((componentetmp)e2).setNombre(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -10950,10 +10950,10 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                //System.out.println("Argrego info y retorno formulario");
-                                if(((componente)e2).getForm() == null){
-                                        ((componente)e2).setForm(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                //System.out.println("Argrego info y retorno formulariotmp");
+                                if(((componentetmp)e2).getForm() == null){
+                                        ((componentetmp)e2).setForm(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -10980,9 +10980,9 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null && e1!= null){
                                 //System.out.println("Argrego info y retorno clase");
-                                if(((componente)e2).getClase() == null){
-                                        ((componente)e2).setClase(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                if(((componentetmp)e2).getClase() == null){
+                                        ((componentetmp)e2).setClase(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -11008,10 +11008,10 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                         if(e2!=null){
-                                //System.out.println("Argrego info y retorno formulario");
-                                if(((componente)e2).getIndice() == null){
-                                        ((componente)e2).setIndice(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                //System.out.println("Argrego info y retorno formulariotmp");
+                                if(((componentetmp)e2).getIndice() == null){
+                                        ((componentetmp)e2).setIndice(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -11038,9 +11038,9 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null && e1!= null){
                                 //System.out.println("Argrego info y retorno texto visible");
-                                if(((componente)e2).getTexto() == null){
-                                        ((componente)e2).setTexto(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                if(((componentetmp)e2).getTexto() == null){
+                                        ((componentetmp)e2).setTexto(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -11067,9 +11067,9 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null && e1!=null){
                                 //System.out.println("Argrego info y retorno alineacion");
-                                if(((componente)e2).getAli() == null){
-                                        ((componente)e2).setAli(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                if(((componentetmp)e2).getAli() == null){
+                                        ((componentetmp)e2).setAli(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -11096,9 +11096,9 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null && e1!=null){
                                 //System.out.println("Argrego info y retorno requerido");
-                                if(((componente)e2).getRequerido() == null){
-                                        ((componente)e2).setRequerido(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                if(((componentetmp)e2).getRequerido() == null){
+                                        ((componentetmp)e2).setRequerido(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -11125,9 +11125,9 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null && e1!=null){
                                 //System.out.println("Argrego info y retorno opcion");
-                                if(((componente)e2).getOpciones() == null){
-                                        ((componente)e2).setOpciones(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                if(((componentetmp)e2).getOpciones() == null){
+                                        ((componentetmp)e2).setOpciones(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -11154,9 +11154,9 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null && e1!=null){
                                 //System.out.println("Argrego info y retorno url");
-                                if(((componente)e2).getUrl() == null){
-                                        ((componente)e2).setUrl(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                if(((componentetmp)e2).getUrl() == null){
+                                        ((componentetmp)e2).setUrl(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -11183,9 +11183,9 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 //System.out.println("Argrego info y retorno columnas");
-                                if(((componente)e2).getColumnas() == null){
-                                        ((componente)e2).setColumnas(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                if(((componentetmp)e2).getColumnas() == null){
+                                        ((componentetmp)e2).setColumnas(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -11212,9 +11212,9 @@ class CUP$parserIndigo$actions {
 		
                         if(e2!=null){
                                 //System.out.println("Argrego info y retorno filas");
-                                if(((componente)e2).getFilas() == null){
-                                        ((componente)e2).setFilas(((token)e1).getLexeme());
-                                        //System.out.println(((componente)e2).toString());
+                                if(((componentetmp)e2).getFilas() == null){
+                                        ((componentetmp)e2).setFilas(((token)e1).getLexeme());
+                                        //System.out.println(((componentetmp)e2).toString());
                                         RESULT = e2;
                                 }else{
                                         errorParametroDuplicado(p);
@@ -11255,7 +11255,7 @@ class CUP$parserIndigo$actions {
             {
               Object RESULT =null;
 		
-                        RESULT = new componente();
+                        RESULT = new componentetmp();
                 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contMO_C1",142, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }

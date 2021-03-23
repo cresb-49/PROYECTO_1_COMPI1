@@ -35,7 +35,7 @@ public class DBFormularios {
         return null;
     }
 
-    public String agregarFormulario(formulario form) {
+    public String agregarFormulario(formulariotmp form) {
         String respuesta = "";
         if (this.formularios == null) {
             this.formularios = new ArrayList<>();
@@ -56,7 +56,7 @@ public class DBFormularios {
         return respuesta;
     }
 
-    public String modificarFormulario(formulario form) {
+    public String modificarFormulario(formulariotmp form) {
         String respuesta = "";
 
         Formulario tmp = this.buscarFormulario(form.getId());
@@ -78,7 +78,7 @@ public class DBFormularios {
         return respuesta;
     }
 
-    public String eliminarFormulario(formulario form) {
+    public String eliminarFormulario(formulariotmp form) {
         String respuesta = "";
         boolean bandera = false;
 
@@ -112,7 +112,7 @@ public class DBFormularios {
         return null;
     }
 
-    public String agregarComponente(componente comp) {
+    public String agregarComponente(componentetmp comp) {
         String respuesta = "";
 
         Formulario form = buscarFormulario(comp.getForm());
@@ -139,7 +139,7 @@ public class DBFormularios {
         return respuesta;
     }
 
-    public String eliminarComponente(componente comp) {
+    public String eliminarComponente(componentetmp comp) {
         String respuesta = "";
         boolean bandera = false;
 
@@ -166,7 +166,7 @@ public class DBFormularios {
         return respuesta;
     }
     
-    public String modificarComponente(componente comp){
+    public String modificarComponente(componentetmp comp){
         String respuesta = "";
         
         Componente mod = this.buscarComponente(comp.getForm(), comp.getId());

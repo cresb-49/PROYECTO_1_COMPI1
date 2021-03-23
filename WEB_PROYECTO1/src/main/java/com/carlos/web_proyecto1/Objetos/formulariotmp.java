@@ -1,6 +1,6 @@
-package com.carlos.app_cliente_proyecto1.Objetos;
+package com.carlos.web_proyecto1.Objetos;
 
-public class formulario {
+public class formulariotmp {
     private String id;
     private String titulo;
     private String nombre;
@@ -10,10 +10,10 @@ public class formulario {
     
     private String accion;
     
-    public formulario() {
+    public formulariotmp() {
     }
 
-    public formulario(String id, String titulo, String nombre, String tema, String user, String fecha) {
+    public formulariotmp(String id, String titulo, String nombre, String tema, String user, String fecha) {
         this.id = id;
         this.titulo = titulo;
         this.nombre = nombre;
