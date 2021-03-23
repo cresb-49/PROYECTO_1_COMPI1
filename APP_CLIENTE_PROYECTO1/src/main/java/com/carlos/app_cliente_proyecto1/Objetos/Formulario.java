@@ -1,26 +1,25 @@
 package com.carlos.app_cliente_proyecto1.Objetos;
 
-import java.util.List;
-
-public class Formulario {
-
+public class formulario {
     private String id;
     private String titulo;
     private String nombre;
     private String tema;
+    private String user;
     private String fecha;
-    private List<Componente> componentes;
-
-    public Formulario(){
-        
-    }
     
-    public Formulario(formulario base) {
-        this.id = base.getId();
-        this.titulo = base.getTitulo();
-        this.nombre = base.getNombre();
-        this.tema = base.getTema();
-        this.fecha = base.getFecha();
+    private String accion;
+    
+    public formulario() {
+    }
+
+    public formulario(String id, String titulo, String nombre, String tema, String user, String fecha) {
+        this.id = id;
+        this.titulo = titulo;
+        this.nombre = nombre;
+        this.tema = tema;
+        this.user = user;
+        this.fecha = fecha;
     }
 
     public String getId() {
@@ -55,6 +54,14 @@ public class Formulario {
         this.tema = tema;
     }
 
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
     public String getFecha() {
         return fecha;
     }
@@ -63,16 +70,16 @@ public class Formulario {
         this.fecha = fecha;
     }
 
-    public List<Componente> getComponentes() {
-        return componentes;
+    public String getAccion() {
+        return accion;
     }
 
-    public void setComponentes(List<Componente> componentes) {
-        this.componentes = componentes;
+    public void setAccion(String accion) {
+        this.accion = accion;
     }
 
     @Override
     public String toString() {
-        return "Formulario{" + "id=" + id + ", titulo=" + titulo + ", nombre=" + nombre + ", tema=" + tema + ", fecha=" + fecha + ", componentes=" + componentes + '}';
+        return "formulario{" + "id=" + id + ", titulo=" + titulo + ", nombre=" + nombre + ", tema=" + tema + ", user=" + user + ", fecha=" + fecha + ", accion=" + accion + '}';
     }
 }

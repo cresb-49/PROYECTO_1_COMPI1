@@ -1,25 +1,22 @@
 package com.carlos.web_proyecto1.Objetos;
 
-public class formulario {
+import java.util.List;
+
+public class Formulario {
+
     private String id;
     private String titulo;
     private String nombre;
     private String tema;
-    private String user;
     private String fecha;
-    
-    private String accion;
-    
-    public formulario() {
-    }
+    private List<Componente> componentes;
 
-    public formulario(String id, String titulo, String nombre, String tema, String user, String fecha) {
-        this.id = id;
-        this.titulo = titulo;
-        this.nombre = nombre;
-        this.tema = tema;
-        this.user = user;
-        this.fecha = fecha;
+    public Formulario(formulario base) {
+        this.id = base.getId();
+        this.titulo = base.getTitulo();
+        this.nombre = base.getNombre();
+        this.tema = base.getTema();
+        this.fecha = base.getFecha();
     }
 
     public String getId() {
@@ -54,14 +51,6 @@ public class formulario {
         this.tema = tema;
     }
 
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
     public String getFecha() {
         return fecha;
     }
@@ -70,16 +59,16 @@ public class formulario {
         this.fecha = fecha;
     }
 
-    public String getAccion() {
-        return accion;
+    public List<Componente> getComponentes() {
+        return componentes;
     }
 
-    public void setAccion(String accion) {
-        this.accion = accion;
+    public void setComponentes(List<Componente> componentes) {
+        this.componentes = componentes;
     }
 
     @Override
     public String toString() {
-        return "formulario{" + "id=" + id + ", titulo=" + titulo + ", nombre=" + nombre + ", tema=" + tema + ", user=" + user + ", fecha=" + fecha + ", accion=" + accion + '}';
+        return "Formulario{" + "id=" + id + ", titulo=" + titulo + ", nombre=" + nombre + ", tema=" + tema + ", fecha=" + fecha + ", componentes=" + componentes + '}';
     }
 }
