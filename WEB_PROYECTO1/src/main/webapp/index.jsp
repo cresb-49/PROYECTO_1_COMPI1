@@ -14,12 +14,11 @@
         <script src="${pageContext.request.contextPath}/Resourses/JS/jsindex.js"></script>
     </head>
     <body>
-        <form>
+        <form action="getForm" method="GET">
             <h1><span>DATA</span> FORMS</h1>
-            <input placeholder="Codigo del Formulario" type="text"/>
+            <input placeholder="Codigo del Formulario" type="text" name="idForm" id="idForm"/>
             <button class="btn">Buscar Formulario</button>
         </form>
-
         <footer>
             <h5>Mas informacion en el repocitorio de GIT: <a target="_blank" href="https://github.com/cresb-49/PROYECTO_1_COMPI1">cresb-49</a></h5>
         </footer>
