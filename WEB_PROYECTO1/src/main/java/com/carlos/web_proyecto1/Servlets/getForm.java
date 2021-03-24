@@ -44,12 +44,10 @@ public class getForm extends HttpServlet {
                     + "<body>\n"
                     + "    <form action=\"registarRespuesta\" method=\"post\">\n"
                     + "        <input type=\"hidden\" name=\"idForm\" id=\"idForm\" value=\"" + idForm + "\">\n"
+                    + this.conversion.convertir(form.getComponentes())
                     + "    </form>\n"
                     + "</body>\n"
                     + "</html>";
-            
-            conversion.convertir(form.getComponentes());
-            
             this.enviarHTML(req, resp, HTML);
         } else {
             String HTML = "<!DOCTYPE html>\n"
