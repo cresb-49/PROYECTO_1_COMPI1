@@ -6,17 +6,12 @@ import java.util.List;
 %%
 /*segunda seccion, configuracion*/
 %class lexerInerText
-/*%cup*/
-/*%standalone*/
 %unicode
 %line
 %column
 %public
 
 %{
-    /*private Symbol after_symbl = new Symbol(0);*/
-    /*private Symbol tmp_symbl = new Symbol(0);*/
-
     private List<String> errorsList = new ArrayList<>();
     private String currentText="";
     private int cantidadLexemas = 0;
@@ -28,7 +23,6 @@ import java.util.List;
 /*EXPRECIONES REGULARES*/
 
 WhiteSpace = [ \t\n]+
-//atributes = [a-zA-Z_]+
 simbolos = [\]\[\{\}!@#$%&*'~`°¬¡¿¨()+=_<>?/.:;,\|\-\^]
 numeros = [0-9]
 letras = [a-zA-Z]

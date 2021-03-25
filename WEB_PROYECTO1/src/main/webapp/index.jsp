@@ -11,7 +11,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Bienvenido a DATA FORMS</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/Resourses/CSS/index.css"/>
-        <script src="${pageContext.request.contextPath}/Resourses/JS/jsindex.js"></script>
     </head>
     <body>
         <form action="getForm" method="GET">

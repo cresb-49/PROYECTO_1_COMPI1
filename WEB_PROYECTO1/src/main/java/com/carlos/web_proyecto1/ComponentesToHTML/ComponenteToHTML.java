@@ -1,9 +1,14 @@
 package com.carlos.web_proyecto1.ComponentesToHTML;
 
+import com.carlos.web_proyecto1.Lexer.lexerOpciones;
 import java.util.List;
 import com.carlos.web_proyecto1.Objetos.*;
+import java.io.StringReader;
+import java.util.ArrayList;
 
 public class ComponenteToHTML {
+
+    private lexerOpciones opciones = new lexerOpciones();
 
     public ComponenteToHTML() {
     }
@@ -12,7 +17,7 @@ public class ComponenteToHTML {
         String HTML = "";
 
         Componente[] array = new Componente[componentes.size()];
-        
+
         if (!componentes.isEmpty()) {
             componentes.toArray(array);
             array = this.metodoBurbujaAsc(array);
@@ -20,8 +25,8 @@ public class ComponenteToHTML {
                 HTML = HTML + this.eleccion(componente);
             }
         }
-        
         return HTML;
+        
     }
 
     private String eleccion(Componente comp) {
@@ -50,7 +55,7 @@ public class ComponenteToHTML {
         String html = "\n"
                 + "<div>\n"
                 + "<label for=\"" + comp.getId() + "\" >" + comp.getTexto_visible() + "</label>\n"
-                + "<input type=\"text\" id=\"" + comp.getId() + "\" name=\"" + comp.getNombre_campo() + "\"/>"
+                + "<input type=\"text\" id=\"" + comp.getId() + "\" name=\"" + comp.getNombre_campo() + "\"" + ((comp.getRequerido() == null) ? "" : ((comp.getRequerido().equals("SI") ? "required" : ""))) + "/>"
                 + "</div>\n";
         return html;
     }
@@ -59,36 +64,75 @@ public class ComponenteToHTML {
         String html = "\n"
                 + "<div>\n"
                 + "<label for=\"" + comp.getId() + "\">" + comp.getTexto_visible() + "</label>\n"
-                + "<textarea id=\"" + comp.getId() + "\" rows=\"" + comp.getFilas() + "\" cols=\"" + comp.getColumnas() + "\" name=\"" + comp.getNombre_campo() + "\"></textarea>"
+                + "<textarea id=\"" + comp.getId() + "\" rows=\"" + comp.getFilas() + "\" cols=\"" + comp.getColumnas() + "\" name=\"" + comp.getNombre_campo() + "\"" + ((comp.getRequerido() == null) ? "" : ((comp.getRequerido().equals("SI") ? "required" : ""))) + "></textarea>"
                 + "</div>\n";
         return html;
     }
 
     private String checkbox(Componente comp) {
+        opciones.yyreset(new StringReader(comp.getOpciones()));
+        List<String> ops = new ArrayList<>();
+        try {
+            opciones.yylex();
+            ops = opciones.getOpciones();
+        } catch (Exception e) {
+            System.out.println("Error de recuperacion de opciones");
+            e.printStackTrace();
+        }
+
         String html = "\n"
                 + "<div>\n"
-                + "<label for=\"" + comp.getId() + "\">" + comp.getTexto_visible() + "</label>\n"
-                + "<input type=\"checkbox\" id=\""+comp.getId()+"\" name=\""+comp.getNombre_campo()+"\" value=\""+comp.getOpciones()+"\"/>"+comp.getOpciones()+""
-                + "</div>\n";
+                + "<label for=\"" + comp.getId() + "\">" + comp.getTexto_visible() + "</label>\n";
+        for (String op : ops) {
+            html = html + "<input type=\"checkbox\" id=\"" + comp.getId() + "\" name=\"" + comp.getNombre_campo() + "\" value=\"" + op + "\"/>" + op + "\n";
+        }
+        opciones.reinicioLex();
+        html = html + "</div>\n";
         return html;
     }
 
     private String radio(Componente comp) {
+
+        opciones.yyreset(new StringReader(comp.getOpciones()));
+        List<String> ops = new ArrayList<>();
+        try {
+            opciones.yylex();
+            ops = opciones.getOpciones();
+        } catch (Exception e) {
+            System.out.println("Error de recuperacion de opciones");
+            e.printStackTrace();
+        }
+
         String html = "\n"
                 + "<div>\n"
-                + "<label for=\"" + comp.getId() + "\">" + comp.getTexto_visible() + "</label>\n"
-                + "<input type=\"radio\" id=\"" + comp.getId() + "\" name=\"" + comp.getNombre_campo() + "\" value=\"" + comp.getOpciones() + "\"/>"+comp.getOpciones()+""
-                + "</div>\n";
+                + "<label for=\"" + comp.getId() + "\">" + comp.getTexto_visible() + "</label>\n";
+        for (String op : ops) {
+            html = html + "<input type=\"radio\" id=\"" + comp.getId() + "\" name=\"" + comp.getNombre_campo() + "\" value=\"" + op + "\"/>" + op + "\n";
+        }
+        opciones.reinicioLex();
+        html = html + "</div>\n";
         return html;
     }
 
     private String combo(Componente comp) {
+        opciones.yyreset(new StringReader(comp.getOpciones()));
+        List<String> ops = new ArrayList<>();
+        try {
+            opciones.yylex();
+            ops = opciones.getOpciones();
+        } catch (Exception e) {
+            System.out.println("Error de recuperacion de opciones");
+            e.printStackTrace();
+        }
         String html = "\n"
                 + "<div>\n"
                 + "<label for=\"" + comp.getId() + "\">" + comp.getTexto_visible() + "</label>\n"
-                + "<select id=\"" + comp.getId() + "\" name=\"" + comp.getNombre_campo() + "\">\n"
-                + "<option>" + comp.getOpciones() + "</option>\n"
-                + "</select>"
+                + "<select id=\"" + comp.getId() + "\" name=\"" + comp.getNombre_campo() + "\"" + ((comp.getRequerido() == null) ? "" : ((comp.getRequerido().equals("SI") ? "required" : ""))) + ">\n";
+        for (String op : ops) {
+            html = html + "<option>" + op + "</option>\n";
+        }
+        opciones.reinicioLex();
+        html = html + "</select>"
                 + "</div>\n";
         return html;
     }
@@ -97,7 +141,7 @@ public class ComponenteToHTML {
         String html = "\n"
                 + "<div>\n"
                 + "<label for=\"" + comp.getId() + "\">" + comp.getTexto_visible() + "</label>\n"
-                + "<input type=\"file\" id=\"" + comp.getId() + "\" name=\"" + comp.getNombre_campo() + "\"/>"
+                + "<input type=\"file\" id=\"" + comp.getId() + "\" name=\"" + comp.getNombre_campo() + "\"" + ((comp.getRequerido() == null) ? "" : ((comp.getRequerido().equals("SI") ? "required" : ""))) + "/>"
                 + "</div>\n";
         return html;
     }
@@ -114,7 +158,7 @@ public class ComponenteToHTML {
     private String boton(Componente comp) {
         String html = "\n"
                 + "<div>\n"
-                + "<input type=\"submit\" value=\"" + comp.getTexto_visible() + "\"/>"
+                + "<input type=\"submit\" value=\"" + comp.getTexto_visible() + "\"" + ((comp.getRequerido() == null) ? "" : ((comp.getRequerido().equals("SI") ? "required" : ""))) + "/>"
                 + "</div>\n";
         return html;
     }

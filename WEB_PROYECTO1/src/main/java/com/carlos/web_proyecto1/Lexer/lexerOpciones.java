@@ -12,7 +12,7 @@ import java_cup.runtime.Symbol;
 
 // See https://github.com/jflex-de/jflex/issues/222
 @SuppressWarnings("FallThrough")
-public class lexerOpciones implements java_cup.runtime.Scanner {
+public class lexerOpciones {
 
   /** This character denotes the end of file. */
   public static final int YYEOF = -1;
@@ -67,8 +67,10 @@ public class lexerOpciones implements java_cup.runtime.Scanner {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\11\0\1\1\1\2\2\0\1\3\22\0\1\1\133\0"+
-    "\1\3\u0183\0";
+    "\11\0\1\1\1\2\2\0\1\3\22\0\1\1\1\4"+
+    "\1\0\71\4\1\0\37\4\1\3\2\4\42\0\1\4"+
+    "\6\0\1\4\3\0\1\4\3\0\1\4\16\0\1\4"+
+    "\u0140\0";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[512];
@@ -95,10 +97,10 @@ public class lexerOpciones implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\3\2";
+    "\1\0\1\1\1\2\2\3\1\2\1\3";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[5];
+    int [] result = new int[7];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -123,10 +125,10 @@ public class lexerOpciones implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\4\0\10\0\14\0\20";
+    "\0\0\0\5\0\12\0\17\0\24\0\31\0\36";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[5];
+    int [] result = new int[7];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -149,11 +151,12 @@ public class lexerOpciones implements java_cup.runtime.Scanner {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\4\1\5\5\0\2\3\2\0\1\3"+
-    "\1\4\1\5\2\0\2\5";
+    "\1\2\1\3\1\4\1\5\1\6\6\0\1\3\1\7"+
+    "\1\0\1\6\1\0\1\7\1\4\1\5\3\0\2\5"+
+    "\2\0\1\6\2\0\1\6\1\0\2\7\2\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[20];
+    int [] result = new int[35];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -196,10 +199,10 @@ public class lexerOpciones implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\3\1";
+    "\1\0\1\11\5\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[5];
+    int [] result = new int[7];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -273,13 +276,18 @@ public class lexerOpciones implements java_cup.runtime.Scanner {
   private boolean zzAtBOL = true;
 
   /** Whether the user-EOF-code has already been executed. */
+  @SuppressWarnings("unused")
   private boolean zzEOFDone;
 
   /* user code: */
-    //Private Symbol after_symbl = new Symbol(0);
-    //private Symbol tmp_symbl = new Symbol(0);
+    
 
     private List<String> errorsList = new ArrayList<>();
+    private List<String> opciones = new ArrayList<>();
+
+    public lexerOpciones(){
+
+    }
 
     private void error(String lexeme) {
         System.out.printf("Error lexico: %s ,linea %d,  columna %d. \n", lexeme, yyline + 1, yycolumn + 1);
@@ -287,6 +295,13 @@ public class lexerOpciones implements java_cup.runtime.Scanner {
     }
     public List<String> getErrorsList() {
         return errorsList;
+    }
+    public List<String> getOpciones() {
+        return opciones;
+    }
+
+    public void reinicioLex(){
+        opciones.clear();
     }
 
 
@@ -533,18 +548,6 @@ public class lexerOpciones implements java_cup.runtime.Scanner {
   }
 
 
-  /**
-   * Contains user EOF-code, which will be executed exactly once,
-   * when the end of file is reached
-   */
-  private void zzDoEOF() throws java.io.IOException {
-    if (!zzEOFDone) {
-      zzEOFDone = true;
-    
-  yyclose();    }
-  }
-
-
 
 
   /**
@@ -554,7 +557,7 @@ public class lexerOpciones implements java_cup.runtime.Scanner {
    * @return the next token.
    * @exception java.io.IOException if any I/O-Error occurs.
    */
-  @Override  public java_cup.runtime.Symbol next_token() throws java.io.IOException {
+  public Yytoken yylex() throws java.io.IOException {
     int zzInput;
     int zzAction;
 
@@ -690,9 +693,7 @@ public class lexerOpciones implements java_cup.runtime.Scanner {
 
       if (zzInput == YYEOF && zzStartRead == zzCurrentPos) {
         zzAtEOF = true;
-            zzDoEOF();
-          {   //return new java_cup.runtime.Symbol(parserIndigoSym.EOF);
- }
+        return null;
       }
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
@@ -700,12 +701,18 @@ public class lexerOpciones implements java_cup.runtime.Scanner {
             { error(yytext());
             }
             // fall through
-          case 3: break;
+          case 4: break;
           case 2:
+            { //System.out.println("Encontre una opcion: "+yytext());
+            opciones.add(yytext());
+            }
+            // fall through
+          case 5: break;
+          case 3:
             { /*Do nothing*/
             }
             // fall through
-          case 4: break;
+          case 6: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
