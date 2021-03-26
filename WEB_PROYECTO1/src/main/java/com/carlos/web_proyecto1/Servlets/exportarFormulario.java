@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/importForm")
+@WebServlet("/exportForm")
 public class exportarFormulario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String idForm = req.getParameter("idForm");
+        System.out.println("Id formulario: "+idForm);
         
     }
 }

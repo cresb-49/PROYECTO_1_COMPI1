@@ -5,6 +5,7 @@
  */
 package com.carlos.app_cliente_proyecto1.UI;
 
+import com.carlos.app_cliente_proyecto1.HttpMethods.ExportFormulario;
 import javax.swing.JOptionPane;
 
 /**
@@ -148,11 +149,8 @@ public class exportarFomulario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSolicitarFormActionPerformed
     
     private void solicitarForm(String id){
-        
-        
-        
-        
-        
+        ExportFormulario export = new ExportFormulario();
+        String res = export.exportForm(id);        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
