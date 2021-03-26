@@ -3,17 +3,21 @@ package com.carlos.web_proyecto1.GuardadoInfo;
 import java.util.List;
 
 public class RespuestaFormulario {
-    private List<Respuesta> respuestas;
+
     private String idForm;
+    private String nombreFormulario;
+    
+    private List<Respuesta> respuestas;
 
     public RespuestaFormulario() {
     }
 
-    public RespuestaFormulario(List<Respuesta> respuestas, String idForm) {
-        this.respuestas = respuestas;
+    public RespuestaFormulario(String idForm, String nombreFormulario, List<Respuesta> respuestas) {
         this.idForm = idForm;
+        this.nombreFormulario = nombreFormulario;
+        this.respuestas = respuestas;
     }
-    
+
     public List<Respuesta> getRespuestas() {
         return respuestas;
     }
@@ -30,8 +34,18 @@ public class RespuestaFormulario {
         this.idForm = idForm;
     }
 
+    public String getNombreFormulario() {
+        return nombreFormulario;
+    }
+
+    public void setNombreFormulario(String nombreFormulario) {
+        this.nombreFormulario = nombreFormulario;
+    }
+
     @Override
     public String toString() {
-        return "RespuestaFormulario{" + "respuestas=" + respuestas + ", idForm=" + idForm + '}';
+        return "RespuestaFormulario{" + "idForm=" + idForm + ", nombreFormulario=" + nombreFormulario + ", respuestas=" + respuestas + '}';
     }
+    
+    
 }

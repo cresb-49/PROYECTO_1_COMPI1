@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class ComponenteToHTML {
 
     private lexerOpciones opciones = new lexerOpciones();
+    private boolean botonEnviar = false;
 
     public ComponenteToHTML() {
     }
@@ -25,8 +26,14 @@ public class ComponenteToHTML {
                 HTML = HTML + this.eleccion(componente);
             }
         }
+        if (!botonEnviar) {
+            HTML = HTML + ""
+                    + "<div>\n"
+                    + "<input type=\"submit\" value=\"enviar\" required />"
+                    + "</div>\n";
+        }
         return HTML;
-        
+
     }
 
     private String eleccion(Componente comp) {
@@ -84,7 +91,7 @@ public class ComponenteToHTML {
                 + "<div>\n"
                 + "<label for=\"" + comp.getId() + "\">" + comp.getTexto_visible() + "</label>\n";
         for (String op : ops) {
-            html = html + "<input type=\"checkbox\" id=\"" + comp.getId() + "\" name=\"" + comp.getNombre_campo() + "\" value=\"" + op + "\"/>" + op + "\n";
+            html = html + "<input type=\"checkbox\" id=\"" + comp.getId() + "\" name=\"" + comp.getNombre_campo() + "\" value=\"" + op + "\"" + ((comp.getRequerido() == null) ? "" : ((comp.getRequerido().equals("SI") ? "required" : ""))) + "/>" + op + "\n";
         }
         opciones.reinicioLex();
         html = html + "</div>\n";
@@ -107,7 +114,7 @@ public class ComponenteToHTML {
                 + "<div>\n"
                 + "<label for=\"" + comp.getId() + "\">" + comp.getTexto_visible() + "</label>\n";
         for (String op : ops) {
-            html = html + "<input type=\"radio\" id=\"" + comp.getId() + "\" name=\"" + comp.getNombre_campo() + "\" value=\"" + op + "\"/>" + op + "\n";
+            html = html + "<input type=\"radio\" id=\"" + comp.getId() + "\" name=\"" + comp.getNombre_campo() + "\" value=\"" + op + "\"" + ((comp.getRequerido() == null) ? "" : ((comp.getRequerido().equals("SI") ? "required" : ""))) + "/>" + op + "\n";
         }
         opciones.reinicioLex();
         html = html + "</div>\n";
@@ -160,6 +167,7 @@ public class ComponenteToHTML {
                 + "<div>\n"
                 + "<input type=\"submit\" value=\"" + comp.getTexto_visible() + "\"" + ((comp.getRequerido() == null) ? "" : ((comp.getRequerido().equals("SI") ? "required" : ""))) + "/>"
                 + "</div>\n";
+        botonEnviar = true;
         return html;
     }
 

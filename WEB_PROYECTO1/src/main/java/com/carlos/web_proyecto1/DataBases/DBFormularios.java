@@ -112,6 +112,19 @@ public class DBFormularios {
         return null;
     }
 
+    public Componente buscarComponeteNombre(String idFormulario, String nombreComponente) {
+        Formulario form = this.buscarFormulario(idFormulario);
+
+        if (form != null) {
+            for (Componente comp : form.getComponentes()) {
+                if (comp.getNombre_campo().equals(nombreComponente)) {
+                    return comp;
+                }
+            }
+        }
+        return null;
+    }
+
     public String agregarComponente(componentetmp comp) {
         String respuesta = "";
 
@@ -126,11 +139,17 @@ public class DBFormularios {
             }
 
             if (this.buscarComponente(comp.getForm(), comp.getId()) == null) {
-                Componente newComp = new Componente(comp);
-                newComp.setIndice(String.valueOf((form.getComponentes().size()) + 1));
 
-                form.getComponentes().add(newComp);
-                respuesta = "El componente " + comp.getId() + " se agrego con exito al formulario " + form.getId();
+                if (this.buscarComponeteNombre(comp.getForm(), comp.getNombre()) == null) {
+                    Componente newComp = new Componente(comp);
+                    newComp.setIndice(String.valueOf((form.getComponentes().size()) + 1));
+
+                    form.getComponentes().add(newComp);
+                    respuesta = "El componente " + comp.getId() + " se agrego con exito al formulario " + form.getId();
+                }else{
+                    respuesta = "Ya existe un componente con el nombre " + comp.getId() + " en el formulario con id " + form.getId()+", la existenacia de nombres iguales daria el error de no recuperar la informacion correctamente";
+                }
+
             } else {
                 respuesta = "Ya existe un componente con id " + comp.getId() + " en el formulario con id " + form.getId();
             }
@@ -165,24 +184,24 @@ public class DBFormularios {
 
         return respuesta;
     }
-    
-    public String modificarComponente(componentetmp comp){
+
+    public String modificarComponente(componentetmp comp) {
         String respuesta = "";
-        
+
         Componente mod = this.buscarComponente(comp.getForm(), comp.getId());
-        
-        if(mod == null){
-            respuesta = "No existe en un componente con id "+comp.getId()+" en el formulario "+comp.getForm();
-        }else{
-            
+
+        if (mod == null) {
+            respuesta = "No existe en un componente con id " + comp.getId() + " en el formulario " + comp.getForm();
+        } else {
+
             comp.merge(mod);
             String resMod = comp.validarModComponete();
-            
-            if(resMod.isEmpty()){
+
+            if (resMod.isEmpty()) {
                 mod.modificarComponete(comp);
-                respuesta = "El componente con id "+comp.getId()+" del formulario id "+comp.getForm()+" se modifico exitosamente";
-            }else{
-                respuesta = "El componente con id "+comp.getId()+" del formulario id "+comp.getForm()+" no se puede modificar por los siguientes problemas\n"+resMod;
+                respuesta = "El componente con id " + comp.getId() + " del formulario id " + comp.getForm() + " se modifico exitosamente";
+            } else {
+                respuesta = "El componente con id " + comp.getId() + " del formulario id " + comp.getForm() + " no se puede modificar por los siguientes problemas\n" + resMod;
             }
         }
         return respuesta;

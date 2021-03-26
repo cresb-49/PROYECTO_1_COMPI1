@@ -6,12 +6,15 @@
 package com.carlos.app_cliente_proyecto1.UI;
 
 import com.carlos.app_cliente_proyecto1.HttpMethods.enviarInfo;
+import com.carlos.app_cliente_proyecto1.HttpMethods.importarForm;
 import com.carlos.app_cliente_proyecto1.Lexer.lexerImportar;
 import com.carlos.app_cliente_proyecto1.Objetos.Formulario;
 import com.carlos.app_cliente_proyecto1.Parser.parserImportar;
 import com.carlos.app_cliente_proyecto1.conversionIndigo.FormularioToIndigo;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -21,10 +24,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author benjamin
  */
 public class CargarFormularios extends javax.swing.JInternalFrame {
-    
+
     private FormularioToIndigo convertir = new FormularioToIndigo();
     private enviarInfo enviarServidor = new enviarInfo();
-    
+    private String code = "";
+
     /**
      * Creates new form CargarFormularios
      */
@@ -48,9 +52,6 @@ public class CargarFormularios extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         btnEnviarForm = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        panelErrores = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
@@ -77,14 +78,11 @@ public class CargarFormularios extends javax.swing.JInternalFrame {
 
         btnEnviarForm.setText("Enviar Formulario");
         btnEnviarForm.setEnabled(false);
-
-        jLabel4.setText("Info del Archivo");
-
-        panelErrores.setEditable(false);
-        panelErrores.setColumns(20);
-        panelErrores.setRows(5);
-        panelErrores.setTabSize(3);
-        jScrollPane2.setViewportView(panelErrores);
+        btnEnviarForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarFormActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Respuesta del Servidor");
 
@@ -102,38 +100,31 @@ public class CargarFormularios extends javax.swing.JInternalFrame {
                         .addGap(54, 54, 54)
                         .addComponent(jLabel3))
                     .addComponent(btnEnviarForm))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(29, 29, 29))
+                    .addComponent(jLabel5)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(40, 40, 40)
-                .addComponent(btnEnviarForm)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addGap(40, 40, 40)
+                        .addComponent(btnEnviarForm))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -146,55 +137,52 @@ public class CargarFormularios extends javax.swing.JInternalFrame {
         chooser.setFileFilter(filtro);
         int retorno = chooser.showOpenDialog(this);
         if (retorno == JFileChooser.APPROVE_OPTION) {
-            analizararchivo(chooser.getSelectedFile());
+            lecArchivo(chooser.getSelectedFile());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void analizararchivo(File archivo) {
+    private void btnEnviarFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarFormActionPerformed
+        // TODO add your handling code here:
+        try {
+            importarForm importar = new importarForm();
+            String respuesta = "";
+            respuesta = importar.enviarForm(this.code.toString());
+            if (respuesta == null) {
+                this.panelServidor.setText("Servidor no disponible!!!");
+            } else {
+                this.panelServidor.setText(respuesta);
+                this.btnEnviarForm.setEnabled(false);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al importar el formulario");
+        }
+
+    }//GEN-LAST:event_btnEnviarFormActionPerformed
+
+    private void lecArchivo(File archivo) {
         try {
 
-            lexerImportar lex = new lexerImportar(new FileReader(archivo));
-            parserImportar parser = new parserImportar(lex);
-            parser.parse();
+            StringBuilder resultado = new StringBuilder();
+            BufferedReader rd = new BufferedReader(new FileReader(archivo));
+            importarForm importar = new importarForm();
+            String linea;
 
-            mostarErrores(lex.getErrorsList(), parser.getErrorsList());
-            List<Formulario> formularios = parser.getFormularios();
+            while ((linea = rd.readLine()) != null) {
+                resultado.append(linea + "\n");
+            }
 
-            if (btnEnviarForm.isEnabled()) {
-                panelErrores.setText(panelErrores.getText()+"\n"+convertir.convertir(formularios));
-                panelServidor.setText(enviarServidor.envioRespuesta(convertir.convertir(formularios)));
+            System.out.println(resultado.toString());
+            if (!resultado.toString().isEmpty()) {
+                btnEnviarForm.setEnabled(true);
+                code = resultado.toString();
+            } else {
+                btnEnviarForm.setEnabled(false);
             }
 
         } catch (Exception e) {
-            System.out.println("Error en importar leer importar archivo");
+            System.out.println("Error el lectura de archivo");
             e.printStackTrace();
         }
-    }
-
-    public void mostarErrores(List<String> lexicos, List<String> sintacticos) {
-        String lineas = "";
-
-        if (!lexicos.isEmpty()) {
-            lineas = lineas + "Errores lexicos encontrados:\n";
-            for (String lexico : lexicos) {
-                lineas = lineas + lexico + "\n";
-            }
-        }
-        if (!sintacticos.isEmpty()) {
-            lineas = lineas + "Errores sintacticos encontrados:\n";
-            for (String sintactico : sintacticos) {
-                lineas = lineas + sintactico + "\n";
-            }
-        }
-        if (lineas.isEmpty()) {
-            lineas = "Archivo correcto, conversion a indigo: ";
-            btnEnviarForm.setEnabled(true);
-        } else {
-            btnEnviarForm.setEnabled(false);
-        }
-
-        panelErrores.setText(lineas);
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -203,11 +191,8 @@ public class CargarFormularios extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea panelErrores;
     private javax.swing.JTextArea panelServidor;
     // End of variables declaration//GEN-END:variables
 }
