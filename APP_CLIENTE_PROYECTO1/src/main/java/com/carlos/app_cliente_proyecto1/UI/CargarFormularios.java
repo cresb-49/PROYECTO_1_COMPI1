@@ -7,9 +7,6 @@ package com.carlos.app_cliente_proyecto1.UI;
 
 import com.carlos.app_cliente_proyecto1.HttpMethods.enviarInfo;
 import com.carlos.app_cliente_proyecto1.HttpMethods.importarForm;
-import com.carlos.app_cliente_proyecto1.Lexer.lexerImportar;
-import com.carlos.app_cliente_proyecto1.Objetos.Formulario;
-import com.carlos.app_cliente_proyecto1.Parser.parserImportar;
 import com.carlos.app_cliente_proyecto1.conversionIndigo.FormularioToIndigo;
 import java.io.BufferedReader;
 import java.io.File;
