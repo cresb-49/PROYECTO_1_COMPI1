@@ -47,13 +47,17 @@ inicioConjuntoRes = (<)([ \n\r\t])*(\!)([ \n\r\t])*([iI][nN][iI]_[rR][eE][sS][pP
 finConjunto = (<)([ \n\r\t])*(\!)([ \n\r\t])*([fF][iI][nN]_[sS][oO][lL][iI][cC][iI][tT][uU][dD][eE][sS])([ \n\r\t])*(>)
 finConjuntoRes = (<)([ \n\r\t])*(\!)([ \n\r\t])*([fF][iI][nN]_[rR][eE][sS][pP][uU][eE][sS][tT][aA][sS])([ \n\r\t])*(>)
 
+
+numConsult = [\"][ \t\n]*([C][O][N][S][U][L][T][A][\-][0-9]+)[ \t\n]*[\"]
+
+
 simbolos = [\]\[\{\}!@#$%&*'~`°¬¡¿¨()+=_<>?/.:;,\|\-\^]
 numeros = [0-9]
 letras = [a-zA-Z]
 text  = [\"]({simbolos}|{numeros}|{letras}|[ \t\n])*[\"]
 fecha = [\"]([1-9][0-9][0-9][0-9])(\-)([0][1-9]|[1][0-2])(\-)([0][1-9]|[1-2][0-9]|[3][0-1])[\"]
 asigId= [\"](\$|\_|\-)([0-9]|[a-zA-Z]|[$\-_])*[\"]
-numConsult = (CONSULTA)(\-)([0-9]+)
+
 
 
 %{
@@ -202,6 +206,7 @@ numConsult = (CONSULTA)(\-)([0-9]+)
         }
     {numConsult}
         {
+            //System.out.println("Numero de consulta: "+yytext());
             String text = getInerText.getAsignacion(yytext());
             InerLex.yyreset(new StringReader(text));
             try {
@@ -210,12 +215,15 @@ numConsult = (CONSULTA)(\-)([0-9]+)
                 e.printStackTrace();
             }
             if (InerLex.getCantidadLexemas() == 1) {
+                //System.out.println("1");
                 text = InerLex.getCurrentText();
                 InerLex.reinicioLex();
                 tmp_symbl = new Symbol(NUM_CONSULT, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                 after_symbl = tmp_symbl;
                 return tmp_symbl;
             }else{
+                //System.out.println("2");
+                InerLex.reinicioLex();
                 tmp_symbl = new Symbol(ASIGNACION_ESP, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                 after_symbl = tmp_symbl;
                 return tmp_symbl;
@@ -224,7 +232,7 @@ numConsult = (CONSULTA)(\-)([0-9]+)
         }
     {text}
         {   
-            //System.out.println("Texto encontrado:" + yytext());
+            //System.out.println("Texto encontrado text:" + yytext());
             String text = getInerText.getAsignacion(yytext());
             int espacios = 0;
             boolean num = false;

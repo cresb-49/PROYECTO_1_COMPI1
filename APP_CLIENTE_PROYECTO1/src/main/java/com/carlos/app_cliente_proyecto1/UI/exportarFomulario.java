@@ -6,10 +6,18 @@
 package com.carlos.app_cliente_proyecto1.UI;
 
 import com.carlos.app_cliente_proyecto1.HttpMethods.ExportFormulario;
+import com.carlos.app_cliente_proyecto1.Lexer.lexerImportar;
+import com.carlos.app_cliente_proyecto1.Parser.parserImportar;
+import java.awt.FileDialog;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -22,6 +30,7 @@ public class exportarFomulario extends javax.swing.JInternalFrame {
      */
     public exportarFomulario() {
         initComponents();
+        this.btnGuardarArchivo.setEnabled(false);
     }
 
     /**
@@ -132,6 +141,21 @@ public class exportarFomulario extends javax.swing.JInternalFrame {
 
     private void btnGuardarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarArchivoActionPerformed
         // TODO add your handling code here:
+        JFileChooser saveFile = new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Formulario .form", "form");
+        saveFile.setFileFilter(filtro);
+        int result = saveFile.showSaveDialog(this);
+        if(result ==JFileChooser.APPROVE_OPTION){
+            try(FileWriter fw = new FileWriter(saveFile.getSelectedFile().getPath(), false)) {
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(this.panelServidor.getText());
+            bw.close();
+        } catch (Exception e) {
+            System.out.println("Error en la escritura de archivos");
+            e.printStackTrace();
+        }
+        }
+
     }//GEN-LAST:event_btnGuardarArchivoActionPerformed
 
     private void btnSolicitarFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarFormActionPerformed
@@ -150,19 +174,36 @@ public class exportarFomulario extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_btnSolicitarFormActionPerformed
-    
-    private void solicitarForm(String id){
+
+    private void solicitarForm(String id) {
         ExportFormulario export = new ExportFormulario();
-        try {        
+        try {
             String res = export.exportForm(id);
-            if(res==null){
+            if (res == null) {
                 this.panelServidor.setText("Servidor no disponible!!!");
-            }else{
+            } else {
                 this.panelServidor.setText(res);
+                
+                try {
+                    lexerImportar lex = new lexerImportar(new StringReader(res));
+                    parserImportar parser = new parserImportar(lex);
+                    parser.parse();
+                    if(parser.getErrorsList().isEmpty()&&lex.getErrorsList().isEmpty()){
+                        this.btnGuardarArchivo.setEnabled(true);
+                    }else{
+                        this.btnGuardarArchivo.setEnabled(false);
+                    }
+                    
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    
+                }
+                
             }
-            
+
         } catch (IOException ex) {
             System.out.println("Erro en peticion de formulario cliente");
+            this.panelServidor.setText(ex.getMessage());
             ex.printStackTrace();
         }
     }

@@ -57,9 +57,11 @@ public class ExportFormulario {
                 }
             }
             respuesta = content.toString();
-        } finally {
-            connection.disconnect();
         }
         return respuesta;
     }
+    
+    
+    
+    
 }
