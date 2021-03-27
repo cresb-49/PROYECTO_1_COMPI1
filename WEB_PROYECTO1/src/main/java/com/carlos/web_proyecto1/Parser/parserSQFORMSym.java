@@ -18,6 +18,7 @@ public class parserSQFORMSym {
   public static final int VALUE = 20;
   public static final int NOT = 4;
   public static final int ME_Q = 11;
+  public static final int ID = 22;
   public static final int FORM = 7;
   public static final int NUM = 19;
   public static final int MA_EQ = 17;
@@ -52,7 +53,8 @@ public class parserSQFORMSym {
   "ME_EQ",
   "NUM",
   "VALUE",
-  "PARAM"
+  "PARAM",
+  "ID"
   };
 }
 

@@ -1,6 +1,7 @@
 package com.carlos.web_proyecto1.Parser;
 
 import com.carlos.web_proyecto1.Lexer.lexerSQFORM;
+import com.carlos.web_proyecto1.EDD.*;
 import com.carlos.web_proyecto1.Tokens.token;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +39,8 @@ parser code {:
 
     public void errorParametroDuplicado(Object simbolo){
         token tok = (token)simbolo;
-        System.out.println("El parametro del componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn()+" ya se habia definido con anterioridad");
-        errorsList.add("El parametro del componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn()+" ya se habia definido con anterioridad");
+        System.out.println("El parametro ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn()+" ya se habia definido con anterioridad");
+        errorsList.add("El parametro ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn()+" ya se habia definido con anterioridad");
     }
 
     protected int error_sync_size() {
@@ -51,11 +52,58 @@ parser code {:
 
 :}
 
-terminal   AND,OR,NOT,SELECT,TO,FORM,WHERE,COMA,DIR,ME_Q,MA_Q,ME_Q_MA_Q,C_A,C_C,EQ,MA_EQ,ME_EQ,NUM,VALUE,PARAM;
+terminal   AND,OR,NOT,SELECT,TO,FORM,WHERE,COMA,DIR,ME_Q,MA_Q,ME_Q_MA_Q,C_A,C_C,EQ,MA_EQ,ME_EQ,NUM,VALUE,PARAM,ID;
 
-non terminal    inicio;
+non terminal    inicio,formulario,camposProyectar,condicional,camposProyectarP,condicionales,operador;
 
 start with inicio;
 
-inicio ::= NUM
+inicio  ::=  SELECT TO FORM DIR formulario
+        |   error
         ;
+
+formulario  ::= ID C_A camposProyectar:e1 C_C condicional:e2
+            {:
+
+            :}
+            |   PARAM C_A camposProyectar:e1 C_C condicional:e2
+            {:
+
+            :}
+            |   error
+            ;
+
+camposProyectar ::= PARAM:e1 camposProyectarP:e2
+                {:
+                    if(e2!=null){
+                        token tok = ((token)e1);
+                        if(((Pila)e2).buscarTag(tok.getLexeme())==false){
+                            ((Pila)e2).push(tok.getLexeme(),tok.getLexeme());
+                        }else{
+                            errorParametroDuplicado(e1);
+                        }
+                    }
+                    RESULT = e2;
+                :}
+                |   error
+                ;
+
+camposProyectarP    ::= COMA camposProyectar:e1
+                    {:
+                        RESULT = e1;
+                    :}
+                    |
+                    {:
+                        RESULT = new Pila();
+                    :}
+                    |   error
+                    ;
+
+condicional ::= WHERE C_A condicionales C_C
+            |   error
+            ;
+
+condicionales ::=   ID operador
+                |   PARAM operador
+                |   error
+                ;

@@ -32,12 +32,13 @@ import java_cup.runtime.Symbol;
 
 LineTerminator = [\r|\n|\r\n]+
 WhiteSpace = [ \t\n]+
-simbolos = [!@#$%&*()+=_<>?/.:;,\|]
+simbolos = [!@#$%&*'~`°¬¡¿¨()+=_<>?/.:;,\|\-\^]
 numeros = [0-9]
 letras = [a-zA-Z]
 espacio = [ ]
 valor  = [\']({simbolos}|{numeros}|{letras}|{espacio})+[\']
-text = ({simbolos}|{letras})+({numeros})*
+text = ({simbolos}|{numeros}|{letras})+
+id= (\$|\_|\-)([0-9]|[a-zA-Z]|[$\-_])+
 valorNumerico = (({numeros})+|({numeros})+(.)({numeros})+)
 palabrasRecerbadas = (SELECT|TO|FORM|WHERE)
 operadorLogico=(AND|OR|NOT)
@@ -58,6 +59,13 @@ operadorLogico=(AND|OR|NOT)
 
 /*LEXIX RULES*/
 <YYINITIAL>{
+    {id}
+        {
+            System.out.println("id: "+yytext());
+            tmp_symbl = new Symbol(ID, after_symbl.sym, 0, new token(yytext(), yycolumn + 1, yyline + 1));
+            after_symbl = tmp_symbl;
+            return tmp_symbl;
+        }
     {palabrasRecerbadas}
         {
             System.out.println("Palabra recervada: "+yytext());

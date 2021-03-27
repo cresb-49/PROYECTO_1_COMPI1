@@ -5,6 +5,7 @@
 
 package com.carlos.web_proyecto1.Parser;
 
+import com.carlos.web_proyecto1.EDD.*;
 import com.carlos.web_proyecto1.Lexer.lexerSQFORM;
 import com.carlos.web_proyecto1.Tokens.token;
 import java.util.ArrayList;
@@ -35,7 +36,10 @@ public class parserSQFORM extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\002\000\002\002\004\000\002\002\003" });
+    "\000\013\000\002\002\004\000\002\002\007\000\002\002" +
+    "\003\000\002\003\007\000\002\003\007\000\002\003\003" +
+    "\000\002\004\004\000\002\004\003\000\002\006\004\000" +
+    "\002\006\002\000\002\006\003" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -43,9 +47,20 @@ public class parserSQFORM extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\004\000\004\025\004\001\002\000\004\002\000\001" +
-    "\002\000\004\002\006\001\002\000\004\002\001\001\002" +
-    "" });
+    "\000\032\000\006\003\004\007\006\001\002\000\004\002" +
+    "\uffff\001\002\000\004\002\034\001\002\000\004\010\007" +
+    "\001\002\000\004\011\010\001\002\000\004\014\011\001" +
+    "\002\000\010\003\014\027\015\030\012\001\002\000\004" +
+    "\020\030\001\002\000\004\002\000\001\002\000\004\002" +
+    "\ufffc\001\002\000\004\020\016\001\002\000\006\003\020" +
+    "\027\021\001\002\000\004\021\026\001\002\000\004\021" +
+    "\ufffa\001\002\000\010\003\023\013\022\021\ufff8\001\002" +
+    "\000\006\003\020\027\021\001\002\000\004\021\ufff7\001" +
+    "\002\000\004\021\ufffb\001\002\000\004\021\ufff9\001\002" +
+    "\000\002\001\002\000\004\002\ufffd\001\002\000\006\003" +
+    "\020\027\021\001\002\000\004\021\032\001\002\000\002" +
+    "\001\002\000\004\002\ufffe\001\002\000\004\002\001\001" +
+    "\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -53,8 +68,16 @@ public class parserSQFORM extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\004\000\004\002\004\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001" });
+    "\000\032\000\004\002\004\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\004\003\012\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\004" +
+    "\004\016\001\001\000\002\001\001\000\002\001\001\000" +
+    "\004\006\023\001\001\000\004\004\024\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\004\005" +
+    "\026\001\001\000\002\001\001\000\004\004\030\001\001" +
+    "\000\002\001\001\000\004\005\032\001\001\000\002\001" +
+    "\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -122,8 +145,8 @@ public class parserSQFORM extends java_cup.runtime.lr_parser {
 
     public void errorParametroDuplicado(Object simbolo){
         token tok = (token)simbolo;
-        System.out.println("El parametro del componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn()+" ya se habia definido con anterioridad");
-        errorsList.add("El parametro del componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn()+" ya se habia definido con anterioridad");
+        System.out.println("El parametro ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn()+" ya se habia definido con anterioridad");
+        errorsList.add("El parametro ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn()+" ya se habia definido con anterioridad");
     }
 
     protected int error_sync_size() {
@@ -174,11 +197,116 @@ class CUP$parserSQFORM$actions {
           return CUP$parserSQFORM$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 1: // inicio ::= NUM 
+          case 1: // inicio ::= SELECT TO FORM DIR formulario 
+            {
+              Object RESULT =null;
+
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("inicio",0, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-4)), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 2: // inicio ::= error 
             {
               Object RESULT =null;
 
               CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("inicio",0, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 3: // formulario ::= ID C_A camposProyectar C_C condicional 
+            {
+              Object RESULT =null;
+
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("formulario",1, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-4)), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 4: // formulario ::= PARAM C_A camposProyectar C_C condicional 
+            {
+              Object RESULT =null;
+
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("formulario",1, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-4)), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 5: // formulario ::= error 
+            {
+              Object RESULT =null;
+
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("formulario",1, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 6: // camposProyectar ::= PARAM camposProyectarP 
+            {
+              Object RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-1)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-1)).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-1)).value;
+		int e2left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
+		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
+		
+                    if(e2!=null){
+                        token tok = ((token)e1);
+                        
+                        if(((Pila)e2).buscarTag(tok.getLexeme())==false){
+                            ((Pila)e2).push(tok.getLexeme(),tok.getLexeme());
+                        }else{
+                            errorParametroDuplicado(e1);
+                        }
+                    }
+                    RESULT = e2;
+                
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("camposProyectar",2, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-1)), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 7: // camposProyectar ::= error 
+            {
+              Object RESULT =null;
+
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("camposProyectar",2, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 8: // camposProyectarP ::= COMA camposProyectar 
+            {
+              Object RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
+		
+                        RESULT = e1;
+                    
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("camposProyectarP",4, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-1)), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 9: // camposProyectarP ::= 
+            {
+              Object RESULT =null;
+		
+                        RESULT = new Pila();
+                    
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("camposProyectarP",4, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 10: // camposProyectarP ::= error 
+            {
+              Object RESULT =null;
+
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("camposProyectarP",4, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
             }
           return CUP$parserSQFORM$result;
 
