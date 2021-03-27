@@ -5,16 +5,11 @@
  */
 package com.carlos.app_cliente_proyecto1;
 
-import com.carlos.app_cliente_proyecto1.EDD.Pila;
 import com.carlos.app_cliente_proyecto1.Lexer.lexerIndigo;
-import com.carlos.app_cliente_proyecto1.Lexer.lexerOpciones;
 import com.carlos.app_cliente_proyecto1.Parser.parserIndigo;
 import com.carlos.app_cliente_proyecto1.UI.PrincipalFrame;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public class main {
 

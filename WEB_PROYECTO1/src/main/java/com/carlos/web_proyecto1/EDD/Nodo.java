@@ -47,7 +47,7 @@ public class Nodo {
     public void setTag(String tag) {
         this.tag = tag;
     }
-
+    
     @Override
     public String toString() {
         return "Nodo{" + "siguiente=" + siguiente + ", contenido=" + contenido + ", tag=" + tag + '}';

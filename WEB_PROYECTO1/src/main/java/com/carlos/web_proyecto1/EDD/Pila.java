@@ -25,43 +25,57 @@ public class Pila {
         }
 
     }
-    
+
     public void push(Object obj) {
         Nodo nuevo = new Nodo(obj);
-        
+
         if (this.sima == null) {
             this.sima = nuevo;
         } else {
             Nodo tmp = this.sima;
-            while (tmp.getSiguiente() != null) {
-                tmp = tmp.getSiguiente();
-            }
-            tmp.setSiguiente(nuevo);
+            this.sima = nuevo;
+            nuevo.setSiguiente(tmp);
         }
     }
 
     public Object pop() {
-        Nodo tmp = this.sima;
-        if (tmp != null) {
+        if (this.sima != null) {
+            Nodo tmp = this.sima;
             this.sima = tmp.getSiguiente();
+            return tmp.getContenido();
+        } else {
+            return null;
         }
-        return tmp;
+
     }
 
     public Object peek() {
-        if(this.sima!=null){
+        if (this.sima != null) {
             return this.sima.getContenido();
-        }else{
+        } else {
             return null;
         }
-        
+
     }
-    
-    public boolean isEmpty(){
-        if(this.sima!=null){
+
+    public boolean isEmpty() {
+        if (this.sima != null) {
             return false;
-        }else{
+        } else {
             return true;
+        }
+    }
+
+    public void imprimirPila() {
+        if (this.sima != null) {
+            System.out.println("---------------------");
+            Nodo tmp = this.sima;
+            do {
+                System.out.println(tmp.getContenido());
+                tmp = tmp.getSiguiente();
+            } while (tmp != null);
+
+            System.out.println("---------------------");
         }
     }
 
@@ -73,9 +87,14 @@ public class Pila {
                     return true;
                 }
                 tmp = tmp.getSiguiente();
-            } while (tmp!= null);
+            } while (tmp != null);
         }
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "Pila{" + "sima=" + ((sima==null)?"vacio":sima.getContenido().toString()) + '}';
+    }
+    
 }
