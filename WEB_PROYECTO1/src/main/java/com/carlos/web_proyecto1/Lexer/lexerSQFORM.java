@@ -841,7 +841,7 @@ public class lexerSQFORM implements java_cup.runtime.Scanner {
             // fall through
           case 31: break;
           case 14:
-            { System.out.println("Llave cierre: "+yytext());
+            { System.out.println("<>: "+yytext());
             tmp_symbl = new Symbol(ME_Q_MA_Q, after_symbl.sym, 0, new token(yytext(), yycolumn + 1, yyline + 1));
             after_symbl = tmp_symbl;
             return tmp_symbl;

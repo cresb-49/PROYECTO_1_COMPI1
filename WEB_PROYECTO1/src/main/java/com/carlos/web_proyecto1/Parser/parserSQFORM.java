@@ -5,8 +5,8 @@
 
 package com.carlos.web_proyecto1.Parser;
 
-import com.carlos.web_proyecto1.EDD.*;
 import com.carlos.web_proyecto1.Lexer.lexerSQFORM;
+import com.carlos.web_proyecto1.EDD.*;
 import com.carlos.web_proyecto1.Tokens.token;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +36,17 @@ public class parserSQFORM extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\013\000\002\002\004\000\002\002\007\000\002\002" +
+    "\000\041\000\002\002\004\000\002\002\007\000\002\002" +
     "\003\000\002\003\007\000\002\003\007\000\002\003\003" +
     "\000\002\004\004\000\002\004\003\000\002\006\004\000" +
-    "\002\006\002\000\002\006\003" });
+    "\002\006\002\000\002\006\003\000\002\005\006\000\002" +
+    "\005\003\000\002\007\006\000\002\007\006\000\002\007" +
+    "\003\000\002\010\004\000\002\010\002\000\002\010\003" +
+    "\000\002\011\003\000\002\011\003\000\002\011\003\000" +
+    "\002\011\003\000\002\013\003\000\002\013\003\000\002" +
+    "\013\003\000\002\013\003\000\002\013\003\000\002\013" +
+    "\003\000\002\013\003\000\002\012\003\000\002\012\003" +
+    "\000\002\012\003" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -47,20 +54,44 @@ public class parserSQFORM extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\032\000\006\003\004\007\006\001\002\000\004\002" +
-    "\uffff\001\002\000\004\002\034\001\002\000\004\010\007" +
+    "\000\070\000\006\003\004\007\006\001\002\000\004\002" +
+    "\uffff\001\002\000\004\002\072\001\002\000\004\010\007" +
     "\001\002\000\004\011\010\001\002\000\004\014\011\001" +
     "\002\000\010\003\014\027\015\030\012\001\002\000\004" +
-    "\020\030\001\002\000\004\002\000\001\002\000\004\002" +
+    "\020\066\001\002\000\004\002\000\001\002\000\004\002" +
     "\ufffc\001\002\000\004\020\016\001\002\000\006\003\020" +
     "\027\021\001\002\000\004\021\026\001\002\000\004\021" +
     "\ufffa\001\002\000\010\003\023\013\022\021\ufff8\001\002" +
     "\000\006\003\020\027\021\001\002\000\004\021\ufff7\001" +
     "\002\000\004\021\ufffb\001\002\000\004\021\ufff9\001\002" +
-    "\000\002\001\002\000\004\002\ufffd\001\002\000\006\003" +
-    "\020\027\021\001\002\000\004\021\032\001\002\000\002" +
-    "\001\002\000\004\002\ufffe\001\002\000\004\002\001\001" +
-    "\002" });
+    "\000\006\003\030\012\027\001\002\000\004\020\032\001" +
+    "\002\000\004\002\ufff5\001\002\000\004\002\ufffd\001\002" +
+    "\000\010\003\034\027\036\030\033\001\002\000\020\003" +
+    "\043\015\045\016\042\017\040\022\041\023\046\024\044" +
+    "\001\002\000\004\021\ufff2\001\002\000\004\021\062\001" +
+    "\002\000\020\003\043\015\045\016\042\017\040\022\041" +
+    "\023\046\024\044\001\002\000\010\003\050\025\047\026" +
+    "\052\001\002\000\010\003\uffe5\025\uffe5\026\uffe5\001\002" +
+    "\000\010\003\uffe6\025\uffe6\026\uffe6\001\002\000\010\003" +
+    "\uffe9\025\uffe9\026\uffe9\001\002\000\010\003\uffe4\025\uffe4" +
+    "\026\uffe4\001\002\000\010\003\uffe8\025\uffe8\026\uffe8\001" +
+    "\002\000\010\003\uffea\025\uffea\026\uffea\001\002\000\010" +
+    "\003\uffe7\025\uffe7\026\uffe7\001\002\000\014\003\uffe3\004" +
+    "\uffe3\005\uffe3\006\uffe3\021\uffe3\001\002\000\014\003\uffe1" +
+    "\004\uffe1\005\uffe1\006\uffe1\021\uffe1\001\002\000\014\003" +
+    "\054\004\055\005\060\006\053\021\ufff0\001\002\000\014" +
+    "\003\uffe2\004\uffe2\005\uffe2\006\uffe2\021\uffe2\001\002\000" +
+    "\010\003\uffed\027\uffed\030\uffed\001\002\000\012\003\uffeb" +
+    "\021\uffef\027\uffeb\030\uffeb\001\002\000\010\003\uffec\027" +
+    "\uffec\030\uffec\001\002\000\004\021\ufff3\001\002\000\010" +
+    "\003\034\027\036\030\033\001\002\000\010\003\uffee\027" +
+    "\uffee\030\uffee\001\002\000\004\021\ufff1\001\002\000\004" +
+    "\002\ufff6\001\002\000\010\003\050\025\047\026\052\001" +
+    "\002\000\014\003\054\004\055\005\060\006\053\021\ufff0" +
+    "\001\002\000\004\021\ufff4\001\002\000\006\003\020\027" +
+    "\021\001\002\000\004\021\070\001\002\000\006\003\030" +
+    "\012\027\001\002\000\004\002\ufffe\001\002\000\004\002" +
+    "\001\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -68,16 +99,27 @@ public class parserSQFORM extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\032\000\004\002\004\001\001\000\002\001\001\000" +
+    "\000\070\000\004\002\004\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\004\003\012\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\004" +
     "\004\016\001\001\000\002\001\001\000\002\001\001\000" +
     "\004\006\023\001\001\000\004\004\024\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\004\005" +
-    "\026\001\001\000\002\001\001\000\004\004\030\001\001" +
-    "\000\002\001\001\000\004\005\032\001\001\000\002\001" +
-    "\001\000\002\001\001" });
+    "\030\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\004\007\034\001\001\000\004\013\062\001" +
+    "\001\000\002\001\001\000\002\001\001\000\004\013\036" +
+    "\001\001\000\004\012\050\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\006\010\055\011\056\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\004\007\060\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\004\012\063\001\001\000\006\010\064\011\056\001\001" +
+    "\000\002\001\001\000\004\004\066\001\001\000\002\001" +
+    "\001\000\004\005\070\001\001\000\002\001\001\000\002" +
+    "\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -218,7 +260,15 @@ class CUP$parserSQFORM$actions {
           case 3: // formulario ::= ID C_A camposProyectar C_C condicional 
             {
               Object RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-2)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-2)).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-2)).value;
+		int e2left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
+		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
+		
 
+            
               CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("formulario",1, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-4)), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
             }
           return CUP$parserSQFORM$result;
@@ -227,7 +277,15 @@ class CUP$parserSQFORM$actions {
           case 4: // formulario ::= PARAM C_A camposProyectar C_C condicional 
             {
               Object RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-2)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-2)).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-2)).value;
+		int e2left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
+		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
+		
 
+            
               CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("formulario",1, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-4)), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
             }
           return CUP$parserSQFORM$result;
@@ -254,7 +312,6 @@ class CUP$parserSQFORM$actions {
 		
                     if(e2!=null){
                         token tok = ((token)e1);
-                        
                         if(((Pila)e2).buscarTag(tok.getLexeme())==false){
                             ((Pila)e2).push(tok.getLexeme(),tok.getLexeme());
                         }else{
@@ -307,6 +364,259 @@ class CUP$parserSQFORM$actions {
               Object RESULT =null;
 
               CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("camposProyectarP",4, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 11: // condicional ::= WHERE C_A clausula C_C 
+            {
+              Object RESULT =null;
+
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("condicional",3, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-3)), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 12: // condicional ::= error 
+            {
+              Object RESULT =null;
+
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("condicional",3, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 13: // clausula ::= ID operador varComparacion clausulap 
+            {
+              Object RESULT =null;
+
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("clausula",5, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-3)), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 14: // clausula ::= PARAM operador varComparacion clausulap 
+            {
+              Object RESULT =null;
+
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("clausula",5, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-3)), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 15: // clausula ::= error 
+            {
+              Object RESULT =null;
+
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("clausula",5, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 16: // clausulap ::= logica clausula 
+            {
+              Object RESULT =null;
+
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("clausulap",6, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-1)), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 17: // clausulap ::= 
+            {
+              Object RESULT =null;
+
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("clausulap",6, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 18: // clausulap ::= error 
+            {
+              Object RESULT =null;
+
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("clausulap",6, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 19: // logica ::= OR 
+            {
+              Object RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
+		
+            RESULT =e1;
+        
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("logica",7, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 20: // logica ::= NOT 
+            {
+              Object RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
+		
+            RESULT =e1;
+        
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("logica",7, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 21: // logica ::= AND 
+            {
+              Object RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
+		
+            RESULT =e1;
+        
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("logica",7, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 22: // logica ::= error 
+            {
+              Object RESULT =null;
+
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("logica",7, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 23: // operador ::= ME_Q 
+            {
+              Object RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
+		
+                RESULT = e1;
+            
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("operador",9, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 24: // operador ::= MA_Q 
+            {
+              Object RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
+		
+                RESULT = e1;
+            
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("operador",9, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 25: // operador ::= ME_EQ 
+            {
+              Object RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
+		
+                RESULT = e1;
+            
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("operador",9, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 26: // operador ::= MA_EQ 
+            {
+              Object RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
+		
+                RESULT = e1;
+            
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("operador",9, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 27: // operador ::= EQ 
+            {
+              Object RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
+		
+                RESULT = e1;
+            
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("operador",9, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 28: // operador ::= ME_Q_MA_Q 
+            {
+              Object RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
+		
+                RESULT = e1;
+            
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("operador",9, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 29: // operador ::= error 
+            {
+              Object RESULT =null;
+
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("operador",9, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 30: // varComparacion ::= NUM 
+            {
+              Object RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
+		
+                    RESULT = e1;
+                
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("varComparacion",8, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 31: // varComparacion ::= VALUE 
+            {
+              Object RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
+		
+                    RESULT = e1;
+                
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("varComparacion",8, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
+            }
+          return CUP$parserSQFORM$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 32: // varComparacion ::= error 
+            {
+              Object RESULT =null;
+
+              CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("varComparacion",8, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
             }
           return CUP$parserSQFORM$result;
 

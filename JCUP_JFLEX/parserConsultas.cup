@@ -54,7 +54,8 @@ parser code {:
 
 terminal   AND,OR,NOT,SELECT,TO,FORM,WHERE,COMA,DIR,ME_Q,MA_Q,ME_Q_MA_Q,C_A,C_C,EQ,MA_EQ,ME_EQ,NUM,VALUE,PARAM,ID;
 
-non terminal    inicio,formulario,camposProyectar,condicional,camposProyectarP,condicionales,operador;
+non terminal    inicio,formulario,camposProyectar,condicional,camposProyectarP,clausula,clausulap,logica,varComparacion,
+                operador;
 
 start with inicio;
 
@@ -99,11 +100,69 @@ camposProyectarP    ::= COMA camposProyectar:e1
                     |   error
                     ;
 
-condicional ::= WHERE C_A condicionales C_C
+condicional ::= WHERE C_A clausula C_C
             |   error
             ;
 
-condicionales ::=   ID operador
-                |   PARAM operador
+clausula    ::= ID operador varComparacion clausulap
+                |   PARAM operador varComparacion clausulap
+                |   error
+                ;
+
+clausulap   ::= logica clausula
+            |   
+            |   error
+            ;
+
+logica  ::= OR:e1
+        {:
+            RESULT =e1;
+        :}
+        |   NOT:e1  
+        {:
+            RESULT =e1;
+        :}
+        |   AND:e1
+        {:
+            RESULT =e1;
+        :}
+        |   error
+        ;
+
+operador    ::= ME_Q:e1
+            {:
+                RESULT = e1;
+            :}
+            |   MA_Q:e1
+            {:
+                RESULT = e1;
+            :}
+            |   ME_EQ:e1
+            {:
+                RESULT = e1;
+            :}
+            |   MA_EQ:e1
+            {:
+                RESULT = e1;
+            :}
+            |   EQ:e1
+            {:
+                RESULT = e1;
+            :}
+            |   ME_Q_MA_Q:e1
+            {:
+                RESULT = e1;
+            :}
+            |   error
+            ;
+
+varComparacion  ::= NUM:e1
+                {:
+                    RESULT = e1;
+                :}
+                |   VALUE:e1
+                {:
+                    RESULT = e1;
+                :}
                 |   error
                 ;
