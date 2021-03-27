@@ -6,6 +6,9 @@
 package com.carlos.app_cliente_proyecto1.UI;
 
 import com.carlos.app_cliente_proyecto1.HttpMethods.ExportFormulario;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -150,7 +153,18 @@ public class exportarFomulario extends javax.swing.JInternalFrame {
     
     private void solicitarForm(String id){
         ExportFormulario export = new ExportFormulario();
-        String res = export.exportForm(id);        
+        try {        
+            String res = export.exportForm(id);
+            if(res==null){
+                this.panelServidor.setText("Servidor no disponible!!!");
+            }else{
+                this.panelServidor.setText(res);
+            }
+            
+        } catch (IOException ex) {
+            System.out.println("Erro en peticion de formulario cliente");
+            ex.printStackTrace();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

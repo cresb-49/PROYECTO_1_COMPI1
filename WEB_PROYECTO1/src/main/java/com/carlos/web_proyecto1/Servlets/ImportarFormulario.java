@@ -86,6 +86,9 @@ public class ImportarFormulario extends HttpServlet {
                             }
                         }
                         if (mensajes.isEmpty()) {
+                            for (Componente componente : form.getComponentes()) {
+                                componente.setFormulario(form.getId());
+                            }
                             this.baseForms.getFormularios().add(form);
                         }
                         

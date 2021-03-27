@@ -14,7 +14,7 @@ new.formulario(
 		        "REQUERIDO": "SI"
             },
             {
-                "ID_COMPONENTE_2" : "$id_comp1",
+                "ID" : "$id_comp1",
                 "NOMBRE_CAMPO": "Cliente",
 		        "CLASE": "CAMPO_TEXTO",
 		        "TEXTO_VISIBLE": "Nombre de cliente: ",
