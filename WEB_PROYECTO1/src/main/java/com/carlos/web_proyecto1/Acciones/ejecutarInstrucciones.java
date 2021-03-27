@@ -144,6 +144,9 @@ public class ejecutarInstrucciones {
                         System.out.println("Accion no registrada componente: " + ((componentetmp) tmp).getAccion());
                 }
             }
+            if(tmp instanceof consulta){
+                log.add("Linea: "+((consulta)tmp).getLinea()+", Columna: "+((consulta)tmp).getColumna()+" en este espacio no se procesan consultas, realicelo en el espacio correspondiente de la app cliente");
+            }
             escribir.escritura(path + "/Almacenamiento/users.db", gson.toJson(baseUsuarios));
             escribir.escritura(path + "/Almacenamiento/forms.db", gson.toJson(baseForms));
         }

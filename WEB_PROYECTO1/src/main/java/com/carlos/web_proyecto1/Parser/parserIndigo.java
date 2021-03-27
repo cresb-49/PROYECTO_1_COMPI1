@@ -2527,14 +2527,18 @@ class CUP$parserIndigo$actions {
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-7)).value;
 		
                 if(e1!=null){
-                    Pila tmp = null;
+                    Cola tmp = null;
                     consulta tmp2 = null;
-                    while(!((Pila)e1).isEmpty()){
-                        tmp =(Pila)((Pila)e1).pop();
-                        while (!tmp.isEmpty()) {                            
-                            tmp2 = (consulta)tmp.pop();
-                            System.out.println(tmp2);
-                        }                        
+                    while(!((Cola)e1).isEmpty()){
+                        tmp =(Cola)((Cola)e1).sacar();
+                        if(tmp!=null){
+                            while (!tmp.isEmpty()) {                            
+                                tmp2 = (consulta)tmp.sacar();
+                                if(tmp2!=null){
+                                        instrucciones.add(tmp2);
+                                }
+                            }
+                        }           
                     }
                 }
         
@@ -2740,20 +2744,19 @@ class CUP$parserIndigo$actions {
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-6)).value;
 		
                 if(e1!=null){
-                        Object tmp =null,tmp2=null;
-                        while (!(((Pila)e1).isEmpty())) {
-                                tmp = ((Pila)e1).pop();
-                                if(tmp!=null){
-                                        tmp2 = ((Pila)tmp).pop();
-                                        while (!(((Pila)tmp2).isEmpty())) {
-                                                if(tmp2 !=null){
-                                                        if(tmp2 instanceof consulta){
-                                                                System.out.println(tmp2.toString());
-                                                        }
-                                                }
-                                        }
+                    Cola tmp = null;
+                    consulta tmp2 = null;
+                    while(!((Cola)e1).isEmpty()){
+                        tmp =(Cola)((Cola)e1).sacar();
+                        if(tmp!=null){
+                            while (!tmp.isEmpty()) {                            
+                                tmp2 = (consulta)tmp.sacar();
+                                if(tmp2!=null){
+                                        instrucciones.add(tmp2);
                                 }
-                        }
+                            }
+                        }           
+                    }
                 }
         
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("type_s2",129, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-12)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
@@ -2905,7 +2908,7 @@ class CUP$parserIndigo$actions {
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 		
                                 if(e2!=null){
-                                        ((Pila)e2).push(e1);
+                                        ((Cola)e2).agregar(e1);
                                 }
                                 RESULT = e2;
                         
@@ -2941,7 +2944,7 @@ class CUP$parserIndigo$actions {
             {
               Object RESULT =null;
 		
-                                RESULT = new Pila();
+                                RESULT = new Cola();
                         
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("paramsCONSULT_DATA2",161, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -2973,9 +2976,9 @@ class CUP$parserIndigo$actions {
                                 if(e2!=null){
                                         if(e3!=null){
                                                 String name = ((token)e1).getLexeme();
-                                                if(((Pila)e3).buscarTag(name)==false){
+                                                if(((Cola)e3).buscarTag(name)==false){
                                                         String query = ((token)e2).getLexeme();
-                                                        ((Pila)e3).push(new consulta(name,query), name);
+                                                        ((Cola)e3).agregar(new consulta(name,query,((token)e1).getLine(),((token)e1).getColumn()), name);
                                                 }else{
                                                     errorEtiquetaDuplicada(e1);
                                                 }
@@ -3015,7 +3018,7 @@ class CUP$parserIndigo$actions {
             {
               Object RESULT =null;
 		
-                                RESULT = new Pila();
+                                RESULT = new Cola();
                         
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contCONSULT_DATA1",160, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }

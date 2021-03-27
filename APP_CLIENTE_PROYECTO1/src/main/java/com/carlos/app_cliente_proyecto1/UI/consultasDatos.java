@@ -5,34 +5,26 @@
  */
 package com.carlos.app_cliente_proyecto1.UI;
 
-import com.carlos.app_cliente_proyecto1.HttpMethods.SolicitudesApi;
+import com.carlos.app_cliente_proyecto1.HttpMethods.RealizarConsulta;
 import com.carlos.app_cliente_proyecto1.Lexer.lexerIndigo;
 import com.carlos.app_cliente_proyecto1.Objetos.mensaje;
-import com.carlos.app_cliente_proyecto1.Objetos.usuario;
 import com.carlos.app_cliente_proyecto1.Parser.parserIndigo;
-
-import java.awt.TextArea;
 import java.io.StringReader;
 import java.util.List;
-
 import javax.swing.JTextArea;
 
 /**
  *
  * @author benjamin
  */
-public class EditorTexto extends javax.swing.JInternalFrame {
-    
-    private usuario currentUser = null;
-    
-    private SolicitudesApi api = new SolicitudesApi();
-    
+public class consultasDatos extends javax.swing.JInternalFrame {
+
+    private RealizarConsulta api = new RealizarConsulta();
     /**
-     * Creates new form EditorTexto
+     * Creates new form consultasDatos
      */
-    public EditorTexto(usuario currentUser) {
+    public consultasDatos() {
         initComponents();
-        this.currentUser=currentUser;
     }
 
     /**
@@ -46,21 +38,18 @@ public class EditorTexto extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         editorTexto = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        labelLinea = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         labelColumna = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        resIndigo = new javax.swing.JTextArea();
+        labelLinea = new javax.swing.JLabel();
+        btnEnviar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         resNormal = new javax.swing.JTextArea();
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
 
         editorTexto.setColumns(20);
         editorTexto.setRows(5);
@@ -72,35 +61,33 @@ public class EditorTexto extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(editorTexto);
 
-        jLabel1.setText("Respuesta Traducida");
-
-        jLabel2.setText("Respuesta Indigo");
-
-        jButton1.setText("Enviar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jLabel3.setText("Linea:");
-
-        labelLinea.setText("1");
 
         jLabel4.setText("Columna:");
 
         labelColumna.setText("1");
 
-        resIndigo.setEditable(false);
-        resIndigo.setColumns(20);
-        resIndigo.setRows(5);
-        resIndigo.setTabSize(3);
-        resIndigo.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                resIndigoCaretUpdate(evt);
+        labelLinea.setText("1");
+
+        btnEnviar.setText("Enviar");
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarActionPerformed(evt);
             }
         });
-        jScrollPane4.setViewportView(resIndigo);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
 
         resNormal.setEditable(false);
         resNormal.setColumns(20);
@@ -118,54 +105,44 @@ public class EditorTexto extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelLinea)
-                        .addGap(13, 13, 13)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelColumna)
-                        .addGap(169, 169, 169)
-                        .addComponent(jButton1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane4)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addGap(163, 163, 163)
+                        .addComponent(btnEnviar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4)
                             .addComponent(labelLinea)
+                            .addComponent(jLabel4)
                             .addComponent(labelColumna)
-                            .addComponent(jButton1)))
+                            .addComponent(btnEnviar)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -191,17 +168,16 @@ public class EditorTexto extends javax.swing.JInternalFrame {
             labelColumna.setText(String.valueOf(columna));
 
         } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_editorTextoCaretUpdate
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         // TODO add your handling code here:
         String envio = editorTexto.getText();
-        String respuesta = api.envioRespuesta(envio);
-        resIndigo.setText(respuesta);
+        String respuesta = api.envioInfo(envio);
         lecturaMensaje(respuesta);
-    }//GEN-LAST:event_jButton1ActionPerformed
-    
+    }//GEN-LAST:event_btnEnviarActionPerformed
     private void lecturaMensaje(String respuesta){
         try {
             lexerIndigo lex = new lexerIndigo(new StringReader(respuesta));
@@ -231,29 +207,22 @@ public class EditorTexto extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }
-
-    private void resIndigoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_resIndigoCaretUpdate
-        // TODO add your handling code here:
-    }//GEN-LAST:event_resIndigoCaretUpdate
-
     private void resNormalCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_resNormalCaretUpdate
         // TODO add your handling code here:
     }//GEN-LAST:event_resNormalCaretUpdate
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEnviar;
     private javax.swing.JTextArea editorTexto;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelColumna;
     private javax.swing.JLabel labelLinea;
-    private javax.swing.JTextArea resIndigo;
     private javax.swing.JTextArea resNormal;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,7 +5,7 @@
  */
 package com.carlos.app_cliente_proyecto1.UI;
 
-import com.carlos.app_cliente_proyecto1.HttpMethods.enviarInfo;
+import com.carlos.app_cliente_proyecto1.HttpMethods.SolicitudesApi;
 import com.carlos.app_cliente_proyecto1.HttpMethods.importarForm;
 import com.carlos.app_cliente_proyecto1.conversionIndigo.FormularioToIndigo;
 import java.io.BufferedReader;
@@ -23,7 +23,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class CargarFormularios extends javax.swing.JInternalFrame {
 
     private FormularioToIndigo convertir = new FormularioToIndigo();
-    private enviarInfo enviarServidor = new enviarInfo();
+    private SolicitudesApi enviarServidor = new SolicitudesApi();
     private String code = "";
 
     /**

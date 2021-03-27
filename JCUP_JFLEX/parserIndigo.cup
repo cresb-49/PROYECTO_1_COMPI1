@@ -284,14 +284,18 @@ type_s ::=      CR_U MA_Q L_A CREDEN_USER D_DOT C_A parametros:e1 C_C L_C ME_Q F
         |       CONSULT_DATA MA_Q L_A CONSULT D_DOT C_A paramsCONSULT_DATA:e1 C_C L_C ME_Q FS ADM MA_Q contenido1
         {:
                 if(e1!=null){
-                    Pila tmp = null;
+                    Cola tmp = null;
                     consulta tmp2 = null;
-                    while(!((Pila)e1).isEmpty()){
-                        tmp =(Pila)((Pila)e1).pop();
-                        while (!tmp.isEmpty()) {                            
-                            tmp2 = (consulta)tmp.pop();
-                            System.out.println(tmp2);
-                        }                        
+                    while(!((Cola)e1).isEmpty()){
+                        tmp =(Cola)((Cola)e1).sacar();
+                        if(tmp!=null){
+                            while (!tmp.isEmpty()) {                            
+                                tmp2 = (consulta)tmp.sacar();
+                                if(tmp2!=null){
+                                        instrucciones.add(tmp2);
+                                }
+                            }
+                        }           
                     }
                 }
         :}
@@ -383,14 +387,18 @@ type_s2 ::=     CR_U MA_Q L_A CREDEN_USER D_DOT C_A parametros:e1 C_C L_C ME_Q F
         |       CONSULT_DATA MA_Q L_A CONSULT D_DOT C_A paramsCONSULT_DATA:e1 C_C L_C ME_Q FS ADM MA_Q
         {:
                 if(e1!=null){
-                    Pila tmp = null;
+                    Cola tmp = null;
                     consulta tmp2 = null;
-                    while(!((Pila)e1).isEmpty()){
-                        tmp =(Pila)((Pila)e1).pop();
-                        while (!tmp.isEmpty()) {                            
-                            tmp2 = (consulta)tmp.pop();
-                            System.out.println(tmp2);
-                        }                        
+                    while(!((Cola)e1).isEmpty()){
+                        tmp =(Cola)((Cola)e1).sacar();
+                        if(tmp!=null){
+                            while (!tmp.isEmpty()) {                            
+                                tmp2 = (consulta)tmp.sacar();
+                                if(tmp2!=null){
+                                        instrucciones.add(tmp2);
+                                }
+                            }
+                        }           
                     }
                 }
         :}
@@ -435,7 +443,7 @@ var_ASIGNACION_PASS     ::=     ASIGNACION:e1
 paramsCONSULT_DATA      ::=     L_A contCONSULT_DATA:e1 L_C paramsCONSULT_DATA2:e2
                         {:
                                 if(e2!=null){
-                                        ((Pila)e2).push(e1);
+                                        ((Cola)e2).agregar(e1);
                                 }
                                 RESULT = e2;
                         :}
@@ -448,7 +456,7 @@ paramsCONSULT_DATA2     ::=     COM paramsCONSULT_DATA:e1
                         :}
                         |
                         {:
-                                RESULT = new Pila();
+                                RESULT = new Cola();
                         :}
                         |       error
                         ;
@@ -458,9 +466,9 @@ contCONSULT_DATA        ::=     NUM_CONSULT:e1 D_DOT var_ASIGNACION:e2 contCONSU
                                 if(e2!=null){
                                         if(e3!=null){
                                                 String name = ((token)e1).getLexeme();
-                                                if(((Pila)e3).buscarTag(name)==false){
+                                                if(((Cola)e3).buscarTag(name)==false){
                                                         String query = ((token)e2).getLexeme();
-                                                        ((Pila)e3).push(new consulta(name,query), name);
+                                                        ((Cola)e3).agregar(new consulta(name,query,((token)e1).getLine(),((token)e1).getColumn()), name);
                                                 }else{
                                                     errorEtiquetaDuplicada(e1);
                                                 }
@@ -477,7 +485,7 @@ contCONSULT_DATA1       ::=     COM contCONSULT_DATA:e1
                         :}
                         |       
                         {:
-                                RESULT = new Pila();
+                                RESULT = new Cola();
                         :}
                         |       error
                         ;

@@ -18,10 +18,8 @@ public class Pila {
             this.sima = nuevo;
         } else {
             Nodo tmp = this.sima;
-            while (tmp.getSiguiente() != null) {
-                tmp = tmp.getSiguiente();
-            }
-            tmp.setSiguiente(nuevo);
+            this.sima = nuevo;
+            nuevo.setSiguiente(tmp);
         }
 
     }

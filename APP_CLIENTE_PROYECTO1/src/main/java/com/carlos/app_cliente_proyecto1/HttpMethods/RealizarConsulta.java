@@ -7,15 +7,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class enviarInfo {
-    public enviarInfo(){
+public class RealizarConsulta {
+    public RealizarConsulta(){
         
     }
-    public String envioRespuesta(String envio){
+    public String envioInfo(String envio){
         String respuesta="";
         
         
-        String wsURL = "http://localhost:8080/WEB_PROYECTO1/solicitudAPI";
+        String wsURL = "http://localhost:8080/WEB_PROYECTO1/consultasAPI";
         URL url = null;
         URLConnection connection = null;
         HttpURLConnection httpConn = null;
