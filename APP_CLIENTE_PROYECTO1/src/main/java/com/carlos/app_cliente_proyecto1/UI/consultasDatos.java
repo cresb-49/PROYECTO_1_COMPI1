@@ -47,6 +47,11 @@ public class consultasDatos extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         resNormal = new javax.swing.JTextArea();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        btnCopiar = new javax.swing.JMenuItem();
+        btnPegar = new javax.swing.JMenuItem();
+        btnCortar = new javax.swing.JMenuItem();
 
         setClosable(true);
         setIconifiable(true);
@@ -100,6 +105,36 @@ public class consultasDatos extends javax.swing.JInternalFrame {
         });
         jScrollPane5.setViewportView(resNormal);
 
+        jMenu2.setText("Edicion");
+
+        btnCopiar.setText("Copiar");
+        btnCopiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCopiarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(btnCopiar);
+
+        btnPegar.setText("Pegar");
+        btnPegar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPegarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(btnPegar);
+
+        btnCortar.setText("Cortar");
+        btnCortar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCortarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(btnCortar);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,7 +162,7 @@ public class consultasDatos extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(8, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,12 +246,32 @@ public class consultasDatos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_resNormalCaretUpdate
 
+    private void btnCopiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopiarActionPerformed
+        // TODO add your handling code here:
+        this.editorTexto.copy();
+    }//GEN-LAST:event_btnCopiarActionPerformed
+
+    private void btnPegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPegarActionPerformed
+        // TODO add your handling code here:
+        this.editorTexto.paste();
+    }//GEN-LAST:event_btnPegarActionPerformed
+
+    private void btnCortarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCortarActionPerformed
+        // TODO add your handling code here:
+        this.editorTexto.cut();
+    }//GEN-LAST:event_btnCortarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btnCopiar;
+    private javax.swing.JMenuItem btnCortar;
     private javax.swing.JButton btnEnviar;
+    private javax.swing.JMenuItem btnPegar;
     private javax.swing.JTextArea editorTexto;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane5;
