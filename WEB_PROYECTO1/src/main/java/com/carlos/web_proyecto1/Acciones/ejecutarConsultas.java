@@ -3,12 +3,15 @@ package com.carlos.web_proyecto1.Acciones;
 import com.carlos.web_proyecto1.DataBases.DBFormularios;
 import com.carlos.web_proyecto1.DataBases.DBRespuestas;
 import com.carlos.web_proyecto1.DataBases.DBusuarios;
+import com.carlos.web_proyecto1.Lexer.lexerSQFORM;
 import com.carlos.web_proyecto1.Objetos.*;
+import com.carlos.web_proyecto1.Parser.parserSQFORM;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,6 +102,10 @@ public class ejecutarConsultas {
     }
 
     public void ejecutarIntrucciones(List<Object> instrucciones) {
+        
+        lexerSQFORM lex;
+        parserSQFORM parser;
+        
         Gson gson = new Gson();
         Object tmp;
         String res;
@@ -117,6 +124,25 @@ public class ejecutarConsultas {
                 log.add("En este espacio no se realizan acciones para componentes");
             }
             if(tmp instanceof consulta){
+                lex = new lexerSQFORM(new StringReader(((consulta)tmp).getQuery()));
+                parser = new parserSQFORM(lex, this.baseRes);
+                try {
+                    parser.parse();
+                    
+                } catch (Exception e) {
+                    System.out.println("Error en lectura de consulta");
+                    e.printStackTrace();
+                }
+                if(lex.getErrorsList().isEmpty()&&parser.getErrorsList().isEmpty()){
+                    System.out.println("Consulta sin errores");
+                }else{
+                    for (String string : lex.getErrorsList()) {
+                        log.add("Errores en conuslta Linea:"+((consulta)tmp).getLinea()+" ,Columna: "+((consulta)tmp).getColumna()+" \n-"+string);
+                    }
+                    for (String string : parser.getErrorsList()) {
+                        log.add("Errores en conuslta Linea:"+((consulta)tmp).getLinea()+" ,Columna: "+((consulta)tmp).getColumna()+" \n-"+string);
+                    }
+                }
                 
             }
         }

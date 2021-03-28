@@ -1,8 +1,12 @@
 package com.carlos.web_proyecto1.Parser;
 
 import com.carlos.web_proyecto1.Lexer.lexerSQFORM;
+import com.carlos.web_proyecto1.DataBases.DBRespuestas;
+import com.carlos.web_proyecto1.Objetos.*;
 import com.carlos.web_proyecto1.EDD.*;
 import com.carlos.web_proyecto1.Tokens.token;
+import com.carlos.web_proyecto1.GuardadoInfo.Respuesta;
+import com.carlos.web_proyecto1.GuardadoInfo.RespuestaFormulario;
 import java.util.ArrayList;
 import java.util.List;
 import java_cup.runtime.Symbol;
@@ -12,9 +16,11 @@ class parserSQFORM;
 parser code {:
 
     private List<String> errorsList = new ArrayList();
+    private DBRespuestas baseRespuestas;
 
-    public parserSQFORM(lexerSQFORM lex){
+    public parserSQFORM(lexerSQFORM lex,DBRespuestas baseRespuestas){
         super(lex);
+        this.baseRespuestas = baseRespuestas;
     }
 
     public void report_error(String message, Object info){
@@ -43,6 +49,35 @@ parser code {:
         errorsList.add("El parametro ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn()+" ya se habia definido con anterioridad");
     }
 
+    private List<RespuestaFormulario> formulariosCompatibleByIdComponente(List<RespuestaFormulario> respuestas,String id){
+        List<RespuestaFormulario> list =null;
+        if(!respuestas.isEmpty()){
+            for (RespuestaFormulario respuestaFormulario : respuestas) {
+                for (Respuesta respuesta : respuestaFormulario.getRespuestas()) {
+                    if(respuesta.getIdComponente().equals(id)){
+                        list.add(respuestaFormulario);
+                        break;
+                    }
+                }
+            }
+        }
+        return list;
+    }
+    private List<RespuestaFormulario> formulariosCompatibleByNameComponente(List<RespuestaFormulario> respuestas,String nombre){
+        List<RespuestaFormulario> list =null;
+        if(!respuestas.isEmpty()){
+            for (RespuestaFormulario respuestaFormulario : respuestas) {
+                for (Respuesta respuesta : respuestaFormulario.getRespuestas()) {
+                    if(respuesta.getNombre_campo().equals(nombre)){
+                        list.add(respuestaFormulario);
+                        break;
+                    }
+                }
+            }
+        }        
+        return list;
+    }
+
     protected int error_sync_size() {
 		return 1;
 	}
@@ -55,7 +90,7 @@ parser code {:
 terminal   AND,OR,NOT,SELECT,TO,FORM,WHERE,COMA,DIR,ME_Q,MA_Q,ME_Q_MA_Q,C_A,C_C,EQ,MA_EQ,ME_EQ,NUM,VALUE,PARAM,ID;
 
 non terminal    inicio,formulario,camposProyectar,condicional,camposProyectarP,clausula,clausulap,logica,varComparacion,
-                operador;
+                operador,negacion,camposProyectar1;
 
 start with inicio;
 
@@ -63,16 +98,18 @@ inicio  ::=  SELECT TO FORM DIR formulario
         |   error
         ;
 
-formulario  ::= ID C_A camposProyectar:e1 C_C condicional:e2
+formulario  ::= ID C_A camposProyectar1:e1 C_C condicional:e2
             {:
-
             :}
-            |   PARAM C_A camposProyectar:e1 C_C condicional:e2
+            |   PARAM C_A camposProyectar1:e1 C_C condicional:e2
             {:
-
             :}
             |   error
             ;
+
+camposProyectar1    ::= camposProyectar
+                    |   
+                    ;
 
 camposProyectar ::= PARAM:e1 camposProyectarP:e2
                 {:
@@ -101,24 +138,80 @@ camposProyectarP    ::= COMA camposProyectar:e1
                     ;
 
 condicional ::= WHERE C_A clausula C_C
+            |
             |   error
             ;
 
-clausula    ::= ID operador varComparacion clausulap
-                |   PARAM operador varComparacion clausulap
-                |   error
-                ;
+clausula    ::= negacion:e1 ID:e2 operador:e3 varComparacion:e4 clausulap:e5
+            {:
+                if(e1!=null){
+                    if(e3!=null){
+                        String id = ((token)e2).getLexeme();
+                        System.out.println("id: "+id);
+                        if(e5!=null){
+                            List<RespuestaFormulario> list = ((clausula)e5).getResForms();
+                            System
+                            token tmp = (token) e3;
+                            switch (tmp.getLexeme()) {
+                                case "=":
+                                    break;
+                                case ">":
+                                    break;
+                                case "<":
+                                    break;
+                                case ">=":
+                                    break;
+                                case "<=":
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+                }else{
+                    if(e3!=null){
+                        
+                    }
+                }
+                RESULT =e5;
+            :}
+            |   negacion:e1 PARAM:e2 operador:e3 varComparacion:e4 clausulap:e5
+            {:
+                if(e1!=null){
 
-clausulap   ::= logica clausula
-            |   
+                }else{
+
+                }
+                RESULT =e5;
+            :}
             |   error
+            ;
+
+clausulap   ::= logica:e2 clausula:e1
+            {:
+                if(e1!=null){
+                    if(e2!=null){
+                        ((Clausula)e1).setOperadorLogico(((token)e2).getLexeme());
+                    }
+                }
+
+                RESULT = e1;
+            :}
+            |   
+            {:
+                RESULT = new Clausula(baseRespuestas.getRespuestas(),"NULL");
+            :}
+            |   error
+            ;
+
+negacion    ::= NOT:e1
+            {:
+                RESULT = e1;
+            :}
+            |
             ;
 
 logica  ::= OR:e1
-        {:
-            RESULT =e1;
-        :}
-        |   NOT:e1  
         {:
             RESULT =e1;
         :}
