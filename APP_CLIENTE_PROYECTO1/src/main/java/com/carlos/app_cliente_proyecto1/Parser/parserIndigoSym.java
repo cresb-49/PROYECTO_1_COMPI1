@@ -59,6 +59,7 @@ public class parserIndigoSym {
   public static final int COM = 9;
   public static final int MO_U = 24;
   public static final int IZQ = 64;
+  public static final int TABLA_CON = 82;
   public static final int IND = 46;
   public static final int TEXT_AREA = 56;
   public static final int ASIGNACION_NUM = 21;
@@ -172,7 +173,8 @@ public class parserIndigoSym {
   "FCR",
   "CONSULT_DATA",
   "CONSULT",
-  "NUM_CONSULT"
+  "NUM_CONSULT",
+  "TABLA_CON"
   };
 }
 

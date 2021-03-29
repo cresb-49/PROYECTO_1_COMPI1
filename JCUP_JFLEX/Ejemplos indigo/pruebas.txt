@@ -20,8 +20,8 @@
 "CREDENCIALES_USUARIO":
 [
     {
-        "USUARIO": "juanito619",
-        "PASSWORD": "12345678"
+        "USUARIO": "Admin",
+        "PASSWORD": "12345"
     }
 ]
 }

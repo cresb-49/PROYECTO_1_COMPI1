@@ -24,6 +24,8 @@ public class ejecutarConsultas {
     private DBRespuestas baseRes;
     private List<String> log = new ArrayList<>();
     private sobreEscribirArchivo escribir = new sobreEscribirArchivo();
+    
+    private List<PaqueteConsultas> paquetesConsultas = new ArrayList<>();
 
     public ejecutarConsultas() {
 
@@ -48,6 +50,14 @@ public class ejecutarConsultas {
         return path;
     }
 
+    public List<PaqueteConsultas> getPaquetesConsultas() {
+        return paquetesConsultas;
+    }
+
+    public DBFormularios getBaseForms() {
+        return baseForms;
+    }
+    
     private void iniciarDBs() {
 
         Gson gson = new Gson();
@@ -125,9 +135,12 @@ public class ejecutarConsultas {
             }
             if(tmp instanceof consulta){
                 lex = new lexerSQFORM(new StringReader(((consulta)tmp).getQuery()));
-                parser = new parserSQFORM(lex, this.baseRes);
+                parser = new parserSQFORM(lex, this.baseRes,this.baseForms);
                 try {
                     parser.parse();
+                    PaqueteConsultas tmpRes = parser.obtenerResultado();
+                    tmpRes.setNombreConsulta(((consulta) tmp).getTag());
+                    paquetesConsultas.add(tmpRes);
                     
                 } catch (Exception e) {
                     System.out.println("Error en lectura de consulta");

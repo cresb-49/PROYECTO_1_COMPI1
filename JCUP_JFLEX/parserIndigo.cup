@@ -82,6 +82,11 @@ parser code {:
         public List<Object> getInstrucciones() {
             return instrucciones;
         }
+        //LISTA DE TABLAS
+        Pila tablas = new Pila();
+        public Pila getTablas() {
+            return tablas;
+        }
 
         public usuario getLogUser() {
                 return logUser;
@@ -141,7 +146,7 @@ terminal ME_Q,MA_Q,ADM,SS,FS,SSS,FSS,COM,D_DOT,C_A,C_C,L_A,L_C,CR_U,USER,PASS,FE
         MO_U,DEL_U,LOG_U,NEW_F,DEL_F,MO_F,ADD_C,DEL_C,MO_C,DATE,
         USER_ANT,USER_NEW,PASS_NEW,FECHA_MOD,ID,TITLE,NAME,THEME,USER_CRE,NAME_CAMP,FORM,
         CLASS,IND,TEXT_VIEW,ALI,REQUE,OPTION,FILAS,COLM,URL,PARAMS_FORM,CAMP_TEXT,TEXT_AREA,CHECK,RADIO,FILE,IMG,COMBO,BOTON,CENT,IZQ,DER,JUST,
-        NOT,YES,ASIG_ID,DES,MJS,SR,FR,ERL,ERS,MJSU,SCR,FCR,CONSULT_DATA,CONSULT,NUM_CONSULT;
+        NOT,YES,ASIG_ID,DES,MJS,SR,FR,ERL,ERS,MJSU,SCR,FCR,CONSULT_DATA,CONSULT,NUM_CONSULT,TABLA_CON;
 
 non terminal inicio,contenido,type_s,type_s3,contenido1,cont_CR_U,cont_CR_U1,cont_CR_U2,cont_CR_U3,cont_CR_U1_2,cont_CR_U1_3,cont_CR_U2_2,cont_CR_U2_3,
                 cont_CR_U3_2,cont_CR_U3_3,parametros,parametros2,
@@ -163,7 +168,8 @@ non terminal inicio,contenido,type_s,type_s3,contenido1,cont_CR_U,cont_CR_U1,con
                 paramsADD_C2,contADD_C,contADD_C1,contADD_C_1,contADD_C_2,contADD_C2,paramsMO_C2,contMO_C,
                 contMO_C1,contMO_C2,contMO_C_1,contMO_C_2,var_ASIGNACION,
                 contRes,tipoR,paramsERL,continuacion,paramsERS,paramsMJS,contMJ,paramsERL2,
-                paramsERS2,paramsMJS2,inicio2,paramsCONSULT_DATA,contCONSULT_DATA,contCONSULT_DATA1,paramsCONSULT_DATA2,var_ASIGNACION_PASS;
+                paramsERS2,paramsMJS2,inicio2,paramsCONSULT_DATA,contCONSULT_DATA,contCONSULT_DATA1,paramsCONSULT_DATA2,var_ASIGNACION_PASS,
+                paramsTablas,contTabla,paramsTablasP,contTablaP;
 
 start with inicio;
 
@@ -185,12 +191,85 @@ contRes ::=     ME_Q ADM SR D_DOT tipoR
 tipoR   ::=     ERL MA_Q L_A DES D_DOT C_A paramsERL C_C L_C ME_Q FR ADM MA_Q continuacion
         |       ERS MA_Q L_A DES D_DOT C_A paramsERS C_C L_C ME_Q FR ADM MA_Q continuacion
         |       MJSU MA_Q L_A DES D_DOT C_A paramsMJS C_C L_C ME_Q FR ADM MA_Q continuacion
+        |       NUM_CONSULT:e2 MA_Q L_A TABLA_CON D_DOT C_A paramsTablas:e1 C_C L_C ME_Q FR ADM MA_Q continuacion
+        {:
+                if(e1!=null){
+                        Pila tmp = (Pila)e1;
+                        List<List<String>> tab = new ArrayList<>();
+                        while(!tmp.isEmpty()){
+                                tab.add((List<String>)tmp.pop());
+                        }
+                        Tabla tablaInfo = new Tabla(tab);
+                        tablaInfo.setNombreTabla(((token)e2).getLexeme());
+                        tablas.push(tablaInfo);
+                }
+        :}
         |       error
         ;
 
-continuacion    ::=     contRes
+continuacion    ::=     contRes:e1
                 |
                 ;
+
+paramsTablas    ::=     L_A contTabla:e1 L_C paramsTablasP:e2
+                {:
+                        if(e2!=null){
+                                Pila tmp = (Pila)e2;
+                                if(e1!=null){
+                                    Pila tmp2 = (Pila)e1;
+                                    String columna;
+                                    List<String> fila = new ArrayList<>();
+                                    while (!tmp2.isEmpty()) {                                        
+                                        columna = (String)tmp2.pop();
+                                        fila.add(columna);
+                                    }
+                                    tmp.push(fila);
+                                }
+                        }
+                        RESULT = e2;
+                :}
+                |       error
+                ;
+
+paramsTablasP   ::=     COM paramsTablas:e1
+                {:
+                        RESULT = e1;
+                :}
+                |
+                {:
+                        RESULT = new Pila();
+                :}
+                |       error
+                ;
+
+contTabla       ::=     COLM D_DOT var_ASIGNACION:e1 contTablaP:e2
+                {:
+                        if(e2!=null){
+                                Pila tmp = ((Pila)e2);
+                                if(e1!=null){
+                                        token tmp2 = ((token)e1);
+                                        tmp.push(tmp2.getLexeme());
+                                }
+                        }
+                        RESULT = e2;
+                :}
+                |       error
+                ;
+
+contTablaP      ::=     COM contTabla:e1
+                {:
+                        RESULT =e1;
+                :}
+                |       
+                {:
+                        RESULT = new Pila();
+                :}
+                |       error
+                ;
+
+
+
+
 
 contenido       ::=     ME_Q ADM SS D_DOT type_s
                 |       error

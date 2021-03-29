@@ -1,9 +1,10 @@
 package com.carlos.web_proyecto1.Parser;
 
 import com.carlos.web_proyecto1.Lexer.lexerSQFORM;
-import com.carlos.web_proyecto1.DataBases.DBRespuestas;
+import com.carlos.web_proyecto1.DataBases.*;
 import com.carlos.web_proyecto1.Objetos.*;
 import com.carlos.web_proyecto1.EDD.*;
+import com.carlos.web_proyecto1.Acciones.*;
 import com.carlos.web_proyecto1.Tokens.token;
 import com.carlos.web_proyecto1.GuardadoInfo.Respuesta;
 import com.carlos.web_proyecto1.GuardadoInfo.RespuestaFormulario;
@@ -17,10 +18,18 @@ parser code {:
 
     private List<String> errorsList = new ArrayList();
     private DBRespuestas baseRespuestas;
+    private DBFormularios baseFormularios;
+    private ProcesarConsulta consultasProcesar;
+    private PaqueteConsultas resultadoConsulta;
 
-    public parserSQFORM(lexerSQFORM lex,DBRespuestas baseRespuestas){
+    public parserSQFORM(lexerSQFORM lex,DBRespuestas baseRespuestas,DBFormularios baseFormularios){
         super(lex);
         this.baseRespuestas = baseRespuestas;
+        this.baseFormularios = baseFormularios;
+    }
+
+    public PaqueteConsultas obtenerResultado(){
+        return resultadoConsulta;
     }
 
     public void report_error(String message, Object info){
@@ -37,10 +46,9 @@ parser code {:
         System.out.println("reportfatal");
     }
         
-    public void errorVerificacion(String mensage,Object info){
-        token tok = (token)info;
-        System.out.println(mensage+"Componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn());
-        errorsList.add(mensage+"Componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn());
+    public void errorVerificacion(String campo){
+        System.out.println("El campo ["+campo+"] de la consulta no pertenece al formulario");
+        errorsList.add("El campo ["+campo+"] de la consulta no pertenece al formulario");
     }
 
     public void errorParametroDuplicado(Object simbolo){
@@ -49,34 +57,6 @@ parser code {:
         errorsList.add("El parametro ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn()+" ya se habia definido con anterioridad");
     }
 
-    private List<RespuestaFormulario> formulariosCompatibleByIdComponente(List<RespuestaFormulario> respuestas,String id){
-        List<RespuestaFormulario> list =null;
-        if(!respuestas.isEmpty()){
-            for (RespuestaFormulario respuestaFormulario : respuestas) {
-                for (Respuesta respuesta : respuestaFormulario.getRespuestas()) {
-                    if(respuesta.getIdComponente().equals(id)){
-                        list.add(respuestaFormulario);
-                        break;
-                    }
-                }
-            }
-        }
-        return list;
-    }
-    private List<RespuestaFormulario> formulariosCompatibleByNameComponente(List<RespuestaFormulario> respuestas,String nombre){
-        List<RespuestaFormulario> list =null;
-        if(!respuestas.isEmpty()){
-            for (RespuestaFormulario respuestaFormulario : respuestas) {
-                for (Respuesta respuesta : respuestaFormulario.getRespuestas()) {
-                    if(respuesta.getNombre_campo().equals(nombre)){
-                        list.add(respuestaFormulario);
-                        break;
-                    }
-                }
-            }
-        }        
-        return list;
-    }
 
     protected int error_sync_size() {
 		return 1;
@@ -94,20 +74,127 @@ non terminal    inicio,formulario,camposProyectar,condicional,camposProyectarP,c
 
 start with inicio;
 
-inicio  ::=  SELECT TO FORM DIR formulario
+inicio  ::=  SELECT TO FORM DIR formulario:e1
+        {:
+            if(e1!=null){
+                resultadoConsulta = (PaqueteConsultas)e1;
+            }
+        :}
         |   error
         ;
 
-formulario  ::= ID C_A camposProyectar1:e1 C_C condicional:e2
+formulario  ::= ID:e3 C_A camposProyectar1:e1 C_C condicional:e2
             {:
+                List<RespuestaFormulario> idRespuestas = baseRespuestas.respuestasIDForm(((token)e3).getLexeme());
+                if(!idRespuestas.isEmpty()){    
+                    if(e2!=null){
+                        consultasProcesar = new ProcesarConsulta(idRespuestas, ((Cola)e2));
+                        if(e1!=null){
+
+                            Pila tmp = (Pila)e1;
+                            String campo;
+                            List<String> campos = new ArrayList<>();
+                            while (!tmp.isEmpty()) {                                
+                                campo = (String)tmp.pop();
+                                if(baseFormularios.buscarComponeteNombre(((token)e3).getLexeme(), campo)!=null){
+                                    campos.add(campo);
+                                }else{
+                                    errorVerificacion(campo);
+                                }
+                            }
+
+                            PaqueteConsultas res = new PaqueteConsultas(((token)e3).getLexeme(),null,null, consultasProcesar.procesar(), campos);
+                            RESULT = res;
+
+                        }else{  
+                            PaqueteConsultas res = new PaqueteConsultas(((token)e3).getLexeme(),null,null, consultasProcesar.procesar(), null);
+                            RESULT = res;
+                        }
+                    }else{
+                        if(e1!=null){
+
+                            Pila tmp = (Pila)e1;
+                            String campo;
+                            List<String> campos = new ArrayList<>();
+                            
+                            while (!tmp.isEmpty()) {                                
+                                campo = (String)tmp.pop();
+                                if(baseFormularios.buscarComponeteNombre(((token)e3).getLexeme(), campo)!=null){
+                                    campos.add(campo);
+                                }else{
+                                    errorVerificacion(campo);
+                                }
+                            }
+                            PaqueteConsultas res = new PaqueteConsultas(((token)e3).getLexeme(),null,null,idRespuestas, campos);
+                            RESULT = res;
+
+                        }else{
+                            PaqueteConsultas res = new PaqueteConsultas(((token)e3).getLexeme(),null,null,idRespuestas, null);
+                            RESULT = res;
+                        }
+                    }
+                }
             :}
-            |   PARAM C_A camposProyectar1:e1 C_C condicional:e2
+            |   PARAM:e3 C_A camposProyectar1:e1 C_C condicional:e2
             {:
+                List<RespuestaFormulario> idRespuestas = baseRespuestas.respuestasNameForm(((token)e3).getLexeme());
+                if(!idRespuestas.isEmpty()){    
+                    if(e2!=null){
+                        consultasProcesar = new ProcesarConsulta(idRespuestas, ((Cola)e2));
+                        if(e1!=null){
+
+                            Pila tmp = (Pila)e1;
+                            String campo;
+                            List<String> campos = new ArrayList<>();
+                            
+                            while (!tmp.isEmpty()) {                                
+                                campo = (String)tmp.pop();
+                                if(baseFormularios.buscarComponeteNombre(((token)e3).getLexeme(), campo)!=null){
+                                    campos.add(campo);
+                                }else{
+                                    errorVerificacion(campo);
+                                }
+                            }
+                            PaqueteConsultas res = new PaqueteConsultas(null,((token)e3).getLexeme(),null, consultasProcesar.procesar(), campos);
+                            RESULT = res;
+
+                        }else{  
+                            PaqueteConsultas res = new PaqueteConsultas(null,((token)e3).getLexeme(),null,consultasProcesar.procesar(), null);
+                            RESULT = res;
+                        }
+                    }else{
+                        RESULT = idRespuestas;
+                        if(e1!=null){
+
+                            Pila tmp = (Pila)e1;
+                            String campo;
+                            List<String> campos = new ArrayList<>();
+                            
+                            while (!tmp.isEmpty()) {                                
+                                campo = (String)tmp.pop();
+                                if(baseFormularios.buscarComponeteNombre(((token)e3).getLexeme(), campo)!=null){
+                                    campos.add(campo);
+                                }else{
+                                    errorVerificacion(campo);
+                                }
+                            }
+                            PaqueteConsultas res = new PaqueteConsultas(null,((token)e3).getLexeme(),null,idRespuestas, campos);
+                            RESULT = res;
+
+                        }else{
+                            PaqueteConsultas res = new PaqueteConsultas(null,((token)e3).getLexeme(),null, idRespuestas, null);
+                            RESULT = res;
+                        }
+                    }
+                }
             :}
             |   error
             ;
 
-camposProyectar1    ::= camposProyectar
+camposProyectar1    ::= camposProyectar:e1
+                    {:
+                        RESULT = e1;
+                    :}
                     |   
                     ;
 
@@ -137,50 +224,51 @@ camposProyectarP    ::= COMA camposProyectar:e1
                     |   error
                     ;
 
-condicional ::= WHERE C_A clausula C_C
+condicional ::= WHERE C_A clausula:e1 C_C
+            {:
+                RESULT = e1;
+            :}
             |
             |   error
             ;
 
 clausula    ::= negacion:e1 ID:e2 operador:e3 varComparacion:e4 clausulap:e5
             {:
-                if(e1!=null){
+                Operacion tmp = null;
+                if (e3!=null){
                     if(e3!=null){
-                        String id = ((token)e2).getLexeme();
-                        System.out.println("id: "+id);
-                        if(e5!=null){
-                            List<RespuestaFormulario> list = ((clausula)e5).getResForms();
-                            System
-                            token tmp = (token) e3;
-                            switch (tmp.getLexeme()) {
-                                case "=":
-                                    break;
-                                case ">":
-                                    break;
-                                case "<":
-                                    break;
-                                case ">=":
-                                    break;
-                                case "<=":
-                                    break;
-                                default:
-                                    break;
+                        if(e1!=null){
+                            if(e5!=null){
+                                tmp = new Operacion(null,"SI","ID", ((token)e2).getLexeme(),((token)e3).getLexeme(), ((token)e4).getLexeme());
+                                ((Cola)e5).agregar(tmp);
+                            }
+                        }else{
+                            if(e5!=null){
+                                tmp = new Operacion(null,"NO","ID", ((token)e2).getLexeme(),((token)e3).getLexeme(), ((token)e4).getLexeme());
+                                ((Cola)e5).agregar(tmp);
                             }
                         }
-                    }
-                }else{
-                    if(e3!=null){
-                        
                     }
                 }
                 RESULT =e5;
             :}
             |   negacion:e1 PARAM:e2 operador:e3 varComparacion:e4 clausulap:e5
             {:
-                if(e1!=null){
-
-                }else{
-
+                Operacion tmp = null;
+                if (e3!=null){
+                    if(e3!=null){
+                        if(e1!=null){
+                            if(e5!=null){
+                                tmp = new Operacion(null,"SI","NOMBRE", ((token)e2).getLexeme(),((token)e3).getLexeme(), ((token)e4).getLexeme());
+                                ((Cola)e5).agregar(tmp);
+                            }
+                        }else{
+                            if(e5!=null){
+                                tmp = new Operacion(null,"NO","NOMBRE", ((token)e2).getLexeme(),((token)e3).getLexeme(), ((token)e4).getLexeme());
+                                ((Cola)e5).agregar(tmp);
+                            }
+                        }
+                    }
                 }
                 RESULT =e5;
             :}
@@ -190,16 +278,17 @@ clausula    ::= negacion:e1 ID:e2 operador:e3 varComparacion:e4 clausulap:e5
 clausulap   ::= logica:e2 clausula:e1
             {:
                 if(e1!=null){
+                    Cola tmp = ((Cola)e1);
+                    Operacion ope = (Operacion)tmp.ver();
                     if(e2!=null){
-                        ((Clausula)e1).setOperadorLogico(((token)e2).getLexeme());
+                        ope.setLogica(((token)e2).getLexeme());
                     }
                 }
-
                 RESULT = e1;
             :}
             |   
             {:
-                RESULT = new Clausula(baseRespuestas.getRespuestas(),"NULL");
+                RESULT = new Cola();
             :}
             |   error
             ;

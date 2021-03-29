@@ -29,4 +29,27 @@ public class DBRespuestas {
     }
     
     
+    public List<RespuestaFormulario> respuestasIDForm(String id){
+        List<RespuestaFormulario> respuesta = new ArrayList<>();
+        
+        for (RespuestaFormulario respuestaFormulario : this.respuestas) {
+            if(respuestaFormulario.getIdForm().equals(id)){
+                respuesta.add(respuestaFormulario);
+            }
+        }
+        
+        return respuesta;
+    }
+    
+    public List<RespuestaFormulario> respuestasNameForm(String name){
+        List<RespuestaFormulario> respuesta = new ArrayList<>();
+        
+        for (RespuestaFormulario respuestaFormulario : this.respuestas) {
+            if(respuestaFormulario.getNombreFormulario().equals(name)){
+                respuesta.add(respuestaFormulario);
+            }
+        }
+        return respuesta;
+    }
+    
 }

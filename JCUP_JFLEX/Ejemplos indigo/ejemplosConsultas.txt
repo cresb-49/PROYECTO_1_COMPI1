@@ -20,3 +20,17 @@
         }
     <fin_solicitud!>
 <!fin_solicitudes>
+
+<!ini_solicitudes>
+    <!ini_solicitud:"CONSULTAR_DATOS">
+        { "CONSULTAS":[
+            {
+                "CONSULTA-2": "SELECT TO FORM -> $form2 [] WHERE [Pais = 'Guatemala']"
+            },
+            {
+                "CONSULTA-3": "SELECT TO FORM -> $form2 [] WHERE [Pais = 'Guatemala']"
+            }
+        ]
+        }
+    <fin_solicitud!>
+<!fin_solicitudes>

@@ -5,13 +5,18 @@
  */
 package com.carlos.app_cliente_proyecto1.UI;
 
+import com.carlos.app_cliente_proyecto1.EDD.Pila;
 import com.carlos.app_cliente_proyecto1.HttpMethods.RealizarConsulta;
 import com.carlos.app_cliente_proyecto1.Lexer.lexerIndigo;
+import com.carlos.app_cliente_proyecto1.Objetos.Tabla;
 import com.carlos.app_cliente_proyecto1.Objetos.mensaje;
 import com.carlos.app_cliente_proyecto1.Parser.parserIndigo;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +25,10 @@ import javax.swing.JTextArea;
 public class consultasDatos extends javax.swing.JInternalFrame {
 
     private RealizarConsulta api = new RealizarConsulta();
+    private List<Tabla> tablasInfo;
+    private int maxCount;
+    private int localCount = 1;
+
     /**
      * Creates new form consultasDatos
      */
@@ -44,9 +53,12 @@ public class consultasDatos extends javax.swing.JInternalFrame {
         labelLinea = new javax.swing.JLabel();
         btnEnviar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaConsultas = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         resNormal = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        labelCansulta = new javax.swing.JLabel();
+        btnSigTab = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         btnCopiar = new javax.swing.JMenuItem();
@@ -81,7 +93,7 @@ public class consultasDatos extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaConsultas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -92,7 +104,7 @@ public class consultasDatos extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tablaConsultas);
 
         resNormal.setEditable(false);
         resNormal.setColumns(20);
@@ -104,6 +116,18 @@ public class consultasDatos extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane5.setViewportView(resNormal);
+
+        jLabel1.setText("Consulta: ");
+
+        labelCansulta.setText("consulta");
+
+        btnSigTab.setText("siguiente tabla");
+        btnSigTab.setEnabled(false);
+        btnSigTab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSigTabActionPerformed(evt);
+            }
+        });
 
         jMenu2.setText("Edicion");
 
@@ -156,13 +180,19 @@ public class consultasDatos extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelCansulta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSigTab)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,7 +204,13 @@ public class consultasDatos extends javax.swing.JInternalFrame {
                             .addComponent(labelColumna)
                             .addComponent(btnEnviar)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(labelCansulta)
+                            .addComponent(btnSigTab))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16))
@@ -213,7 +249,7 @@ public class consultasDatos extends javax.swing.JInternalFrame {
         String respuesta = api.envioInfo(envio);
         lecturaMensaje(respuesta);
     }//GEN-LAST:event_btnEnviarActionPerformed
-    private void lecturaMensaje(String respuesta){
+    private void lecturaMensaje(String respuesta) {
         try {
             lexerIndigo lex = new lexerIndigo(new StringReader(respuesta));
             parserIndigo parser = new parserIndigo(lex);
@@ -224,24 +260,65 @@ public class consultasDatos extends javax.swing.JInternalFrame {
             List<mensaje> res3 = parser.getMsjUser();
 
             String contenido = "";
-            
-            for (int i = (res1.size()-1); i >=0 ; i--) {
-                contenido = contenido + res1.get(i).getMensaje()+"\n";
+
+            for (int i = (res1.size() - 1); i >= 0; i--) {
+                contenido = contenido + res1.get(i).getMensaje() + "\n";
             }
-            
-            for (int i = (res2.size()-1); i >=0 ; i--) {
-                contenido = contenido + res2.get(i).getMensaje()+"\n";
+
+            for (int i = (res2.size() - 1); i >= 0; i--) {
+                contenido = contenido + res2.get(i).getMensaje() + "\n";
             }
-            
-            for (int i = (res3.size()-1); i >=0 ; i--) {
-                contenido = contenido + res3.get(i).getMensaje()+"\n";
+
+            for (int i = (res3.size() - 1); i >= 0; i--) {
+                contenido = contenido + res3.get(i).getMensaje() + "\n";
             }
             resNormal.setText(contenido);
+            if (contenido.isEmpty()) {
+                Pila tmporal = parser.getTablas();
+                tmporal.imprimirPila();
+                tablasInfo = new ArrayList<>();
+                while (!tmporal.isEmpty()) {
+                    tablasInfo.add((Tabla) tmporal.pop());
+                }
+
+                if (tablasInfo.size() > 1) {
+                    this.btnSigTab.setEnabled(true);
+                    this.cargarTablas();
+                } else {
+                    this.btnSigTab.setEnabled(false);
+                }
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    private void cargarTablas() {
+        Tabla currentTable = tablasInfo.get(localCount - 1);
+        this.labelCansulta.setText(currentTable.getNombreTabla());
+        DefaultTableModel model = new DefaultTableModel();
+        this.tablaConsultas.setModel(model);
+
+        List<String> header = currentTable.getFilas().get(0);
+        for (String string : header) {
+            model.addColumn(string);
+        }
+
+        if (currentTable.getFilas().size() > 1) {
+            int cont = 1;
+            for (List<String> fila : currentTable.getFilas()) {
+                if (cont != 1) {
+                    String[] rowtab = new String[fila.size()];
+                    rowtab = fila.toArray(rowtab);
+                    model.addRow(rowtab);
+                }
+                cont++;
+            }
+        }
+    }
+
+
     private void resNormalCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_resNormalCaretUpdate
         // TODO add your handling code here:
     }//GEN-LAST:event_resNormalCaretUpdate
@@ -261,13 +338,24 @@ public class consultasDatos extends javax.swing.JInternalFrame {
         this.editorTexto.cut();
     }//GEN-LAST:event_btnCortarActionPerformed
 
+    private void btnSigTabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSigTabActionPerformed
+        // TODO add your handling code here:
+        this.cargarTablas();
+        localCount++;
+        if (localCount == maxCount) {
+            localCount = 1;
+        }
+    }//GEN-LAST:event_btnSigTabActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnCopiar;
     private javax.swing.JMenuItem btnCortar;
     private javax.swing.JButton btnEnviar;
     private javax.swing.JMenuItem btnPegar;
+    private javax.swing.JButton btnSigTab;
     private javax.swing.JTextArea editorTexto;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu2;
@@ -275,9 +363,10 @@ public class consultasDatos extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel labelCansulta;
     private javax.swing.JLabel labelColumna;
     private javax.swing.JLabel labelLinea;
     private javax.swing.JTextArea resNormal;
+    private javax.swing.JTable tablaConsultas;
     // End of variables declaration//GEN-END:variables
 }

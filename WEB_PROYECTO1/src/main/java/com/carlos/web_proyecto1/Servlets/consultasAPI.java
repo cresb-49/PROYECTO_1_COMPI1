@@ -2,7 +2,9 @@ package com.carlos.web_proyecto1.Servlets;
 
 import com.carlos.web_proyecto1.Acciones.ejecutarConsultas;
 import com.carlos.web_proyecto1.Acciones.ejecutarInstrucciones;
+import com.carlos.web_proyecto1.ConsultaToTablaIndigo.TablaToIndigo;
 import com.carlos.web_proyecto1.Lexer.lexerIndigo;
+import com.carlos.web_proyecto1.Objetos.PaqueteConsultas;
 import com.carlos.web_proyecto1.Objetos.usuario;
 import com.carlos.web_proyecto1.Parser.parserIndigo;
 import com.carlos.web_proyecto1.escribirRespuestaIndigo.resIndigo;
@@ -23,6 +25,7 @@ public class consultasAPI extends HttpServlet {
     
     private resIndigo respuesta = new resIndigo();
     private ejecutarConsultas ejecutarConsultas = null;
+    private TablaToIndigo convertirTabla;
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -62,7 +65,13 @@ public class consultasAPI extends HttpServlet {
                     ejecutarConsultas.ejecutarIntrucciones(instrucciones);
                     
                     if(ejecutarConsultas.getLog().isEmpty()){
-                        this.envioMensaje(req, resp, "Hubo un error en el servidor");
+                        
+                        List<PaqueteConsultas> paquetes = ejecutarConsultas.getPaquetesConsultas();
+                        convertirTabla = new TablaToIndigo(ejecutarConsultas.getBaseForms());
+                        String tmpCode = convertirTabla.convertir(paquetes);
+                        System.out.println(tmpCode);
+                        envioTabla(req, resp, tmpCode);
+                        
                     }else{
                         this.envioRespuestas(req, resp, ejecutarConsultas.getLog());
                     }
@@ -105,4 +114,14 @@ public class consultasAPI extends HttpServlet {
 
     }
     
+    private void envioTabla(HttpServletRequest req, HttpServletResponse resp, String tabla) throws ServletException, IOException {
+        try {
+            PrintWriter writer = resp.getWriter();
+            writer.println(tabla);
+            writer.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }

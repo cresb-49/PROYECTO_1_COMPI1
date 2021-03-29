@@ -32,8 +32,8 @@ import java_cup.runtime.Symbol;
 
 LineTerminator = [\r|\n|\r\n]+
 WhiteSpace = [ \t\n]+
-simbolos = [!@#$%&*'~`°¬¡¿¨()+=_<>?/.:;,\|\-\^]
-simbolos2 = [!@#$%&*'~`°¬¡¿¨()+=_<>?/.:;\|\-\^]
+simbolos = [!@#$%&*~`°¬¡¿¨()+=_<>?/.:;,\|\-\^]
+simbolos2 = [!@#$%&*~`°¬¡¿¨()+=_<>?/.:;\|\-\^]
 numeros = [0-9]
 letras = [a-zA-Z]
 espacio = [ ]
@@ -179,8 +179,10 @@ operadorLogico=(AND|OR|NOT)
         }
     {valor}
         {
-            //System.out.println("Valor: "+yytext());
-            tmp_symbl = new Symbol(VALUE, after_symbl.sym, 0, new token(yytext(), yycolumn + 1, yyline + 1));
+            String inerText = yytext();
+            inerText=inerText.substring(1, inerText.length()-1);
+            //System.out.println("Valor: "+inerText);
+            tmp_symbl = new Symbol(VALUE, after_symbl.sym, 0, new token(inerText, yycolumn + 1, yyline + 1));
             after_symbl = tmp_symbl;
             return tmp_symbl;
         }

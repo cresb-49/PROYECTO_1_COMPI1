@@ -6,12 +6,13 @@
 package com.carlos.web_proyecto1.Parser;
 
 import com.carlos.web_proyecto1.Lexer.lexerSQFORM;
-import com.carlos.web_proyecto1.DataBases.DBRespuestas;
+import com.carlos.web_proyecto1.DataBases.*;
 import com.carlos.web_proyecto1.Objetos.*;
 import com.carlos.web_proyecto1.EDD.*;
+import com.carlos.web_proyecto1.Acciones.*;
+import com.carlos.web_proyecto1.Tokens.token;
 import com.carlos.web_proyecto1.GuardadoInfo.Respuesta;
 import com.carlos.web_proyecto1.GuardadoInfo.RespuestaFormulario;
-import com.carlos.web_proyecto1.Tokens.token;
 import java.util.ArrayList;
 import java.util.List;
 import java_cup.runtime.Symbol;
@@ -168,10 +169,18 @@ public class parserSQFORM extends java_cup.runtime.lr_parser {
 
     private List<String> errorsList = new ArrayList();
     private DBRespuestas baseRespuestas;
+    private DBFormularios baseFormularios;
+    private ProcesarConsulta consultasProcesar;
+    private PaqueteConsultas resultadoConsulta;
 
-    public parserSQFORM(lexerSQFORM lex,DBRespuestas baseRespuestas){
+    public parserSQFORM(lexerSQFORM lex,DBRespuestas baseRespuestas,DBFormularios baseFormularios){
         super(lex);
         this.baseRespuestas = baseRespuestas;
+        this.baseFormularios = baseFormularios;
+    }
+
+    public PaqueteConsultas obtenerResultado(){
+        return resultadoConsulta;
     }
 
     public void report_error(String message, Object info){
@@ -188,10 +197,9 @@ public class parserSQFORM extends java_cup.runtime.lr_parser {
         System.out.println("reportfatal");
     }
         
-    public void errorVerificacion(String mensage,Object info){
-        token tok = (token)info;
-        System.out.println(mensage+"Componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn());
-        errorsList.add(mensage+"Componente ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn());
+    public void errorVerificacion(String campo){
+        System.out.println("El campo ["+campo+"] de la consulta no pertenece al formulario");
+        errorsList.add("El campo ["+campo+"] de la consulta no pertenece al formulario");
     }
 
     public void errorParametroDuplicado(Object simbolo){
@@ -200,34 +208,6 @@ public class parserSQFORM extends java_cup.runtime.lr_parser {
         errorsList.add("El parametro ubicado en Linea: "+tok.getLine()+", Columna: "+tok.getColumn()+" ya se habia definido con anterioridad");
     }
 
-    private List<RespuestaFormulario> formulariosCompatibleByIdComponente(List<RespuestaFormulario> respuestas,String id){
-        List<RespuestaFormulario> list =null;
-        if(!respuestas.isEmpty()){
-            for (RespuestaFormulario respuestaFormulario : respuestas) {
-                for (Respuesta respuesta : respuestaFormulario.getRespuestas()) {
-                    if(respuesta.getIdComponente().equals(id)){
-                        list.add(respuestaFormulario);
-                        break;
-                    }
-                }
-            }
-        }
-        return list;
-    }
-    private List<RespuestaFormulario> formulariosCompatibleByNameComponente(List<RespuestaFormulario> respuestas,String nombre){
-        List<RespuestaFormulario> list =null;
-        if(!respuestas.isEmpty()){
-            for (RespuestaFormulario respuestaFormulario : respuestas) {
-                for (Respuesta respuesta : respuestaFormulario.getRespuestas()) {
-                    if(respuesta.getNombre_campo().equals(nombre)){
-                        list.add(respuestaFormulario);
-                        break;
-                    }
-                }
-            }
-        }        
-        return list;
-    }
 
     protected int error_sync_size() {
 		return 1;
@@ -280,7 +260,14 @@ class CUP$parserSQFORM$actions {
           case 1: // inicio ::= SELECT TO FORM DIR formulario 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
+		
+            if(e1!=null){
+                resultadoConsulta = (PaqueteConsultas)e1;
+            }
+        
               CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("inicio",0, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-4)), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
             }
           return CUP$parserSQFORM$result;
@@ -298,6 +285,9 @@ class CUP$parserSQFORM$actions {
           case 3: // formulario ::= ID C_A camposProyectar1 C_C condicional 
             {
               Object RESULT =null;
+		int e3left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-4)).left;
+		int e3right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-4)).right;
+		Object e3 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-4)).value;
 		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-2)).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-2)).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-2)).value;
@@ -305,6 +295,55 @@ class CUP$parserSQFORM$actions {
 		int e2right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
 		
+                List<RespuestaFormulario> idRespuestas = baseRespuestas.respuestasIDForm(((token)e3).getLexeme());
+                if(!idRespuestas.isEmpty()){    
+                    if(e2!=null){
+                        consultasProcesar = new ProcesarConsulta(idRespuestas, ((Cola)e2));
+                        if(e1!=null){
+
+                            Pila tmp = (Pila)e1;
+                            String campo;
+                            List<String> campos = new ArrayList<>();
+                            while (!tmp.isEmpty()) {                                
+                                campo = (String)tmp.pop();
+                                if(baseFormularios.buscarComponeteNombre(((token)e3).getLexeme(), campo)!=null){
+                                    campos.add(campo);
+                                }else{
+                                    errorVerificacion(campo);
+                                }
+                            }
+
+                            PaqueteConsultas res = new PaqueteConsultas(((token)e3).getLexeme(),null,null, consultasProcesar.procesar(), campos);
+                            RESULT = res;
+
+                        }else{  
+                            PaqueteConsultas res = new PaqueteConsultas(((token)e3).getLexeme(),null,null, consultasProcesar.procesar(), null);
+                            RESULT = res;
+                        }
+                    }else{
+                        if(e1!=null){
+
+                            Pila tmp = (Pila)e1;
+                            String campo;
+                            List<String> campos = new ArrayList<>();
+                            
+                            while (!tmp.isEmpty()) {                                
+                                campo = (String)tmp.pop();
+                                if(baseFormularios.buscarComponeteNombre(((token)e3).getLexeme(), campo)!=null){
+                                    campos.add(campo);
+                                }else{
+                                    errorVerificacion(campo);
+                                }
+                            }
+                            PaqueteConsultas res = new PaqueteConsultas(((token)e3).getLexeme(),null,null,idRespuestas, campos);
+                            RESULT = res;
+
+                        }else{
+                            PaqueteConsultas res = new PaqueteConsultas(((token)e3).getLexeme(),null,null,idRespuestas, null);
+                            RESULT = res;
+                        }
+                    }
+                }
             
               CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("formulario",1, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-4)), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
             }
@@ -314,6 +353,9 @@ class CUP$parserSQFORM$actions {
           case 4: // formulario ::= PARAM C_A camposProyectar1 C_C condicional 
             {
               Object RESULT =null;
+		int e3left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-4)).left;
+		int e3right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-4)).right;
+		Object e3 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-4)).value;
 		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-2)).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-2)).right;
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-2)).value;
@@ -321,6 +363,56 @@ class CUP$parserSQFORM$actions {
 		int e2right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
 		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
 		
+                List<RespuestaFormulario> idRespuestas = baseRespuestas.respuestasNameForm(((token)e3).getLexeme());
+                if(!idRespuestas.isEmpty()){    
+                    if(e2!=null){
+                        consultasProcesar = new ProcesarConsulta(idRespuestas, ((Cola)e2));
+                        if(e1!=null){
+
+                            Pila tmp = (Pila)e1;
+                            String campo;
+                            List<String> campos = new ArrayList<>();
+                            
+                            while (!tmp.isEmpty()) {                                
+                                campo = (String)tmp.pop();
+                                if(baseFormularios.buscarComponeteNombre(((token)e3).getLexeme(), campo)!=null){
+                                    campos.add(campo);
+                                }else{
+                                    errorVerificacion(campo);
+                                }
+                            }
+                            PaqueteConsultas res = new PaqueteConsultas(null,((token)e3).getLexeme(),null, consultasProcesar.procesar(), campos);
+                            RESULT = res;
+
+                        }else{  
+                            PaqueteConsultas res = new PaqueteConsultas(null,((token)e3).getLexeme(),null,consultasProcesar.procesar(), null);
+                            RESULT = res;
+                        }
+                    }else{
+                        RESULT = idRespuestas;
+                        if(e1!=null){
+
+                            Pila tmp = (Pila)e1;
+                            String campo;
+                            List<String> campos = new ArrayList<>();
+                            
+                            while (!tmp.isEmpty()) {                                
+                                campo = (String)tmp.pop();
+                                if(baseFormularios.buscarComponeteNombre(((token)e3).getLexeme(), campo)!=null){
+                                    campos.add(campo);
+                                }else{
+                                    errorVerificacion(campo);
+                                }
+                            }
+                            PaqueteConsultas res = new PaqueteConsultas(null,((token)e3).getLexeme(),null,idRespuestas, campos);
+                            RESULT = res;
+
+                        }else{
+                            PaqueteConsultas res = new PaqueteConsultas(null,((token)e3).getLexeme(),null, idRespuestas, null);
+                            RESULT = res;
+                        }
+                    }
+                }
             
               CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("formulario",1, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-4)), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
             }
@@ -339,7 +431,12 @@ class CUP$parserSQFORM$actions {
           case 6: // camposProyectar1 ::= camposProyectar 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
+		
+                        RESULT = e1;
+                    
               CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("camposProyectar1",11, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
             }
           return CUP$parserSQFORM$result;
@@ -425,7 +522,12 @@ class CUP$parserSQFORM$actions {
           case 13: // condicional ::= WHERE C_A clausula C_C 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-1)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-1)).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-1)).value;
+		
+                RESULT = e1;
+            
               CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("condicional",3, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-3)), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
             }
           return CUP$parserSQFORM$result;
@@ -468,32 +570,20 @@ class CUP$parserSQFORM$actions {
 		int e5right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
 		Object e5 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
 		
-                if(e1!=null){
+                Operacion tmp = null;
+                if (e3!=null){
                     if(e3!=null){
-                        String id = ((token)e2).getLexeme();
-                        System.out.println("id: "+id);
-                        if(e5!=null){
-                            List<RespuestaFormulario> list = ((Clausula)e5).getResForms();
-                            token tmp = (token) e3;
-                            switch (tmp.getLexeme()) {
-                                case "=":
-                                    break;
-                                case ">":
-                                    break;
-                                case "<":
-                                    break;
-                                case ">=":
-                                    break;
-                                case "<=":
-                                    break;
-                                default:
-                                    break;
+                        if(e1!=null){
+                            if(e5!=null){
+                                tmp = new Operacion(null,"SI","ID", ((token)e2).getLexeme(),((token)e3).getLexeme(), ((token)e4).getLexeme());
+                                ((Cola)e5).agregar(tmp);
+                            }
+                        }else{
+                            if(e5!=null){
+                                tmp = new Operacion(null,"NO","ID", ((token)e2).getLexeme(),((token)e3).getLexeme(), ((token)e4).getLexeme());
+                                ((Cola)e5).agregar(tmp);
                             }
                         }
-                    }
-                }else{
-                    if(e3!=null){
-                        
                     }
                 }
                 RESULT =e5;
@@ -522,10 +612,21 @@ class CUP$parserSQFORM$actions {
 		int e5right = ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()).right;
 		Object e5 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
 		
-                if(e1!=null){
-
-                }else{
-
+                Operacion tmp = null;
+                if (e3!=null){
+                    if(e3!=null){
+                        if(e1!=null){
+                            if(e5!=null){
+                                tmp = new Operacion(null,"SI","NOMBRE", ((token)e2).getLexeme(),((token)e3).getLexeme(), ((token)e4).getLexeme());
+                                ((Cola)e5).agregar(tmp);
+                            }
+                        }else{
+                            if(e5!=null){
+                                tmp = new Operacion(null,"NO","NOMBRE", ((token)e2).getLexeme(),((token)e3).getLexeme(), ((token)e4).getLexeme());
+                                ((Cola)e5).agregar(tmp);
+                            }
+                        }
+                    }
                 }
                 RESULT =e5;
             
@@ -554,11 +655,12 @@ class CUP$parserSQFORM$actions {
 		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserSQFORM$stack.peek()).value;
 		
                 if(e1!=null){
+                    Cola tmp = ((Cola)e1);
+                    Operacion ope = (Operacion)tmp.ver();
                     if(e2!=null){
-                        ((Clausula)e1).setOperadorLogico(((token)e2).getLexeme());
+                        ope.setLogica(((token)e2).getLexeme());
                     }
                 }
-
                 RESULT = e1;
             
               CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("clausulap",6, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.elementAt(CUP$parserSQFORM$top-1)), ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
@@ -570,7 +672,7 @@ class CUP$parserSQFORM$actions {
             {
               Object RESULT =null;
 		
-                RESULT = new Clausula(baseRespuestas.getRespuestas(),"NULL");
+                RESULT = new Cola();
             
               CUP$parserSQFORM$result = parser.getSymbolFactory().newSymbol("clausulap",6, ((java_cup.runtime.Symbol)CUP$parserSQFORM$stack.peek()), RESULT);
             }

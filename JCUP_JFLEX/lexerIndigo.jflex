@@ -476,6 +476,10 @@ asigId= [\"](\$|\_|\-)([0-9]|[a-zA-Z]|[$\-_])*[\"]
                         tmp_symbl = new Symbol(CONSULT, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
                         after_symbl = tmp_symbl;
                         return tmp_symbl;
+                    case "TABLA_CONSULTA":
+                        tmp_symbl = new Symbol(TABLA_CON, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
+                        after_symbl = tmp_symbl;
+                        return tmp_symbl;
                     default:
                         if(num){
                             tmp_symbl = new Symbol(ASIGNACION_NUM, after_symbl.sym, 0, new token(text, yycolumn + 1, yyline + 1));
