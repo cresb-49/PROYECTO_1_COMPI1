@@ -29,6 +29,16 @@ public class exportarFormulario extends HttpServlet {
 
         String original = req.getServletContext().getRealPath("");
         String path = original.replaceAll("/WEB_PROYECTO1/target/WEB_PROYECTO1-1.0-SNAPSHOT/", "");
+        
+        if (path.equals(original)) {
+            System.out.println("SO: WINDOWS");
+            String busqueda = "\\\\WEB_PROYECTO1\\\\target\\\\WEB_PROYECTO1-1.0-SNAPSHOT\\\\";
+            path = original.replaceAll(busqueda, "");
+
+        } else {
+            System.out.println("SO: LINUX");
+        }
+        
         this.cargarBaseDatos(path);
 
         String idForm = req.getParameter("idForm");

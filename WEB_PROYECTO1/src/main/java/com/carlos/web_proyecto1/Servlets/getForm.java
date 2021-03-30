@@ -26,6 +26,14 @@ public class getForm extends HttpServlet {
 
         String original = req.getServletContext().getRealPath("");
         String path = original.replaceAll("/WEB_PROYECTO1/target/WEB_PROYECTO1-1.0-SNAPSHOT/", "");
+        if (path.equals(original)) {
+            System.out.println("SO: WINDOWS");
+            String busqueda = "\\\\WEB_PROYECTO1\\\\target\\\\WEB_PROYECTO1-1.0-SNAPSHOT\\\\";
+            path = original.replaceAll(busqueda, "");
+
+        } else {
+            System.out.println("SO: LINUX");
+        }
         this.cargarBaseDatos(path);
 
         String idForm = req.getParameter("idForm");
@@ -39,7 +47,7 @@ public class getForm extends HttpServlet {
                     + "    <meta charset=\"UTF-8\">\n"
                     + "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n"
                     + "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
-                    + ((form.getTema().equals("Dark")?"<link rel=\"stylesheet\" href=\"/WEB_PROYECTO1/Resourses/CSS/dark2.css\">":"<link rel=\"stylesheet\" href=\"/WEB_PROYECTO1/Resourses/CSS/defaultTheme.css\">"))
+                    + ((form.getTema().equals("Dark") ? "<link rel=\"stylesheet\" href=\"/WEB_PROYECTO1/Resourses/CSS/dark2.css\">" : "<link rel=\"stylesheet\" href=\"/WEB_PROYECTO1/Resourses/CSS/defaultTheme.css\">"))
                     + "    <title>FORMULARIO DATA FORMS</title>\n"
                     + "</head>\n"
                     + "<body>\n"

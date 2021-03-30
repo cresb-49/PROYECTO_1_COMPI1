@@ -76,10 +76,20 @@ public class registrarRespuesta extends HttpServlet {
             if (filePart.getSize() > 0) {
                 archivos.add(new Archivo(filePart.getSubmittedFileName(), filePart.getInputStream()));
                 respuestas.add(new Respuesta(componente.getNombre_campo(), componente.getId(), filePart.getSubmittedFileName()));
-                FileOutputStream stream =null;
+                FileOutputStream stream = null;
                 try {
                     String original = req.getServletContext().getRealPath("");
                     String path = original.replaceAll("/WEB_PROYECTO1/target/WEB_PROYECTO1-1.0-SNAPSHOT/", "");
+                    
+                    if (path.equals(original)) {
+                        System.out.println("SO: WINDOWS");
+                        String busqueda = "\\\\WEB_PROYECTO1\\\\target\\\\WEB_PROYECTO1-1.0-SNAPSHOT\\\\";
+                        path = original.replaceAll(busqueda, "");
+
+                    } else {
+                        System.out.println("SO: LINUX");
+                    }
+
                     path = path + "/Almacenamiento/Archivos/";
                     path = path + filePart.getSubmittedFileName();
 
@@ -114,6 +124,17 @@ public class registrarRespuesta extends HttpServlet {
         Gson gson = new Gson();
         String original = req.getServletContext().getRealPath("");
         String path = original.replaceAll("/WEB_PROYECTO1/target/WEB_PROYECTO1-1.0-SNAPSHOT/", "");
+        
+        if (path.equals(original)) {
+            System.out.println("SO: WINDOWS");
+            String busqueda = "\\\\WEB_PROYECTO1\\\\target\\\\WEB_PROYECTO1-1.0-SNAPSHOT\\\\";
+            path = original.replaceAll(busqueda, "");
+
+        } else {
+            System.out.println("SO: LINUX");
+        }
+        
+        
 
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path + "/Almacenamiento/forms.db")));
@@ -135,6 +156,17 @@ public class registrarRespuesta extends HttpServlet {
         Gson gson = new Gson();
         String original = req.getServletContext().getRealPath("");
         String path = original.replaceAll("/WEB_PROYECTO1/target/WEB_PROYECTO1-1.0-SNAPSHOT/", "");
+        
+        if (path.equals(original)) {
+            System.out.println("SO: WINDOWS");
+            String busqueda = "\\\\WEB_PROYECTO1\\\\target\\\\WEB_PROYECTO1-1.0-SNAPSHOT\\\\";
+            path = original.replaceAll(busqueda, "");
+
+        } else {
+            System.out.println("SO: LINUX");
+        }
+        
+        
         DBRespuestas respuestasForms = new DBRespuestas();
         sobreEscribirArchivo escribir = new sobreEscribirArchivo();
 

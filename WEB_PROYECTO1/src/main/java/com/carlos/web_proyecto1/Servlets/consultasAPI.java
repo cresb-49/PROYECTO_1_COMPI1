@@ -56,7 +56,7 @@ public class consultasAPI extends HttpServlet {
                     
                     if(p.equals(original)){
                         System.out.println("SO: WINDOWS");
-                        p = original.replaceAll("\\WEB_PROYECTO1\\target\\WEB_PROYECTO1-1.0-SNAPSHOT\\","");
+                        p = original.replaceAll("\\\\WEB_PROYECTO1\\\\target\\\\WEB_PROYECTO1-1.0-SNAPSHOT\\\\","");
                         ejecutarConsultas = new ejecutarConsultas(p);
                     }else{
                         System.out.println("SO: LINUX");

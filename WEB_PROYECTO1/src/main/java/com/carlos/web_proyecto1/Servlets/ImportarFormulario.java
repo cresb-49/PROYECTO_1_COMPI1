@@ -36,6 +36,15 @@ public class ImportarFormulario extends HttpServlet {
 
         String original = req.getServletContext().getRealPath("");
         String path = original.replaceAll("/WEB_PROYECTO1/target/WEB_PROYECTO1-1.0-SNAPSHOT/", "");
+        if (path.equals(original)) {
+            System.out.println("SO: WINDOWS");
+            String busqueda = "\\\\WEB_PROYECTO1\\\\target\\\\WEB_PROYECTO1-1.0-SNAPSHOT\\\\";
+            path = original.replaceAll(busqueda, "");
+
+        } else {
+            System.out.println("SO: LINUX");
+        }
+
         this.cargarBaseDatos(path);
 
         List<String> errSin = new ArrayList<>();
@@ -80,7 +89,7 @@ public class ImportarFormulario extends HttpServlet {
                                             mensajes.add("El componente de clase: " + componentes.get(j).getClase() + " comparte el mismo id con el componente clase: " + componentes.get(i).getClase() + " en el formulario id: " + form.getId());
                                         } else if (componentes.get(i).getNombre_campo().equals(componentes.get(j).getNombre_campo())) {
                                             mensajes.add("El componente de clase: " + componentes.get(j).getClase() + " comparte el mismo nombre con el componente clase: " + componentes.get(i).getClase() + " en el fomularios id: " + form.getId());
-                                            
+
                                         }
                                     } catch (Exception e) {
                                     }
@@ -96,13 +105,13 @@ public class ImportarFormulario extends HttpServlet {
                                 componente.setIndice(String.valueOf(cont));
                             }
                             System.out.println("Agrege el formulario");
-                            if(this.baseForms.getFormularios()==null){
+                            if (this.baseForms.getFormularios() == null) {
                                 this.baseForms.setFormularios(new ArrayList<Formulario>());
                             }
                             this.baseForms.getFormularios().add(form);
                             this.escribirDatos(path, baseForms);
-                            mensajes.add("Se agrego con exito el formulario: "+form.getId());
-                            
+                            mensajes.add("Se agrego con exito el formulario: " + form.getId());
+
                         }
 
                     } else {
