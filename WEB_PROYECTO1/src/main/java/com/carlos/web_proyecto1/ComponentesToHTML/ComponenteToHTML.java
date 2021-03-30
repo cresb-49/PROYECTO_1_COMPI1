@@ -88,10 +88,10 @@ public class ComponenteToHTML {
         }
 
         String html = "\n"
-                + "<div>\n"
+                + "<div " + ((comp.getRequerido() == null) ? "" : ((comp.getRequerido().equals("SI") ? "required" : ""))) + " >\n"
                 + "<label for=\"" + comp.getId() + "\">" + comp.getTexto_visible() + "</label>\n";
         for (String op : ops) {
-            html = html + "<input type=\"checkbox\" id=\"" + comp.getId() + "\" name=\"" + comp.getNombre_campo() + "\" value=\"" + op + "\"" + ((comp.getRequerido() == null) ? "" : ((comp.getRequerido().equals("SI") ? "required" : ""))) + "/>" + op + "\n";
+            html = html + "<input type=\"checkbox\" id=\"" + comp.getId() + "\" name=\"" + comp.getNombre_campo() + "\" value=\"" + op + "\" />" + op + "\n";
         }
         opciones.reinicioLex();
         html = html + "</div>\n";

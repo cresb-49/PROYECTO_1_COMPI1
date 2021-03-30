@@ -33,6 +33,8 @@ public class Tabla {
 
     @Override
     public String toString() {
-        return "Tabla{" + "nombreTabla=" + nombreTabla + '}';
+        return "Tabla{" + "filas=" + filas + ", nombreTabla=" + nombreTabla + '}';
     }
+
+    
 }

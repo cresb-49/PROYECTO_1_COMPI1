@@ -288,7 +288,7 @@ public class consultasDatos extends javax.swing.JInternalFrame {
                     tablasInfo.add((Tabla) tmporal.pop());
                 }
 
-                if (tablasInfo.size() > 1) {
+                if (tablasInfo.size() > 0) {
                     this.btnSigTab.setEnabled(true);
                     this.localCount=0;
                     this.cargarTablas();
