@@ -27,7 +27,7 @@ public class consultasDatos extends javax.swing.JInternalFrame {
     private RealizarConsulta api = new RealizarConsulta();
     private List<Tabla> tablasInfo;
     private int maxCount;
-    private int localCount = 1;
+    private int localCount = 0;
 
     /**
      * Creates new form consultasDatos
@@ -295,7 +295,8 @@ public class consultasDatos extends javax.swing.JInternalFrame {
     }
 
     private void cargarTablas() {
-        Tabla currentTable = tablasInfo.get(localCount - 1);
+        this.maxCount = tablasInfo.size();
+        Tabla currentTable = tablasInfo.get(localCount);
         this.labelCansulta.setText(currentTable.getNombreTabla());
         DefaultTableModel model = new DefaultTableModel();
         this.tablaConsultas.setModel(model);
@@ -340,10 +341,11 @@ public class consultasDatos extends javax.swing.JInternalFrame {
 
     private void btnSigTabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSigTabActionPerformed
         // TODO add your handling code here:
-        this.cargarTablas();
         localCount++;
         if (localCount == maxCount) {
             localCount = 1;
+        }else{
+            this.cargarTablas();
         }
     }//GEN-LAST:event_btnSigTabActionPerformed
 
