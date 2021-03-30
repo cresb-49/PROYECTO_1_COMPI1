@@ -264,6 +264,15 @@
 <fin_solicitud!>
 
 
+<!ini_solicitud:"ELIMINAR_FORMULARIO">
+{
+    "PARAMETROS_FORMULARIO":[
+        {
+            "ID": "$formPrueba1"
+        }
+    ]
+}
+<fin_solicitud!>
 
 <!ini_solicitudes>
 <!ini_solicitud:"MODIFICAR_FORMULARIO">

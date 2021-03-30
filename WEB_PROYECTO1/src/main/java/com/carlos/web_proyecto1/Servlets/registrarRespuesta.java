@@ -18,7 +18,10 @@ import javax.servlet.http.Part;
 import com.carlos.web_proyecto1.Objetos.*;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -60,9 +63,9 @@ public class registrarRespuesta extends HttpServlet {
         }
 
         RespuestaFormulario respuestasForm = new RespuestaFormulario(form.getId(), form.getNombre(), respuestas);
-        
+
         registarRespuestas(req, respuestasForm);
-        
+
         this.mensajefinalFormulario(req, resp);
 
     }
@@ -71,8 +74,32 @@ public class registrarRespuesta extends HttpServlet {
         try {
             Part filePart = req.getPart(componente.getNombre_campo());
             if (filePart.getSize() > 0) {
-                archivos.add(new Archivo(filePart.getName(), filePart.getInputStream()));
-                respuestas.add(new Respuesta(componente.getNombre_campo(), componente.getId(), filePart.getName()));
+                archivos.add(new Archivo(filePart.getSubmittedFileName(), filePart.getInputStream()));
+                respuestas.add(new Respuesta(componente.getNombre_campo(), componente.getId(), filePart.getSubmittedFileName()));
+                FileOutputStream stream =null;
+                try {
+                    String original = req.getServletContext().getRealPath("");
+                    String path = original.replaceAll("/WEB_PROYECTO1/target/WEB_PROYECTO1-1.0-SNAPSHOT/", "");
+                    path = path + "/Almacenamiento/Archivos/";
+                    path = path + filePart.getSubmittedFileName();
+
+                    System.out.println("path nuevo: " + path);
+                    stream = new FileOutputStream(new File(path));
+                    byte[] bytes = filePart.getInputStream().readAllBytes();
+                    stream.write(bytes);
+
+                } catch (Exception e) {
+                    System.out.println("Error en escritura de archivo");
+                    e.printStackTrace();
+                } finally {
+                    if (stream != null) {
+                        try {
+                            stream.close();
+                        } catch (IOException ignored) {
+                        }
+                    }
+                }
+
             }
         } catch (Exception ex) {
             System.out.println("Error de fichero: " + ex.getMessage());
@@ -110,7 +137,7 @@ public class registrarRespuesta extends HttpServlet {
         String path = original.replaceAll("/WEB_PROYECTO1/target/WEB_PROYECTO1-1.0-SNAPSHOT/", "");
         DBRespuestas respuestasForms = new DBRespuestas();
         sobreEscribirArchivo escribir = new sobreEscribirArchivo();
-        
+
         //Carga de la base de datos
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path + "/Almacenamiento/resForms.db")));

@@ -35,4 +35,14 @@
     <fin_solicitud!>
 <!fin_solicitudes>
 
-$formPrueba1
+<!ini_solicitudes>
+    <!ini_solicitud:"CONSULTAR_DATOS">
+        { "CONSULTAS":[
+            {
+                "CONSULTA-2": "SELECT TO FORM -> $formPrueba1 []"
+            }
+        ]
+        }
+    <fin_solicitud!>
+<!fin_solicitudes>
+

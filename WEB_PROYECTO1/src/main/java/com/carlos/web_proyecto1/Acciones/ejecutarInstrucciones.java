@@ -119,9 +119,11 @@ public class ejecutarInstrucciones {
                     case "ELIMINAR_FORMULARIO":
                         res = baseForms.eliminarFormulario((formulariotmp) tmp);
                         log.add(res);
+                        break;
                     case "MODIFICAR_FORMULARIO":
                         res = baseForms.modificarFormulario((formulariotmp) tmp);
                         log.add(res);
+                        break;
                     default:
                         System.out.println("Accion no registrada formulario: " + ((formulariotmp) tmp).getAccion());
                 }

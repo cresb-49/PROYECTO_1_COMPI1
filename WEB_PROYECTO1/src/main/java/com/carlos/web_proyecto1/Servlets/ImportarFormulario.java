@@ -75,21 +75,34 @@ public class ImportarFormulario extends HttpServlet {
                             for (int j = i + 1; j < componentes.size(); j++) {
 
                                 if (!(componentes.get(i).equals(componentes.get(j)))) {
-                                    if (componentes.get(i).getId().equals(componentes.get(j).getId())) {
-                                        mensajes.add("El componente de clase: " + componentes.get(j).getClase() + " comparte el mismo id con el componente clase: " + componentes.get(i).getClase() + " en el formulario id: " + form.getId());
-                                    } else if (componentes.get(i).getNombre_campo().equals(componentes.get(j).getNombre_campo())) {
-                                        mensajes.add("El componente de clase: " + componentes.get(j).getClase() + " comparte el mismo nombre con el componente clase: " + componentes.get(i).getClase() + " en el fomularios id: " + form.getId());
-
+                                    try {
+                                        if (componentes.get(i).getId().equals(componentes.get(j).getId())) {
+                                            mensajes.add("El componente de clase: " + componentes.get(j).getClase() + " comparte el mismo id con el componente clase: " + componentes.get(i).getClase() + " en el formulario id: " + form.getId());
+                                        } else if (componentes.get(i).getNombre_campo().equals(componentes.get(j).getNombre_campo())) {
+                                            mensajes.add("El componente de clase: " + componentes.get(j).getClase() + " comparte el mismo nombre con el componente clase: " + componentes.get(i).getClase() + " en el fomularios id: " + form.getId());
+                                            
+                                        }
+                                    } catch (Exception e) {
                                     }
+
                                 }
 
                             }
                         }
                         if (mensajes.isEmpty()) {
+                            int cont = 1;
                             for (Componente componente : form.getComponentes()) {
                                 componente.setFormulario(form.getId());
+                                componente.setIndice(String.valueOf(cont));
+                            }
+                            System.out.println("Agrege el formulario");
+                            if(this.baseForms.getFormularios()==null){
+                                this.baseForms.setFormularios(new ArrayList<Formulario>());
                             }
                             this.baseForms.getFormularios().add(form);
+                            this.escribirDatos(path, baseForms);
+                            mensajes.add("Se agrego con exito el formulario: "+form.getId());
+                            
                         }
 
                     } else {
@@ -100,9 +113,6 @@ public class ImportarFormulario extends HttpServlet {
 
             if (!mensajes.isEmpty()) {
                 this.envioRespuestas(req, resp, mensajes);
-            } else {
-                this.escribirDatos(path, baseForms);
-                this.envioMensaje(req, resp, "Se agrego con exito la informacion al servidor");
             }
 
         } catch (Exception e) {

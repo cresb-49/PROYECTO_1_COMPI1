@@ -27,10 +27,13 @@ public class DBFormularios {
     }
 
     public Formulario buscarFormulario(String formId) {
-        for (Formulario forms : this.formularios) {
+        try {
+            for (Formulario forms : this.formularios) {
             if (forms.getId().equals(formId)) {
                 return forms;
             }
+        }
+        } catch (Exception e) {
         }
         return null;
     }

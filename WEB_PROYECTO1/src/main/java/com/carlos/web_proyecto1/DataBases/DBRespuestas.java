@@ -31,13 +31,15 @@ public class DBRespuestas {
     
     public List<RespuestaFormulario> respuestasIDForm(String id){
         List<RespuestaFormulario> respuesta = new ArrayList<>();
-        
-        for (RespuestaFormulario respuestaFormulario : this.respuestas) {
+        try {
+            for (RespuestaFormulario respuestaFormulario : this.respuestas) {
             if(respuestaFormulario.getIdForm().equals(id)){
                 respuesta.add(respuestaFormulario);
             }
         }
-        
+        } catch (Exception e) {
+            
+        }
         return respuesta;
     }
     
