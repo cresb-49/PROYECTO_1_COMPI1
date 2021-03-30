@@ -290,10 +290,15 @@ public class consultasDatos extends javax.swing.JInternalFrame {
 
                 if (tablasInfo.size() > 1) {
                     this.btnSigTab.setEnabled(true);
+                    this.localCount=0;
                     this.cargarTablas();
                 } else {
                     this.btnSigTab.setEnabled(false);
                 }
+            }else{
+                this.localCount=0;
+                this.btnSigTab.setEnabled(false);
+                this.limpiarTabla();
             }
 
         } catch (Exception e) {
@@ -325,6 +330,12 @@ public class consultasDatos extends javax.swing.JInternalFrame {
             }
         }
     }
+    
+    private void limpiarTabla(){
+        this.labelCansulta.setText("Vacio");
+        DefaultTableModel model = new DefaultTableModel();
+        this.tablaConsultas.setModel(model);
+    }
 
 
     private void resNormalCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_resNormalCaretUpdate
@@ -350,7 +361,8 @@ public class consultasDatos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         localCount++;
         if (localCount == maxCount) {
-            localCount = 1;
+            localCount = 0;
+            this.cargarTablas();
         }else{
             this.cargarTablas();
         }

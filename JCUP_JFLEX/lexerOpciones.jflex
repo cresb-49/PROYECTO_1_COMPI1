@@ -26,7 +26,7 @@ import java_cup.runtime.Symbol;
 LineTerminator = [\r|\n|\r\n]+
 WhiteSpace = [ \t\n]+
 
-simbolos = [\]\[\{\}!@#$%&*'~`°¬¡¿¨()+=_<>?/.:;,\-\^]
+simbolos = [\]\[\{\}!@#$%&*'~`°¬¡¿¨()+=_<>?\\/.:;,\-\^]
 numeros = [0-9]
 letras = [a-zA-Z]
 text  = ({simbolos}|{numeros}|{letras}|[ \t])+

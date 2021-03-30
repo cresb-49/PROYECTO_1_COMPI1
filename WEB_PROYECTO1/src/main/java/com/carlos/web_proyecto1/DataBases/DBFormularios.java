@@ -147,7 +147,7 @@ public class DBFormularios {
                     form.getComponentes().add(newComp);
                     respuesta = "El componente " + comp.getId() + " se agrego con exito al formulario " + form.getId();
                 }else{
-                    respuesta = "Ya existe un componente con el nombre " + comp.getId() + " en el formulario con id " + form.getId()+", la existenacia de nombres iguales daria el error de no recuperar la informacion correctamente";
+                    respuesta = "Ya existe un componente con el nombre: " + comp.getNombre()+ " ,en el formulario con id " + form.getId()+", la existenacia de nombres iguales daria el error de no recuperar la informacion correctamente";
                 }
 
             } else {

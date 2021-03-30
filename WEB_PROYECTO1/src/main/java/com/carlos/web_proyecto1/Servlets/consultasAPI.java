@@ -69,7 +69,7 @@ public class consultasAPI extends HttpServlet {
                         List<PaqueteConsultas> paquetes = ejecutarConsultas.getPaquetesConsultas();
                         convertirTabla = new TablaToIndigo(ejecutarConsultas.getBaseForms());
                         String tmpCode = convertirTabla.convertir(paquetes);
-                        System.out.println(tmpCode);
+                        //System.out.println(tmpCode);
                         envioTabla(req, resp, tmpCode);
                         
                     }else{

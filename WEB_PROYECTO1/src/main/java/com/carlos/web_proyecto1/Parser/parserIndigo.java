@@ -2112,6 +2112,11 @@ public class parserIndigo extends java_cup.runtime.lr_parser {
         public List<Object> getInstrucciones() {
             return instrucciones;
         }
+        //LISTA DE TABLAS
+        Pila tablas = new Pila();
+        public Pila getTablas() {
+            return tablas;
+        }
 
         public usuario getLogUser() {
                 return logUser;
@@ -2317,7 +2322,24 @@ class CUP$parserIndigo$actions {
           case 13: // tipoR ::= NUM_CONSULT MA_Q L_A TABLA_CON D_DOT C_A paramsTablas C_C L_C ME_Q FR ADM MA_Q continuacion 
             {
               Object RESULT =null;
-
+		int e2left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-13)).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-13)).right;
+		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-13)).value;
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-7)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-7)).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-7)).value;
+		
+                if(e1!=null){
+                        Pila tmp = (Pila)e1;
+                        List<List<String>> tab = new ArrayList<>();
+                        while(!tmp.isEmpty()){
+                                tab.add((List<String>)tmp.pop());
+                        }
+                        Tabla tablaInfo = new Tabla(tab);
+                        tablaInfo.setNombreTabla(((token)e2).getLexeme());
+                        tablas.push(tablaInfo);
+                }
+        
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("tipoR",148, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-13)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
@@ -2335,6 +2357,9 @@ class CUP$parserIndigo$actions {
           case 15: // continuacion ::= contRes 
             {
               Object RESULT =null;
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
 
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("continuacion",150, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
@@ -2353,7 +2378,28 @@ class CUP$parserIndigo$actions {
           case 17: // paramsTablas ::= L_A contTabla L_C paramsTablasP 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-2)).value;
+		int e2left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
+		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
+		
+                        if(e2!=null){
+                                Pila tmp = (Pila)e2;
+                                if(e1!=null){
+                                    Pila tmp2 = (Pila)e1;
+                                    String columna;
+                                    List<String> fila = new ArrayList<>();
+                                    while (!tmp2.isEmpty()) {                                        
+                                        columna = (String)tmp2.pop();
+                                        fila.add(columna);
+                                    }
+                                    tmp.push(fila);
+                                }
+                        }
+                        RESULT = e2;
+                
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("paramsTablas",163, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
@@ -2371,7 +2417,12 @@ class CUP$parserIndigo$actions {
           case 19: // paramsTablasP ::= COM paramsTablas 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
+		
+                        RESULT = e1;
+                
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("paramsTablasP",165, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
@@ -2380,7 +2431,9 @@ class CUP$parserIndigo$actions {
           case 20: // paramsTablasP ::= 
             {
               Object RESULT =null;
-
+		
+                        RESULT = new Pila();
+                
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("paramsTablasP",165, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
@@ -2398,7 +2451,22 @@ class CUP$parserIndigo$actions {
           case 22: // contTabla ::= COLM D_DOT var_ASIGNACION contTablaP 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)).value;
+		int e2left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).left;
+		int e2right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
+		Object e2 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
+		
+                        if(e2!=null){
+                                Pila tmp = ((Pila)e2);
+                                if(e1!=null){
+                                        token tmp2 = ((token)e1);
+                                        tmp.push(tmp2.getLexeme());
+                                }
+                        }
+                        RESULT = e2;
+                
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contTabla",164, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-3)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
@@ -2416,7 +2484,12 @@ class CUP$parserIndigo$actions {
           case 24: // contTablaP ::= COM contTabla 
             {
               Object RESULT =null;
-
+		int e1left = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).left;
+		int e1right = ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()).right;
+		Object e1 = (Object)((java_cup.runtime.Symbol) CUP$parserIndigo$stack.peek()).value;
+		
+                        RESULT =e1;
+                
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contTablaP",166, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.elementAt(CUP$parserIndigo$top-1)), ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;
@@ -2425,7 +2498,9 @@ class CUP$parserIndigo$actions {
           case 25: // contTablaP ::= 
             {
               Object RESULT =null;
-
+		
+                        RESULT = new Pila();
+                
               CUP$parserIndigo$result = parser.getSymbolFactory().newSymbol("contTablaP",166, ((java_cup.runtime.Symbol)CUP$parserIndigo$stack.peek()), RESULT);
             }
           return CUP$parserIndigo$result;

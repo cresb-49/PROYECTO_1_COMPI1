@@ -3441,6 +3441,6 @@ class CUP$parserImportar$actions {
                                CUP$parserImportar$stack,
                                CUP$parserImportar$top);
     }
-    }
+}
 
 }

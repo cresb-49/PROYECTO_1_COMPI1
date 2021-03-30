@@ -68,9 +68,8 @@ public class lexerOpciones {
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
     "\11\0\1\1\1\2\2\0\1\3\22\0\1\1\1\4"+
-    "\1\0\71\4\1\0\37\4\1\3\2\4\42\0\1\4"+
-    "\6\0\1\4\3\0\1\4\3\0\1\4\16\0\1\4"+
-    "\u0140\0";
+    "\1\0\131\4\1\3\2\4\42\0\1\4\6\0\1\4"+
+    "\3\0\1\4\3\0\1\4\16\0\1\4\u0140\0";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[512];

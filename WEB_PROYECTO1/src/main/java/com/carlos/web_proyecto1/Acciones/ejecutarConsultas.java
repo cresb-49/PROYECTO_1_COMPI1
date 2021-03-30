@@ -139,9 +139,12 @@ public class ejecutarConsultas {
                 try {
                     parser.parse();
                     PaqueteConsultas tmpRes = parser.obtenerResultado();
-                    tmpRes.setNombreConsulta(((consulta) tmp).getTag());
-                    paquetesConsultas.add(tmpRes);
-                    
+                    if(tmpRes!=null){
+                        tmpRes.setNombreConsulta(((consulta) tmp).getTag());
+                        paquetesConsultas.add(tmpRes);
+                    }else{
+                        log.add("Errores en conuslta "+((consulta) tmp).getTag()+" Linea:"+((consulta)tmp).getLinea()+" ,Columna: "+((consulta)tmp).getColumna()+" \n-"+"No existe el formulario seleccionado");
+                    }
                 } catch (Exception e) {
                     System.out.println("Error en lectura de consulta");
                     e.printStackTrace();
@@ -150,10 +153,10 @@ public class ejecutarConsultas {
                     System.out.println("Consulta sin errores");
                 }else{
                     for (String string : lex.getErrorsList()) {
-                        log.add("Errores en conuslta Linea:"+((consulta)tmp).getLinea()+" ,Columna: "+((consulta)tmp).getColumna()+" \n-"+string);
+                        log.add("Errores en conuslta "+((consulta) tmp).getTag()+" Linea:"+((consulta)tmp).getLinea()+" ,Columna: "+((consulta)tmp).getColumna()+" \n-"+string);
                     }
                     for (String string : parser.getErrorsList()) {
-                        log.add("Errores en conuslta Linea:"+((consulta)tmp).getLinea()+" ,Columna: "+((consulta)tmp).getColumna()+" \n-"+string);
+                        log.add("Errores en conuslta "+((consulta) tmp).getTag()+" Linea:"+((consulta)tmp).getLinea()+" ,Columna: "+((consulta)tmp).getColumna()+" \n-"+string);
                     }
                 }
                 

@@ -66,8 +66,8 @@ public class lexerInerText {
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
     "\11\0\2\1\25\0\1\1\1\2\1\0\15\2\12\3"+
-    "\42\2\1\0\42\2\42\0\1\2\6\0\1\2\3\0"+
-    "\1\2\3\0\1\2\16\0\1\2\u0140\0";
+    "\105\2\42\0\1\2\6\0\1\2\3\0\1\2\3\0"+
+    "\1\2\16\0\1\2\u0140\0";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[512];
@@ -276,9 +276,6 @@ public class lexerInerText {
   private boolean zzEOFDone;
 
   /* user code: */
-    /*private Symbol after_symbl = new Symbol(0);*/
-    /*private Symbol tmp_symbl = new Symbol(0);*/
-
     private List<String> errorsList = new ArrayList<>();
     private String currentText="";
     private int cantidadLexemas = 0;

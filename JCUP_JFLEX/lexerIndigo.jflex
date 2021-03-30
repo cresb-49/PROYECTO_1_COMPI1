@@ -51,7 +51,7 @@ finConjuntoRes = (<)([ \n\r\t])*(\!)([ \n\r\t])*([fF][iI][nN]_[rR][eE][sS][pP][u
 numConsult = [\"][ \t\n]*([C][O][N][S][U][L][T][A][\-][0-9]+)[ \t\n]*[\"]
 
 
-simbolos = [\]\[\{\}!@#$%&*'~`°¬¡¿¨()+=_<>?/.:;,\|\-\^]
+simbolos = [\]\[\{\}!@#$%&*'~`°¬¡¿¨()+=_<>?/\\.:;,\|\-\^]
 numeros = [0-9]
 letras = [a-zA-Z]
 text  = [\"]({simbolos}|{numeros}|{letras}|[ \t\n])*[\"]

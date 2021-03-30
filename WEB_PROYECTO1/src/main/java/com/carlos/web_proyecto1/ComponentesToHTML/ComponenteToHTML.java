@@ -71,7 +71,7 @@ public class ComponenteToHTML {
         String html = "\n"
                 + "<div>\n"
                 + "<label for=\"" + comp.getId() + "\">" + comp.getTexto_visible() + "</label>\n"
-                + "<textarea id=\"" + comp.getId() + "\" rows=\"" + comp.getFilas() + "\" cols=\"" + comp.getColumnas() + "\" name=\"" + comp.getNombre_campo() + "\"" + ((comp.getRequerido() == null) ? "" : ((comp.getRequerido().equals("SI") ? "required" : ""))) + "></textarea>"
+                + "<textarea id=\"" + comp.getId() + "\" rows=\"" + comp.getFilas() + "\" cols=\"" + comp.getColumnas() + "\" name=\"" + comp.getNombre_campo() + "\"" + ((comp.getRequerido() == null) ? "" : ((comp.getRequerido().equals("SI") ? "required = \"\"" : ""))) + "style=\" width: 990px; height: 539px;\"></textarea>"
                 + "</div>\n";
         return html;
     }

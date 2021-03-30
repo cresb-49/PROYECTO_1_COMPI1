@@ -23,7 +23,7 @@ import java.util.List;
 /*EXPRECIONES REGULARES*/
 
 WhiteSpace = [ \t\n]+
-simbolos = [\]\[\{\}!@#$%&*'~`°¬¡¿¨()+=_<>?/.:;,\|\-\^]
+simbolos = [\]\[\{\}!@#$%&*'~`°¬¡¿¨()+=_<>?\\/.:;,\|\-\^]
 numeros = [0-9]
 letras = [a-zA-Z]
 text  = ({simbolos}|{numeros}|{letras})+

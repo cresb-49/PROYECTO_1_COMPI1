@@ -32,8 +32,8 @@ import java_cup.runtime.Symbol;
 
 LineTerminator = [\r|\n|\r\n]+
 WhiteSpace = [ \t\n]+
-simbolos = [!@#$%&*~`°¬¡¿¨()+=_<>?/.:;,\|\-\^]
-simbolos2 = [!@#$%&*~`°¬¡¿¨()+=_<>?/.:;\|\-\^]
+simbolos = [!@#$%&*~`°¬¡¿¨()+=_<>?/.:;,\\\|\-\^]
+simbolos2 = [!@#$%&*~`°¬¡¿¨()+=_<>?/.:;\\\|\-\^]
 numeros = [0-9]
 letras = [a-zA-Z]
 espacio = [ ]
