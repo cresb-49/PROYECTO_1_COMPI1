@@ -51,13 +51,16 @@ _Para el despliege del proyecto necesitaremos de acceder a:_
 ```
 http://localhost:8080/
 ```
+
+![Pantalla Inicio Apache TomCat](https://github.com/cresb-49/PROYECTO_1_COMPI1/blob/main/Imagenes/ApacheTomCat.jpg)
+
 _Al acceder a la direccion podremos observar el sistema de Apache Tomcat, el apartado que nos interesa se denomina **Manager App** introduciremos nuestras credenciales que asignamos con anterioridad_
 
-![Pantalla Inicio Apache TomCat](https://raw.githubusercontent.com/parzibyte/WaterPy/master/assets/ImagenV1.png)
+![ManagerAppTomCat](https://github.com/cresb-49/PROYECTO_1_COMPI1/blob/main/Imagenes/ManagerApp.jpg)
 
 _Ya en el Manager App nos interesa en sector de **WAR file to deploy** donde buscaremos el Archivo **.war** para cargarlo a Apache Tomcat_
 
-![Apartado WAR file to deploy](https://raw.githubusercontent.com/parzibyte/WaterPy/master/assets/ImagenV1.png)
+![Apartado WAR file to deploy](https://github.com/cresb-49/PROYECTO_1_COMPI1/blob/main/Imagenes/WarSeccion.jpg)
 
 _El Archivo del proyecto se encuentra en la carpeta **Ejecutables y base de datos** dentro del proyecto y archivo a cargar dentro de esta carpeta es **WEB_PROYECTO1.war**_
 
