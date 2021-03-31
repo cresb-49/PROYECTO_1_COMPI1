@@ -38,9 +38,9 @@ _Asignacion de permisos para la gestion de Apache Tomcat_
 _Apache Tomcat integra un sistema de usuarios y permisos por lo cual para desplegar nuestro proyecto necesitaremos de los accesos a el sistema, teniendo una instalacion nativa o una ejecucion desde NetBeans deberemos de acceder a la carpeta **conf** de nuestro Apache Tomcat y modificar el archivo **tomcat-users.xml** en este documento existe un apartado denominado **tomcat-users** que dentro de este apartado deberemos de agregar las siguintes configuraciones si no estuvieran_
 ```
 <role rolename="manager-gui"/>
-role rolename="manager-script"/>
-role rolename="manager-jnx"/>
-role rolename="manager-status"/>
+<role rolename="manager-script"/>
+<role rolename="manager-jnx"/>
+<role rolename="manager-status"/>
 <role rolename="admin"/>
 <user password="pass" roles="admin,manager-gui,manager-script" username="admin"/>
 
