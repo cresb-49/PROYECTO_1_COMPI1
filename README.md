@@ -9,77 +9,59 @@ Mira **Deployment** para conocer como desplegar el proyecto.
 
 ### Pre-requisitos 📋
 
-_Los requisitos de ejecucion se basan en los siguinte:_
+_Los requisitos de ejecucion se basan en los siguiente:_
 
 ```
 Java en su version 11 LTS o en defecto OPENJDK
 Apache Tomcat en su version (9.0.43) *recomendado
 ```
 
-### Instalación 🔧
+### Instalación 🔧 / Despliegue 📦
 
-_Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
+_Ejecutar servidor Apache Tomcat (9.0.43)_
 
-_Dí cómo será ese paso_
-
-```
-Da un ejemplo
-```
-
-_Y repite_
+_La ejecucion de Apache Tomcat puede ser realizada de dos formas, por medio de la intalacion Nativa del software o por medio de Apache NetBeans que provee de las herramientas necesarias para poder desplegarla sin la instalacion directa en el sistema_
 
 ```
-hasta finalizar
+Instalacion Nativa: 
+Desde terminal -> $catalina run
+
+Apache NetBeans
+- En el apartado de *services* localizamos el apartado *servers* donde agregaremos un servidor Apache Tomcat o TomEE, localizaremos la carpeta de nuestro Apache Tomcat 9.0.43 y asignamos user y password para servicios de tomcat y finalizamos la configuracion.
+
+-Ya agregado el servidor ya aparecera en la lista del apartado *servers* donde daremos click derecho y ejecutaremos el servicio de Apache Tomcat
+
 ```
+
+_Asignacion de permisos para la gestion de Apache Tomcat_
+
+_Apache Tomcat integra un sistema de usuarios y permisos por lo cual para desplegar nuestro proyecto necesitaremos de los accesos a el sistema, teniendo una instalacion nativa o un ejecucion desde NetBeans deberemos de acceder a la carpeta **conf** de nuestro Apache Tomcat y modificar el archivo **tomcat-users.xml** en este documento existe un apartado denominado **tomcat-users** que dentro de este apartado deberemos de agregar las siguintes configuraciones si no estuvieran_
+```
+<role rolename="manager-gui"/>
+role rolename="manager-script"/>
+role rolename="manager-jnx"/>
+role rolename="manager-status"/>
+<role rolename="admin"/>
+<user password="pass" roles="admin,manager-gui,manager-script" username="admin"/>
+
+```
+_Ya realizando la configuracion reiniciamos nuestro servicio de Apache Tomcat para que se aplique los cambios_
+
+_Para el despliege del proyecto_
+
+
 
 _Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
 
-
-## Despliegue 📦
-
-_Agrega notas adicionales sobre como hacer deploy_
 
 ## Construido con 🛠️
 
 _Menciona las herramientas que utilizaste para crear tu proyecto_
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
 * [Maven](https://maven.apache.org/) - Manejador de dependencias
-* [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
-
-## Contribuyendo 🖇️
-
-Por favor lee el [CONTRIBUTING.md](https://gist.github.com/villanuevand/xxxxxx) para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
-
-## Wiki 📖
-
-Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](https://github.com/tu/proyecto/wiki)
-
-## Versionado 📌
-
-Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/tu/proyecto/tags).
 
 ## Autores ✒️
 
 _Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
 
-* **Andrés Villanueva** - *Trabajo Inicial* - [villanuevand](https://github.com/villanuevand)
-* **Fulanito Detal** - *Documentación* - [fulanitodetal](#fulanito-de-tal)
-
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
-
-## Licencia 📄
-
-Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
-
-## Expresiones de Gratitud 🎁
-
-* Comenta a otros sobre este proyecto 📢
-* Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
-* Da las gracias públicamente 🤓.
-* etc.
-
-
-
----
-⌨️ con ❤️ por [Villanuevand](https://github.com/Villanuevand) 😊
+* **Carlos Pac** - *Trabajo Inicial* - [cresb-49](https://github.com/cresb-49)
