@@ -9,10 +9,11 @@ Mira **Deployment** para conocer como desplegar el proyecto.
 
 ### Pre-requisitos 📋
 
-_Es necesario de JAVA en su version 11 para la ejecucion de ambos proyectos_
+_Los requisitos de ejecucion se basan en los siguinte:_
 
 ```
-Da un ejemplo
+Java en su version 11 LTS o en defecto OPENJDK
+Apache Tomcat en su version (9.0.43) *recomendado
 ```
 
 ### Instalación 🔧
