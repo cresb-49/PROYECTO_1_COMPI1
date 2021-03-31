@@ -1,51 +1,51 @@
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Servlets/registrarRespuesta.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/DataBases/DBRespuestas.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Parser/parserIndigoSym.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/GuardadoInfo/RespuestaFormulario.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/formulariotmp.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/escribirRespuestaIndigo/resIndigo.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Parser/parserSQFORMSym.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Lexer/lexerIndigo.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/GuardadoInfo/Archivo.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/mensaje.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Lexer/lexerInerText.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Acciones/ejecutarConsultas.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Parser/parserImportarSym.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Parser/parserSQFORM.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/componentetmp.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Acciones/ProcesarConsulta.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/ConsultarDatos.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/ConsultaToTablaIndigo/TablaToIndigo.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Parser/parserIndigo.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Servlets/exportarFormulario.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Servlets/loginUsuario.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/solucionCadenas/obtenerAsignacion.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Lexer/lexerSQFORM.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Servlets/consultasAPI.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Acciones/FormularioToJson/FormToJson.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/usuario.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Acciones/ejecutarInstrucciones.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/Componente.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/EDD/Nodo.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Servlets/getForm.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/DataBases/DBusuarios.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Lexer/lexerOpciones.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Tokens/token.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Servlets/ImportarFormulario.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/DataBases/DBFormularios.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Lexer/lexerImportar.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/EDD/Cola.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/EDD/Pila.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/Tabla.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/GuardadoInfo/Respuesta.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Lexer/Yytoken.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/ComponentesToHTML/ComponenteToHTML.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/contenedorResultado.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/userNew.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/Formulario.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/PaqueteConsultas.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Parser/parserImportar.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/Operacion.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/consulta.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Acciones/sobreEscribirArchivo.java
-/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Servlets/peticionesAPI.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/Operacion.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Lexer/lexerInerText.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Servlets/registrarRespuesta.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/ConsultaToTablaIndigo/TablaToIndigo.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/ConsultarDatos.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/usuario.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Acciones/ejecutarInstrucciones.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Servlets/exportarFormulario.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Tokens/token.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Acciones/ProcesarConsulta.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/contenedorResultado.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Acciones/ejecutarConsultas.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Parser/parserIndigo.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Lexer/lexerSQFORM.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/EDD/Nodo.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/GuardadoInfo/Archivo.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/Formulario.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Parser/parserImportarSym.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Servlets/loginUsuario.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/PaqueteConsultas.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Servlets/peticionesAPI.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Parser/parserIndigoSym.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/DataBases/DBRespuestas.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Parser/parserSQFORM.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Lexer/lexerIndigo.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Servlets/consultasAPI.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/Tabla.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/GuardadoInfo/Respuesta.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Lexer/lexerImportar.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/Componente.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Servlets/ImportarFormulario.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Lexer/Yytoken.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Parser/parserImportar.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/ComponentesToHTML/ComponenteToHTML.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/componentetmp.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/userNew.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Lexer/lexerOpciones.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/escribirRespuestaIndigo/resIndigo.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/consulta.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/mensaje.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Acciones/sobreEscribirArchivo.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/GuardadoInfo/RespuestaFormulario.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Acciones/FormularioToJson/FormToJson.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/EDD/Pila.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/solucionCadenas/obtenerAsignacion.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Servlets/getForm.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Parser/parserSQFORMSym.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/EDD/Cola.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/DataBases/DBusuarios.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/DataBases/DBFormularios.java
+/media/benjamin/DATA/Documents/Programas_compiladores_1/PROYECTO_1_COMPI1/Codigo Fuente/WEB_PROYECTO1/src/main/java/com/carlos/web_proyecto1/Objetos/formulariotmp.java
