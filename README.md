@@ -61,7 +61,7 @@ _Ya en el Manager App nos interesa en sector de **WAR file to deploy** donde bus
 
 _El Archivo del proyecto se encuentra en la carpeta **Ejecutables y base de datos** dentro del proyecto y archivo a cargar dentro de esta carpeta es **WEB_PROYECTO1.war**_
 
-_Habilitacion de la base de datos del proyecto_
+_HABILITACION DE LA BASE DE DATOS DEL PROYECTO_
 _INFO!!!! Al momento de parar los servicios o dejarlos de desplegar desde Apache Tomcat la informacion y los archivos se perderan!!!!_
 
 _En nuestra Carpeta de Apache Tomcat buscaremos una carpeta llamada **webapps** aqui buscaremos una carpeta llamada **WEB_PROYECTO1** si no estubiera la carpeta significa que nuestro proyecto no se ah desplegado, primero debemos de desplegar el proyecto, ya dentro de la carpeta **WEB_PROYECTO1** copiaremos dentro de esta la carpeta de **Almacenamiento** que esta dentro de de la carpeta del proyecto **Ejecutables y base de datos**_
