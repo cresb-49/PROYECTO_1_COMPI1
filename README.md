@@ -35,7 +35,7 @@ Apache NetBeans
 
 _Asignacion de permisos para la gestion de Apache Tomcat_
 
-_Apache Tomcat integra un sistema de usuarios y permisos por lo cual para desplegar nuestro proyecto necesitaremos de los accesos a el sistema, teniendo una instalacion nativa o un ejecucion desde NetBeans deberemos de acceder a la carpeta **conf** de nuestro Apache Tomcat y modificar el archivo **tomcat-users.xml** en este documento existe un apartado denominado **tomcat-users** que dentro de este apartado deberemos de agregar las siguintes configuraciones si no estuvieran_
+_Apache Tomcat integra un sistema de usuarios y permisos por lo cual para desplegar nuestro proyecto necesitaremos de los accesos a el sistema, teniendo una instalacion nativa o una ejecucion desde NetBeans deberemos de acceder a la carpeta **conf** de nuestro Apache Tomcat y modificar el archivo **tomcat-users.xml** en este documento existe un apartado denominado **tomcat-users** que dentro de este apartado deberemos de agregar las siguintes configuraciones si no estuvieran_
 ```
 <role rolename="manager-gui"/>
 role rolename="manager-script"/>
@@ -47,8 +47,19 @@ role rolename="manager-status"/>
 ```
 _Ya realizando la configuracion reiniciamos nuestro servicio de Apache Tomcat para que se aplique los cambios_
 
-_Para el despliege del proyecto_
+_Para el despliege del proyecto necesitaremos de acceder a:_
+```
+http://localhost:8080/
+```
+_Al acceder a la direccion podremos observar el sistema de Apache Tomcat, el apartado que nos interesa se denomina **Manager App** introduciremos nuestras credenciales que asignamos con anterioridad_
 
+![Pantalla Inicio Apache TomCat](https://raw.githubusercontent.com/parzibyte/WaterPy/master/assets/ImagenV1.png)
+
+_Ya en el Manager App nos interesa en sector de **WAR file to deploy** donde buscaremos el Archivo **.war** para cargarlo a Apache Tomcat_
+
+![Apartado WAR file to deploy](https://raw.githubusercontent.com/parzibyte/WaterPy/master/assets/ImagenV1.png)
+
+_El Archivo del proyecto se encuentra en la carpeta **Ejecutables y base de datos** dentro del proyecto y archivo a cargar dentro de esta carpeta es **WEB_PROYECTO1.war**_
 
 
 _Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
